@@ -44,7 +44,7 @@ public class primerXlet implements Xlet{
 
 	public void pauseXlet() {
 		// TODO Auto-generated method stub
-		
+		//nico
 		System.out.println("ejecuto pausa... liberando recursos ...");
 		
 	}	
