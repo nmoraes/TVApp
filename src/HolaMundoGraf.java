@@ -1,3 +1,6 @@
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
@@ -25,15 +28,7 @@ public class HolaMundoGraf extends HComponent implements Xlet{
 	
 	
 	public void destroyXlet(boolean unconditional) throws XletStateChangeException {
-		// TODO Auto-generated method stub
-		
-		if (unconditional) {
-			System.out.println("se llamo destroyXlet con TRUE");
-			} else {
-			System.out.println("Se llamo destroyXlet con false, pide no terminar");
-			throw new XletStateChangeException("pidio continuar");
-			}
-
+		HSceneFactory.getInstance().dispose(scene);
 		
 		
 	}
@@ -44,21 +39,30 @@ public class HolaMundoGraf extends HComponent implements Xlet{
 		HSceneFactory factory=HSceneFactory.getInstance();
 		
 		HSceneTemplate hst=new HSceneTemplate();
+		hstText=new HStaticText("hola mundo");
+		hstText.setFont(new Font("Tiresias",Font.BOLD,20));
+		hstText.setBounds(250, 250, 140, 128);
+		hstText.setHorizontalAlignment((int)HStaticText.CENTER_ALIGNMENT);
+		hstText.setForeground(new Color(255, 255, 255, 255));
+		hstText.setBackground(new Color(0, 0, 200));
+		
+		scene=factory.getBestScene(hst);
+		scene.setBounds(0, 0, 720, 576);
+		scene.add(this);
+		scene.add(hstText);
+		this.setSize(scene.getSize());
+		
 		
 	}
 
 	public void pauseXlet() {
 		// TODO Auto-generated method stub
-		//nico
-		System.out.println("ejecuto pausa... liberando recursos ...");
 		
 	}	
 
 	public void startXlet() throws XletStateChangeException {
 		// TODO Auto-generated method stub
-
-
-			
+		scene.setVisible(true);
 		
 		
 	}
