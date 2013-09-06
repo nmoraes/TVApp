@@ -9,7 +9,7 @@ import javax.tv.xlet.XletStateChangeException;
 //La clase principal de cada xlet debe implementar esta interfaz
 //sino el middele ware no ejecuta.
 
-//MHP norma europea.
+//MHP norma europea. //nico
 public class primerXlet implements Xlet{
 	
 	//cada xlet es un contexto
