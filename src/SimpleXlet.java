@@ -1,12 +1,18 @@
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
@@ -16,6 +22,7 @@ import org.havi.ui.HDefaultTextLayoutManager;
 import org.havi.ui.HScene;
 import org.havi.ui.HSceneFactory;
 import org.havi.ui.HScreen;
+import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
 
 /**
@@ -30,6 +37,13 @@ public class SimpleXlet implements Xlet, KeyListener {
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue };
     private int intColor;
     
+    /**Tipo de dato para guardar sonido */
+    private HSound myHSound = new HSound();
+
+	// The image that we will show
+	private Image image;
+
+
 	// this object is responsible for displaying the background I-frame
 	private HaviBackgroundController backgroundManager;
 	
@@ -42,6 +56,7 @@ public class SimpleXlet implements Xlet, KeyListener {
 
     public void initXlet(XletContext xletContext) throws XletStateChangeException {
         System.out.println("Ejecutando initXlet...");
+    	playSound();
         readProperties();
         context = xletContext;
     }
@@ -61,7 +76,7 @@ public class SimpleXlet implements Xlet, KeyListener {
         scene.setSize(720, 576);
         scene.setLayout(null);
         scene.addKeyListener(this);
-        
+      
 
         label = new HStaticText(message, 100, 100, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[0], new HDefaultTextLayoutManager());
         scene.add(label);
@@ -104,6 +119,7 @@ public class SimpleXlet implements Xlet, KeyListener {
 
 		case KeyEvent.VK_LEFT: {
 			System.out.println("izquierda ...");
+		
 
 			break;
 		}
@@ -118,6 +134,7 @@ public class SimpleXlet implements Xlet, KeyListener {
 			System.out.println("rojo ...");
 			label.setBackground(colors[0]);
 	        label.repaint();
+	        myHSound.stop();
 
 			break;
 		}
@@ -125,7 +142,7 @@ public class SimpleXlet implements Xlet, KeyListener {
 			System.out.println("verde ...");
 			label.setBackground(colors[1]);
 	        label.repaint();
-
+	        myHSound.play();
 			break;
 		}
 		case 405: {
@@ -177,13 +194,18 @@ public class SimpleXlet implements Xlet, KeyListener {
 	public void displayBackgroundImage() {
 		// We've defined a separate object for displaying and managing
 		// the background image.
+		
 		backgroundManager = new HaviBackgroundController();
 
 		// If we can initialise the background manager (which means we have got
 		// the resources we need to display the image), we load and display an
 		// image in the background plane.
 		if (backgroundManager.init()) {
-			backgroundManager.display("sky.jpg");
+
+				backgroundManager.display("background.jpg");
+			
+			
+		
 		}
 	}
     
@@ -214,7 +236,24 @@ public class SimpleXlet implements Xlet, KeyListener {
 	
 	}
 	
+	public void playSound() {
+		myHSound = new HSound();
+		try {
+			URL url;
+			url = new URL("file://"
+					+ new File("main_sound.mpg").getAbsolutePath());
+			myHSound.load(url);
+			System.out.println(url);
+
+		} catch (IOException io) {
+			io.printStackTrace();
+			System.out.println("error al leer sound.");
+		}
+		myHSound.play();
+
+	}
 	
-    
+	
+	
 
 }

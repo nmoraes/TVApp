@@ -62,8 +62,7 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 			HBackgroundConfigTemplate.REQUIRED);
 
 		HBackgroundConfiguration backconfig;
-		backconfig = backdevice.getBestConfiguration(
-			backgroundConfigurationTemplate);
+		backconfig = backdevice.getBestConfiguration(backgroundConfigurationTemplate);
 
 
 		// Can we reserve the device so that we can change the settings on it?
@@ -88,6 +87,8 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 			// this configuration, since we can't do this in every configuration.
 			if(backconfig instanceof HStillImageBackgroundConfiguration)
 			{
+				
+				System.out.println("aca");
 				// We can use this
 				this.backconfig = (HStillImageBackgroundConfiguration)backconfig;
 				this.backdevice = backdevice;
@@ -95,6 +96,7 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 			}
 			else
 			{
+				System.out.println("aca 2");
 				// If we can't, we again release the device since it's
 				// no use to us.
 				backdevice.releaseDevice();
@@ -130,10 +132,11 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 	{
 		// Check we have the resources we need to display a background image
 		if(backconfig != null) {
+		
 			// Create a new background image. The image is loaded from the
 			// filename that we pass in.
 			HBackgroundImage backimage = new HBackgroundImage(filename);
-
+	
 			// Now display the image.  This can throw several exceptions, so we
 			// enclose it in a 'try' block
 			try {
@@ -153,6 +156,13 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 				System.out.println("Can't display background image - configuration exception");
 				hce.printStackTrace();
 			}
+			catch (Exception hce) {
+				// We don't have permission to displayan image.  We just ignore it.
+				System.out.println("niam error");
+				hce.printStackTrace();
+			}
+			
+			
 		}
 	}
 
