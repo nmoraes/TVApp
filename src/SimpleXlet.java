@@ -1,6 +1,7 @@
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
@@ -11,13 +12,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
-
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
-
 import org.havi.ui.HDefaultTextLayoutManager;
 import org.havi.ui.HScene;
 import org.havi.ui.HSceneFactory;
@@ -25,17 +23,22 @@ import org.havi.ui.HScreen;
 import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
 
+import wsPackage.JSONUtility;
+
+
+
 /**
 * A simple Xlet with a HStaticText label that changes background color
 * when a key is pressed.
 */
-public class SimpleXlet implements Xlet, KeyListener {
+public class SimpleXlet implements Xlet, KeyListener,Runnable {
 
     private XletContext context;
     private HScene scene;
     private HStaticText label;
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue };
     private int intColor;
+
     
     /**Tipo de dato para guardar sonido */
     private HSound myHSound = new HSound();
@@ -80,7 +83,8 @@ public class SimpleXlet implements Xlet, KeyListener {
 
         label = new HStaticText(message, 100, 100, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[0], new HDefaultTextLayoutManager());
         scene.add(label);
-
+        
+    
         scene.setVisible(true);
 		scene.requestFocus();
     }
@@ -109,6 +113,7 @@ public class SimpleXlet implements Xlet, KeyListener {
 		// if we have the 'up' key...
 		case KeyEvent.VK_UP: {
 			System.out.println("arriba ...");
+			loadForegroundBitmap();
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
@@ -119,7 +124,7 @@ public class SimpleXlet implements Xlet, KeyListener {
 
 		case KeyEvent.VK_LEFT: {
 			System.out.println("izquierda ...");
-		
+			JSONUtility.getWeather();
 
 			break;
 		}
@@ -253,7 +258,49 @@ public class SimpleXlet implements Xlet, KeyListener {
 
 	}
 	
+	   public void loadForegroundBitmap() {   
+	        // Create a MediaTracker to tell us when the image has loaded   
+	        MediaTracker tracker = new MediaTracker(label);   
+	        // Then load the image   
+	        image = Toolkit.getDefaultToolkit().getImage("nico1.jpeg");   
+	   
+	        // add the image to the MediaTracker...   
+	        tracker.addImage(image, 0);   
+	   
+	        // ...and wait for it to finish loading   
+	        try{   
+	            tracker.waitForAll();   
+	            
+	        }   
+	        catch(InterruptedException e) {   
+	            // Ignore the exception, since there's not a lot we can do.   
+	            image = null;   
+	        }   
+	    }
+	   
+	   /**  
+	     * This is a standard AWT paint method for repainting the contents of the  
+	     * component.  
+	     */   
+	    public void paint(Graphics graphics) {   
+	   
+ 
+	        if (image != null) {   
+	            // Draw the image from the buffer   
+	            graphics.drawImage(image, 1, 1, null);    
+	            
+	        System.out.println("ejecutado paint");
+	        }   
+	   
+ 
+	    }
+
+	public void run() {
 	
-	
+		// TODO Auto-generated method stub
+		
+	}   
+
+
 
 }
