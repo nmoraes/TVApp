@@ -8,8 +8,12 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import wsPackage.org.json.me.JSONException;
+import wsPackage.org.json.me.JSONObject;
+
+
+
+
 
 
 public class JSONUtility {
@@ -28,13 +32,20 @@ public class JSONUtility {
 			    result =result+line;
 			}
 			
-			 try {
-				JSONObject jsonObj = new JSONObject(result);
-				System.out.println(jsonObj);
+			
+			JSONObject json;
+			try {
+				json = new JSONObject(result);
+				System.out.println(json);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			
+			
+			
+
 		//	 JSONObject json = (JSONObject) JSONSerializer.toJSON(result);
 
 			 
