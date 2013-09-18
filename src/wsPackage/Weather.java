@@ -1,24 +1,38 @@
 package wsPackage;
 
+import java.awt.Image;
+
+/**
+ * @author nico moraes
+ * @description bean que representa el estado del tiempo.
+ * */
 public class Weather {
 
-	
-	
-	
 	private String title;
 	private String fcttext; 
 	private String fcttext_metric;
-	private String icon_url; 
+	private Image urlImage;
 	
 	
 	
-	public Weather(String title, String fcttext, String fcttext_metric,String icon_url) {
+	public Weather(String title, String fcttext, String fcttext_metric, Image urlImage) {
 
 		this.title = title;
 		this.fcttext = fcttext;
 		this.fcttext_metric = fcttext_metric;
-		this.icon_url = icon_url;
+		this.urlImage = urlImage;
+		
 
+	}
+
+	public Image getUrl() {
+		return urlImage;
+	}
+
+
+
+	public void setUrl(Image url) {
+		this.urlImage = url;
 	}
 
 
@@ -58,18 +72,6 @@ public class Weather {
 	}
 
 
-
-	public String getIcon_url() {
-		return icon_url;
-	}
-
-
-
-	public void setIcon_url(String icon_url) {
-		this.icon_url = icon_url;
-	}
-	
-	
 	
 	
 	

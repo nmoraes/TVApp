@@ -1,12 +1,15 @@
 package wsPackage;
 
 
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import javax.imageio.ImageIO;
 
 import wsPackage.org.json.me.JSONArray;
 import wsPackage.org.json.me.JSONException;
@@ -75,7 +78,10 @@ public class JSONUtility {
 					//System.out.println(fcttext);
 					//System.out.println(fcttext_metric);
 					
-					Weather weather= new Weather(title,fcttext,fcttext_metric,icon_url);
+					 URL urlIcon = new URL(icon_url);
+					 Image image = ImageIO.read(urlIcon);   
+					
+					Weather weather= new Weather(title,fcttext,fcttext_metric,image);
 					weatherCollection[i]=weather;
 					
 				} catch (JSONException e) {

@@ -16,6 +16,8 @@ import java.net.URL;
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
+
+import org.havi.ui.HComponent;
 import org.havi.ui.HDefaultTextLayoutManager;
 import org.havi.ui.HScene;
 import org.havi.ui.HSceneFactory;
@@ -32,7 +34,7 @@ import wsPackage.Weather;
 * A simple Xlet with a HStaticText label that changes background color
 * when a key is pressed.
 */
-public class SimpleXlet implements Xlet, KeyListener,Runnable {
+public class SimpleXlet  implements Xlet, KeyListener {
 
     private XletContext context;
     private HScene scene;
@@ -63,6 +65,7 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
     	playSound();
         readProperties();
         context = xletContext;
+
     }
 
     public void startXlet() throws XletStateChangeException {
@@ -114,7 +117,7 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
 		// if we have the 'up' key...
 		case KeyEvent.VK_UP: {
 			System.out.println("arriba ...");
-			loadForegroundBitmap();
+			//loadForegroundBitmap();
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
@@ -128,14 +131,17 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
 			Weather [] weatherCollection= JSONUtility.getWeather();
 			
 			for (int i = 0; i < weatherCollection.length; i++) {
-			Weather h=weatherCollection[i];
-		
-			System.out.println("");
-			System.out.println("");
-			System.out.println(h.getTitle());
-			System.out.println(h.getFcttext());
-			System.out.println(h.getFcttext_metric());
-			System.out.println(h.getIcon_url());
+				Weather h = weatherCollection[i];
+
+				System.out.println("");
+				System.out.println("");
+				System.out.println(h.getTitle());
+				System.out.println(h.getFcttext());
+				System.out.println(h.getFcttext_metric());
+				//System.out.println(h.getUrl());
+				loadForegroundBitmap2(h.getUrl());
+				displayForegroundBitmap();
+				
 			}
 			
 			break;
@@ -270,12 +276,14 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
 
 	}
 	
-	   public void loadForegroundBitmap() {   
+	   public void loadForegroundBitmap2(Image i) {   
 	        // Create a MediaTracker to tell us when the image has loaded   
 	        MediaTracker tracker = new MediaTracker(label);   
 	        // Then load the image   
-	        image = Toolkit.getDefaultToolkit().getImage("nico1.jpeg");   
+	        //image = Toolkit.getDefaultToolkit().getImage("nico1.jpeg");   
 	   
+	        image=i;
+	        
 	        // add the image to the MediaTracker...   
 	        tracker.addImage(image, 0);   
 	   
@@ -284,10 +292,14 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
 	            tracker.waitForAll();   
 	            
 	        }   
+	        
 	        catch(InterruptedException e) {   
 	            // Ignore the exception, since there's not a lot we can do.   
 	            image = null;   
-	        }   
+	            System.out.println("exception en loadFore..");
+	        }  
+	      
+	        
 	    }
 	   
 	   /**  
@@ -296,7 +308,7 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
 	     */   
 	    public void paint(Graphics graphics) {   
 	   
- 
+	    	 System.out.println("dentro de paint");
 	        if (image != null) {   
 	            // Draw the image from the buffer   
 	            graphics.drawImage(image, 1, 1, null);    
@@ -307,12 +319,7 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
  
 	    }
 
-	public void run() {
 	
-		// TODO Auto-generated method stub
-		
-	}   
-
 
 
 }
