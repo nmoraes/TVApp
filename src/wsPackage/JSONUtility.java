@@ -20,8 +20,9 @@ import wsPackage.org.json.me.JSONObject;
 public class JSONUtility {
 
 
-	public static void getWeather() {
+	public static Weather[] getWeather() {
 	URL url = null;
+	Weather [] weatherCollection=null;
 	//http://www.wunderground.com/
 		try {
 			url = new URL("http://api.wunderground.com/api/2f2b92287d8a6fd0/geolookup/conditions/forecast/q/Uruguay/Montevideo.json");
@@ -56,47 +57,37 @@ public class JSONUtility {
 
 
 	
-
+			weatherCollection = new Weather[arrayWeather.length()];
 
 			for (int i = 0; i < arrayWeather.length(); i++) {
 				//html = null;
 				//pic = null;
 				
 				
-				
-				System.out.println("");
-				System.out.println("");
-				System.out.println("");
 				try {
 					JSONObject array = (JSONObject) arrayWeather.get(i);
 					String title = array.getString("title");
 					String fcttext = array.getString("fcttext");
 					String fcttext_metric = array.getString("fcttext_metric");
+					String icon_url = array.getString("icon_url");
 					
-					System.out.println(title);
-					System.out.println(fcttext);
-					System.out.println(fcttext_metric);
+					//System.out.println(title);
+					//System.out.println(fcttext);
+					//System.out.println(fcttext_metric);
+					
+					Weather weather= new Weather(title,fcttext,fcttext_metric,icon_url);
+					weatherCollection[i]=weather;
 					
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			
-				
+				/*
+				 URL url = new URL("http://www.digitalphotoartistry.com/rose1.jpg");
+				Image image = ImageIO.read(url);   
+				 */
 
-//				if (subtitle.equals("null")) {
-//					subtitle = "";
-//				} else
-//					subtitle = subtitle + ".<br>";
-//
-//				price = array.getString("price");
-//				// price=calculadoraDePrecio(price);
-//				thumbnail = array.getString("thumbnail");
-//				currency = array.getString("currency_id");
-//				pic = thumbnail.replace("_v_I_f", "_v_T_f");
-//				stop_time = array.getString("stop_time");
-//				condition = estado(array.getString("condition"));
-//				id = array.getString("id");
 
 			}
 			
@@ -114,7 +105,7 @@ public class JSONUtility {
 			e.printStackTrace();
 		}
 	
-	
+	return weatherCollection;
 	
 	}
 	

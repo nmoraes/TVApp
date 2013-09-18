@@ -24,6 +24,7 @@ import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
 
 import wsPackage.JSONUtility;
+import wsPackage.Weather;
 
 
 
@@ -123,9 +124,20 @@ public class SimpleXlet implements Xlet, KeyListener,Runnable {
 		}
 
 		case KeyEvent.VK_LEFT: {
-			System.out.println("izquierda ...");
-			JSONUtility.getWeather();
-
+			System.out.println("evento estado del tiempo");
+			Weather [] weatherCollection= JSONUtility.getWeather();
+			
+			for (int i = 0; i < weatherCollection.length; i++) {
+			Weather h=weatherCollection[i];
+		
+			System.out.println("");
+			System.out.println("");
+			System.out.println(h.getTitle());
+			System.out.println(h.getFcttext());
+			System.out.println(h.getFcttext_metric());
+			System.out.println(h.getIcon_url());
+			}
+			
 			break;
 		}
 
