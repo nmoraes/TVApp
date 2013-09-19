@@ -122,7 +122,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         HSceneFactory hsceneFactory = HSceneFactory.getInstance();
         scene = hsceneFactory.getFullScreenScene(HScreen.getDefaultHScreen().getDefaultHGraphicsDevice());
 
-        scene.setSize(720, 576);
+        scene.setSize(800, 600);
         scene.setLayout(null);
         scene.addKeyListener(this);
       
@@ -397,20 +397,20 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // yet.   
         if (image != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image, 100, 100, null);      }
+            graphics.drawImage(image, 50, 50, null);      }
         
         
         
         if (image2 != null) {  
-        	System.out.println("HOLAAAAAAAAAAAA");
+        	
             // Draw the image from the buffer   
-            graphics.drawImage(image2, 300, 300, null);      }  
+            graphics.drawImage(image2, 300, 100, null);      }  
         if (image3 != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image3, 400, 400, null);      }  
+            graphics.drawImage(image3, 400, 100, null);      }  
         if (image4 != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image4, 500, 500, null);      }  
+            graphics.drawImage(image4, 500, 100, null);      }  
    
         // Once we've drawn the image, we can draw the message on top of it.   
    
