@@ -27,6 +27,7 @@ import java.awt.*;
 import java.awt.event.*;   
 import org.havi.ui.*;   
 import org.havi.ui.event.*;   
+import org.davic.net.ca.NewModuleEvent;
 import org.dvb.ui.*;   
 
 import wsPackage.JSONUtility;
@@ -127,7 +128,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.addKeyListener(this);
       
 
-        label = new HStaticText(message, 100, 100, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[0], new HDefaultTextLayoutManager());
+        label = new HStaticText(message, 50, 300, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[0], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         
@@ -191,7 +192,11 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private Image image4; 
    
     // The message that will get printed.  This is read from a file in initXlet()   
-    private String message;   
+    private String message;
+    
+    private String messageWeather1= new String();
+    private String messageWeather2= new String();;
+    private String messageWeather3= new String();;
    
     // this holds the alpha (transparency) level that we will be using   
     private int alpha = 0;   
@@ -303,15 +308,12 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
         image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
-        
-        
-        
-        	
+             	
         
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);   
         tracker.addImage(image2, 1);
-        tracker.addImage(image3, 1);
+        tracker.addImage(image3, 2);
    
         // ...and wait for it to finish loading   
         try{   
@@ -397,32 +399,40 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // yet.   
         if (image != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image, 50, 50, null);      }
+            graphics.drawImage(image, 300, 300, null);      }
         
         
-        
+    
         if (image2 != null) {  
         	
             // Draw the image from the buffer   
-            graphics.drawImage(image2, 300, 100, null);      }  
+            graphics.drawImage(image2, 10, 10, null);      
+        	 } 
+        
+        
         if (image3 != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image3, 400, 100, null);      }  
+            graphics.drawImage(image3, 10, 60, null);  
+            graphics.setColor(Color.red);}  
         if (image4 != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image4, 500, 100, null);      }  
+            graphics.drawImage(image4, 10, 110, null);      }  
    
         // Once we've drawn the image, we can draw the message on top of it.   
    
         // Set the font to be the default MHP font.   
-        graphics.setFont(new Font("Tiresias", Font.PLAIN, 36));   
+        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));   
         // Set the text colour   
-        graphics.setColor(Color.white);   
+        graphics.setColor(Color.black);   
    
         // Drawing the string may cause an error to get thrown, so we   
         // surround it with a 'try' block.   
         try{   
             graphics.drawString(message,300,350);  
+           
+            graphics.drawString(messageWeather1,80,30);  
+            graphics.drawString(messageWeather2,80,90);  
+            graphics.drawString(messageWeather3,80,150);  
           
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
@@ -468,15 +478,23 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 				System.out.println(h.getFcttext());
 				System.out.println(h.getFcttext_metric());
 				//System.out.println(h.getUrl());
+				
+				if(i==0){
+				messageWeather1 = h.getTitle() + ": "+h.getFcttext_metric();
 				image2 = h.getUrl();
+				}
+				if(i==1){
 				image3 =h.getUrl();
+				messageWeather2 = h.getTitle() + ": "+h.getFcttext_metric();
+			}
+				if(i==2){
 				image4 =h.getUrl();
-				
+				messageWeather3 = h.getTitle() + ": "+h.getFcttext_metric();
 				loadForegroundBitmap();
-				
+			}
 				this.repaint();
 			}
-			
+			//this.repaint();
 			break;
 		}
 
