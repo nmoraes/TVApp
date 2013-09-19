@@ -62,9 +62,13 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue };
     private int intColor;
     
+   
+    
 
     /**Tipo de dato para guardar sonido */
     private HSound myHSound = new HSound();
+    
+      
     
     
    
@@ -177,7 +181,14 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private HScene scene;   
    
     // The image that we will show   
-    private Image image;   
+    private Image image; 
+    
+    // The image that we will show   
+    private Image image2;
+    // The image that we will show   
+    private Image image3;
+    // The image that we will show   
+    private Image image4; 
    
     // The message that will get printed.  This is read from a file in initXlet()   
     private String message;   
@@ -292,9 +303,15 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
         image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
-   
+        
+        
+        
+        	
+        
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);   
+        tracker.addImage(image2, 1);
+        tracker.addImage(image3, 1);
    
         // ...and wait for it to finish loading   
         try{   
@@ -380,7 +397,20 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // yet.   
         if (image != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image, 100, 100, null);      }   
+            graphics.drawImage(image, 100, 100, null);      }
+        
+        
+        
+        if (image2 != null) {  
+        	System.out.println("HOLAAAAAAAAAAAA");
+            // Draw the image from the buffer   
+            graphics.drawImage(image2, 300, 300, null);      }  
+        if (image3 != null) {   
+            // Draw the image from the buffer   
+            graphics.drawImage(image3, 400, 400, null);      }  
+        if (image4 != null) {   
+            // Draw the image from the buffer   
+            graphics.drawImage(image4, 500, 500, null);      }  
    
         // Once we've drawn the image, we can draw the message on top of it.   
    
@@ -438,9 +468,13 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 				System.out.println(h.getFcttext());
 				System.out.println(h.getFcttext_metric());
 				//System.out.println(h.getUrl());
-		//		loadForegroundBitmap2(h.getUrl());
+				image2 = h.getUrl();
+				image3 =h.getUrl();
+				image4 =h.getUrl();
 				
+				loadForegroundBitmap();
 				
+				this.repaint();
 			}
 			
 			break;
@@ -448,10 +482,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 
 		case KeyEvent.VK_RIGHT: {
 			System.out.println("derecha ...");
-		
-			 //Graphics g = getGraphics();
-		    //paint(g);
-			this.repaint();
+
 			break;
 		}
 
@@ -551,6 +582,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 	
 	}
     
+
     
    
    
