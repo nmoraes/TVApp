@@ -1,5 +1,6 @@
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,10 +14,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
 
+import org.dvb.ui.DVBColor;
 import org.havi.ui.HComponent;
 import org.havi.ui.HDefaultTextLayoutManager;
 import org.havi.ui.HScene;
@@ -34,13 +37,14 @@ import wsPackage.Weather;
 * A simple Xlet with a HStaticText label that changes background color
 * when a key is pressed.
 */
-public class SimpleXlet  implements Xlet, KeyListener {
+public class SimpleXlet extends HComponent  implements Xlet, KeyListener{
 
     private XletContext context;
     private HScene scene;
     private HStaticText label;
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue };
     private int intColor;
+    
 
     
     /**Tipo de dato para guardar sonido */
@@ -62,6 +66,7 @@ public class SimpleXlet  implements Xlet, KeyListener {
 
     public void initXlet(XletContext xletContext) throws XletStateChangeException {
         System.out.println("Ejecutando initXlet...");
+        loadForegroundBitmap();
     	playSound();
         readProperties();
         context = xletContext;
@@ -70,12 +75,11 @@ public class SimpleXlet  implements Xlet, KeyListener {
 
     public void startXlet() throws XletStateChangeException {
         System.out.println("Ejecutando startXlet...");
+ 
     	// This adds the background image to the display.  The background image is
 		// displayed in the background plane.
 		displayBackgroundImage();
 		
-		// The bitmap image is shown in the graphics plane.
-		displayForegroundBitmap();
         
         HSceneFactory hsceneFactory = HSceneFactory.getInstance();
         scene = hsceneFactory.getFullScreenScene(HScreen.getDefaultHScreen().getDefaultHGraphicsDevice());
@@ -87,6 +91,7 @@ public class SimpleXlet  implements Xlet, KeyListener {
 
         label = new HStaticText(message, 100, 100, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[0], new HDefaultTextLayoutManager());
         scene.add(label);
+        scene.add(this);
         
     
         scene.setVisible(true);
@@ -139,8 +144,8 @@ public class SimpleXlet  implements Xlet, KeyListener {
 				System.out.println(h.getFcttext());
 				System.out.println(h.getFcttext_metric());
 				//System.out.println(h.getUrl());
-				loadForegroundBitmap2(h.getUrl());
-				displayForegroundBitmap();
+		//		loadForegroundBitmap2(h.getUrl());
+				
 				
 			}
 			
@@ -149,7 +154,10 @@ public class SimpleXlet  implements Xlet, KeyListener {
 
 		case KeyEvent.VK_RIGHT: {
 			System.out.println("derecha ...");
-
+		
+			 //Graphics g = getGraphics();
+		    //paint(g);
+			this.repaint();
 			break;
 		}
 
@@ -232,13 +240,6 @@ public class SimpleXlet  implements Xlet, KeyListener {
 		}
 	}
     
-	/**
-	 * Display the foreground image in the AWT component
-	 */
-	public void displayForegroundBitmap()
-	{
-	}
-	
 	
 	private void readProperties(){
 	
@@ -276,50 +277,84 @@ public class SimpleXlet  implements Xlet, KeyListener {
 
 	}
 	
-	   public void loadForegroundBitmap2(Image i) {   
-	        // Create a MediaTracker to tell us when the image has loaded   
-	        MediaTracker tracker = new MediaTracker(label);   
-	        // Then load the image   
-	        //image = Toolkit.getDefaultToolkit().getImage("nico1.jpeg");   
+//	   public void loadForegroundBitmap2(Image i) {   
+//	        // Create a MediaTracker to tell us when the image has loaded   
+//	        MediaTracker tracker = new MediaTracker(label);   
+//	        // Then load the image   
+//	        //image = Toolkit.getDefaultToolkit().getImage("nico1.jpeg");   
+//	   
+//	        image=i;
+//	        
+//	        // add the image to the MediaTracker...   
+//	        tracker.addImage(image, 0);   
+//	   
+//	        // ...and wait for it to finish loading   
+//	        try{   
+//	            tracker.waitForAll();   
+//	            
+//	        }   
+//	        
+//	        catch(InterruptedException e) {   
+//	            // Ignore the exception, since there's not a lot we can do.   
+//	            image = null;   
+//	            System.out.println("exception en loadFore..");
+//	        }  
+//	      
+//	        
+//	    }
 	   
-	        image=i;
-	        
-	        // add the image to the MediaTracker...   
-	        tracker.addImage(image, 0);   
-	   
-	        // ...and wait for it to finish loading   
-	        try{   
-	            tracker.waitForAll();   
-	            
-	        }   
-	        
-	        catch(InterruptedException e) {   
-	            // Ignore the exception, since there's not a lot we can do.   
-	            image = null;   
-	            System.out.println("exception en loadFore..");
-	        }  
-	      
-	        
-	    }
-	   
+
+	
 	   /**  
 	     * This is a standard AWT paint method for repainting the contents of the  
 	     * component.  
-	     */   
+	     */ 
+
 	    public void paint(Graphics graphics) {   
 	   
+	    	super.paint(graphics);
+	    	Dimension size = getSize();   
+	    	   
+	        /* Clear the background of the component to the current  
+	        transparency level.  Since standard AWT doesn't  support  
+	        transparency, we have to use an org.dvb.ui.DVBColor  
+	        object rather than a java.awt.Color object */   
+	        
+	       
+	        graphics.fillRect(0,0,size.width,size.height);   
+	    	
 	    	 System.out.println("dentro de paint");
 	        if (image != null) {   
 	            // Draw the image from the buffer   
-	            graphics.drawImage(image, 1, 1, null);    
-	            
+	            graphics.drawImage(image, 100, 100, null);    
+	           
 	        System.out.println("ejecutado paint");
 	        }   
 	   
  
 	    }
 
-	
+	    
+
+	    public void loadForegroundBitmap() {   
+	        // Create a MediaTracker to tell us when the image has loaded   
+	        MediaTracker tracker = new MediaTracker(this);   
+	        // Then load the image   
+	        image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
+	   
+	        // add the image to the MediaTracker...   
+	        tracker.addImage(image, 0);   
+	   
+	        // ...and wait for it to finish loading   
+	        try{   
+	            tracker.waitForAll();   
+	        }   
+	        catch(InterruptedException e) {   
+	            // Ignore the exception, since there's not a lot we can do.   
+	            image = null;   
+	            System.out.println("error en carga de imahen");
+	        }   
+	    }
 
 
 }
