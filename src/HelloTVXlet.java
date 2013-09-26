@@ -136,7 +136,11 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.setVisible(true);
 		scene.requestFocus();
    
-        
+        //
+		Contenedor cont = new Contenedor();
+		scene.add(cont);
+		scene.setVisible(true);
+		cont.requestFocus();
         
         
     }   
