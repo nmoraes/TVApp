@@ -18,8 +18,9 @@ public class Contenedor extends HContainer implements KeyListener {
 		hstTexto.setBackground(Color.blue);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
-		this.setBounds(0, 0, 400, 200);
+		this.setBounds(0, 0, 800, 200);
 		this.addKeyListener(this);
+		
 	}
 
 	public void keyPressed(KeyEvent tecla) {
@@ -44,6 +45,12 @@ public class Contenedor extends HContainer implements KeyListener {
 			hstTexto.setBounds(x, 0, 200, 50);
 			this.repaint();
 			break;
+			
+		case 37:
+			HelloTVXlet.scene.requestFocus();
+			this.repaint();
+			break;	
+			
 		}
 	}
 

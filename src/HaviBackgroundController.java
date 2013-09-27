@@ -9,6 +9,10 @@
  */
 
 // Import the HAVi UI classes that we need for this
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.havi.ui.HScreen;
 import org.havi.ui.HBackgroundDevice;
 import org.havi.ui.HBackgroundConfiguration;
@@ -133,10 +137,15 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 		// Check we have the resources we need to display a background image
 		if(backconfig != null) {
 		
+			File f= new File(filename);
+			
 			// Create a new background image. The image is loaded from the
 			// filename that we pass in.
-			HBackgroundImage backimage = new HBackgroundImage(filename);
+			HBackgroundImage backimage = new HBackgroundImage(f.toString());
 	
+
+			
+			
 			// Now display the image.  This can throw several exceptions, so we
 			// enclose it in a 'try' block
 			try {
@@ -158,7 +167,6 @@ class HaviBackgroundController implements org.davic.resources.ResourceClient{
 			}
 			catch (Exception hce) {
 				// We don't have permission to displayan image.  We just ignore it.
-				System.out.println("niam error");
 				hce.printStackTrace();
 			}
 			

@@ -63,7 +63,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue };
     private int intColor;
     
-   
+   private Contenedor cont = new Contenedor();
     
 
     /**Tipo de dato para guardar sonido */
@@ -137,10 +137,10 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.requestFocus();
    
         //
-		Contenedor cont = new Contenedor();
+		//Contenedor cont = new Contenedor();
 		scene.add(cont);
 		scene.setVisible(true);
-		cont.requestFocus();
+		//cont.requestFocus();
         
         
     }   
@@ -183,7 +183,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
    
     // Before we can draw on the screen, we need an HScene to draw into.  This   
     // variable will hold a reference to our HScene   
-    private HScene scene;   
+    public static HScene scene;   
    
     // The image that we will show   
     private Image image; 
@@ -460,7 +460,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		// if we have the 'up' key...
 		case KeyEvent.VK_UP: {
 			System.out.println("arriba ...");
-			//loadForegroundBitmap();
+			cont.requestFocus();
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
@@ -504,6 +504,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 
 		case KeyEvent.VK_RIGHT: {
 			System.out.println("derecha ...");
+			scene.requestFocus();
 
 			break;
 		}
