@@ -14,7 +14,7 @@ public class ContenedorRed extends HContainer implements KeyListener {
 	public ContenedorRed() {
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 0, 400, 50);
+		hstTexto.setBounds(x, 100, 400, 50);
 		hstTexto.setBackground(Color.red);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
@@ -30,21 +30,22 @@ public class ContenedorRed extends HContainer implements KeyListener {
 		case 39:
 			//derecha
 			x = x + 100;
-			hstTexto.setBounds(x, 0, 200, 50);
+			hstTexto.setBounds(x, 100, 200, 50);
 			this.repaint();
 			break;
 		case 37:
 			//izquierda
 			x = x - 100;
-			hstTexto.setBounds(x, 0, 200, 50);
+			hstTexto.setBounds(x, 100, 200, 50);
 			this.repaint();
 			break;
 		
 		case 27:
 			//exit
 			HelloTVXlet.label.setBackground(Color.white);
+			HelloTVXlet.label.repaint();
 			HelloTVXlet.scene.requestFocus();
-			this.repaint();
+			//this.repaint();
 			break;	
 
 		default: {

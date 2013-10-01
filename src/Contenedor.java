@@ -40,8 +40,9 @@ public class Contenedor extends HContainer implements KeyListener {
 		case 27:
 			//exit
 			HelloTVXlet.label.setBackground(Color.white);
+			HelloTVXlet.label.repaint();
 			HelloTVXlet.scene.requestFocus();
-			this.repaint();
+			//this.repaint();
 			break;	
 		
 		default: {
