@@ -63,8 +63,9 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue, Color.white };
     private int intColor;
     
-   private Contenedor cont = new Contenedor();
+   private ContenedorAzul cont = new ContenedorAzul();
    private ContenedorRed contRed = new ContenedorRed();
+   private ContenedorYellow contYellow = new ContenedorYellow();
     
 
     /**Tipo de dato para guardar sonido */
@@ -144,7 +145,8 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.add(contRed);
 		scene.setVisible(true);
 		
-	
+		scene.add(contYellow);
+		scene.setVisible(true);
         
         
     }   
@@ -533,7 +535,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 			System.out.println("amarillo  ...");
 			label.setBackground(colors[2]);
 	        label.repaint();
-
+	        contYellow.requestFocus();
 			break;
 		}
 		case 406: {
