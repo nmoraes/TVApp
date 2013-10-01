@@ -59,11 +59,12 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     // will do all of the work.   
     private Thread myWorkerThread;   
     
-    private HStaticText label;
-    private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue };
+    public static HStaticText label;
+    private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue, Color.white };
     private int intColor;
     
    private Contenedor cont = new Contenedor();
+   private ContenedorRed contRed = new ContenedorRed();
     
 
     /**Tipo de dato para guardar sonido */
@@ -128,7 +129,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.addKeyListener(this);
       
 
-        label = new HStaticText(message, 50, 300, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[0], new HDefaultTextLayoutManager());
+        label = new HStaticText(message, 50, 300, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         
@@ -136,11 +137,14 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.setVisible(true);
 		scene.requestFocus();
    
-        //
-		//Contenedor cont = new Contenedor();
+        //contenedores
 		scene.add(cont);
 		scene.setVisible(true);
-		//cont.requestFocus();
+		
+		scene.add(contRed);
+		scene.setVisible(true);
+		
+	
         
         
     }   
@@ -460,7 +464,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		// if we have the 'up' key...
 		case KeyEvent.VK_UP: {
 			System.out.println("arriba ...");
-			cont.requestFocus();
+			 myHSound.stop();
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
@@ -513,7 +517,8 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 			System.out.println("rojo ...");
 			label.setBackground(colors[0]);
 	        label.repaint();
-	        myHSound.stop();
+	        contRed.requestFocus();
+	       
 
 			break;
 		}
@@ -535,7 +540,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 			System.out.println("azul ...");
 			label.setBackground(colors[3]);
 	        label.repaint();
-
+	        cont.requestFocus();
 			break;
 		}
 

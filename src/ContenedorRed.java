@@ -6,16 +6,16 @@ import java.awt.event.KeyListener;
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
 
-public class Contenedor extends HContainer implements KeyListener {
+public class ContenedorRed extends HContainer implements KeyListener {
 	private int x = 0;
 	
 	HStaticText hstTexto = new HStaticText(" Soy new HContainer ");
 
-	public Contenedor() {
+	public ContenedorRed() {
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 0, 200, 50);
-		hstTexto.setBackground(Color.blue);
+		hstTexto.setBounds(x, 0, 400, 50);
+		hstTexto.setBackground(Color.red);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(0, 0, 800, 200);
@@ -25,33 +25,38 @@ public class Contenedor extends HContainer implements KeyListener {
 
 	public void keyPressed(KeyEvent tecla) {
 
+		System.out.println("contenedor red");
 		switch (tecla.getKeyCode()) {
 		case 39:
+			//derecha
 			x = x + 100;
 			hstTexto.setBounds(x, 0, 200, 50);
 			this.repaint();
 			break;
 		case 37:
+			//izquierda
 			x = x - 100;
 			hstTexto.setBounds(x, 0, 200, 50);
 			this.repaint();
 			break;
-			
+		
 		case 27:
 			//exit
 			HelloTVXlet.label.setBackground(Color.white);
 			HelloTVXlet.scene.requestFocus();
 			this.repaint();
 			break;	
-		
+
 		default: {
 			// do nothing
 			System.out.println("default case ...");
 			System.out.println(tecla);
 			break;
 		}
-		}	
-		
+			
+			
+			
+		}
 	}
 
 	public void keyReleased(KeyEvent arg0) {
