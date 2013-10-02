@@ -120,7 +120,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         
     	// This adds the background image to the display.  The background image is
 		// displayed in the background plane.
-		displayBackgroundImage();
+		//displayBackgroundImage();
 		
         
         HSceneFactory hsceneFactory = HSceneFactory.getInstance();
@@ -131,7 +131,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.addKeyListener(this);
       
 
-        label = new HStaticText(message, 50, 300, 200, 200, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
+        label = new HStaticText(message, 50, 300, 100, 100, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         
@@ -228,7 +228,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
    
         // This adds the background image to the display.  The background image is   
         // displayed in the background plane.   
-        displayBackgroundImage();   
+       // displayBackgroundImage();   
    
         // The bitmap image is shown in the graphics plane.   
         displayForegroundBitmap();   
@@ -325,7 +325,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         tracker.addImage(image, 0);   
         tracker.addImage(image2, 1);
         tracker.addImage(image3, 2);
-   
+        tracker.addImage(image4, 3);
         // ...and wait for it to finish loading   
         try{   
             tracker.waitForAll();   
@@ -410,7 +410,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // yet.   
         if (image != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image, 300, 300, null);      }
+            graphics.drawImage(image, 50, 50, null);      }
         
         
     
@@ -505,7 +505,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 			}
 				this.repaint();
 			}
-			//this.repaint();
+		
 			break;
 		}
 

@@ -15,11 +15,11 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 	public ContenedorYellow() {
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 100, 200, 50);
+		hstTexto.setBounds(x, 530, 200, 50);
 		hstTexto.setBackground(Color.yellow);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
-		this.setBounds(0, 0, 800, 200);
+		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 		
 	}
@@ -29,12 +29,12 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 		switch (tecla.getKeyCode()) {
 		case 39:
 			x = x + 100;
-			hstTexto.setBounds(x, 100, 200, 50);
+			hstTexto.setBounds(x, 530, 200, 50);
 			this.repaint();
 			break;
 		case 37:
 			x = x - 100;
-			hstTexto.setBounds(x, 100, 200, 50);
+			hstTexto.setBounds(x, 530, 200, 50);
 			this.repaint();
 			break;
 			

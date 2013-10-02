@@ -55,7 +55,7 @@ public class Cliente {
 		// AccessToken access=twitter.getOAuthAccessToken(token, pin);
 		System.out.println(access.getToken());
 		System.out.println("publicando");
-		String mensaje = "probando app para tv digital";
+		String mensaje = "twitter by @nmoraes_ by @ale_galli";
 		Status status = twitter.updateStatus(mensaje);
 		System.out.println("publicado");
 		System.out.println(status.getText());
