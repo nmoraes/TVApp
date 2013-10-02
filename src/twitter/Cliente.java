@@ -23,7 +23,6 @@ public class Cliente {
 				.setOAuthConsumerKey("kEgC1K5vx2mvRYxePYCUA")
 				.setOAuthConsumerSecret(
 						"B1TQEaekHjW9XRBDSC3cTBKXx5EMaWiwffS4NrGiqfQ");
-				//.setUser("TVDigital1").setPassword("ihome01");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 		Persistir persistir = new Persistir();
@@ -52,7 +51,6 @@ public class Cliente {
 			twitter.setOAuthAccessToken(access);
 			System.out.println("existe usuario");
 		}
-		// AccessToken access=twitter.getOAuthAccessToken(token, pin);
 		System.out.println(access.getToken());
 		System.out.println("publicando");
 		String mensaje = "twitter by @nmoraes_ by @ale_galli";
