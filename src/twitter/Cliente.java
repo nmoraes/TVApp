@@ -20,7 +20,7 @@ public class Cliente {
 				.setOAuthConsumerKey("kEgC1K5vx2mvRYxePYCUA")
 				.setOAuthConsumerSecret(
 						"B1TQEaekHjW9XRBDSC3cTBKXx5EMaWiwffS4NrGiqfQ")
-				.setUser("").setPassword("");
+				.setUser("TVDigital1").setPassword("ihome01");
 		TwitterFactory tf=new TwitterFactory(cb.build());
 		Twitter twitter= tf.getInstance();
 		
