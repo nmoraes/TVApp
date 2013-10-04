@@ -1,21 +1,9 @@
 package mainXlet;
 import java.awt.event.KeyEvent;
 
-import javax.tv.xlet.Xlet;
-/***********************************************************************************  
- *  
- * THIS SOFTWARE IS COPYRIGHT STEVEN MORRIS 2002. ALL RIGHTS RESERVED  
- *  
- * THIS SOFTWARE IS FREE FOR NON COMMERCIAL USE FOR THE PURPOSE OF LEARNING MHP.  ANY  
- * USE FOR OTHER PURPOSES IS PROHIBITED UNLESS WRITTEN AGREEMENT IS OBTAINED.  
- *  
- * DISTRIBUTION OF THIS CODE IS PROHIBITED  
- */   
-   
-   
 // Import the standard package that we need to be an Xlet   
 import javax.tv.xlet.*;   
-   
+
 // We need java.io to read data from files.   
 import java.io.*;   
 import java.net.URL;
@@ -26,11 +14,13 @@ import java.net.URL;
 // fixes of its own, resulting in a lot of different packages.   
 import java.awt.*;   
 import java.awt.event.*;   
+
 import org.havi.ui.*;   
 import org.havi.ui.event.*;   
 import org.davic.net.ca.NewModuleEvent;
 import org.dvb.ui.*;   
 
+import Gastos.Gastos1;
 import wsPackage.JSONUtility;
 import wsPackage.Weather;
    
@@ -71,7 +61,8 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 
     /**Tipo de dato para guardar sonido */
     private HSound myHSound = new HSound();
-    
+    /*// Gastos*/
+    private Gastos1 gas = new Gastos1();
       
     
     
@@ -149,6 +140,10 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.add(contYellow);
 		scene.setVisible(true);
         
+		// Gastos
+		scene.add(gas);
+		scene.setVisible(true);
+
         
     }   
    
@@ -530,6 +525,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 			label.setBackground(colors[1]);
 	        label.repaint();
 	        myHSound.play();
+	        gas.requestFocus();
 			break;
 		}
 		case 405: {
