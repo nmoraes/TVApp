@@ -97,15 +97,16 @@ public class FachadaTwitter {
 		try {
 			usuario = getUsuario();
 			if (usuario != null) {
-				User user = twitter.verifyCredentials();
+				//User user = twitter.verifyCredentials();
 				List statuses = twitter.getHomeTimeline();
 				List tl = new ArrayList();
 				for (int i = 0; i < statuses.size(); i++) {
 					Status status = (Status) statuses.get(i);
-					System.out.println(status.getUser().getScreenName()+" "+status.getText());
+					//System.out.println(status.getUser().getScreenName()+" "+status.getText());
 					tl.add(new Tweet(status.getUser().getScreenName(), status
 							.getText()));
 				}
+				return tl;
 			}
 		} catch (TwitterException e) {
 			e.printStackTrace();
