@@ -16,15 +16,15 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 import twitter4j.conf.ConfigurationBuilder;
 
-public class Cliente {
+public class FachadaTwitter {
 
 	private ConfigurationBuilder cb;
 	private Twitter twitter;
 	private Usuario usuario;
 	private AccessToken access;
 	private RequestToken token;
-	
-	public Cliente() {
+
+	public FachadaTwitter() {
 		cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 				.setOAuthConsumerKey("kEgC1K5vx2mvRYxePYCUA")
@@ -68,7 +68,7 @@ public class Cliente {
 
 	public String getAuthorizationURL() {
 		try {
-			token=twitter.getOAuthRequestToken();
+			token = twitter.getOAuthRequestToken();
 			return token.getAuthorizationURL();
 		} catch (TwitterException e) {
 			e.printStackTrace();
@@ -92,15 +92,20 @@ public class Cliente {
 	public boolean existeUsuario() {
 		return new Persistir().leerUsuarioTwitter() != null;
 	}
-	
-	public List getHomeTimeLine(){
+
+	public List getHomeTimeLine() {
 		try {
-			User user=twitter.verifyCredentials();
-			List statuses=twitter.getHomeTimeline();
-			List tl=new ArrayList();
-			for (int i=0; i<statuses.size();i++){
-				Status status=(Status)statuses.get(i);
-				tl.add(new Tweet(status.getUser().getScreenName(), status.getText()));
+			usuario = getUsuario();
+			if (usuario != null) {
+				User user = twitter.verifyCredentials();
+				List statuses = twitter.getHomeTimeline();
+				List tl = new ArrayList();
+				for (int i = 0; i < statuses.size(); i++) {
+					Status status = (Status) statuses.get(i);
+					System.out.println(status.getUser().getScreenName()+" "+status.getText());
+					tl.add(new Tweet(status.getUser().getScreenName(), status
+							.getText()));
+				}
 			}
 		} catch (TwitterException e) {
 			e.printStackTrace();
@@ -110,24 +115,24 @@ public class Cliente {
 
 	public static void main(String[] args) throws TwitterException, IOException {
 
-		Cliente c = new Cliente();
+		FachadaTwitter c = new FachadaTwitter();
 		if (c.existeUsuario()) {
-			c.escribirTweet("existe usuario");
+			c.escribirTweet("pruebas obligatorio");
 		} else {
 			System.out.println(c.getAuthorizationURL());
-			BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-			String pin=bf.readLine();
+			BufferedReader bf = new BufferedReader(new InputStreamReader(
+					System.in));
+			String pin = bf.readLine();
 			c.setPin(pin);
 			c.crearUsuario("usuario");
 			c.escribirTweet("usuario nuevo");
 		}
-		
-		List lista=c.getHomeTimeLine();
-		for(int i=0; i<lista.size();i++){
-			Tweet t=(Tweet)lista.get(i);
-			System.out.println(t.getUsuario()+" "+t.getMensaje());
+		c.getUsuario();
+		List lista = c.getHomeTimeLine();
+		for (int i = 0; i < lista.size(); i++) {
+			Tweet t = (Tweet) lista.get(i);
+			System.out.println(t.getUsuario() + " " + t.getMensaje());
 		}
-		
 
 	}
 }
