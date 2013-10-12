@@ -97,13 +97,14 @@ public class FachadaTwitter {
 		try {
 			usuario = getUsuario();
 			if (usuario != null) {
-				//User user = twitter.verifyCredentials();
+				access = new AccessToken(usuario.getToken(),
+						usuario.getSecretToken());
+				twitter.setOAuthAccessToken(access);
 				List statuses = twitter.getHomeTimeline();
 				List tl = new ArrayList();
 				for (int i = 0; i < statuses.size(); i++) {
 					Status status = (Status) statuses.get(i);
-					//System.out.println(status.getUser().getScreenName()+" "+status.getText());
-					tl.add(new Tweet(status.getUser().getScreenName(), status
+					tl.add(new Tweet(status.getUser().getName(), status
 							.getText()));
 				}
 				return tl;
@@ -117,18 +118,18 @@ public class FachadaTwitter {
 	public static void main(String[] args) throws TwitterException, IOException {
 
 		FachadaTwitter c = new FachadaTwitter();
-		if (c.existeUsuario()) {
-			c.escribirTweet("pruebas obligatorio");
-		} else {
-			System.out.println(c.getAuthorizationURL());
-			BufferedReader bf = new BufferedReader(new InputStreamReader(
-					System.in));
-			String pin = bf.readLine();
-			c.setPin(pin);
-			c.crearUsuario("usuario");
-			c.escribirTweet("usuario nuevo");
-		}
-		c.getUsuario();
+//		if (c.existeUsuario()) {
+//			c.escribirTweet("pruebas obligatorio");
+//		} else {
+//			System.out.println(c.getAuthorizationURL());
+//			BufferedReader bf = new BufferedReader(new InputStreamReader(
+//					System.in));
+//			String pin = bf.readLine();
+//			c.setPin(pin);
+//			c.crearUsuario("usuario");
+//			c.escribirTweet("usuario nuevo");
+//		}
+//		c.getUsuario();
 		List lista = c.getHomeTimeLine();
 		for (int i = 0; i < lista.size(); i++) {
 			Tweet t = (Tweet) lista.get(i);

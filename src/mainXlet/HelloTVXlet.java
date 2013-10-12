@@ -54,10 +54,12 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue, Color.white, Color.pink };
     private int intColor;
     
-   private ContenedorAzul cont = new ContenedorAzul();
+   private ContenedorTwitter twitter=new ContenedorTwitter();
+   //private ContenedorAzul cont = new ContenedorAzul();
    private ContenedorRed contRed = new ContenedorRed();
    private ContenedorYellow contYellow = new ContenedorYellow();
    public static Keyboard keyboard = new Keyboard();
+   
 
     /**Tipo de dato para guardar sonido */
     private HSound myHSound = new HSound();
@@ -88,7 +90,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // get done in startXlet() instead, depending on the size of the image and   
         // the time it takes to load.  if this is being loaded from a DSM-CC   
         // carousel, it should definitely be loaded after startXlet() is called.   
-        loadForegroundBitmap(); 
+        //loadForegroundBitmap(); 
         
         readProperties();
         playSound();
@@ -131,7 +133,8 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.requestFocus();
    
         //contenedores
-		scene.add(cont);
+		//scene.add(cont);
+		scene.add(twitter);
 		scene.setVisible(true);
 		
 		scene.add(contRed);
@@ -314,27 +317,27 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
      * examine this as closely as the rest of the example.  A good Java  
      * book will tell you everything you need to know about this topic.  
      */   
-    public void loadForegroundBitmap() {   
-        // Create a MediaTracker to tell us when the image has loaded   
-        MediaTracker tracker = new MediaTracker(this);   
-        // Then load the image   
-        image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
-             	
-        
-        // add the image to the MediaTracker...   
-        tracker.addImage(image, 0);   
-        tracker.addImage(image2, 1);
-        tracker.addImage(image3, 2);
-        tracker.addImage(image4, 3);
-        // ...and wait for it to finish loading   
-        try{   
-            tracker.waitForAll();   
-        }   
-        catch(InterruptedException e) {   
-            // Ignore the exception, since there's not a lot we can do.   
-            image = null;   
-        }   
-    }   
+//    public void loadForegroundBitmap() {   
+//        // Create a MediaTracker to tell us when the image has loaded   
+//        MediaTracker tracker = new MediaTracker(this);   
+//        // Then load the image   
+//        image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
+//             	
+//        
+//        // add the image to the MediaTracker...   
+//        tracker.addImage(image, 0);   
+//        tracker.addImage(image2, 1);
+//        tracker.addImage(image3, 2);
+//        tracker.addImage(image4, 3);
+//        // ...and wait for it to finish loading   
+//        try{   
+//            tracker.waitForAll();   
+//        }   
+//        catch(InterruptedException e) {   
+//            // Ignore the exception, since there's not a lot we can do.   
+//            image = null;   
+//        }   
+//    }   
    
    
     /**  
@@ -375,7 +378,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         image = null;   
    
         // Dispose of the background image.   
-        backgroundManager.dispose();   
+        //backgroundManager.dispose();   
    
         // Dispose of our HScene   
         HSceneFactory.getInstance().dispose(scene);   
@@ -505,7 +508,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 				if(i==2){
 				image4 =h.getUrl();
 				messageWeather3 = h.getTitle() + ": "+h.getFcttext_metric();
-				loadForegroundBitmap();
+				//loadForegroundBitmap();
 			}
 				this.repaint();
 			}
@@ -551,7 +554,8 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 			System.out.println("azul ...");
 			label.setBackground(colors[3]);
 	        label.repaint();
-	        cont.requestFocus();
+	        //cont.requestFocus();
+	        twitter.requestFocus();
 			break;
 		}
 
