@@ -124,7 +124,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.addKeyListener(this);
       
 
-        label = new HStaticText(message, 50, 300, 100, 100, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
+        label = new HStaticText("menu?"/*message*/, 600, 270, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         
@@ -406,7 +406,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         graphics.setColor(new DVBColor(0,0,0,alpha));   
         graphics.fillRect(0,0,size.width,size.height);   
         
-        
+        //HelloTVXlet.keyboard.setVisible(false);
    
         // If the image has been loaded, add it to the component.  This   
         // is necessary in some MHP applications because the long latency   
@@ -519,10 +519,11 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		case KeyEvent.VK_RIGHT: {
 			System.out.println("derecha ...Llamando al keyboard listener..");			
 			label.setBackground(colors[5]);
-			//label.repaint();
-			keyboard.requestFocus();
-			keyboard.setVisible(true);
 			label.repaint();
+			keyboard.setVisible(true);
+			keyboard.requestFocus();
+			
+			
 			break;
 		}
 

@@ -21,8 +21,9 @@ public class Keyboard  extends HContainer implements KeyListener{
     public Keyboard(){
 
 		// mi tamaño y posición x,y,x,y
-		this.setBounds(0, 0, 800, 200);
+		this.setBounds(0, 330, 800, 200);
 		this.addKeyListener(this);
+		
 		loadForegroundBitmap();
     	
     }
@@ -34,25 +35,33 @@ public class Keyboard  extends HContainer implements KeyListener{
 		case 39:
 		//	x = x + 100;
 			//hstTexto.setBounds(x, 0, 200, 50);
-			this.repaint();
+			//this.repaint();
 			System.out.println("default case ...");
 			break;
 		case 37:
 //			x = x - 100;
 	//		hstTexto.setBounds(x, 0, 200, 50);
-			this.repaint();
+			//this.repaint();
 			System.out.println("default case ...");
 			break;
 			
 		case 27:
 			//exit
-			System.out.println("default case ...");
+			System.out.println("EXIT");
+			
 			HelloTVXlet.label.setBackground(Color.white);
+			
 			HelloTVXlet.label.repaint();
-			HelloTVXlet.scene.requestFocus();
 			HelloTVXlet.keyboard.setVisible(false);
 			HelloTVXlet.keyboard.repaint();
-			this.repaint();
+			HelloTVXlet.scene.requestFocus();
+			
+			//repaint();
+		//	HelloTVXlet.keyboard.repaint();
+			
+			
+		//	
+		
 			
 			break;	
 		
@@ -113,7 +122,7 @@ public class Keyboard  extends HContainer implements KeyListener{
 
 	        if (image != null) {   
 	            // Draw the image from the buffer   
-	            graphics.drawImage(image, 50, 50, null);     
+	            graphics.drawImage(image, 50, 0, null);     
 	            
 	        System.out.println("imagen no nula");
 	        
