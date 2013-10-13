@@ -1,6 +1,7 @@
 package mainXlet;
 import java.awt.event.KeyEvent;
 
+
 // Import the standard package that we need to be an Xlet   
 import javax.tv.xlet.*;   
 
@@ -21,6 +22,7 @@ import org.davic.net.ca.NewModuleEvent;
 import org.dvb.ui.*;   
 
 import Gastos.Gastos1;
+import Gastos.JTablet;
 import wsPackage.JSONUtility;
 import wsPackage.Weather;
    
@@ -66,7 +68,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     /*// Gastos*/
     private Gastos1 gas = new Gastos1();
       
-    
+    //private JTablet tabla = new JTablet();
     
    
     /**  
@@ -133,6 +135,13 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.requestFocus();
    
         //contenedores
+		
+		// Gastos
+				scene.add(gas);
+				scene.setVisible(true);
+				//scene.add(tabla);
+				//scene.setVisible(true);
+		
 		scene.add(cont);
 //		scene.add(twitter);
 //		scene.setVisible(true);
@@ -143,9 +152,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.add(contYellow);
 		scene.setVisible(true);
         
-		// Gastos
-		scene.add(gas);
-		scene.setVisible(true);
+		
 		
 		//Keyboard
 		keyboard.setVisible(false);
