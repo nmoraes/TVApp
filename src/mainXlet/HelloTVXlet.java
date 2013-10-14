@@ -328,7 +328,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // Create a MediaTracker to tell us when the image has loaded   
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
-        image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
+       // image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
              	
         
         // add the image to the MediaTracker...   
