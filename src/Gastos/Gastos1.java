@@ -15,37 +15,28 @@ import mainXlet.*;
 
 public class Gastos1 extends HContainer implements KeyListener {
 
-	HStaticText titulo = new HStaticText ("Detalle                                  Cant  Unit.  Monto");
+	HStaticText titulo = new HStaticText ("detalle                                 cant  unit.  monto");
 	HStaticText titulo2 = new HStaticText ("Resumen Mes");
 	HStaticText titulo3 = new HStaticText ("Resumen Año");
-	JTextField det1 = new JTextField(20); JTextField can1 = new JTextField(20);
-	JTextField det2 = new JTextField(20); JTextField can2 = new JTextField(20);
-	JTextField det3 = new JTextField(20); JTextField can3 = new JTextField(20);
-	JTextField det4 = new JTextField(20); JTextField can4 = new JTextField(20);
-	JTextField det5 = new JTextField(20); JTextField can5 = new JTextField(20);
-	JTextField det6 = new JTextField(20); JTextField can6 = new JTextField(20);
-	JTextField det7 = new JTextField(20); JTextField can7 = new JTextField(20);
-	JTextField det8 = new JTextField(20); JTextField can8 = new JTextField(20);
-	JTextField det9 = new JTextField(20); JTextField can9 = new JTextField(20);
+	JTextField detalle1 = new JTextField(20); JTextField cantidad1 = new JTextField(20); JTextField unitario1 = new JTextField(20);
+	JTextField detalle2 = new JTextField(20); JTextField cantidad2 = new JTextField(20); JTextField unitario2 = new JTextField(20);
+	JTextField detalle3 = new JTextField(20); JTextField cantidad3 = new JTextField(20); JTextField unitario3 = new JTextField(20);
+	JTextField detalle4 = new JTextField(20); JTextField cantidad4 = new JTextField(20); JTextField unitario4 = new JTextField(20);
+	JTextField detalle5 = new JTextField(20); JTextField cantidad5 = new JTextField(20); JTextField unitario5 = new JTextField(20);
+	JTextField detalle6 = new JTextField(20); JTextField cantidad6 = new JTextField(20); JTextField unitario6 = new JTextField(20);
+	JTextField detalle7 = new JTextField(20); JTextField cantidad7 = new JTextField(20); JTextField unitario7 = new JTextField(20);
+	JTextField detalle8 = new JTextField(20); JTextField cantidad8 = new JTextField(20); JTextField unitario8 = new JTextField(20);
+	JTextField detalle9 = new JTextField(20); JTextField cantidad9 = new JTextField(20); JTextField unitario9 = new JTextField(20);
 	
-	JTextField uni1 = new JTextField(20);
-	JTextField uni2 = new JTextField(20);
-	JTextField uni3 = new JTextField(20);
-	JTextField uni4 = new JTextField(20);
-	JTextField uni5 = new JTextField(20);
-	JTextField uni6 = new JTextField(20);
-	JTextField uni7 = new JTextField(20);
-	JTextField uni8 = new JTextField(20);
-	JTextField uni9 = new JTextField(20);
-	JTextField mon1 = new JTextField(20);
-	JTextField mon2 = new JTextField(20);
-	JTextField mon3 = new JTextField(20);
-	JTextField mon4 = new JTextField(20);
-	JTextField mon5 = new JTextField(20);
-	JTextField mon6 = new JTextField(20);
-	JTextField mon7 = new JTextField(20);
-	JTextField mon8 = new JTextField(20);
-	JTextField mon9 = new JTextField(20);
+	JTextField monto1 = new JTextField(20);
+	JTextField monto2 = new JTextField(20);
+	JTextField monto3 = new JTextField(20);
+	JTextField monto4 = new JTextField(20);
+	JTextField monto5 = new JTextField(20);
+	JTextField monto6 = new JTextField(20);
+	JTextField monto7 = new JTextField(20);
+	JTextField monto8 = new JTextField(20);
+	JTextField monto9 = new JTextField(20);
 
 	
 	
@@ -58,9 +49,9 @@ public class Gastos1 extends HContainer implements KeyListener {
 		
 	
 		// Posicion inicial en la pantalla y color
-		titulo.setBounds(50, 10, 400, 30);
-		titulo2.setBounds(50, 40, 100, 30);
-		titulo3.setBounds(150, 40, 100, 30);
+		titulo.setBounds(50, 50, 400, 30);
+		titulo2.setBounds(50, 300, 140, 30);
+		titulo3.setBounds(50, 350, 140, 30);
 		
 		titulo.setBackground(Color.darkGray);
 		titulo2.setBackground(Color.darkGray);
@@ -71,11 +62,48 @@ public class Gastos1 extends HContainer implements KeyListener {
 		this.add(titulo3);
 		
 		// prueba de textfield
-		uni1.setBounds(10, 100, 100, 20);
-		uni1.setBackground(Color.magenta);
-		this.add(uni1);
+		detalle1.setBounds(50, 100, 240, 20); detalle1.setBackground(Color.white); this.add(detalle1);
+		detalle2.setBounds(50, 120, 240, 20); detalle2.setBackground(Color.white); this.add(detalle2);
+		detalle3.setBounds(50, 140, 240, 20); detalle3.setBackground(Color.white); this.add(detalle3);
+		detalle4.setBounds(50, 160, 240, 20); detalle4.setBackground(Color.white); this.add(detalle4);
+		detalle5.setBounds(50, 180, 240, 20); detalle5.setBackground(Color.white); this.add(detalle5);
+		detalle6.setBounds(50, 200, 240, 20); detalle6.setBackground(Color.white); this.add(detalle6);
+		detalle7.setBounds(50, 220, 240, 20); detalle7.setBackground(Color.white); this.add(detalle7);
+		detalle8.setBounds(50, 240, 240, 20); detalle8.setBackground(Color.white); this.add(detalle8);
+		detalle9.setBounds(50, 260, 240, 20); detalle9.setBackground(Color.white); this.add(detalle9);
 		
-		this.setBounds(0, 0, 800, 200);
+		cantidad1.setBounds(290, 100, 45, 20); cantidad1.setBackground(Color.white); this.add(cantidad1);
+		cantidad2.setBounds(290, 120, 45, 20); cantidad2.setBackground(Color.white); this.add(cantidad2);
+		cantidad3.setBounds(290, 140, 45, 20); cantidad3.setBackground(Color.white); this.add(cantidad3);
+		cantidad4.setBounds(290, 160, 45, 20); cantidad4.setBackground(Color.white); this.add(cantidad4);
+		cantidad5.setBounds(290, 180, 45, 20); cantidad5.setBackground(Color.white); this.add(cantidad5);
+		cantidad6.setBounds(290, 200, 45, 20); cantidad6.setBackground(Color.white); this.add(cantidad6);
+		cantidad7.setBounds(290, 220, 45, 20); cantidad7.setBackground(Color.white); this.add(cantidad7);
+		cantidad8.setBounds(290, 240, 45, 20); cantidad8.setBackground(Color.white); this.add(cantidad8);
+		cantidad9.setBounds(290, 260, 45, 20); cantidad9.setBackground(Color.white); this.add(cantidad9);
+		
+		unitario1.setBounds(335, 100, 45, 20); unitario1.setBackground(Color.white); this.add(unitario1);
+		unitario2.setBounds(335, 120, 45, 20); unitario2.setBackground(Color.white); this.add(unitario2);
+		unitario3.setBounds(335, 140, 45, 20); unitario3.setBackground(Color.white); this.add(unitario3);
+		unitario4.setBounds(335, 160, 45, 20); unitario4.setBackground(Color.white); this.add(unitario4);
+		unitario5.setBounds(335, 180, 45, 20); unitario5.setBackground(Color.white); this.add(unitario5);
+		unitario6.setBounds(335, 200, 45, 20); unitario6.setBackground(Color.white); this.add(unitario6);
+		unitario7.setBounds(335, 220, 45, 20); unitario7.setBackground(Color.white); this.add(unitario7);
+		unitario8.setBounds(335, 240, 45, 20); unitario8.setBackground(Color.white); this.add(unitario8);
+		unitario9.setBounds(335, 260, 45, 20); unitario9.setBackground(Color.white); this.add(unitario9);
+		
+		monto1.setBounds(380, 100, 60, 20); monto1.setBackground(Color.white); this.add(monto1);
+		monto2.setBounds(380, 120, 60, 20); monto2.setBackground(Color.white); this.add(monto2);
+		monto3.setBounds(380, 140, 60, 20); monto3.setBackground(Color.white); this.add(monto3);
+		monto4.setBounds(380, 160, 60, 20); monto4.setBackground(Color.white); this.add(monto4);
+		monto5.setBounds(380, 180, 60, 20); monto5.setBackground(Color.white); this.add(monto5);
+		monto6.setBounds(380, 200, 60, 20); monto6.setBackground(Color.white); this.add(monto6);
+		monto7.setBounds(380, 220, 60, 20); monto7.setBackground(Color.white); this.add(monto7);
+		monto8.setBounds(380, 240, 60, 20); monto8.setBackground(Color.white); this.add(monto8);
+		monto9.setBounds(380, 260, 60, 20); monto9.setBackground(Color.white); this.add(monto9);
+		
+		
+		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
 	
 	}
