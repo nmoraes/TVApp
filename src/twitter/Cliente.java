@@ -52,7 +52,6 @@ public class Cliente {
 				
 			writeRequest(connection, "grant_type=client_credentials");
 			String respuesta=readResponse(connection);
-			System.out.println(respuesta);
 			// Parse the JSON response into a JSON mapped object to fetch fields from.
 			JSONObject obj = (JSONObject)JSONValue.parse(respuesta);
 				
@@ -61,9 +60,7 @@ public class Cliente {
 				String token = (String)obj.get("access_token");
 			
 				return ((tokenType.equals("bearer")) && (token != null)) ? token : "";
-			}else{
-				System.out.println("json Bearer vacio");
-			}
+			}else
 			return new String();
 		}
 		catch (Exception e) {
@@ -91,25 +88,21 @@ public class Cliente {
 			connection.setRequestProperty("Host", "api.twitter.com");
 			connection.setRequestProperty("User-Agent", "Your Program Name");
 			String request=requestBearerToken("https://api.twitter.com/oauth2/token");
-			System.out.println(request);
 			connection.setRequestProperty("Authorization", "Bearer " + request );
 			connection.setUseCaches(false);
 
 			String respuesta=readResponse(connection);
-			//System.out.println(respuesta);	
 			// Parse the JSON response into a JSON mapped object to fetch fields from.
 			JSONArray obj = (JSONArray)JSONValue.parse(respuesta);
 				
 			if (obj != null) {
 				String tweet="";
-				for(int i=0; i<2;i++){
+				for(int i=0; i<obj.size();i++){
 					tweet = tweet+((JSONObject)obj.get(i)).get("text").toString()+"\n";
 				}
 				
 
 				return (tweet != null) ? tweet : "";
-			}else{
-				System.out.println("json vacio");
 			}
 			return new String();
 		}
@@ -155,7 +148,7 @@ public class Cliente {
 	}
 
 	public static void main(String[] args) throws IOException {
-		System.out.println(Cliente.fetchTimelineTweet("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=tvdigital1&count=3"));
+		System.out.println(Cliente.fetchTimelineTweet("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=tvdigital1"));
 	
 		
 	}
