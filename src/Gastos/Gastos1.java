@@ -54,7 +54,7 @@ public class Gastos1 extends HContainer implements KeyListener {
 	JTextField uniCompra = new JTextField(20);
 	JTextField monCompra = new JTextField(20);
 
-	
+	// Primer pantalla de gastos!!!
 	public Gastos1(){
 		// tipo de letra
 		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -74,8 +74,8 @@ public class Gastos1 extends HContainer implements KeyListener {
 		titMonto.setBounds(380, 300, 65, 30);
 		
 		// Color de fondo
-		resumenAño.setBackground(Color.blue);
-		resumenMes.setBackground(Color.blue);
+		resumenAño.setBackground(Color.red);
+		resumenMes.setBackground(Color.green);
 		titDetalle.setBackground(Color.blue);
 		titCantidad.setBackground(Color.blue);
 		titUnitario.setBackground(Color.blue);
@@ -91,10 +91,10 @@ public class Gastos1 extends HContainer implements KeyListener {
 		this.add(titMonto);
 		
 		// Textfields
-		detCompra.setBounds(50, 300, 240, 20); detCompra.setBackground(Color.white); this.add(detCompra);
-		canCompra.setBounds(50, 100, 45, 20); canCompra.setBackground(Color.white); this.add(canCompra);
-		uniCompra.setBounds(50, 100, 45, 20); uniCompra.setBackground(Color.white); this.add(uniCompra);
-		monCompra.setBounds(50, 100, 65, 20); monCompra.setBackground(Color.white); this.add(monCompra);
+		detCompra.setBounds(50, 350, 240, 20); detCompra.setBackground(Color.white); this.add(detCompra);
+		canCompra.setBounds(290, 350, 45, 20); canCompra.setBackground(Color.white); this.add(canCompra);
+		uniCompra.setBounds(335, 350, 45, 20); uniCompra.setBackground(Color.white); this.add(uniCompra);
+		monCompra.setBounds(380, 350, 65, 20); monCompra.setBackground(Color.white); this.add(monCompra);
 		
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
@@ -178,6 +178,7 @@ public class Gastos1 extends HContainer implements KeyListener {
 		
 		case 404: 
 			System.out.println("Va para Resumen Gastos");
+			this.removeAll();
 			this.resumenGastos1();
 			this.repaint();
 			break;

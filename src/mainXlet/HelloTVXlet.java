@@ -213,7 +213,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
     private Image image4; 
    
     // The message that will get printed.  This is read from a file in initXlet()   
-    private String message;
+    private String message = new String("No puedo ser nulo");
     
     private String messageWeather1= new String();
     private String messageWeather2= new String();;
