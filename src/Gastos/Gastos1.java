@@ -15,7 +15,9 @@ import mainXlet.*;
 
 public class Gastos1 extends HContainer implements KeyListener {
 
-	HStaticText titulo = new HStaticText ("detalle                                 cant  unit.  monto");
+	// Pantalla Resumen Gastos del mes //
+	
+	HStaticText titulo = new HStaticText ("detalle                                  cant  unit.  monto");
 	HStaticText titulo2 = new HStaticText ("Resumen Mes");
 	HStaticText titulo3 = new HStaticText ("Resumen Año");
 	JTextField detalle1 = new JTextField(20); JTextField cantidad1 = new JTextField(20); JTextField unitario1 = new JTextField(20);
@@ -37,10 +39,70 @@ public class Gastos1 extends HContainer implements KeyListener {
 	JTextField monto7 = new JTextField(20);
 	JTextField monto8 = new JTextField(20);
 	JTextField monto9 = new JTextField(20);
+	
+	// Pantalla de ingreso de gastos
+	
+	HStaticText resumenAño = new HStaticText ("Resumen Año");
+	HStaticText resumenMes = new HStaticText ("Resumen Mes");
+	HStaticText titDetalle = new HStaticText ("Detalle de la compra");
+	HStaticText titCantidad = new HStaticText ("Cant.");
+	HStaticText titUnitario = new HStaticText ("Unit.");
+	HStaticText titMonto = new HStaticText ("Monto");
+	
+	JTextField detCompra = new JTextField(20);
+	JTextField canCompra = new JTextField(20);
+	JTextField uniCompra = new JTextField(20);
+	JTextField monCompra = new JTextField(20);
 
 	
+	public Gastos1(){
+		// tipo de letra
+		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		titDetalle.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		titCantidad.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		titUnitario.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		
+		
+		// Posicion inicial en la pantalla y color
+		resumenAño.setBounds(50, 200, 140, 30);
+		resumenMes.setBounds(250, 200, 140, 30);
+		titDetalle.setBounds(50, 300, 240, 30);
+		titCantidad.setBounds(290, 300, 45, 30);
+		titUnitario.setBounds(335, 300, 45, 30);
+		titMonto.setBounds(380, 300, 65, 30);
+		
+		// Color de fondo
+		resumenAño.setBackground(Color.blue);
+		resumenMes.setBackground(Color.blue);
+		titDetalle.setBackground(Color.blue);
+		titCantidad.setBackground(Color.blue);
+		titUnitario.setBackground(Color.blue);
+		titMonto.setBackground(Color.blue);
+		
+		
+		// Agrego al contenedor
+		this.add(resumenAño);
+		this.add(resumenMes);
+		this.add(titDetalle);
+		this.add(titCantidad);
+		this.add(titUnitario);
+		this.add(titMonto);
+		
+		// Textfields
+		detCompra.setBounds(50, 300, 240, 20); detCompra.setBackground(Color.white); this.add(detCompra);
+		canCompra.setBounds(50, 100, 45, 20); canCompra.setBackground(Color.white); this.add(canCompra);
+		uniCompra.setBounds(50, 100, 45, 20); uniCompra.setBackground(Color.white); this.add(uniCompra);
+		monCompra.setBounds(50, 100, 65, 20); monCompra.setBackground(Color.white); this.add(monCompra);
+		
+		this.setBounds(0, 0, 800, 800);
+		this.addKeyListener(this);
+		
+	}
 	
-	public Gastos1 (){
+	
+	public void resumenGastos1 (){
 		
 		// Tipo de letra
 		titulo.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -92,15 +154,15 @@ public class Gastos1 extends HContainer implements KeyListener {
 		unitario8.setBounds(335, 240, 45, 20); unitario8.setBackground(Color.white); this.add(unitario8);
 		unitario9.setBounds(335, 260, 45, 20); unitario9.setBackground(Color.white); this.add(unitario9);
 		
-		monto1.setBounds(380, 100, 60, 20); monto1.setBackground(Color.white); this.add(monto1);
-		monto2.setBounds(380, 120, 60, 20); monto2.setBackground(Color.white); this.add(monto2);
-		monto3.setBounds(380, 140, 60, 20); monto3.setBackground(Color.white); this.add(monto3);
-		monto4.setBounds(380, 160, 60, 20); monto4.setBackground(Color.white); this.add(monto4);
-		monto5.setBounds(380, 180, 60, 20); monto5.setBackground(Color.white); this.add(monto5);
-		monto6.setBounds(380, 200, 60, 20); monto6.setBackground(Color.white); this.add(monto6);
-		monto7.setBounds(380, 220, 60, 20); monto7.setBackground(Color.white); this.add(monto7);
-		monto8.setBounds(380, 240, 60, 20); monto8.setBackground(Color.white); this.add(monto8);
-		monto9.setBounds(380, 260, 60, 20); monto9.setBackground(Color.white); this.add(monto9);
+		monto1.setBounds(380, 100, 65, 20); monto1.setBackground(Color.white); this.add(monto1);
+		monto2.setBounds(380, 120, 65, 20); monto2.setBackground(Color.white); this.add(monto2);
+		monto3.setBounds(380, 140, 65, 20); monto3.setBackground(Color.white); this.add(monto3);
+		monto4.setBounds(380, 160, 65, 20); monto4.setBackground(Color.white); this.add(monto4);
+		monto5.setBounds(380, 180, 65, 20); monto5.setBackground(Color.white); this.add(monto5);
+		monto6.setBounds(380, 200, 65, 20); monto6.setBackground(Color.white); this.add(monto6);
+		monto7.setBounds(380, 220, 65, 20); monto7.setBackground(Color.white); this.add(monto7);
+		monto8.setBounds(380, 240, 65, 20); monto8.setBackground(Color.white); this.add(monto8);
+		monto9.setBounds(380, 260, 65, 20); monto9.setBackground(Color.white); this.add(monto9);
 		
 		
 		this.setBounds(0, 0, 800, 800);
@@ -113,6 +175,12 @@ public class Gastos1 extends HContainer implements KeyListener {
 		System.out.println("Prueba!!!");
 		
 		switch (tecla.getKeyCode()){
+		
+		case 404: 
+			System.out.println("Va para Resumen Gastos");
+			this.resumenGastos1();
+			this.repaint();
+			break;
 
 		case 39:
 			//derecha
