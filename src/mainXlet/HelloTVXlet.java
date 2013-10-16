@@ -146,11 +146,11 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 //		scene.add(twitter);
 //		scene.setVisible(true);
 		
-//		scene.add(contRed);
-//		scene.setVisible(true);
+		scene.add(contRed);
+		scene.setVisible(true);
 		
-//		scene.add(contYellow);
-//		scene.setVisible(true);
+		scene.add(contYellow);
+		scene.setVisible(true);
         
 		
 		
@@ -381,7 +381,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         scene.remove(this);   
    
         // Destroy the image buffer   
-        image.flush();   
+  //      image.flush();   
         image = null;   
    
         // Dispose of the background image.   
