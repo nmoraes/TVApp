@@ -162,10 +162,10 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 	        // Once we've drawn the image, we can draw the message on top of it.   
 	   
 	        // Set the font to be the default MHP font.   
-	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));   
+	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));   
 	        // Set the text colour   
 	        graphics.setColor(Color.white);   
-	   
+	       
 	        // Drawing the string may cause an error to get thrown, so we   
 	        // surround it with a 'try' block.   
 	        try{   
@@ -175,8 +175,8 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 	            graphics.drawString(messageWeather3,80,150);  
 	          
 	        }catch(Throwable t) {   
-	            // Catch any errors that get thrown.   
-	            t.printStackTrace();   
+	           
+	            System.out.println("Ocurrio un error al intentar conectarse a Weather."); 
 	        }   
 	    }   
 	   
