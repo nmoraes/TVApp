@@ -29,9 +29,9 @@ public class ContenedorCalendar extends HContainer implements KeyListener {
 			
 		case 27:
 			//exit
-			HelloTVXlet.label.setBackground(Color.white);
-			HelloTVXlet.label.repaint();
-			HelloTVXlet.scene.requestFocus();
+			MainXlet.label.setBackground(Color.white);
+			MainXlet.label.repaint();
+			MainXlet.scene.requestFocus();
 			//this.repaint();
 			break;	
 		
