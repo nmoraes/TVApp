@@ -437,13 +437,13 @@ public class Keyboard  extends HContainer implements KeyListener{
 				break;
 
 			case 520:
-			
+				//abrimos el numerico
 				System.out.println("123");
 
 				break;
 
 			case 575:
-			
+				//abrimos el numerico.
 				System.out.println("123");
 
 				break;

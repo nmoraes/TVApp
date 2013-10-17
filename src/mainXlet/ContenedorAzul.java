@@ -15,7 +15,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 	public ContenedorAzul() {
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 0, 200, 50);
+		hstTexto.setBounds(x, 150, 200, 50);
 		hstTexto.setBackground(Color.blue);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
@@ -29,12 +29,12 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 		switch (tecla.getKeyCode()) {
 		case 39:
 			x = x + 100;
-			hstTexto.setBounds(x, 0, 200, 50);
+			hstTexto.setBounds(x, 150, 200, 50);
 			this.repaint();
 			break;
 		case 37:
 			x = x - 100;
-			hstTexto.setBounds(x, 0, 200, 50);
+			hstTexto.setBounds(x, 150, 200, 50);
 			this.repaint();
 			break;
 			

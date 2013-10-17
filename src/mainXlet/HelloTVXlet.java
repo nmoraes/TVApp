@@ -42,35 +42,52 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
      * Standard Xlet lifecycle methods and constructors  
      */   
    
-   
-    // A private field to hold a reference to our Xlet context   
-    // A private variable to store our Xlet context.  In this case, we do actually   
-    // use this, showing why it's a good idea to keep a reference to the Xlet context.   
-    private XletContext context;   
-   
-    // A private variable that keeps a reference to the thread that   
-    // will do all of the work.   
-    private Thread myWorkerThread;   
-    
-    public static HStaticText label;
-    private Color[] colors = { Color.red, Color.green,  Color.yellow , Color.blue, Color.white, Color.pink };
-    private int intColor;
-    
-//  private ContenedorTwitter twitter=new ContenedorTwitter();
-   private ContenedorAzul cont = new ContenedorAzul();
-   private ContenedorRed contRed = new ContenedorRed();
-   private ContenedorYellow contYellow = new ContenedorYellow();
-   public static Keyboard keyboard = new Keyboard();
-   
+	// A private field to hold a reference to our Xlet context
+	// A private variable to store our Xlet context. In this case, we do
+	// actually
+	// use this, showing why it's a good idea to keep a reference to the Xlet
+	// context.
+	private XletContext context;
 
-    /**Tipo de dato para guardar sonido */
-    private HSound myHSound = new HSound();
-    /*// Gastos*/
-    private Gastos1 gas = new Gastos1();
-      
-    //private JTablet tabla = new JTablet();
+	// A private variable that keeps a reference to the thread that
+	// will do all of the work.
+	private Thread myWorkerThread;
+
+	public static HStaticText label;
+	private Color[] colors = { Color.red, Color.green, Color.yellow,Color.blue, Color.white, Color.pink };
+	private int intColor;
+
+	// private ContenedorTwitter twitter=new ContenedorTwitter();
+	private ContenedorAzul cont = new ContenedorAzul();
+	private ContenedorRed contRed = new ContenedorRed();
+	private ContenedorYellow contYellow = new ContenedorYellow();
+	public static Keyboard keyboard = new Keyboard();
+
+	public static ContenedorWeather contWeather = new ContenedorWeather();
+
+	/** Tipo de dato para guardar sonido */
+	private HSound myHSound = new HSound();
+	/* // Gastos */
+	private Gastos1 gas = new Gastos1();
+
+	// private JTablet tabla = new JTablet();
+
+	// Before we can draw on the screen, we need an HScene to draw into. This
+	// variable will hold a reference to our HScene
+	public static HScene scene;
+
+	// The image that we will show
+	private Image image;
+
+	// The message that will get printed. This is read from a file in initXlet()
+	private String message = new String("No puedo ser nulo");
+
+	// this holds the alpha (transparency) level that we will be using
+	private int alpha = 0;
+	// this object is responsible for displaying the background I-frame
+	private HaviBackgroundController backgroundManager;
     
-   
+    
     /**  
      * A default constructor, included for completeness.  
      */   
@@ -137,10 +154,10 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         //contenedores
 		
 		// Gastos
-				scene.add(gas);
-				scene.setVisible(true);
-				//scene.add(tabla);
-				//scene.setVisible(true);
+		scene.add(gas);
+		scene.setVisible(true);
+		//scene.add(tabla);
+		//scene.setVisible(true);
 		
 		scene.add(cont);
 //		scene.add(twitter);
@@ -152,7 +169,9 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		scene.add(contYellow);
 		scene.setVisible(true);
         
-		
+		//Weather
+		scene.add(contWeather);
+		contWeather.setVisible(false);
 		
 		//Keyboard
 		keyboard.setVisible(false);
@@ -196,34 +215,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
      * The methods below this point are the ones which actually do all of the work  
      * related to putting something on the screen.  
      */   
-   
-   
-    // Before we can draw on the screen, we need an HScene to draw into.  This   
-    // variable will hold a reference to our HScene   
-    public static HScene scene;   
-   
-    // The image that we will show   
-    private Image image; 
-    
-    // The image that we will show   
-    private Image image2;
-    // The image that we will show   
-    private Image image3;
-    // The image that we will show   
-    private Image image4; 
-   
-    // The message that will get printed.  This is read from a file in initXlet()   
-    private String message = new String("No puedo ser nulo");
-    
-    private String messageWeather1= new String();
-    private String messageWeather2= new String();;
-    private String messageWeather3= new String();;
-   
-    // this holds the alpha (transparency) level that we will be using   
-    private int alpha = 0;   
-    // this object is responsible for displaying the background I-frame   
-    private HaviBackgroundController backgroundManager;   
-   
+
    
     /**  
      * The main method for the worker thread.  This is where most of the work is done.  
@@ -333,10 +325,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);   
-        tracker.addImage(image2, 1);
-        tracker.addImage(image3, 2);
-        tracker.addImage(image4, 3);
-        // ...and wait for it to finish loading   
+
         try{   
             tracker.waitForAll();   
         }   
@@ -426,22 +415,6 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
             // Draw the image from the buffer   
             graphics.drawImage(image, 50, 50, null);      }
         
-        
-    
-        if (image2 != null) {  
-        	
-            // Draw the image from the buffer   
-            graphics.drawImage(image2, 10, 10, null);      
-        	 } 
-        
-        
-        if (image3 != null) {   
-            // Draw the image from the buffer   
-            graphics.drawImage(image3, 10, 60, null);  
-            graphics.setColor(Color.red);}  
-        if (image4 != null) {   
-            // Draw the image from the buffer   
-            graphics.drawImage(image4, 10, 110, null);      }  
    
         // Once we've drawn the image, we can draw the message on top of it.   
    
@@ -454,11 +427,7 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
         // surround it with a 'try' block.   
         try{   
             graphics.drawString(message,300,350);  
-           
-            graphics.drawString(messageWeather1,80,30);  
-            graphics.drawString(messageWeather2,80,90);  
-            graphics.drawString(messageWeather3,80,150);  
-          
+
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
             t.printStackTrace();   
@@ -491,34 +460,11 @@ public class HelloTVXlet extends HComponent implements Xlet, Runnable, KeyListen
 		}
 
 		case KeyEvent.VK_LEFT: {
-			System.out.println("evento estado del tiempo");
-			Weather [] weatherCollection= JSONUtility.getWeather();
-			
-			for (int i = 0; i < weatherCollection.length; i++) {
-				Weather h = weatherCollection[i];
-
-				System.out.println("");
-				System.out.println("");
-				System.out.println(h.getTitle());
-				System.out.println(h.getFcttext());
-				System.out.println(h.getFcttext_metric());
-				//System.out.println(h.getUrl());
-				
-				if(i==0){
-				messageWeather1 = h.getTitle() + ": "+h.getFcttext_metric();
-				image2 = h.getUrl();
-				}
-				if(i==1){
-				image3 =h.getUrl();
-				messageWeather2 = h.getTitle() + ": "+h.getFcttext_metric();
-			}
-				if(i==2){
-				image4 =h.getUrl();
-				messageWeather3 = h.getTitle() + ": "+h.getFcttext_metric();
-				loadForegroundBitmap();
-			}
-				this.repaint();
-			}
+			System.out.println("***** evento estado del tiempo *****");
+			label.setBackground(Color.MAGENTA);
+	        label.repaint();
+	        contWeather.setVisible(true);
+	        contWeather.requestFocus();
 		
 			break;
 		}
