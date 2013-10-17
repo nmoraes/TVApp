@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 
 /**
  * Bean to display a month calendar in a JPanel. Only works for the Western
- * calendar.
+ * calendar. nicolas
  * 
  * @author Ian F. Darwin, http://www.darwinsys.com/
  * @version $Id: Cal.java,v 1.5 2004/02/09 03:33:45 ian Exp $
