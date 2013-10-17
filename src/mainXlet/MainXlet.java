@@ -15,9 +15,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
+
 import org.dvb.ui.DVBColor;
 import org.havi.ui.HComponent;
 import org.havi.ui.HDefaultTextLayoutManager;
@@ -27,6 +29,8 @@ import org.havi.ui.HSceneTemplate;
 import org.havi.ui.HScreen;
 import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
+
+import Gastos.ContenedorResumenMes;
 import Gastos.Gastos1;
    
  /**  
@@ -66,7 +70,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
 	/* // Gastos */
-	private Gastos1 gas = new Gastos1();
+	public static Gastos1 gas = new Gastos1();
+	public static ContenedorResumenMes mes = new ContenedorResumenMes ();
 
 	// private JTablet tabla = new JTablet();
 
@@ -150,13 +155,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.requestFocus();
    
         //contenedores
-		
 		// Gastos
 		scene.add(gas);
-		scene.setVisible(true);
-		//scene.add(tabla);
-		//scene.setVisible(true);
-		
+		gas.setVisible(false);
+		scene.add(mes);
+		mes.setVisible(false);
+						
 		scene.add(cont);
 //		scene.add(twitter);
 //		scene.setVisible(true);
@@ -481,13 +485,15 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 			break;
 		}
-		case 404: {
+		case 404: { // Clase gastos
 			System.out.println("verde ...");
 			label.setBackground(colors[1]);
 	        label.repaint();
 	        myHSound.play();
+	     	gas.setVisible(true);
 	        gas.requestFocus();
-			break;
+	        
+	       	break;
 		}
 		case 405: {
 			System.out.println("amarillo  ...");
