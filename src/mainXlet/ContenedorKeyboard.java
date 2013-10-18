@@ -39,7 +39,6 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(0, 330, 800, 200);
 		this.addKeyListener(this);
-		
 		loadForegroundBitmap();
     	
     }

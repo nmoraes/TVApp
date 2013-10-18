@@ -323,7 +323,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Then load the image   
        image = Toolkit.getDefaultToolkit().getImage("bg22.png");   
              	
-        
+       
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);   
 
