@@ -415,7 +415,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // yet.   
         if (image != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image, 435, 7, null);      }
+            graphics.drawImage(image, 404, 7, null);      }
         
    
         // Once we've drawn the image, we can draw the message on top of it.   
