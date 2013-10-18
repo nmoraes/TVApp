@@ -10,9 +10,19 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import org.havi.ui.HContainer;
+import org.havi.ui.HDefaultTextLayoutManager;
+import org.havi.ui.HScene;
+import org.havi.ui.HSceneFactory;
+import org.havi.ui.HScreen;
+import org.havi.ui.HStaticText;
 
 public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
+	
+	
+	
+
+	private String message="";
 	
 	// The image that we will show   
     private Image image; 
@@ -22,6 +32,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     private int x = 60;
     private int y = 30;
     
+   
     
     public ContenedorKeyboard(){
 
@@ -33,6 +44,21 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     	
     }
 	
+    
+    private void closeKeyboard(){
+    	
+    	System.out.println("cerrar teclado");
+		System.out.println("EXIT");
+		
+		MainXlet.label.setBackground(Color.white);
+		
+		MainXlet.label.repaint();
+		MainXlet.keyboard.setVisible(false);
+		MainXlet.keyboard.repaint();
+		MainXlet.scene.requestFocus();
+    	
+    	
+    }
 	
 	public void keyPressed(KeyEvent tecla) {
 
@@ -74,16 +100,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			
 		case 27:
 			//exit
-			System.out.println("EXIT");
-			
-			MainXlet.label.setBackground(Color.white);
-			
-			MainXlet.label.repaint();
-			MainXlet.keyboard.setVisible(false);
-			MainXlet.keyboard.repaint();
-			MainXlet.scene.requestFocus();
-
-			
+			closeKeyboard();
+		
 			break;	
 			
 		case 10:
@@ -163,6 +181,17 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	        
 	        }
 	        
+	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));
+	        graphics.setColor(Color.RED);   
+	    
+	        
+	        try{   
+	            graphics.drawString(message,0,100);  
+
+	        }catch(Throwable t) {   
+	            // Catch any errors that get thrown.   
+	            t.printStackTrace();   
+	        } 
 
 
 	    }   
@@ -175,64 +204,86 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			switch (x) {
 			case 60:
 				System.out.println("Q");
+				message= message+"Q";
+				this.repaint();
 
 				break;
 			case 115:
-			
 				System.out.println("W");
+				message= message+"W";
+				this.repaint();
 
 				break;
 
 			case 170:
 				
 				System.out.println("E");
+				message= message+"E";
+				this.repaint();
 
 				break;
 
 			case 225:
 			
 				System.out.println("R");
-
+				message= message+"R";
+				this.repaint();
 				break;
 
 			case 280:
 				
 				System.out.println("T");
-
+				message= message+"T";
+				this.repaint();
 				break;
 
 			case 335:
 				
 				System.out.println("Y");
+				message= message+"Y";
+				this.repaint();
 
 				break;
 
 			case 390:
 			
 				System.out.println("U");
+				message= message+"U";
+				this.repaint();
 
 				break;
 
 			case 445:
 			
 				System.out.println("I");
+				message= message+"I";
+				this.repaint();
 
 				break;
 
 			case 500:
 			
 				System.out.println("O");
+				message= message+"O";
+				this.repaint();
 
 				break;
 			case 555:
 				
 				System.out.println("P");
+				message= message+"P";
+				this.repaint();
 
 				break;
 			case 610:
 			
 				System.out.println("borrar");
-
+				int size=message.length();
+				
+				if(size>=1){
+				message=(String) message.subSequence(0, size-1);
+				}
+				this.repaint();
 				break;
 
 			default: {
@@ -251,57 +302,69 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				case 80:
 				
 					System.out.println("A");
+					message= message+"A";
+					this.repaint();
 
 					break;
 				case 135:
-					// exit
 					System.out.println("S");
+					message= message+"S";
+					this.repaint();
 
 					break;
 
 				case 190:
-					// exit
+					
 					System.out.println("D");
-
+					message= message+"D";
+					this.repaint();
 					break;
 
 				case 245:
-					// exit
+					
 					System.out.println("F");
-
+					message= message+"F";
+					this.repaint();	
 					break;
 
 				case 300:
-					// exit
+					
 					System.out.println("G");
-
+					message= message+"G";
+					this.repaint();	
 					break;
 
 				case 355:
-					// exit
+					
 					System.out.println("H");
-
+					message= message+"H";
+					this.repaint();
 					break;
 
 				case 410:
-					// exit
+					
 					System.out.println("J");
+					message= message+"J";
+					this.repaint();
 
 					break;
 
 				case 465:
-					// exit
+					
 					System.out.println("K");
+					message= message+"K";
+					this.repaint();
 
 					break;
 
 				case 520:
-					// exit
+					
 					System.out.println("L");
-
+					message= message+"L";
+					this.repaint();
 					break;
 				case 575:
-					// exit
+					//AUN NO HACE NADA
 					System.out.println("enter");
 
 					break;
@@ -321,63 +384,78 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				
 				switch (x) {
 				case 60:
+					//AUN NO HACE NADA
 					System.out.println("SHIFT");
 
 					break;
 				case 115:
 				
 					System.out.println("Z");
+					message= message+"Z";
+					this.repaint();
 
 					break;
 
 				case 170:
 					
 					System.out.println("X");
+					message= message+"X";
+					this.repaint();
 
 					break;
 
 				case 225:
 				
 					System.out.println("C");
+					message= message+"C";
+					this.repaint();
 
 					break;
 
 				case 280:
 					
 					System.out.println("V");
+					message= message+"V";
+					this.repaint();
 
 					break;
 
 				case 335:
 					
 					System.out.println("B");
+					message= message+"B";
+					this.repaint();
 
 					break;
 
 				case 390:
 				
 					System.out.println("N");
+					message= message+"N";
+					this.repaint();
 
 					break;
 
 				case 445:
 				
 					System.out.println("M");
+					message= message+"M";
+					this.repaint();
 
 					break;
 
 				case 500:
-				
+					//AUN NO HACE NADA
 					System.out.println(", !");
 
 					break;
 				case 555:
-					
+					//AUN NO HACE NADA
 					System.out.println("? .");
 
 					break;
 				case 610:
-				
+					//AUN NO HACE NADA
 					System.out.println("SHIFT");
 
 					break;
@@ -415,19 +493,24 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			case 245:
 			
 				System.out.println("espacio");
+				message= message+" ";
+				this.repaint();
 
 				break;
 
 			case 300:
 				
 				System.out.println("espacio");
+				message= message+" ";
+				this.repaint();
 
 				break;
 
 			case 355:
 				
 				System.out.println("espacio");
-
+				message= message+" ";
+				this.repaint();
 				break;
 
 			case 410:
@@ -450,8 +533,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 			case 630:
 				
-				System.out.println("cerrar teclado");
-
+				closeKeyboard();
+				
 				break;
 
 
