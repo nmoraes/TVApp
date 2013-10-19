@@ -2,15 +2,11 @@ package Gastos;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JTextField;
-
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
-
 import mainXlet.*;
 
 public class ContenedorResumenMes extends HContainer implements KeyListener {
@@ -42,7 +38,7 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 
 	
 	
-public void ContenedorResumenMes () {
+public ContenedorResumenMes () {
 		
 		// Tipo de letra
 		titulo.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -116,46 +112,41 @@ public void ContenedorResumenMes () {
 		
 		switch (tecla.getKeyCode()){
 		
-		case 404: 
-			System.out.println("Va para Resumen Gastos");
-			this.removeAll();
-			//this.resumenGastos1();
-			this.repaint();
+		case 404: 	// Boton Verde
+			
 			break;
 
-		case 39:
-			//derecha
-			titulo.setBackground(Color.blue);
-			this.repaint();
-			break;
-		case 37:
-			//izquierda
-			titulo.setBackground(Color.red);
-			this.repaint();
+		case 403: 	// Boton Rojo
+			
 			break;
 		
-		case 27:
-			//exit
+		case 405: 	// Boton Amarillo
+		
+			break;
+	
+		case 406: 	// Boton Azul
+			System.out.println("Vuelve para Menu compras");
+			MainXlet.mes.setVisible(false);
+			MainXlet.gas.setVisible(true);
+			MainXlet.gas.requestFocus();
+			break;	
+						
+		case 27:	//exit
 			MainXlet.mes.setVisible(false);
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
-						
-			//this.repaint();
 			break;	
 
-		default: {
-			// do nothing
+		default: {	// do nothing
 			System.out.println("default case ...");
 			System.out.println(tecla);
 			break;
 		}
-			
-			
-			
+						
 		}
 	}
-
+	
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		

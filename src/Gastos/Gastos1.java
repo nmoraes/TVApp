@@ -84,7 +84,7 @@ public class Gastos1 extends HContainer implements KeyListener {
 		
 		switch (tecla.getKeyCode()){
 		
-		case 404: 
+		case 404: 	// Boton Verde
 			System.out.println("Va para Resumen Gastos");
 			MainXlet.gas.setVisible(false);
 			MainXlet.mes.setVisible(true);
@@ -94,35 +94,37 @@ public class Gastos1 extends HContainer implements KeyListener {
 			
 			break;
 
-		case 39:
-			//derecha
-			//titulo.setBackground(Color.blue);
-			this.repaint();
-			break;
-		case 37:
-			//izquierda
-			//titulo.setBackground(Color.red);
-			this.repaint();
+		case 403: 	// Boton Rojo
+			System.out.println("Va para Resumen Año");
+			MainXlet.gas.setVisible(false);
+			MainXlet.ano.setVisible(true);
+			MainXlet.ano.requestFocus();		
+			MainXlet.label.setBackground(Color.red);
+			MainXlet.label.repaint();
 			break;
 		
-		case 27:
-			//exit
+		case 405: 	// Boton Amarillo
+			
+			break;
+		
+		case 406: 	// Boton Azul
+			
+			break;
+		
+		case 27:	//exit
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.gas.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
-			//this.repaint();
+			
 			break;	
 
-		default: {
-			// do nothing
+		default: {	// do nothing
 			System.out.println("default case ...");
 			System.out.println(tecla);
 			break;
 		}
-			
-			
-			
+						
 		}
 	}
 
