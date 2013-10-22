@@ -7,6 +7,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedReader;
@@ -15,9 +16,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
+
 import org.dvb.ui.DVBColor;
 import org.havi.ui.HComponent;
 import org.havi.ui.HDefaultTextLayoutManager;
@@ -27,6 +30,9 @@ import org.havi.ui.HSceneTemplate;
 import org.havi.ui.HScreen;
 import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
+
+import Gastos.ContenedorResumenAño;
+import Gastos.ContenedorResumenMes;
 import Gastos.Gastos1;
    
  /**  
@@ -66,7 +72,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
 	/* // Gastos */
-	private Gastos1 gas = new Gastos1();
+	public static Gastos1 gas = new Gastos1();
+	public static ContenedorResumenMes mes = new ContenedorResumenMes();
+	public static ContenedorResumenAño ano = new ContenedorResumenAño();
 
 	// private JTablet tabla = new JTablet();
 
@@ -150,19 +158,20 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.requestFocus();
    
         //contenedores
-		
 		// Gastos
 		scene.add(gas);
-		scene.setVisible(true);
-		//scene.add(tabla);
-		//scene.setVisible(true);
-		
+		gas.setVisible(false);
+		scene.add(mes);
+		mes.setVisible(false);
+		scene.add(ano);
+		ano.setVisible(false);
+						
 		scene.add(cont);
 //		scene.add(twitter);
 //		scene.setVisible(true);
 		
 		scene.add(contRed);
-		scene.setVisible(true);
+		scene.setVisible(true); 
 		
 		scene.add(contYellow);
 		scene.setVisible(true);
@@ -316,9 +325,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Create a MediaTracker to tell us when the image has loaded   
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
-       // image = Toolkit.getDefaultToolkit().getImage("bg2.png");   
+       image = Toolkit.getDefaultToolkit().getImage("bg22.png");   
              	
-        
+       
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);   
 
@@ -410,7 +419,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // yet.   
         if (image != null) {   
             // Draw the image from the buffer   
-            graphics.drawImage(image, 50, 50, null);      }
+            graphics.drawImage(image, 404, 7, null);      }
         
    
         // Once we've drawn the image, we can draw the message on top of it.   
@@ -481,13 +490,15 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 			break;
 		}
-		case 404: {
+		case 404: { // Clase gastos
 			System.out.println("verde ...");
 			label.setBackground(colors[1]);
 	        label.repaint();
 	        myHSound.play();
+	     	gas.setVisible(true);
 	        gas.requestFocus();
-			break;
+	        
+	       	break;
 		}
 		case 405: {
 			System.out.println("amarillo  ...");
