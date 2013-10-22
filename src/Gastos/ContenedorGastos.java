@@ -13,8 +13,13 @@ import org.havi.ui.HStaticText;
 
 import mainXlet.*;
 
-public class Gastos1 extends HContainer implements KeyListener {
 
+public class ContenedorGastos extends HContainer implements KeyListener {
+
+	// Teclado
+	ContenedorKeyboard keyboard = new ContenedorKeyboard();
+
+	
 	// Pantalla de ingreso de gastos
 	
 	HStaticText resumenAño = new HStaticText ("Resumen Año");
@@ -30,7 +35,7 @@ public class Gastos1 extends HContainer implements KeyListener {
 	JTextField monCompra = new JTextField(20);
 
 	// Primer pantalla de gastos!!!
-	public Gastos1(){
+	public ContenedorGastos(){
 		// tipo de letra
 		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -73,6 +78,7 @@ public class Gastos1 extends HContainer implements KeyListener {
 		
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
+		
 		
 	}
 	

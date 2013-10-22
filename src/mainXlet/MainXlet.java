@@ -33,7 +33,7 @@ import org.havi.ui.HStaticText;
 
 import Gastos.ContenedorResumenAño;
 import Gastos.ContenedorResumenMes;
-import Gastos.Gastos1;
+import Gastos.ContenedorGastos;
    
  /**  
  * This Xlet will be visible on-screen, so we extend org.havi.ui.HComponent  
@@ -72,7 +72,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
 	/* // Gastos */
-	public static Gastos1 gas = new Gastos1();
+	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
 	public static ContenedorResumenAño ano = new ContenedorResumenAño();
 

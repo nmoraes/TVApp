@@ -152,7 +152,7 @@ public void keyPressed(KeyEvent tecla){
 		System.out.println("Vuelve para Menu compras");
 		MainXlet.ano.setVisible(false);
 		MainXlet.gas.setVisible(true);
-		MainXlet.gas.getFocusListeners();
+		MainXlet.gas.requestFocus();
 		break;	
 					
 	case 27:	//exit
