@@ -31,7 +31,7 @@ import org.havi.ui.HScreen;
 import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
 
-import Gastos.ContenedorResumenAno;
+import Gastos.ContenedorResumenAnio;
 import Gastos.ContenedorResumenMes;
 import Gastos.ContenedorGastos;
    
@@ -74,7 +74,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/* // Gastos */
 	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
-	public static ContenedorResumenAno ano = new ContenedorResumenAno();
+	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
 
 	// private JTablet tabla = new JTablet();
 
@@ -163,8 +163,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		gas.setVisible(false);
 		scene.add(mes);
 		mes.setVisible(false);
-		scene.add(ano);
-		ano.setVisible(false);
+		scene.add(anio);
+		anio.setVisible(false);
 						
 		scene.add(cont);
 //		scene.add(twitter);

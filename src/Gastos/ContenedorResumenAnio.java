@@ -12,7 +12,7 @@ import org.havi.ui.HStaticText;
 
 import mainXlet.*;
 
-public class ContenedorResumenAno extends HContainer implements KeyListener {
+public class ContenedorResumenAnio extends HContainer implements KeyListener {
 
 	// Pantalla Resumen Gastos del A�o //
 
@@ -49,7 +49,7 @@ public class ContenedorResumenAno extends HContainer implements KeyListener {
 	HStaticText titGrafica = new HStaticText("Grafica A�o");
 	HStaticText titResumen = new HStaticText("ResumenMes");
 
-	public ContenedorResumenAno() {
+	public ContenedorResumenAnio() {
 
 		// Tipo de letra
 		titulo.setFont(new Font("Tiresias", Font.BOLD, 20));
@@ -163,7 +163,7 @@ public class ContenedorResumenAno extends HContainer implements KeyListener {
 
 		case 405: // Boton Amarillo
 			System.out.println("Va para Resumen Mes");
-			MainXlet.ano.setVisible(false);
+			MainXlet.anio.setVisible(false);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();
 			MainXlet.label.setBackground(Color.green);
@@ -172,7 +172,7 @@ public class ContenedorResumenAno extends HContainer implements KeyListener {
 
 		case 406: // Boton Azul
 			System.out.println("Vuelve para Menu compras");
-			MainXlet.ano.setVisible(false);
+			MainXlet.anio.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
 			break;

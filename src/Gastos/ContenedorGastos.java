@@ -22,7 +22,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	
 	// Pantalla de ingreso de gastos
 	
-	HStaticText resumenAno = new HStaticText ("Resumen A�o");
+	HStaticText resumenAnio = new HStaticText ("Resumen A�o");
 	HStaticText resumenMes = new HStaticText ("Resumen Mes");
 	HStaticText titDetalle = new HStaticText ("Detalle de la compra");
 	HStaticText titCantidad = new HStaticText ("Cant.");
@@ -37,7 +37,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
 		// tipo de letra
-		resumenAno.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		resumenAnio.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titDetalle.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titCantidad.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -46,7 +46,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		
 		// Posicion inicial en la pantalla y color
-		resumenAno.setBounds(50, 200, 140, 30);
+		resumenAnio.setBounds(50, 200, 140, 30);
 		resumenMes.setBounds(250, 200, 140, 30);
 		titDetalle.setBounds(50, 300, 240, 30);
 		titCantidad.setBounds(290, 300, 45, 30);
@@ -54,7 +54,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titMonto.setBounds(380, 300, 65, 30);
 		
 		// Color de fondo
-		resumenAno.setBackground(Color.red);
+		resumenAnio.setBackground(Color.red);
 		resumenMes.setBackground(Color.green);
 		titDetalle.setBackground(Color.blue);
 		titCantidad.setBackground(Color.blue);
@@ -63,7 +63,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		
 		// Agrego al contenedor
-		this.add(resumenAno);
+		this.add(resumenAnio);
 		this.add(resumenMes);
 		this.add(titDetalle);
 		this.add(titCantidad);
@@ -103,8 +103,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		case 403: 	// Boton Rojo
 			System.out.println("Va para Resumen A�o");
 			MainXlet.gas.setVisible(false);
-			MainXlet.ano.setVisible(true);
-			MainXlet.ano.requestFocus();		
+			MainXlet.anio.setVisible(true);
+			MainXlet.anio.requestFocus();		
 			MainXlet.label.setBackground(Color.red);
 			MainXlet.label.repaint();
 			break;
