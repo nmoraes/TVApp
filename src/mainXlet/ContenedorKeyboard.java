@@ -9,20 +9,14 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import org.havi.ui.HContainer;
-import org.havi.ui.HDefaultTextLayoutManager;
-import org.havi.ui.HScene;
-import org.havi.ui.HSceneFactory;
-import org.havi.ui.HScreen;
-import org.havi.ui.HStaticText;
 
 public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
-	
-	
-	
 
-	private String message="";
+
+	public static String message="";
 	
 	// The image that we will show   
     private Image image; 

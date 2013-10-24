@@ -1,7 +1,9 @@
 package Gastos;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,8 +19,15 @@ import mainXlet.*;
 public class ContenedorGastos extends HContainer implements KeyListener {
 
 	// Teclado
-	ContenedorKeyboard keyboard = new ContenedorKeyboard();
+	//ContenedorKeyboard keyboard = new ContenedorKeyboard();
 
+	
+	//TODO
+	/*
+	 * implementar metodo paint.
+	 * 
+	 * */
+	
 	
 	// Pantalla de ingreso de gastos
 	
@@ -72,6 +81,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		// Textfields
 		detCompra.setBounds(50, 350, 240, 20); detCompra.setBackground(Color.white); this.add(detCompra);
+		
+		
 		canCompra.setBounds(290, 350, 45, 20); canCompra.setBackground(Color.white); this.add(canCompra);
 		uniCompra.setBounds(335, 350, 45, 20); uniCompra.setBackground(Color.white); this.add(uniCompra);
 		monCompra.setBounds(380, 350, 65, 20); monCompra.setBackground(Color.white); this.add(monCompra);
@@ -83,10 +94,25 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	}
 	
 	
+	 public void paint(Graphics graphics) {   
+		   
+		 
+		 System.out.println("hola paint");
+		 detCompra.setText(ContenedorKeyboard.message);
+	    
+	      
+
+
+	    }   
+	
+	
 	
 	public void keyPressed(KeyEvent tecla){
 		
 		System.out.println("Prueba!!!");
+		
+
+		detCompra.setText(ContenedorKeyboard.message);
 		
 		switch (tecla.getKeyCode()){
 		
@@ -97,6 +123,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.mes.requestFocus();		
 			MainXlet.label.setBackground(Color.darkGray);
 			MainXlet.label.repaint();
+			
+			this.repaint();
 			
 			break;
 
@@ -110,11 +138,11 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 405: 	// Boton Amarillo
-			
+			this.repaint();
 			break;
 		
 		case 406: 	// Boton Azul
-			
+			this.repaint();
 			break;
 		
 		case 27:	//exit
@@ -122,7 +150,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.gas.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
-			
+			this.repaint();
 			break;	
 
 		default: {	// do nothing
