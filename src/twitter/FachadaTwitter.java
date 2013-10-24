@@ -27,9 +27,9 @@ public class FachadaTwitter {
 	public FachadaTwitter() {
 		cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
-				.setOAuthConsumerKey("kEgC1K5vx2mvRYxePYCUA")
+				.setOAuthConsumerKey("bkhDWdt7F8vlJdUk6eg2rw")
 				.setOAuthConsumerSecret(
-						"B1TQEaekHjW9XRBDSC3cTBKXx5EMaWiwffS4NrGiqfQ");
+						"ttKhWg5nnLL2pmtXDOGQniR1Oy3EJKCoqNR3K17Q");
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		twitter = tf.getInstance();
 	}
