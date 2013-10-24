@@ -103,8 +103,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		case 403: 	// Boton Rojo
 			System.out.println("Va para Resumen Año");
 			MainXlet.gas.setVisible(false);
-			MainXlet.anio.setVisible(true);
-			MainXlet.anio.requestFocus();		
+			MainXlet.ano.setVisible(true);
+			MainXlet.ano.requestFocus();		
 			MainXlet.label.setBackground(Color.red);
 			MainXlet.label.repaint();
 			break;
