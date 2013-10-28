@@ -150,6 +150,18 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			numero=0;
 			writeNumbers(numero);
 			break;	
+			
+		case 151:
+			//*
+			message= message+"*";
+			this.repaint();
+			break;	
+			
+		case 520:
+			//#
+			message= message+"#";
+			this.repaint();
+			break;
 		
 		default: {
 			// do nothing
