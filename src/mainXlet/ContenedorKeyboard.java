@@ -54,7 +54,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     }
 	
 	public void keyPressed(KeyEvent tecla) {
-
+		int numero=0;
 		switch (tecla.getKeyCode()) {
 		case 39:
 			x = x + 55;
@@ -100,6 +100,55 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		case 10:
 			//OK
 			write(x,y);
+			break;
+			
+		case 49:
+			numero=1;
+			writeNumbers(numero);
+			break;	
+		
+		case 50:
+			numero=2;
+			writeNumbers(numero);
+			break;
+			
+		case 51:
+			numero=3;
+			writeNumbers(numero);
+			break;	
+		
+		case 52:
+			numero=4;
+			writeNumbers(numero);
+			break;	
+			
+		case 53:
+			numero=5;
+			writeNumbers(numero);
+			break;	
+			
+		case 54:
+			numero=6;
+			writeNumbers(numero);
+			break;
+		
+		case 55:
+			numero=7;
+			writeNumbers(numero);
+			break;
+		case 56:
+			numero=8;
+			writeNumbers(numero);
+			break;	
+		
+		case 57:
+			numero=9;
+			writeNumbers(numero);
+			break;
+		
+		case 48:
+			numero=0;
+			writeNumbers(numero);
 			break;	
 		
 		default: {
@@ -189,6 +238,11 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 	    }   
 	    
+	    
+	public void writeNumbers(int numero){
+		message= message+ numero;
+		this.repaint();
+	}    
 	    
 	public void write(int x, int y) {
 
