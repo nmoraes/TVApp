@@ -22,7 +22,7 @@ import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
 
-import mainXlet.HaviBackgroundController;
+
 
 import org.havi.ui.HComponent;
 import org.havi.ui.HDefaultTextLayoutManager;

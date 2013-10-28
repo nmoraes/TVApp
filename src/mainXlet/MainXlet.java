@@ -56,21 +56,34 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	// A private variable that keeps a reference to the thread that
 	// will do all of the work.
 	private Thread myWorkerThread;
-
+	
 	public static HStaticText label;
 	private Color[] colors = { Color.red, Color.green, Color.yellow,Color.blue, Color.white, Color.pink };
 	private int intColor;
 
 	// private ContenedorTwitter twitter=new ContenedorTwitter();
+	
+	/** Contenedor boton azul */
 	private ContenedorAzul cont = new ContenedorAzul();
+	
+	/** Contenedor boton rojo */
 	private ContenedorRed contRed = new ContenedorRed();
+	
+	/** Contenedor boton amarillo */
 	private ContenedorYellow contYellow = new ContenedorYellow();
+	
+	/** Contenedor Keyboard */
 	public static ContenedorKeyboard keyboard = new ContenedorKeyboard();
 
+	/** Contenedor Web Services Weather */
 	public static ContenedorWeather contWeather = new ContenedorWeather();
+	
+	/** Contenedor Loading */
+	private static ContenedorLoading contLoading = new ContenedorLoading();
 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
+	
 	/* // Gastos */
 	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
@@ -82,7 +95,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	// variable will hold a reference to our HScene
 	public static HScene scene;
 
-	// The image that we will show
+	/**CNN Image */
 	private Image image;
 
 	// The message that will get printed. This is read from a file in initXlet()
@@ -91,9 +104,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	// this holds the alpha (transparency) level that we will be using
 	private int alpha = 0;
 	// this object is responsible for displaying the background I-frame
-	private HaviBackgroundController backgroundManager;
+	//private HaviBackgroundController backgroundManager;
     
-    
+
     /**  
      * A default constructor, included for completeness.  
      */   
@@ -111,14 +124,18 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // We keep a reference to our Xlet context because doing so is good practise   
         this.context = context;   
    
+        
+		
+        
         // load the image to be displayed in the graphics plane.  This should maybe   
         // get done in startXlet() instead, depending on the size of the image and   
         // the time it takes to load.  if this is being loaded from a DSM-CC   
         // carousel, it should definitely be loaded after startXlet() is called.   
         loadForegroundBitmap(); 
+       
         
         readProperties();
-        playSound();
+       
       
     }   
    
@@ -130,8 +147,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     {   
         // startXlet() should not block for too long, and doing UI stuff is   
         // way too long.  To solve this, we start another thread to do the   
-        // work.   
-        myWorkerThread = new Thread(this);   
+        // work.
+    
+    	myWorkerThread = new Thread(this);   
         myWorkerThread.start();   
         
         System.out.println("Ejecutando startXlet...");
@@ -143,11 +161,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         
         HSceneFactory hsceneFactory = HSceneFactory.getInstance();
         scene = hsceneFactory.getFullScreenScene(HScreen.getDefaultHScreen().getDefaultHGraphicsDevice());
-
+  
         scene.setSize(800, 600);
         scene.setLayout(null);
         scene.addKeyListener(this);
-      
+        
 
         label = new HStaticText("menu?"/*message*/, 600, 270, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
@@ -183,6 +201,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		//Keyboard
 		keyboard.setVisible(false);
 		scene.add(keyboard);
+ 	    
+    	playSound();
+
+
     
     }   
    
@@ -291,26 +313,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         this.requestFocus();   
     }   
    
-    /**  
-     * This method is responsible for displaying the background image  
-     * on the screen.  This image will be displayed in the background  
-     * plane, not the graphics plane.  See the graphics tutorial for  
-     * a discussion of the differences between the two planes and how  
-     * they work together.  
-     */   
-    public void displayBackgroundImage() {   
-        // We've defined a separate object for displaying and managing   
-        // the background image.   
-        backgroundManager = new HaviBackgroundController();   
-   
-        // If we can initialise the background manager (which means we have got   
-        // the resources we need to display the image), we load and display an   
-        // image in the background plane.   
-        if (backgroundManager.init()) {   
-            backgroundManager.display("background.jpg");   
-        }   
-    }   
-   
+
     /**  
      * This method loads the bitmap that we will display in the component.  
      * The image can be loaded from a local filesystem or from a DSM-CC  
@@ -326,17 +329,20 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
        image = Toolkit.getDefaultToolkit().getImage("bg22.png");   
+      
              	
        
         // add the image to the MediaTracker...   
-        tracker.addImage(image, 0);   
+        tracker.addImage(image, 0);
+  
 
         try{   
             tracker.waitForAll();   
         }   
         catch(InterruptedException e) {   
             // Ignore the exception, since there's not a lot we can do.   
-            image = null;   
+            image = null; 
+        
         }   
     }   
    
@@ -356,8 +362,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     public void doPause()   
     {   
         scene.setVisible(false);   
-        // Dispose of the background image   
-        backgroundManager.dispose();   
+
     }   
    
    
@@ -377,9 +382,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Destroy the image buffer   
   //      image.flush();   
         image = null;   
-   
-        // Dispose of the background image.   
-      //  backgroundManager.dispose();   
    
         // Dispose of our HScene   
         HSceneFactory.getInstance().dispose(scene);   
@@ -420,6 +422,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         if (image != null) {   
             // Draw the image from the buffer   
             graphics.drawImage(image, 404, 7, null);      }
+        
         
    
         // Once we've drawn the image, we can draw the message on top of it.   
