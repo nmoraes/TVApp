@@ -1,10 +1,11 @@
 package Gastos;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.FocusEvent;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -23,11 +24,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 
 	
 	//TODO
-	/*
-	 * implementar metodo paint.
-	 * 
-	 * */
-	
+	private Image fondo;
 	
 	// Pantalla de ingreso de gastos
 	
@@ -87,18 +84,48 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		uniCompra.setBounds(335, 350, 45, 20); uniCompra.setBackground(Color.white); this.add(uniCompra);
 		monCompra.setBounds(380, 350, 65, 20); monCompra.setBackground(Color.white); this.add(monCompra);
 		
+		loadForegroundBitmap(); 
+	       
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
 		
 		
 	}
 	
+	public void loadForegroundBitmap() {   
+        // creamos un media tracker q nos dice si la imagen fue cargada  
+        MediaTracker tracker = new MediaTracker(this);   
+        // Carga la imagen  
+       fondo = Toolkit.getDefaultToolkit().getImage("logoUDE.png");   
+      
+       System.out.println("carga imagen");     	
+       
+       
+        // add the image to the MediaTracker...   
+        tracker.addImage(fondo, 0);
+  
+
+        try{   
+            tracker.waitForAll();   
+        }   
+        catch(InterruptedException e) {   
+            // Ignore the exception, since there's not a lot we can do.   
+            fondo = null; 
+        
+        }   
+    }   
+	
 	
 	 public void paint(Graphics graphics) {   
-		   
-		 
+		   if (fondo != null) {   
+            // Draw the image from the buffer 
+			   System.out.println("no es null la imagen"); 
+            graphics.drawImage(fondo, 100, 7, null);      }
+        canCompra.setText("  ");
+        uniCompra.setText("  ");
+		  		 
 		 System.out.println("hola paint");
-		 detCompra.setText(ContenedorKeyboard.message);
+		 //detCompra.setText(ContenedorKeyboard.message);
 	    
 	      
 
@@ -146,6 +173,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 27:	//exit
+			fondo = null;
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.gas.setVisible(false);
 			MainXlet.label.repaint();
