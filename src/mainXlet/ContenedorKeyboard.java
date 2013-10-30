@@ -45,8 +45,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     	//SI ESTOY DENTRO DE WEATHER, ENTONCES :
 		if (invokeFather == Constant.WEATHER) {
 			System.out.println("cerrar teclado en weather");
-			MainXlet.label.setBackground(Color.MAGENTA);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.MAGENTA);
+//			MainXlet.label.repaint();
 			MainXlet.keyboard.setVisible(false);
 			MainXlet.keyboard.repaint();
 			invokeFather=0;
@@ -56,14 +56,39 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		
 		// SI ESTOY DENTRO DE ROJO, ENTONCES :
 		if (invokeFather == Constant.ROJO) {
-			System.out.println("cerrar teclado en weather");
-			MainXlet.label.setBackground(Color.RED);
-			MainXlet.label.repaint();
+			System.out.println("cerrar teclado en rojo");
+//			MainXlet.label.setBackground(Color.RED);
+//			MainXlet.label.repaint();
 			MainXlet.keyboard.setVisible(false);
 			MainXlet.keyboard.repaint();
 			invokeFather = 0;
 			MainXlet.contRed.requestFocus();
 		}
+		
+		// SI ESTOY DENTRO DE ROJO, ENTONCES :
+		if (invokeFather == Constant.AZUL) {
+			System.out.println("cerrar teclado en azul");
+//			MainXlet.label.setBackground(Color.BLUE);
+//			MainXlet.label.repaint();
+			MainXlet.keyboard.setVisible(false);
+			MainXlet.keyboard.repaint();
+			invokeFather = 0;
+			MainXlet.cont.requestFocus();
+		}
+		
+		if (invokeFather == Constant.AMARILLO) {
+			System.out.println("cerrar teclado en amarillo");
+//			MainXlet.label.setBackground(Color.BLUE);
+//			MainXlet.label.repaint();
+			MainXlet.keyboard.setVisible(false);
+			MainXlet.keyboard.repaint();
+			invokeFather = 0;
+			MainXlet.contYellow.requestFocus();
+		}
+		
+		
+		
+		
 		
     	
     	

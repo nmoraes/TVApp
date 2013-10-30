@@ -44,11 +44,20 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			//this.repaint();
-			break;	
+			break;
+			
+			
+		case 403: {
+			System.out.println("boton rojo siempre llama al teclado ...");
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();	
+			ContenedorKeyboard.invokeFather=Constant.AMARILLO;
+			break;
+		}	
 		
 		default: {
 			// do nothing
-			System.out.println("default case ...");
+			System.out.println("default case en contenedor amarillo ...");
 			System.out.println(tecla);
 			break;
 		}

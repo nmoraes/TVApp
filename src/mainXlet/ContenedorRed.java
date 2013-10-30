@@ -63,7 +63,7 @@ public class ContenedorRed extends HContainer implements KeyListener {
 
 		default: {
 			// do nothing
-			System.out.println("default case ...");
+			System.out.println("default case en contenedor rojo...");
 			System.out.println(tecla);
 			break;
 		}

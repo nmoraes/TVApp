@@ -64,13 +64,13 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	// private ContenedorTwitter twitter=new ContenedorTwitter();
 	
 	/** Contenedor boton azul */
-	private ContenedorAzul cont = new ContenedorAzul();
+	public static  ContenedorAzul cont = new ContenedorAzul();
 	
 	/** Contenedor boton rojo */
 	public static ContenedorRed contRed = new ContenedorRed();
 	
 	/** Contenedor boton amarillo */
-	private ContenedorYellow contYellow = new ContenedorYellow();
+	public static ContenedorYellow contYellow = new ContenedorYellow();
 	
 	/** Contenedor Keyboard */
 	public static ContenedorKeyboard keyboard = new ContenedorKeyboard();
