@@ -474,11 +474,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 
 		case KeyEvent.VK_RIGHT: {
-			System.out.println("derecha ...Llamando al keyboard listener..");			
-			label.setBackground(colors[5]);
-			label.repaint();
-			keyboard.setVisible(true);
-			keyboard.requestFocus();
+//			System.out.println("derecha ...Llamando al keyboard listener dento del xlet..");			
+//			label.setBackground(colors[5]);
+//			label.repaint();
+//			keyboard.setVisible(true);
+//			keyboard.requestFocus();
 			
 			
 			break;

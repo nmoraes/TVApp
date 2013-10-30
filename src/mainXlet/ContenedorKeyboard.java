@@ -18,6 +18,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 	public static String message="";
 	
+	public static int invokeFather =0;
+	
 	// The image that we will show   
     private Image image; 
     private Image image2; 
@@ -39,16 +41,17 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	
     
     private void closeKeyboard(){
-    	
-    	System.out.println("cerrar teclado");
-		System.out.println("EXIT");
-		
-		MainXlet.label.setBackground(Color.white);
-		
-		MainXlet.label.repaint();
-		MainXlet.keyboard.setVisible(false);
-		MainXlet.keyboard.repaint();
-		MainXlet.scene.requestFocus();
+    		
+    	//SI ESTOY DENTRO DE WEATHER, ENTONCES :
+		if (invokeFather == Constant.WEATHER) {
+			System.out.println("cerrar teclado en weather");
+			MainXlet.label.setBackground(Color.MAGENTA);
+			MainXlet.label.repaint();
+			MainXlet.keyboard.setVisible(false);
+			MainXlet.keyboard.repaint();
+			invokeFather=0;
+			MainXlet.contWeather.requestFocus();
+		}
     	
     	
     }

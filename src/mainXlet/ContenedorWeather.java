@@ -24,6 +24,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
     private String messageWeather2= new String();
     private String messageWeather3= new String();
     
+    
     // The image that we will show   
     private Image image; 
     
@@ -79,6 +80,16 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 
 			break;
 		
+		case 403: {
+			System.out.println("boton rojo siempre llama al teclado ...");
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();
+			
+			ContenedorKeyboard.invokeFather=Constant.WEATHER;
+	       
+
+			break;
+		}
 			
 		case 27:
 			//exit
