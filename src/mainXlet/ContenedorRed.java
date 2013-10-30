@@ -48,6 +48,18 @@ public class ContenedorRed extends HContainer implements KeyListener {
 			MainXlet.scene.requestFocus();
 			//this.repaint();
 			break;	
+			
+			
+		case 403: {
+			System.out.println("boton rojo siempre llama al teclado ...");
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();	
+			ContenedorKeyboard.invokeFather=Constant.ROJO;
+	       
+
+			break;
+		}	
+		
 
 		default: {
 			// do nothing

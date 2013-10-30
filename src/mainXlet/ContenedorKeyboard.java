@@ -52,6 +52,19 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			invokeFather=0;
 			MainXlet.contWeather.requestFocus();
 		}
+		
+		
+		// SI ESTOY DENTRO DE ROJO, ENTONCES :
+		if (invokeFather == Constant.ROJO) {
+			System.out.println("cerrar teclado en weather");
+			MainXlet.label.setBackground(Color.RED);
+			MainXlet.label.repaint();
+			MainXlet.keyboard.setVisible(false);
+			MainXlet.keyboard.repaint();
+			invokeFather = 0;
+			MainXlet.contRed.requestFocus();
+		}
+		
     	
     	
     }
