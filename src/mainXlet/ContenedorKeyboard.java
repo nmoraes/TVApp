@@ -39,60 +39,43 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     	
     }
 	
-    
-    private void closeKeyboard(){
-    		
-    	//SI ESTOY DENTRO DE WEATHER, ENTONCES :
+	/**
+	 * Procedimiento que oculta el teclado del MainXlet
+	 * 
+	 * @desc Segun desde que controldor se invoque el teclado este cuando se
+	 *       cierre va a devolver el requestFocus a quien lo invoco.
+	 * */
+	private void closeKeyboard() {
+
+		// Si estoy dentro del contenedor weather:
 		if (invokeFather == Constant.WEATHER) {
 			System.out.println("cerrar teclado en weather");
-//			MainXlet.label.setBackground(Color.MAGENTA);
-//			MainXlet.label.repaint();
-			MainXlet.keyboard.setVisible(false);
-			MainXlet.keyboard.repaint();
-			invokeFather=0;
 			MainXlet.contWeather.requestFocus();
 		}
-		
-		
-		// SI ESTOY DENTRO DE ROJO, ENTONCES :
+
+		// Si estoy dentro del contenedor rojo:
 		if (invokeFather == Constant.ROJO) {
 			System.out.println("cerrar teclado en rojo");
-//			MainXlet.label.setBackground(Color.RED);
-//			MainXlet.label.repaint();
-			MainXlet.keyboard.setVisible(false);
-			MainXlet.keyboard.repaint();
-			invokeFather = 0;
 			MainXlet.contRed.requestFocus();
 		}
-		
-		// SI ESTOY DENTRO DE ROJO, ENTONCES :
+
+		// Si estoy dentro del contenedor azul:
 		if (invokeFather == Constant.AZUL) {
 			System.out.println("cerrar teclado en azul");
-//			MainXlet.label.setBackground(Color.BLUE);
-//			MainXlet.label.repaint();
-			MainXlet.keyboard.setVisible(false);
-			MainXlet.keyboard.repaint();
-			invokeFather = 0;
 			MainXlet.cont.requestFocus();
 		}
-		
+		// Si estoy dentro del contenedor amarillo:
 		if (invokeFather == Constant.AMARILLO) {
 			System.out.println("cerrar teclado en amarillo");
-//			MainXlet.label.setBackground(Color.BLUE);
-//			MainXlet.label.repaint();
-			MainXlet.keyboard.setVisible(false);
-			MainXlet.keyboard.repaint();
-			invokeFather = 0;
 			MainXlet.contYellow.requestFocus();
 		}
-		
-		
-		
-		
-		
-    	
-    	
-    }
+
+		MainXlet.keyboard.setVisible(false);
+		MainXlet.keyboard.repaint();
+		invokeFather = 0;
+		ContenedorKeyboard.message = "";
+
+	}
 	
 	public void keyPressed(KeyEvent tecla) {
 		int numero=0;
