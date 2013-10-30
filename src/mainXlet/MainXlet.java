@@ -84,6 +84,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
 	
+	
+	private ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
+	
 	/* // Gastos */
 	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
@@ -167,7 +170,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         scene.addKeyListener(this);
         
 
-        label = new HStaticText("menu?"/*message*/, 600, 270, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
+        label = new HStaticText("menu?"/*message*/, 600, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         
@@ -201,8 +204,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		//Keyboard
 		keyboard.setVisible(false);
 		scene.add(keyboard);
+		
+		scene.add(miniWeather);
  	    
-    	playSound();
+    	//playSound();
 
 
     
@@ -583,7 +588,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	
 	}
     
-
+	
+//	private void actualWeather(){
+//		
+//		
+//		
+//	}
     
    
    

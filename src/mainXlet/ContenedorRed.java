@@ -8,14 +8,14 @@ import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
 
 public class ContenedorRed extends HContainer implements KeyListener {
-	private int x = 200;
+	private int x = 20;
 	
 	HStaticText hstTexto = new HStaticText(" Menu Rojo");
 
 	public ContenedorRed() {
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 150, 200, 50);
+		hstTexto.setBounds(x, 80, 200, 50);
 		hstTexto.setBackground(Color.red);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
