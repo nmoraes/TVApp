@@ -151,7 +151,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 	        // Get the size of this component so that we can clear it properly.   
 	        Dimension size = getSize();   
 	   
-	   
+	        graphics.setColor(Color.WHITE); 
 	        graphics.fillRect(0,0,size.width,size.height);   
 	        
 	    
@@ -175,7 +175,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 	        // Set the font to be the default MHP font.   
 	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));   
 	        // Set the text colour   
-	        graphics.setColor(Color.white);   
+	        graphics.setColor(Color.BLACK);   
 	       
 	        // Drawing the string may cause an error to get thrown, so we   
 	        // surround it with a 'try' block.   

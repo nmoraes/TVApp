@@ -1,5 +1,6 @@
 package mainXlet;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -10,6 +11,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import org.dvb.ui.DVBAlphaComposite;
+import org.dvb.ui.DVBColor;
 import org.havi.ui.HContainer;
 
 import wsPackage.JSONUtility;
@@ -21,10 +24,6 @@ public class ContenedorMiniWeather extends HContainer {
 	    private String messageWeather2= new String();
 	    private String messageWeather3= new String();
 	    
-   
-	    
-	    // The image that we will show   
-	    private Image image;
 	    // The image that we will show   
 	    private Image image2;
 	    // The image that we will show   
@@ -69,7 +68,7 @@ public class ContenedorMiniWeather extends HContainer {
 				this.repaint();
 			}
 			
-//			loadForegroundBitmap();
+		loadForegroundBitmap();
 //			this.repaint();
 			
 		}
@@ -79,14 +78,14 @@ public class ContenedorMiniWeather extends HContainer {
 		        // Create a MediaTracker to tell us when the image has loaded   
 		        MediaTracker tracker = new MediaTracker(this);   
 		        // Then load the image   
-		        image = Toolkit.getDefaultToolkit().getImage("fondoW.jpg");   
+		       // image = Toolkit.getDefaultToolkit().getImage("fondoW.jpg");   
 		             	
 		        
 		        // add the image to the MediaTracker...
-		        tracker.addImage(image, 0);
-		        tracker.addImage(image2, 1);
-		        tracker.addImage(image3, 2);
-		        tracker.addImage(image4, 3);
+		       // tracker.addImage(image, 0);
+		        tracker.addImage(image2, 0);
+		        tracker.addImage(image3, 1);
+		        tracker.addImage(image4, 2);
 		        // ...and wait for it to finish loading   
 		        try{   
 		            tracker.waitForAll();   
@@ -107,18 +106,10 @@ public class ContenedorMiniWeather extends HContainer {
 		        // Get the size of this component so that we can clear it properly.   
 		        Dimension size = getSize();   
 		   
-		   
+		        //graphics.setColor(DVBColor.WHITE);
+		        ((Object) graphics).setComposite(AlphaComposite.SrcOver);
 		        graphics.fillRect(0,0,size.width,size.height);   
-		        
-		        
-		        if (image != null) {  
-		        	
-		            // Draw the image from the buffer   
-		            graphics.drawImage(image, 0, 0, null);
-		            
-		        	 } 
-		        
-		        
+		        	        
 		        
 		        if (image2 != null) {  
 		        	
@@ -130,7 +121,7 @@ public class ContenedorMiniWeather extends HContainer {
 		        if (image3 != null) {   
 		            // Draw the image from the buffer   
 		            graphics.drawImage(image3, 120, 10, null);  
-		            graphics.setColor(Color.red);}  
+		            }  
 		        if (image4 != null) {   
 		            // Draw the image from the buffer   
 		            graphics.drawImage(image4, 270, 10, null);      }  
