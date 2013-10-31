@@ -34,6 +34,8 @@ import org.havi.ui.HStaticText;
 import Gastos.ContenedorResumenAnio;
 import Gastos.ContenedorResumenMes;
 import Gastos.ContenedorGastos;
+import Calc.base;
+import Calc.calcu;
    
  /**  
  * This Xlet will be visible on-screen, so we extend org.havi.ui.HComponent  
@@ -91,6 +93,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
 	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
+	
+	/* // Calculadora */
+	public static base base = new base();
+	public static calcu calcu = new calcu();
+	
 
 	// private JTablet tabla = new JTablet();
 
@@ -197,6 +204,14 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.add(contYellow);
 		scene.setVisible(true);
         
+		//Calculadora
+		scene.add(base);
+		base.setVisible(false);
+		scene.add(calcu);
+		calcu.setVisible(false);
+		
+		
+		
 		//Weather
 		scene.add(contWeather);
 		contWeather.setVisible(false);
@@ -456,6 +471,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     public void keyPressed(KeyEvent key) {
 		// What key has been pressed?
 		switch (key.getKeyCode()) {
+		
+	//	case KeyEvent.VK_UP: {
+	//		System.out.println("arriba ...");   gab intentando meter la calculadora
+	//		 myHSound.stop();					dejo comentado lo que estaba antes de tocar
+	//		break;
+	//	}
 		
 		case KeyEvent.VK_UP: {
 			System.out.println("arriba ...");

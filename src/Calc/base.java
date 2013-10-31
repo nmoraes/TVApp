@@ -1,9 +1,18 @@
 package Calc;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class base {
+import org.havi.ui.HContainer;
 
- public double suma(double a,double b){
+
+public class base extends HContainer implements KeyListener {
+
+ /**
+	 Agrego aca serialVersion que no se que es pero pide que lo haga el compilador
+	 */
+	private static final long serialVersionUID = 1L;
+public double suma(double a,double b){
  double r=a+b; 
  return r;
  }
@@ -19,4 +28,22 @@ public class base {
  double r=a/b;
  return r;
  }
+public void keyPressed(KeyEvent arg0) {
+	// TODO Auto-generated method stub
+	
+}
+public void keyReleased(KeyEvent arg0) {
+	// TODO Auto-generated method stub
+	
+}
+public void keyTyped(KeyEvent arg0) {
+	// TODO Auto-generated method stub
+	
+}
+public void setVisible(boolean b) {
+	// TODO Auto-generated method stub
+	
+}
  }
+
+ 
