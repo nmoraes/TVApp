@@ -95,8 +95,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
 	
 	/* // Calculadora */
-	public static base base = new base();
-	public static calcu calcu = new calcu();
+//	public static base base = new base();
+//	public static calcu calcu = new calcu();
 	
 
 	// private JTablet tabla = new JTablet();
@@ -205,10 +205,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.setVisible(true);
         
 		//Calculadora
-		scene.add(base);
-		base.setVisible(false);
-		scene.add(calcu);
-		calcu.setVisible(false);
+//		scene.add(base);
+//		base.setVisible(false);
+//		scene.add(calcu);
+//		calcu.setVisible(false);
 		
 		
 		
@@ -472,15 +472,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		// What key has been pressed?
 		switch (key.getKeyCode()) {
 		
-	//	case KeyEvent.VK_UP: {
-	//		System.out.println("arriba ...");   gab intentando meter la calculadora
-	//		 myHSound.stop();					dejo comentado lo que estaba antes de tocar
-	//		break;
-	//	}
+
 		
 		case KeyEvent.VK_UP: {
-			System.out.println("arriba ...");
-			 myHSound.stop();
+//			System.out.println("arriba ...");   gab intentando meter la calculadora
+			//System.out.println("arriba ...");
+			// myHSound.stop();
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
