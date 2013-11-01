@@ -240,7 +240,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	   
 	        // Get the size of this component so that we can clear it properly.   
 	        Dimension size = getSize();   
-	        graphics.setColor(Color.white);   
+	        graphics.setColor(new Color(0,0,0,0));
 	        graphics.fillRect(0,0,size.width,size.height);   
 	        
 

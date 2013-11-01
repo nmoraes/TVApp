@@ -2,6 +2,7 @@ package mainXlet;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -106,8 +107,13 @@ public class ContenedorMiniWeather extends HContainer {
 		        // Get the size of this component so that we can clear it properly.   
 		        Dimension size = getSize();   
 		   
-		        //graphics.setColor(DVBColor.WHITE);
+		        graphics.setColor(Color.white);
 		        
+		 
+		      //  graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,10 * 0.1f));
+		        
+		        //graphics.fillRect(50 * 10, 20, 40, 40);
+		       
 		        graphics.fillRect(0,0,size.width,size.height);   
 		        	        
 		        
