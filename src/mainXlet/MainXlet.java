@@ -594,30 +594,20 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	}
 
 	private void readProperties(){
+	
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
+			message = properties.getProperty("mensajeBienvenida");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
+		}
 		
-	// Load the message that we will display
-	try {
-		// This is all standard java.io file reading, so we won't explain it.
-		// If you really need to know, look at a decent Java book.
-		BufferedReader in = new BufferedReader(
-			new InputStreamReader(new FileInputStream("app.properties")));
-
-		// Read the first line from the file.  Our message will only be one
-		// line long, in this case.
-		message = in.readLine();
-	}catch(IOException e){
-		// Something went wrong reading the message file.
-		System.out.println("I/O excepcion al leer app.properties");
 	}
-	
-	}
-    
-	
-//	private void actualWeather(){
-//		
-//		
-//		
-//	}
     
    
    
