@@ -4,15 +4,33 @@ import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
 
 public class ContenedorYellow extends HContainer implements KeyListener {
 	private int x = 0;
 	
-	HStaticText hstTexto = new HStaticText(" Menu Amarillo");
+	HStaticText hstTexto;;
 
 	public ContenedorYellow() {
+		
+		Properties properties = new Properties();
+		try {
+			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
+			hstTexto = new HStaticText(
+					properties.getProperty("textoContenedorAmarillo"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
 		hstTexto.setBounds(x, 530, 720, 50);

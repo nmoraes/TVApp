@@ -7,6 +7,9 @@ package mainXlet;
  * applicacion
  * */
 public class Constant {
+	
+	/** Constante para identificar que el archivo de configuracion de la aplicacion */
+	public static final String CONFIG_PROPERTIES = "config.properties";
 
 	/** Constante para identificar que el Contenedor weather invoco al teclado */
 	public static final int WEATHER = 1;

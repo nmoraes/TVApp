@@ -13,9 +13,11 @@ import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Properties;
 
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
@@ -89,6 +91,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	
 	private ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
 	
+	
+	
+	
 	/* // Gastos */
 	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
@@ -131,6 +136,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
      */   
     public void initXlet(javax.tv.xlet.XletContext context) throws javax.tv.xlet.XletStateChangeException   
     {   
+    
         // We keep a reference to our Xlet context because doing so is good practise   
         this.context = context;   
    
@@ -177,7 +183,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         scene.addKeyListener(this);
         
 
-        label = new HStaticText("menu?"/*message*/, 600, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
+        label = new HStaticText("menu?"/*message*/, 650, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         
