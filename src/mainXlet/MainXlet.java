@@ -88,7 +88,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
 	
-	
+	/** Contenedor MiniWeather el cual se desplega debajo de la pantalla */
 	private ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
 	
 	
