@@ -107,7 +107,7 @@ public class ContenedorMiniWeather extends HContainer {
 		        Dimension size = getSize();   
 		   
 		        //graphics.setColor(DVBColor.WHITE);
-		        ((Object) graphics).setComposite(AlphaComposite.SrcOver);
+		        
 		        graphics.fillRect(0,0,size.width,size.height);   
 		        	        
 		        
