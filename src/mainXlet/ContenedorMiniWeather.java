@@ -41,35 +41,35 @@ public class ContenedorMiniWeather extends HContainer {
 
 			
 			
-			Weather [] weatherCollection= JSONUtility.getWeather();
-			
-			for (int i = 0; i < weatherCollection.length; i++) {
-				Weather h = weatherCollection[i];
-
-				System.out.println("");
-				System.out.println("");
-				System.out.println(h.getTitle());
-				System.out.println(h.getFcttext());
-				System.out.println(h.getFcttext_metric());
-				//System.out.println(h.getUrl());
-				
-				if(i==0){
-				messageWeather1 = h.getTitle();
-				image2 = h.getUrl();
-				}
-				if(i==1){
-				image3 =h.getUrl();
-				messageWeather2 = h.getTitle();
-			}
-				if(i==2){
-				image4 =h.getUrl();
-				messageWeather3 = h.getTitle();
-				loadForegroundBitmap();
-			}
-				this.repaint();
-			}
-			
-		loadForegroundBitmap();
+//			Weather [] weatherCollection= JSONUtility.getWeather();
+//			
+//			for (int i = 0; i < weatherCollection.length; i++) {
+//				Weather h = weatherCollection[i];
+//
+//				System.out.println("");
+//				System.out.println("");
+//				System.out.println(h.getTitle());
+//				System.out.println(h.getFcttext());
+//				System.out.println(h.getFcttext_metric());
+//				//System.out.println(h.getUrl());
+//				
+//				if(i==0){
+//				messageWeather1 = h.getTitle();
+//				image2 = h.getUrl();
+//				}
+//				if(i==1){
+//				image3 =h.getUrl();
+//				messageWeather2 = h.getTitle();
+//			}
+//				if(i==2){
+//				image4 =h.getUrl();
+//				messageWeather3 = h.getTitle();
+//				loadForegroundBitmap();
+//			}
+//				this.repaint();
+//			}
+//			
+//		loadForegroundBitmap();
 //			this.repaint();
 			
 		}

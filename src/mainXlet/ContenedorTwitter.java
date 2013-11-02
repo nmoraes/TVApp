@@ -28,9 +28,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		hstTexto = new HStaticText(tweets);
 		hstTexto.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(10, 10, 400, 600);
+		hstTexto.setBounds(10, 10, 600, 600);
 		texto.setBounds(30, 30, 200, 400);
-		hstTexto.setBackground(Color.WHITE);
+		hstTexto.setBackground(Color.white);
 		this.add(hstTexto);
 		this.add(texto);
 		// mi tamaño y posición x,y,x,y
@@ -55,7 +55,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		FachadaTwitter ft = new FachadaTwitter();
 		List lista = ft.getHomeTimeLine();
 		StringBuilder tl = new StringBuilder();
-		for (int i = 0; i < lista.size(); i++) {
+		for (int i = 0; i < 5; i++) {
 			Tweet tweet = (Tweet) lista.get(i);
 			tl.append(tweet.getUsuario() + " " + tweet.getMensaje()+"\n");
 		}
