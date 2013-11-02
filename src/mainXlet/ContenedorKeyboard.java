@@ -24,6 +24,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     private Image image; 
     private Image image2; 
     
+    private boolean shiftFlag = true;
+    
     //The pointer
     private int x = 60;
     private int y = 30;
@@ -75,6 +77,30 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		invokeFather = 0;
 		ContenedorKeyboard.message = "";
 
+	}
+	
+	
+	
+	private boolean isShiftFlag() {
+		return shiftFlag;
+	}
+
+	private void setShiftFlag(boolean shiftFlag) {
+		this.shiftFlag = shiftFlag;
+	}
+
+	/**
+	 * @description botonShift, cambia caracteres de minuscula a mayuscula en el teclado.
+	 * @param String
+	 * @return String character modificado
+	 * */
+	private String botonShift(String character){
+		String salida=character;
+		//Shift no activado, entonces letras minusculas
+		if (isShiftFlag() == false) {
+			salida= character.toLowerCase();
+		}
+	return salida;	
 	}
 	
 	
@@ -344,35 +370,40 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	}    
 	    
 	public void write(int x, int y) {
-
+		String character="";
 		if (y == 30) {
 
 			switch (x) {
 			case 60:
 				System.out.println("Q");
-				message= message+"Q";
+				character="Q";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
 
 				break;
 			case 115:
 				System.out.println("W");
-				message= message+"W";
+				character="W";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
-
 				break;
 
-			case 170:
-				
+			case 170:				
 				System.out.println("E");
-				message= message+"E";
+				character="E";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
 
 				break;
 
-			case 225:
-			
+			case 225:			
 				System.out.println("R");
-				message= message+"R";
+				character="R";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
 				break;
 
@@ -530,9 +561,11 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				
 				switch (x) {
 				case 60:
-					//AUN NO HACE NADA
 					System.out.println("SHIFT");
-
+					if (isShiftFlag()==false)
+						setShiftFlag(true);
+					else
+						setShiftFlag(false);	
 					break;
 				case 115:
 				
@@ -601,8 +634,11 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 					break;
 				case 610:
-					//AUN NO HACE NADA
 					System.out.println("SHIFT");
+					if (isShiftFlag()==false)
+						setShiftFlag(true);
+					else
+						setShiftFlag(false);	
 
 					break;
 
