@@ -77,21 +77,81 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 	}
 	
+	
+	/**
+	 * @description adjustarEjeHorizontal permite mantener el mouse dentro del
+	 *              teclado, sin que este, se vaya fuera del teclado, en el caso
+	 *              de irse a la izquierda fuera de este, aparecera el
+	 *              puntero en el lado derecho y viceversa.
+	 * @param int x, int y correspondientes al eje de coordenadas
+	 * */
+	public void adjustarEjeHorizontal(int x, int y) {
+		if (y == 30) {
+			if (x >= 665)
+				this.x = 60;
+			if (x <= 25)
+				this.x = 610;
+		}
+
+		if (y == 80) {
+			if (x > 575)
+				this.x = 80;
+			if (x < 80)
+				this.x = 575;
+
+		}
+
+		if (y == 130) {
+			if (x >= 665)
+				this.x = 60;
+			if (x <= 25)
+				this.x = 610;
+
+		}
+
+		if (y == 180) {
+			if (x > 630)
+				this.x = 80;
+			if (x < 80)
+				this.x = 630;
+
+		}
+
+	}
+	
+	/**
+	 * @description adjustarEjeVertical permite mantener el mouse dentro del
+	 *              teclado, sin que este, se vaya fuera del teclado, en el caso
+	 *              de irse para arriba fuera de este, aparecera el
+	 *              puntero por debajo, y viceversa.
+	 * @param int y correspondientes al eje de coordenadas
+	 * */
+	public void adjustarEjeVertical(int y) {
+		if (y<30){
+			this.y=180;
+			this.x =80;
+		}
+		if (y>180){
+			this.y=30;
+			this.x=60;
+		}
+	}
+	
+	
 	public void keyPressed(KeyEvent tecla) {
 		int numero=0;
 		switch (tecla.getKeyCode()) {
 		case 39:
 			x = x + 55;
-			//System.out.println("der cordenadas x = "+x +"y ="+y);
-			//hstTexto.setBounds(x, 0, 200, 50);
+			adjustarEjeHorizontal(x,y);
+			System.out.println("der cordenadas x = "+x +"y ="+y);
 			this.repaint();
-			//System.out.println("default case ...");
 			break;
 		case 37:
 			x = x - 55;
-			//System.out.println("izq cordenadas x = "+x +"y ="+y);
+			adjustarEjeHorizontal(x,y);
+			System.out.println("izq cordenadas x = "+x +"y ="+y);
 			this.repaint();
-
 			break;
 			
 		case 38:
@@ -100,7 +160,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			if(y==80) x = 80;
 			if(y==130) x = 60;
 			if(y==180) x = 80;
-			//System.out.println("arriba cordenadas x = "+x +"y ="+y);
+			System.out.println("arriba cordenadas x = "+x +"y ="+y);
+			adjustarEjeVertical(y);
 			this.repaint();
 			break;
 			
@@ -110,7 +171,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			if(y==80) x = 80;
 			if(y==130) x = 60;
 			if(y==180) x = 80;
-			//System.out.println("abajo cordenadas x = "+x +"y ="+y);
+			System.out.println("abajo cordenadas x = "+x +"y ="+y);
+			adjustarEjeVertical(y);
 			this.repaint();
 			
 			break;
@@ -600,9 +662,19 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			case 410:
 			
 				System.out.println("espacio");
+				message= message+" ";
+				this.repaint();
 
 				break;
+			
+			case 465:
+				
+				System.out.println("espacio");
+				message= message+" ";
+				this.repaint();
 
+				break;	
+				
 			case 520:
 				//abrimos el numerico
 				System.out.println("123");
@@ -624,7 +696,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 			default: {
 				
-				System.out.println("fuera del rango");
+				System.out.println("fuera del rango"+ "coordenada X= " + this.x);
 
 				break;
 			}
