@@ -23,5 +23,7 @@ public class Constant {
 	/** Constante para identificar que el Contenedor amarillo invoco al teclado */
 	public static final int AMARILLO = 4;
 	
+	/** Constante para identificar que el Contenedor amarillo invoco al teclado */
+	public static final int GASTOS = 5;
 	
 }

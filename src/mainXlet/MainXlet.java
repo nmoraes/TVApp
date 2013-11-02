@@ -90,7 +90,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	private Image image;
 	
 	/**Mensaje de bienvenida*/
-	private String message;
+	private String message = "No puede ser nulo";
 	
 	/**
 	 * @description Before we can draw on the screen, we need an HScene to draw into. This

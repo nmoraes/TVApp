@@ -21,10 +21,17 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 
 	// Teclado
 	//ContenedorKeyboard keyboard = new ContenedorKeyboard();
+	// Agregar los labels al repaint
+	// Arreglar q solo se pueda escribir hasta el tope de los textbox
+	// Darle un formato mas lindo
+	// Agrandar los textos
+	// Guardar en disco
+	
 
 	
 	//TODO
 	private Image fondo;
+	private Image fondo2;
 	
 	// Pantalla de ingreso de gastos
 	
@@ -35,13 +42,36 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	HStaticText titUnitario = new HStaticText ("Unit.");
 	HStaticText titMonto = new HStaticText ("Monto");
 	
-	JTextField detCompra = new JTextField(20);
-	JTextField canCompra = new JTextField(20);
-	JTextField uniCompra = new JTextField(20);
-	JTextField monCompra = new JTextField(20);
+	public static JTextField detCompra = new JTextField(20);
+	public static JTextField canCompra = new JTextField(20);
+	public static JTextField uniCompra = new JTextField(20);
+	public static JTextField monCompra = new JTextField(20);
+	private String detText = "  ";
+	private String canText = "  ";
+	private String uniText = "  ";
+	private String monText = "  ";
+	
+	public void setDetText(String s){
+		detText = s;
+	}
+	
+	public void setCanText(String s){
+		canText = s;
+	}
+	
+	public void setUniText(String s){
+		uniText = s;
+	}
+	
+	public void setMonText(String s){
+		monText = s;
+	}
+	
+	
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
+		
 		// tipo de letra
 		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -96,13 +126,15 @@ public class ContenedorGastos extends HContainer implements KeyListener {
         // creamos un media tracker q nos dice si la imagen fue cargada  
         MediaTracker tracker = new MediaTracker(this);   
         // Carga la imagen  
-       fondo = Toolkit.getDefaultToolkit().getImage("logoUDE.png");   
+       fondo = Toolkit.getDefaultToolkit().getImage("logoUDE.png");
+       fondo2 = Toolkit.getDefaultToolkit().getImage("LogoIHomeChico.png");
       
        System.out.println("carga imagen");     	
        
        
         // add the image to the MediaTracker...   
         tracker.addImage(fondo, 0);
+        tracker.addImage(fondo2, 0);
   
 
         try{   
@@ -116,23 +148,68 @@ public class ContenedorGastos extends HContainer implements KeyListener {
     }   
 	
 	
+	
+	
 	 public void paint(Graphics graphics) {   
 		   if (fondo != null) {   
             // Draw the image from the buffer 
 			   System.out.println("no es null la imagen"); 
-            graphics.drawImage(fondo, 100, 7, null);      }
-        canCompra.setText("  ");
-        uniCompra.setText("  ");
-		  		 
+            graphics.drawImage(fondo, 150, 7, null);      }
+		   
+		   if (fondo2 != null) {   
+	            // Draw the image from the buffer 
+				   System.out.println("no es null la imagen"); 
+	            graphics.drawImage(fondo2, 20, 7, null);      }
+      
+		// Vuelvo a dibujar los componentes
+		//canCompra.setText("  ");
+        //uniCompra.setText("  ");
+        //monCompra.setText("  ");
+		//detCompra.setText("  ");
+		
+		resumenAño.setVisible(true);
+		//HStaticText resumenMes = new HStaticText ("Resumen Mes");
+		//HStaticText titDetalle = new HStaticText ("Detalle de la compra");
+		//HStaticText titCantidad = new HStaticText ("Cant.");
+		//HStaticText titUnitario = new HStaticText ("Unit.");
+		//HStaticText titMonto = new HStaticText ("Monto");
 		 System.out.println("hola paint");
-		 //detCompra.setText(ContenedorKeyboard.message);
-	    
+		 detCompra.setText(detText);	
+		 uniCompra.setText(uniText);
+		 monCompra.setText(monText);
+		 canCompra.setText(canText);
+					
+				switch(ContenedorKeyboard.navegadorTextGastos){
+					
+				case 0:	
+						detCompra.setText(ContenedorKeyboard.message);
+						
+					break;
+					
+				case 1:
+						canCompra.setText(ContenedorKeyboard.message);
+					
+					break;
+					
+				case 2: 
+						uniCompra.setText(ContenedorKeyboard.message);
+			
+					break;
+				case 3: 
+				        monCompra.setText(ContenedorKeyboard.message);
+			
+				    break;
+				
+				default:
+					System.out.println("Error!!!");
+					break;
+				}
 	      
 
 
 	    }   
-	
-	
+	 
+		
 	
 	public void keyPressed(KeyEvent tecla){
 		
@@ -165,7 +242,11 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 405: 	// Boton Amarillo
-			this.repaint();
+			System.out.println("llamamos al teclado desde gastos");
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();	
+			ContenedorKeyboard.invokeFather=Constant.GASTOS;
+			detCompra.setText(ContenedorKeyboard.message);
 			break;
 		
 		case 406: 	// Boton Azul
@@ -202,4 +283,3 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	
 	
 }
-

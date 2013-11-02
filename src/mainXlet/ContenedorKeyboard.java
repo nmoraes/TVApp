@@ -30,6 +30,9 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     private int x = 60;
     private int y = 30;
     
+    // Variable para manejar el texto en Gastos
+    public static int navegadorTextGastos = 0;
+    
    
     
     public ContenedorKeyboard(){
@@ -167,6 +170,36 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	public void keyPressed(KeyEvent tecla) {
 		int numero=0;
 		switch (tecla.getKeyCode()) {
+		
+		case 9:
+			if (ContenedorKeyboard.invokeFather == Constant.GASTOS){
+				
+				switch(navegadorTextGastos){
+					
+				case 0:	navegadorTextGastos = 1;
+						MainXlet.gas.setDetText(message);
+						message = "";
+					break;
+					
+				case 1: navegadorTextGastos = 2;
+						MainXlet.gas.setCanText(message);
+						message = "";
+				
+					break;
+					
+				case 2: navegadorTextGastos = 3;
+						MainXlet.gas.setUniText(message);
+						message = "";		
+					break;
+				case 3: navegadorTextGastos = 0;
+						MainXlet.gas.setMonText(message);
+						message = "";	
+				    break;
+				}
+				
+			}
+		break;
+		
 		case 39:
 			x = x + 55;
 			adjustarEjeHorizontal(x,y);
