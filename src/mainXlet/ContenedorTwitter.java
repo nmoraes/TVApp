@@ -2,6 +2,7 @@ package mainXlet;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
@@ -19,14 +20,19 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	 */
 	private static final long serialVersionUID = 5292849366437972565L;
 
-	HStaticText hstTexto = new HStaticText(" twitter ");
+	HStaticText hstTexto;
+	TextArea texto=new TextArea();
 
 	public ContenedorTwitter() {
-		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
+		String tweets=obtenerTweets();
+		hstTexto = new HStaticText(tweets);
+		hstTexto.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(10, 10, 200, 300);
-		hstTexto.setBackground(Color.blue);
+		hstTexto.setBounds(10, 10, 400, 600);
+		texto.setBounds(30, 30, 200, 400);
+		hstTexto.setBackground(Color.WHITE);
 		this.add(hstTexto);
+		this.add(texto);
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(100, 0, 800, 600);
 		this.addKeyListener(this);
@@ -45,7 +51,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 
 	}
 
-	private void obtenerTweets() {
+	private String obtenerTweets() {
 		FachadaTwitter ft = new FachadaTwitter();
 		List lista = ft.getHomeTimeLine();
 		StringBuilder tl = new StringBuilder();
@@ -54,12 +60,10 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			tl.append(tweet.getUsuario() + " " + tweet.getMensaje()+"\n");
 		}
 		System.out.println(tl);
-		// hstTexto.setTextContent(tl.toString(), 0);
+		return tl.toString();
+	//	hstTexto.setTextContent(tl.toString(), 0);
 
 	}
 	
-	public static void main(String[] args) {
-		ContenedorTwitter ct=new ContenedorTwitter();
-	}
 
 }

@@ -16,7 +16,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 	private int x = 0;
 	
 	HStaticText hstTexto;;
-
+	ContenedorTwitter conTwitter;
 	public ContenedorYellow() {
 		
 		Properties properties = new Properties();
@@ -71,7 +71,13 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.AMARILLO;
 			break;
-		}	
+		}
+		case 404:
+			System.out.println("verde");
+			conTwitter=new ContenedorTwitter();
+			this.add(conTwitter);
+			conTwitter.requestFocus();
+			break;
 		
 		default: {
 			// do nothing
