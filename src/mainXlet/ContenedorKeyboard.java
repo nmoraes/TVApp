@@ -372,7 +372,6 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	public void write(int x, int y) {
 		String character="";
 		if (y == 30) {
-
 			switch (x) {
 			case 60:
 				System.out.println("Q");
@@ -396,7 +395,6 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				character=botonShift(character);
 				message= message+character;
 				this.repaint();
-
 				break;
 
 			case 225:			
@@ -407,50 +405,53 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				this.repaint();
 				break;
 
-			case 280:
-				
+			case 280:			
 				System.out.println("T");
-				message= message+"T";
+				character="T";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
 				break;
 
-			case 335:
-				
+			case 335:				
 				System.out.println("Y");
-				message= message+"Y";
+				character="Y";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
-
 				break;
 
-			case 390:
-			
+			case 390:			
 				System.out.println("U");
-				message= message+"U";
+				character="U";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
-
 				break;
 
 			case 445:
 			
 				System.out.println("I");
-				message= message+"I";
+				character="I";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
-
 				break;
 
-			case 500:
-			
+			case 500:			
 				System.out.println("O");
-				message= message+"O";
+				character="O";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
-
 				break;
-			case 555:
 				
+			case 555:		
 				System.out.println("P");
-				message= message+"P";
+				character="P";
+				character=botonShift(character);
+				message= message+character;
 				this.repaint();
-
 				break;
 			case 610:
 			
@@ -462,13 +463,6 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				}
 				this.repaint();
 				break;
-
-			default: {
-				
-				System.out.println("fuera del rango");
-
-				break;
-			}
 
 			}
 			
