@@ -37,7 +37,7 @@ public class ContenedorMiniWeather extends HContainer {
 			System.out.println("LLAMADO AL WS DE BANDIDO");
 			
 			// mi tamaño y posición x,y,x,y
-			this.setBounds(360, 180, 350, 100);
+			this.setBounds(404, 180, 306, 80);
 
 			
 			
@@ -120,7 +120,7 @@ public class ContenedorMiniWeather extends HContainer {
 		        if (image2 != null) {  
 		        	
 		            // Draw the image from the buffer   
-		            graphics.drawImage(image2, 10, 10, null);      
+		            graphics.drawImage(image2, 20, 10, null);      
 		        	 } 
 		        
 		        
@@ -130,7 +130,7 @@ public class ContenedorMiniWeather extends HContainer {
 		            }  
 		        if (image4 != null) {   
 		            // Draw the image from the buffer   
-		            graphics.drawImage(image4, 270, 10, null);      }  
+		            graphics.drawImage(image4, 250, 10, null);      }  
 		   
 		        // Once we've drawn the image, we can draw the message on top of it.   
 		   
@@ -145,9 +145,9 @@ public class ContenedorMiniWeather extends HContainer {
 		        // surround it with a 'try' block.   
 		        try{   
 		        	
-		        	graphics.drawString(messageWeather1,10,70);  
+		        	graphics.drawString(messageWeather1,20,70);  
 		            graphics.drawString(messageWeather2,120,70);  
-		            graphics.drawString(messageWeather3,270,70);  
+		            graphics.drawString(messageWeather3,250,70);  
 		          
 		        }catch(Throwable t) {   
 		           
