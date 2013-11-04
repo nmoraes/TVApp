@@ -32,47 +32,17 @@ public class ContenedorMiniWeather extends HContainer {
 	    // The image that we will show   
 	    private Image image4;
 
-		public ContenedorMiniWeather() {
+	public ContenedorMiniWeather() {
 
-			System.out.println("LLAMADO AL WS DE BANDIDO");
-			
-			// mi tamaño y posición x,y,x,y
-			this.setBounds(404, 180, 306, 80);
+		// mi tamaño y posición x,y,x,y
+		this.setBounds(404, 180, 306, 80);
 
-			
-			
-//			Weather [] weatherCollection= JSONUtility.getWeather();
-//			
-//			for (int i = 0; i < weatherCollection.length; i++) {
-//				Weather h = weatherCollection[i];
-//
-//				System.out.println("");
-//				System.out.println("");
-//				System.out.println(h.getTitle());
-//				System.out.println(h.getFcttext());
-//				System.out.println(h.getFcttext_metric());
-//				//System.out.println(h.getUrl());
-//				
-//				if(i==0){
-//				messageWeather1 = h.getTitle();
-//				image2 = h.getUrl();
-//				}
-//				if(i==1){
-//				image3 =h.getUrl();
-//				messageWeather2 = h.getTitle();
-//			}
-//				if(i==2){
-//				image4 =h.getUrl();
-//				messageWeather3 = h.getTitle();
-//				loadForegroundBitmap();
-//			}
-//				this.repaint();
-//			}
-//			
-//		loadForegroundBitmap();
-//			this.repaint();
-			
-		}
+		executeMiniTimeWeather();
+
+		loadForegroundBitmap();
+		this.repaint();
+
+	}
 
 
 		 public void loadForegroundBitmap() {   
@@ -109,11 +79,6 @@ public class ContenedorMiniWeather extends HContainer {
 		   
 		        graphics.setColor(Color.white);
 		        
-		 
-		      //  graphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER,10 * 0.1f));
-		        
-		        //graphics.fillRect(50 * 10, 20, 40, 40);
-		       
 		        graphics.fillRect(0,0,size.width,size.height);   
 		        	        
 		        
@@ -135,7 +100,7 @@ public class ContenedorMiniWeather extends HContainer {
 		        // Once we've drawn the image, we can draw the message on top of it.   
 		   
 		        // Set the font to be the default MHP font.   
-		        graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));   
+		        graphics.setFont(new Font("Tiresias", Font.BOLD, 15));   
 		        // Set the text colour   
 		        graphics.setColor(Color.BLACK);
 		        
@@ -157,7 +122,35 @@ public class ContenedorMiniWeather extends HContainer {
 		   
 		    
 		
-		
+		private void executeMiniTimeWeather(){
+			
+			System.out.println("---- > LLAMANDO AL MINI WEATHER, SI ESTA EN MODO DESARROLLO, COMENTE ESTE METODO ***********");
+			
+			Weather [] weatherCollection= JSONUtility.getWeather();
+			
+			for (int i = 0; i < weatherCollection.length; i++) {
+				Weather h = weatherCollection[i];
+
+				if(i==0){
+				messageWeather1 = h.getTitle();
+				image2 = h.getUrl();
+				}
+				if(i==1){
+				image3 =h.getUrl();
+				messageWeather2 = h.getTitle();
+			}
+				if(i==2){
+				image4 =h.getUrl();
+				messageWeather3 = h.getTitle();
+				loadForegroundBitmap();
+			}
+				
+			}
+			
+
+			
+			
+		}
 	
 	
 	
