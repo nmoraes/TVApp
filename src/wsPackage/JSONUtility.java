@@ -8,27 +8,23 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-
 import javax.imageio.ImageIO;
-
 import wsPackage.org.json.me.JSONArray;
 import wsPackage.org.json.me.JSONException;
 import wsPackage.org.json.me.JSONObject;
 
 
-
-
-
-
 public class JSONUtility {
-
+	
+	/**Constante final, URL que le pega a la api de http://www.wunderground.com/*/
+	private final static String API = "http://api.wunderground.com/api/2f2b92287d8a6fd0/geolookup/conditions/forecast/lang:SP/q/Uruguay/Montevideo.json";
 
 	public static Weather[] getWeather() {
 	URL url = null;
 	Weather [] weatherCollection=null;
 	//http://www.wunderground.com/
 		try {
-			url = new URL("http://api.wunderground.com/api/2f2b92287d8a6fd0/geolookup/conditions/forecast/q/Uruguay/Montevideo.json");
+			url = new URL(API);
 			InputStream response = url.openStream();
 			BufferedReader reader = new BufferedReader(new InputStreamReader(response));
 			String result="";

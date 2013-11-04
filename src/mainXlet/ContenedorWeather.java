@@ -39,7 +39,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 
 	public ContenedorWeather() {
 
-		this.setBounds(0, 0, 800, 200);
+		this.setBounds(7, 280, 703, 200);
 		this.addKeyListener(this);
 		
 	}

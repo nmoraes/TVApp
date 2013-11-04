@@ -451,7 +451,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Drawing the string may cause an error to get thrown, so we   
         // surround it with a 'try' block.   
         try{   
-            graphics.drawString(message,300,350);  
+            graphics.drawString(message,5,250);  
 
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
