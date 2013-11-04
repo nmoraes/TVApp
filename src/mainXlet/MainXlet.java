@@ -84,7 +84,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	private HSound myHSound = new HSound();
 	
 	/** Contenedor MiniWeather el cual se desplega debajo de la pantalla */
-	private ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
+	public static ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
 	
 	/**CNN Image */
 	private Image image;
@@ -451,7 +451,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Drawing the string may cause an error to get thrown, so we   
         // surround it with a 'try' block.   
         try{   
-            graphics.drawString(message,5,250);  
+            graphics.drawString(message,5,450);  
 
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
@@ -485,6 +485,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			System.out.println("***** evento estado del tiempo *****");
 			label.setBackground(Color.MAGENTA);
 	        label.repaint();
+	        miniWeather.setVisible(false);
 	        contWeather.setVisible(true);
 	        contWeather.requestFocus();
 		

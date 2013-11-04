@@ -55,7 +55,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 		
 		executeTimeWeather();
 		
-		this.setBounds(7, 280, 703, 200);
+		this.setBounds(7, 180, 703, 200);
 		this.addKeyListener(this);
 		
 	}
@@ -75,6 +75,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.label.repaint();
 			MainXlet.contWeather.setVisible(false);
+			MainXlet.miniWeather.setVisible(true);
 			MainXlet.scene.requestFocus();
 			break;
 

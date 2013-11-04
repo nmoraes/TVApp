@@ -15,7 +15,7 @@ public class ContenedorRed extends HContainer implements KeyListener {
 	public ContenedorRed() {
 		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 80, 200, 50);
+		hstTexto.setBounds(x, 390, 200, 50);
 		hstTexto.setBackground(Color.red);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
