@@ -124,7 +124,7 @@ public class ContenedorMiniWeather extends HContainer {
 		
 		private void executeMiniTimeWeather(){
 			
-			System.out.println("---- > LLAMANDO AL MINI WEATHER, SI ESTA EN MODO DESARROLLO, COMENTE ESTE METODO ***********");
+			System.out.println("---- > LLAMANDO AL MINI WEATHER, SI ESTA EN MODO DESARROLLO, COMENTE EL METODO executeMiniTimeWeather() DE LA CLASE ContenedorMiniWeather.java ***********");
 			
 			Weather [] weatherCollection= JSONUtility.getWeather();
 			

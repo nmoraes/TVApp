@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
-import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.FileInputStream;
@@ -14,11 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Properties;
-
-import org.dvb.ui.DVBColor;
 import org.havi.ui.HContainer;
-import org.havi.ui.HStaticText;
-
 import wsPackage.JSONUtility;
 import wsPackage.Weather;
 
@@ -174,6 +168,9 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 	        }catch(Throwable t) {   
 	           
 	            System.out.println("Ocurrio un error al intentar conectarse a Weather."); 
+	            messageWeather1="Error";
+	            messageWeather2="Error";
+	            messageWeather3="Error";
 	        }   
 	    }   
 	   
@@ -183,17 +180,12 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 	 * */
 	private void executeTimeWeather() {
 
+		System.out.println("---- > LLAMANDO AL CONTENEDOR WEATHER, SI ESTA EN MODO DESARROLLO, COMENTE EL METODO executeTimeWeather() DE LA CLASE ContenedorWeather.java ***********");
+
 		Weather[] weatherCollection = JSONUtility.getWeather();
 
 		for (int i = 0; i < weatherCollection.length; i++) {
 			Weather h = weatherCollection[i];
-
-			System.out.println("");
-			System.out.println("");
-			System.out.println(h.getTitle());
-			System.out.println(h.getFcttext());
-			System.out.println(h.getFcttext_metric());
-			// System.out.println(h.getUrl());
 
 			if (i == 0) {
 				messageWeather1 = h.getTitle() + ": " + h.getFcttext_metric();
