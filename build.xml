@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="TVApp">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../../Desktop/eclipse"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.6"/>
+    <property name="source" value="1.6"/>
+    <path id="TVApp.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/javatv.jar"/>
+        <pathelement location="lib/havi_dvb_davic112-1.1.jar"/>
+        <pathelement location="lib/twitter4j-core-3.0.3.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="TVApp.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+              	
+              	  
+                <echo>Copying JSP files from ${build_dir} to ${tomcat_home}/${ant.project.name}/$</echo>
+                <copy todir="bin/">
+                 <fileset dir="recursos/" includes="*.*"/>
+                </copy> 
+              	
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Cal">
+        <java classname="calendar.Cal" failonerror="true" fork="yes">
+            <classpath refid="TVApp.classpath"/>
+        </java>
+    </target>
+    <target name="DateTextField">
+        <java classname="calendar.DateTextField" failonerror="true" fork="yes">
+            <classpath refid="TVApp.classpath"/>
+        </java>
+    </target>
+    <target name="HolaMundoGraf">
+        <java classname="deprecatedPackage.HolaMundoGraf" failonerror="true" fork="yes">
+            <classpath refid="TVApp.classpath"/>
+        </java>
+    </target>
+    <target name="calcu">
+        <java classname="Calc.calcu" failonerror="true" fork="yes">
+            <classpath refid="TVApp.classpath"/>
+        </java>
+    </target>
+</project>
