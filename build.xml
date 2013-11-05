@@ -49,7 +49,7 @@
     </target>
               	
               	  
-                <echo>Copying JSP files from ${build_dir} to ${tomcat_home}/${ant.project.name}/$</echo>
+                <echo>Copying files from recursos to bin</echo>
                 <copy todir="bin/">
                  <fileset dir="recursos/" includes="*.*"/>
                 </copy> 
