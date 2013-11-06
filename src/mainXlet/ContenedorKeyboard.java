@@ -85,7 +85,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		MainXlet.keyboard.setVisible(false);
 		MainXlet.keyboard.repaint();
 		invokeFather = 0;
-		ContenedorKeyboard.message = "";
+		//ContenedorKeyboard.message = "";
 
 	}
 	
