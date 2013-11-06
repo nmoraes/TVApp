@@ -75,6 +75,13 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			MainXlet.contYellow.requestFocus();
 		}
 
+		// Si estoy dentro del contenedor amarillo:
+		if (invokeFather == Constant.GASTOS) {
+			System.out.println("cerrar teclado en gastos");
+			MainXlet.gas.requestFocus();
+		}
+		
+		
 		MainXlet.keyboard.setVisible(false);
 		MainXlet.keyboard.repaint();
 		invokeFather = 0;

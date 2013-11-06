@@ -512,7 +512,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			System.out.println("verde ...");
 			label.setBackground(colors[1]);
 	        label.repaint();
-	        myHSound.play();
+	       // myHSound.play();
 	     	gas.setVisible(true);
 	        gas.requestFocus();
 	        
