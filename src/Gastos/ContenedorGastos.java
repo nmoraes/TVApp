@@ -232,13 +232,13 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			try {
 				System.out.println("guardando....");
 				properties.load(new FileInputStream("tareas.database"));
-				properties.setProperty("campo1", getDetText());
+				properties.setProperty("campo1", "PEPE");
 				properties.setProperty("campo2", getCanText());
 				properties.setProperty("campo3", getUniText());
 				properties.setProperty("campo4", getMonText());
 				
 				
-				properties.store(new FileOutputStream(Constant.CONFIG_PROPERTIES), null);
+				properties.store(new FileOutputStream("tareas.database"), null);
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
