@@ -4,9 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.List;
 
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
+
+import twitter.FachadaTwitter;
+import twitter.Tweet;
 
 public class ContenedorTwitter extends HContainer implements KeyListener {
 
@@ -22,7 +26,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		hstTexto = new HStaticText(tweets);
 		hstTexto.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(150, 300, 400, 200);
+		hstTexto.setBounds(100, 350, 400, 200);
 		hstTexto.setBackground(Color.white);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
@@ -48,12 +52,11 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 //		StringBuilder tl = new StringBuilder();
 //		for (int i = 0; i < 5; i++) {
 //			Tweet tweet = (Tweet) lista.get(i);
-//			tl.append(tweet.getUsuario() + " " + tweet.getMensaje()+"\n");
+//			tl.append(tweet.getUsuario() + ": " + tweet.getMensaje()+"\n");
 //		}
-		StringBuilder tl=new StringBuilder("Ciencia y TecnologÝa #Tecnologia Call of Duty: Ghosts supera \nlos 1.000 millones de dolares en su lanzamiento http://t.co/Z3bhhki7Bt \n Ciencia y TecnologÝa #Tecnologia Twitter fija en 26 d¾lares el precio de su accion para su salida hoy a Bolsa http://t.co/aNePN7x24S \n Chanchos del Uruguay RT @TAXISmvdUY: MVD/UY-Atenci¾n:HOY,a partir de las 9 hs.,PARO y CONCENTRACIËN de #TAXIS en los alrededores del MTSS,puede afectar el trßnsà\n Android.es una GuÝa 902 en Google Play: http://t.co/spIRelfzMY \n EL PA-S Deportes FOTOS: Goles por doquier en la Champions http://t.co/53J5VugPKH  Eto'o, Ramsey, HiguaÝn... Repase las mejores escenas http://t.co/Sj614YNE8e ");
+		StringBuilder tl=new StringBuilder("Applesfera: La Estrella de la Muerte no se construirß sola: Star Wars Tiny Death \n Star ya disponible para iOS http://t.co/whohFXg8tf \n Chanchos del Uruguay: RT @becapablo: @chanchosUY RADAR en propios antes de la ca\nncha de la luz. Te esperan mas adelante para darte el regalito.\nCiencia y TecnologÝa: #Tecnologia 18 meses de cßrcel para el due±o de la web de\nenlaces http://t.co/HCOpmFVFOH http://t.co/2KoQlxsIQV \nCiencia y TecnologÝa: #Ciencia El 'gran hermano' de los osos polares http://t.co/jmu4WhNAED \nChanchos del Uruguay: RT @gcsuburu: @chanchosUY Multiple choque en Rambla portua\nria frente a Torre de Antel. Camineravy patrulkero. Semßforo siguiente un caos");		
 		System.out.println(tl);
 		return tl.toString();
-	//	hstTexto.setTextContent(tl.toString(), 0);
 
 	}
 	
