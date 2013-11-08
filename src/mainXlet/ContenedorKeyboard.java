@@ -81,6 +81,13 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			MainXlet.gas.requestFocus();
 		}
 		
+		// Si estoy dentro del contenedor amarillo:
+		if (invokeFather == Constant.CONTENEDOR_GASTOS) {
+			System.out.println("cerrar teclado en gastos");
+			MainXlet.contTasks.requestFocus();
+		}
+		
+		
 		
 		MainXlet.keyboard.setVisible(false);
 		MainXlet.keyboard.repaint();
@@ -204,7 +211,33 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				    break;
 				}
 				
-			}
+			}else if (ContenedorKeyboard.invokeFather == Constant.CONTENEDOR_GASTOS){
+				System.out.println("****************ENTRE");
+				switch(navegadorTextGastos){
+				
+				case 0:	navegadorTextGastos = 1;
+						MainXlet.contTasks.setDetalleText(message);
+						message = "";
+					break;
+					
+				case 1: navegadorTextGastos = 2;
+						MainXlet.contTasks.setCantidadText(message);
+						message = "";
+				
+					break;
+					
+				case 2: navegadorTextGastos = 0;
+						MainXlet.contTasks.setPrecioText(message);
+						//message = "";		
+					//break;
+//				case 3: navegadorTextGastos = 0;
+//						MainXlet.gas.setMonText(message);
+//						message = "";	
+				    break;
+				}
+				
+		}
+			
 		break;
 		
 		case 39:
