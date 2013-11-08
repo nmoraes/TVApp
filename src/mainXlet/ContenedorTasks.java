@@ -90,6 +90,7 @@ public class ContenedorTasks extends HContainer implements KeyListener {
 //				// TODO Auto-generated catch block
 //				e1.printStackTrace();
 //			}
+
 			
 			try {
 				properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"),null);
