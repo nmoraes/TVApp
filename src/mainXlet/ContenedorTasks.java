@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,6 +25,8 @@ import org.havi.ui.HStaticText;
 public class ContenedorTasks extends HContainer implements KeyListener {
 	
 	
+	private static int CONTADOR=0;
+	
 	public static JTextField detalleCompra = new JTextField(20);
 	public static JTextField cantidadCompra = new JTextField(20);
 	public static JTextField precioCompra = new JTextField(20);
@@ -32,28 +35,10 @@ public class ContenedorTasks extends HContainer implements KeyListener {
 	private String detalleText = "  ";
 	private String cantidadText = "  ";
 	private String precioText = "  ";
-	//private String monText = "  ";
-	
-	HStaticText hstTexto = new HStaticText("descripcion: ______________ ");
-	HStaticText hstTexto2 = new HStaticText("cantidad: _________________");
-	HStaticText hstTexto3 = new HStaticText("precio: ___________________");
-	HStaticText hstTexto4 = new HStaticText("otro: _____________________");	
-	
-	
+
+
 	public ContenedorTasks() {
-//	
-//		hstTexto.setFont(new Font("Tiresias", Font.ITALIC, 15));
-//		hstTexto.setBounds(20, 150, 200, 40);
-//		hstTexto.setBackground(Color.white);
-//		
-//		hstTexto2.setFont(new Font("Tiresias", Font.ITALIC, 15));
-//		hstTexto2.setBounds(20, 180, 200, 40);
-//		hstTexto2.setBackground(Color.white);
-//		
-//		hstTexto3.setFont(new Font("Tiresias", Font.ITALIC, 15));
-//		hstTexto3.setBounds(20, 210, 200, 40);
-//		hstTexto3.setBackground(Color.white);
-		
+
 		// Textfields
 		detalleCompra.setBounds(110, 35, 100, 20); 
 		detalleCompra.setBackground(Color.LIGHT_GRAY); 
@@ -67,23 +52,9 @@ public class ContenedorTasks extends HContainer implements KeyListener {
 		precioCompra.setBackground(Color.LIGHT_GRAY); 
 		this.add(precioCompra);
 		
-		
-		
-		//hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
-		// texto tamaño y posición x,y,x,y
-		//hstTexto.setBounds(19, 400, 200, 50);
-		//hstTexto.setBackground(Color.blue);
-		this.add(hstTexto);
-		this.add(hstTexto2);
-		this.add(hstTexto3);
-		
-		// mi tamaño y posición x,y,x,y
-		
-		
 		this.setBounds(8, 150, 250, 150);
 		this.addKeyListener(this);
-		
-		//this.repaint();
+
 	}
 
 	public void keyPressed(KeyEvent tecla) {
@@ -101,7 +72,7 @@ public class ContenedorTasks extends HContainer implements KeyListener {
 			
 			
 		case 403: 
-			System.out.println("boton rojo siempre llama al teclado ...");
+			System.out.println("TVApp\\bin\\boton rojo siempre llama al teclado ...");
 			MainXlet.keyboard.setVisible(true);
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_GASTOS;
@@ -111,17 +82,33 @@ public class ContenedorTasks extends HContainer implements KeyListener {
 		case 427:	// + 
 			
 			Properties properties = new Properties();
+			
+			//File file = new File ("tareas_"+ContenedorTasks.CONTADOR+".database");
+//			try {
+//				file.createNewFile();
+//			} catch (IOException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+			
+			try {
+				properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"),null);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			try {
 				System.out.println("guardando....");
-				properties.load(new FileInputStream("tareas.database"));
+				properties.load(new FileInputStream("tareas_"+ContenedorTasks.CONTADOR+".database"));
 				properties.setProperty("campo1", getDetalleText());
 				properties.setProperty("campo2", getCantidadText());
 				properties.setProperty("campo3",  getPrecioText());
-				
-				//properties.setProperty("campo4", getMonText());
-				
-				
-				properties.store(new FileOutputStream("tareas.database"), null);
+
+				properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"), null);
 				
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
@@ -131,8 +118,11 @@ public class ContenedorTasks extends HContainer implements KeyListener {
 				e.printStackTrace();
 			}
 			
+			detalleCompra.setText("");
+			cantidadCompra.setText("");
+			precioCompra.setText("");
 			
-			
+			ContenedorTasks.CONTADOR++;
 			break;	
 		
 		
