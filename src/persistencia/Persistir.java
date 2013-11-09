@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import Gastos.Tarea;
 import twitter.Usuario;
 
 public class Persistir {
@@ -36,4 +37,17 @@ public class Persistir {
 		}
 		return null;
 	}
+	
+	public void persistirTareaGastos(Tarea T){
+		try {
+			FileOutputStream file=new FileOutputStream(new File("Tareas.dat"));
+			ObjectOutputStream oos=new ObjectOutputStream(file);
+			oos.writeObject(T);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

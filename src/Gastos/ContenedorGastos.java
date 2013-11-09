@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
+
 import org.havi.ui.HContainer;
 import org.havi.ui.HSinglelineEntry;
 import org.havi.ui.HState;
@@ -21,6 +22,7 @@ import org.havi.ui.HStaticText;
 import org.havi.ui.HText;
 import org.havi.ui.HVisible;
 
+import persistencia.Persistir;
 import mainXlet.*;
 
 
@@ -49,16 +51,14 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	HStaticText titCantidad = new HStaticText ("Cant.");
 	HStaticText titUnitario = new HStaticText ("Unit.");
 	HStaticText titMonto = new HStaticText ("Monto");
-	
-//	public static TextField detCompra = new TextField(20);
-//	public static TextField canCompra = new TextField(20);
-//	public static TextField uniCompra = new TextField(20);
-//	public static TextField monCompra = new TextField(20);
-	public String detText = new String(".  ");
+
+	// estos strings son usado para guardar en disco lo escrito en pantalla
+	private String detText = new String(".  ");
 	private String canText = ".  ";
 	private String uniText = ".  ";
 	private String monText = ".  ";
 	
+	// estas cajas de texto muestran lo que el usuario va escribiendo en pantalla
 	private HSinglelineEntry cajaDetalle;
 	private HSinglelineEntry cajaCantidad;
 	private HSinglelineEntry cajaUnitario;
@@ -69,7 +69,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	public ContenedorGastos(){
 		
 		 //cajas de texto
-	    cajaDetalle = new HSinglelineEntry("", 30, 290, 240, 30, 10, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	    cajaDetalle = new HSinglelineEntry("", 30, 290, 240, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaDetalle.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaDetalle.setBackground(Color.white);
 	  	cajaDetalle.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -77,7 +77,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaDetalle.setEditMode(true);
 	  	cajaDetalle.setCaretCharPosition(1);
 	  	
-	  	cajaCantidad = new HSinglelineEntry("", 270, 290, 45, 30, 10, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaCantidad = new HSinglelineEntry("", 270, 290, 45, 30, 3, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaCantidad.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaCantidad.setBackground(Color.white);
 	  	cajaCantidad.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -85,7 +85,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaCantidad.setEditMode(true);
 	  	cajaCantidad.setCaretCharPosition(1);
 	  	
-	  	cajaUnitario = new HSinglelineEntry("", 315, 290, 300, 45, 10, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaUnitario = new HSinglelineEntry("", 315, 290, 45, 30, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaUnitario.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaUnitario.setBackground(Color.white);
 	  	cajaUnitario.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -93,7 +93,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaUnitario.setEditMode(true);
 	  	cajaUnitario.setCaretCharPosition(1);
 	  	
-	  	cajaMonto = new HSinglelineEntry("", 360, 290, 300, 65, 10, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaMonto = new HSinglelineEntry("", 360, 290, 65, 30, 6, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaMonto.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaMonto.setBackground(Color.white);
 	  	cajaMonto.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -127,12 +127,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titUnitario.setBackground(Color.blue);
 		titMonto.setBackground(Color.blue);
 		
-		// Textfields
-//		detCompra.setBounds(50, 300, 240, 20); detCompra.setBackground(Color.white); 	
-//		canCompra.setBounds(290, 300, 45, 20); canCompra.setBackground(Color.white); 
-//		uniCompra.setBounds(335, 300, 45, 20); uniCompra.setBackground(Color.white); 
-//		monCompra.setBounds(380, 300, 65, 20); monCompra.setBackground(Color.white); 
-//		
 		// Agrego al contenedor
 		this.add(resumenAño);
 		this.add(resumenMes);
@@ -158,14 +152,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	
 	public void paint(Graphics graphics) {   
 		
-		//cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);	
-		
-//		if (ContenedorKeyboard.navegadorTextGastos == 0){
-//			cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);				
-//			//System.out.println(cajaDetalle.getContent(HState.ALL_STATES));
-//			
-//		}
-//		
 		
 		switch(ContenedorKeyboard.navegadorTextGastos){
 		
@@ -194,52 +180,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		super.paint(graphics);
 		
 		
-		/*resumenAño.setVisible(true);
-		
-		 System.out.println("hola paint");
-		 resumenAño.setVisible(true);
-		 //resumenAño.setEnabled(true);
-		 cajaDetalle.setTextContent(". ", HState.ALL_STATES);
-		 
-		 cajaDetalle.setTextContent(detText, HState.ALL_STATES);
-		 
-		 detCompra.setText(detText);	
-		 uniCompra.setText(uniText);
-		 monCompra.setText(monText);
-		 canCompra.setText(canText);
-					
-				switch(ContenedorKeyboard.navegadorTextGastos){
-					
-				case 0:	//cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-						detCompra.setText(ContenedorKeyboard.message);
-						System.out.println("detalle compra");
-					break;
-					
-				case 1: //cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-				
-						canCompra.setText(ContenedorKeyboard.message);
-						System.out.println("cantidad compra");
-					break;
-					
-				case 2: //cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-				
-						uniCompra.setText(ContenedorKeyboard.message);
-						System.out.println("unidad compra");
-					break;
-				case 3: //cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-				
-				        monCompra.setText(ContenedorKeyboard.message);
-				        System.out.println("monto compra");
-				    break;
-				
-				default:
-					System.out.println("Error!!!");
-					break;
-				}*/
-	      
-
-
-	    }   
+	 }   
 		
 	
 	public void keyPressed(KeyEvent tecla){
@@ -300,25 +241,30 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		case 427:	// + 
 			
-			Properties properties = new Properties();
-			try {
-				System.out.println("guardando....");
-				properties.load(new FileInputStream("tareas.database"));
-				properties.setProperty("campo1", "PEPE");
-				properties.setProperty("campo2", getCanText());
-				properties.setProperty("campo3", getUniText());
-				properties.setProperty("campo4", getMonText());
-				
-				
-				properties.store(new FileOutputStream("tareas.database"), null);
-				
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			Tarea nuevaTarea = new Tarea(detText, canText, uniText, monText);
+			
+			Persistir persistir = new Persistir();
+			persistir.persistirTareaGastos(nuevaTarea);;
+			
+//			Properties properties = new Properties();
+//			try {
+//				System.out.println("guardando....");
+//				properties.load(new FileInputStream("tareas.database"));
+//				properties.setProperty("campo1", detText);
+//				properties.setProperty("campo2", canText);
+//				properties.setProperty("campo3", uniText);
+//				properties.setProperty("campo4", monText);
+//				
+//				
+//				properties.store(new FileOutputStream("tareas.database"), null);
+//				
+//			} catch (FileNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 					
 			break;		
 						
