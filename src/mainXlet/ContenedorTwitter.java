@@ -24,6 +24,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	private static final long serialVersionUID = 5292849366437972565L;
 
 	HStaticText hstTexto;
+	String tweet;
 	//(int x, int y, int width, int height, int maxChars)
 	HMultilineEntry multiEntrada;
 	public ContenedorTwitter() {
@@ -95,6 +96,8 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		MainXlet.keyboard.requestFocus();
 		MainXlet.keyboard.invokeFather=Constant.Contenedor_Twitter;
 		this.repaint();
+		tweet=MainXlet.keyboard.message;
+		System.out.println(tweet);
 	}
 	
 
