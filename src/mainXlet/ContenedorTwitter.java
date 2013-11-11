@@ -9,7 +9,9 @@ import java.util.List;
 import org.havi.ui.HContainer;
 import org.havi.ui.HMultilineEntry;
 import org.havi.ui.HSinglelineEntry;
+import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
+import org.havi.ui.HVisible;
 
 import twitter.FachadaTwitter;
 import twitter.Tweet;
@@ -22,9 +24,10 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	private static final long serialVersionUID = 5292849366437972565L;
 
 	HStaticText hstTexto;
-	
-
+	//(int x, int y, int width, int height, int maxChars)
+	HMultilineEntry multiEntrada;
 	public ContenedorTwitter() {
+
 		String tweets=obtenerTweets();
 		hstTexto = new HStaticText(tweets);
 		hstTexto.setFont(new Font("Tiresias", 0, 14));
@@ -33,6 +36,17 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		hstTexto.setBackground(Color.white);
 		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
+//		multiEntrada=new HMultilineEntry(0, 0, 100, 200, 500);
+//		multiEntrada.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
+//		multiEntrada.setBackground(Color.white);
+//		multiEntrada.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
+//		multiEntrada.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+//		multiEntrada.setEditMode(true);
+//		multiEntrada.setCaretCharPosition(1);
+//		
+//		this.add(multiEntrada);
+//		multiEntrada.setVisible(true);
+		
 		this.setBounds(100, 0, 800, 600);
 		this.addKeyListener(this);
 	}
@@ -40,14 +54,16 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 		switch (arg0.getKeyCode()) {
 		case 403:
-			System.out.println("Rojo");
+			escribirTweet();
 			break;
 		case 27:
 			MainXlet.label.setBackground(Color.white);
 			ContenedorYellow.conTwitter.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+			hstTexto.setTextContent("otro texto", HState.ALL_STATES);
 			this.repaint();
+			break;
 		}
 	}
 
@@ -71,6 +87,14 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		System.out.println(tl);
 		return tl.toString();
 
+	}
+	private void escribirTweet(){
+		System.out.println("tecla");
+		hstTexto.setVisible(false);
+		MainXlet.keyboard.setVisible(true);
+		MainXlet.keyboard.requestFocus();
+		MainXlet.keyboard.invokeFather=Constant.Contenedor_Twitter;
+		this.repaint();
 	}
 	
 

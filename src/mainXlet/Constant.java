@@ -31,7 +31,7 @@ public class Constant {
 	public static final int CONTENEDOR_GASTOS = 6;
 	
 	/**Constante para indicar el contenedor escribir tweet*/
-	public static final int ESCRIBIR_TWEET=7;
+	public static final int Contenedor_Twitter=7;
 	
 	
 	

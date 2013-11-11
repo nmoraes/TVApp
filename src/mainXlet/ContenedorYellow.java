@@ -77,6 +77,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			conTwitter=new ContenedorTwitter();
 			this.add(conTwitter);
 			conTwitter.requestFocus();
+			this.repaint();
 			break;
 		
 		default: {

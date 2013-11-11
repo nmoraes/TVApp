@@ -52,34 +52,36 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	 * */
 	private void closeKeyboard() {
 
-		// Si estoy dentro del contenedor weather:
-		if (invokeFather == Constant.WEATHER) {
+		switch (invokeFather) {
+		case Constant.WEATHER:
+			// Si estoy dentro del contenedor weather:
 			System.out.println("cerrar teclado en weather");
 			MainXlet.contWeather.requestFocus();
-		}
-
-		// Si estoy dentro del contenedor rojo:
-		if (invokeFather == Constant.ROJO) {
+			break;
+		case Constant.ROJO:
 			System.out.println("cerrar teclado en rojo");
 			MainXlet.contRed.requestFocus();
-		}
-
-		// Si estoy dentro del contenedor azul:
-		if (invokeFather == Constant.AZUL) {
+			break;
+		case Constant.AZUL:
 			System.out.println("cerrar teclado en azul");
 			MainXlet.cont.requestFocus();
-		}
-		// Si estoy dentro del contenedor amarillo:
-		if (invokeFather == Constant.AMARILLO) {
+			break;
+		case Constant.AMARILLO:
 			System.out.println("cerrar teclado en amarillo");
 			MainXlet.contYellow.requestFocus();
-		}
-
-		// Si estoy dentro del contenedor amarillo:
-		if (invokeFather == Constant.GASTOS) {
+			break;
+		case Constant.GASTOS:
 			System.out.println("cerrar teclado en gastos");
 			MainXlet.gas.requestFocus();
+			break;
+		case Constant.Contenedor_Twitter:
+			System.out.println("cerrar teclado en twitter");
+			MainXlet.contYellow.conTwitter.hstTexto.setVisible(true);
+			MainXlet.contYellow.conTwitter.requestFocus();
+			
 		}
+
+		
 		
 //		// Si estoy dentro del contenedor amarillo:
 //		if (invokeFather == Constant.CONTENEDOR_GASTOS) {
