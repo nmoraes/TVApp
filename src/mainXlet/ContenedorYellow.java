@@ -16,7 +16,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 	private int x = 0;
 	
 	HStaticText hstTexto;;
-	ContenedorTwitter conTwitter;
+	public static ContenedorTwitter conTwitter;
 	public ContenedorYellow() {
 		
 		Properties properties = new Properties();

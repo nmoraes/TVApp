@@ -7,6 +7,8 @@ import java.awt.event.KeyListener;
 import java.util.List;
 
 import org.havi.ui.HContainer;
+import org.havi.ui.HMultilineEntry;
+import org.havi.ui.HSinglelineEntry;
 import org.havi.ui.HStaticText;
 
 import twitter.FachadaTwitter;
@@ -20,6 +22,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	private static final long serialVersionUID = 5292849366437972565L;
 
 	HStaticText hstTexto;
+	
 
 	public ContenedorTwitter() {
 		String tweets=obtenerTweets();
@@ -35,7 +38,17 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	}
 
 	public void keyPressed(KeyEvent arg0) {
-
+		switch (arg0.getKeyCode()) {
+		case 403:
+			System.out.println("Rojo");
+			break;
+		case 27:
+			MainXlet.label.setBackground(Color.white);
+			ContenedorYellow.conTwitter.setVisible(false);
+			MainXlet.label.repaint();
+			MainXlet.scene.requestFocus();
+			this.repaint();
+		}
 	}
 
 	public void keyReleased(KeyEvent arg0) {
