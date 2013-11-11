@@ -63,10 +63,19 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaCantidad;
 	private HSinglelineEntry cajaUnitario;
 	private HSinglelineEntry cajaMonto;
+	// arreglo de tareas
+	private Tarea[] arregloTareas;
+	// Contador de tareas
+	public static int contador= 0;
+	private Persistir persistir = new Persistir();
+	
 	
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
+		
+		arregloTareas = persistir.LeerTareaGastos();
+		
 		
 		 //cajas de texto
 	    cajaDetalle = new HSinglelineEntry("", 30, 290, 240, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
@@ -231,6 +240,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 27:	//exit
+			LimpiarCajas();
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.gas.setVisible(false);
 			MainXlet.label.repaint();
@@ -240,12 +250,10 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 
 		
 		case 427:	// + 
+			InsertarTarea();
+			persistir.persistirTareaGastos(arregloTareas);
 			
-			Tarea nuevaTarea = new Tarea(detText, canText, uniText, monText);
-			
-			Persistir persistir = new Persistir();
-			persistir.persistirTareaGastos(nuevaTarea);;
-			
+			System.out.println("Boton de persistencia!!");
 //			Properties properties = new Properties();
 //			try {
 //				System.out.println("guardando....");
@@ -276,7 +284,40 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 						
 		}
 	}
-
+	
+	private void LimpiarCajas(){
+		cajaDetalle.setTextContent(" ", HState.ALL_STATES);
+		cajaCantidad.setTextContent(" ", HState.ALL_STATES);
+		cajaUnitario.setTextContent(" ", HState.ALL_STATES);
+		cajaMonto.setTextContent(" ", HState.ALL_STATES);
+	}
+	
+	// Ingresa una neuva tarea al arreglo de tareas.
+	private void InsertarTarea(){
+		int cont = contador;
+		System.out.println("Insertar Tarea en el arreglo");
+		System.out.println(contador);
+		// Lo inserta al principio del arreglo
+		while (cont > 0){
+			
+			arregloTareas[cont] = arregloTareas[cont-1];
+			cont--;
+		}
+		System.out.println(detText);
+		System.out.println(canText);
+		System.out.println(uniText);
+		System.out.println(monText);
+		Tarea T = new Tarea(detText, canText, uniText, monText);
+		arregloTareas[0] = T;
+		
+		System.out.println("Lo que guardo en el arreglo:");
+		System.out.println(arregloTareas[0].getDetalle());
+		System.out.println(arregloTareas[0].getCantidad());
+		System.out.println(arregloTareas[0].getUnitario());
+		System.out.println(arregloTareas[0].getMonto());
+		
+	}
+	
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
@@ -319,5 +360,54 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	public String getMonText() {
 		return monText;
 	}
+	
+
+//	Properties properties = new Properties();
+//	
+//	//File file = new File ("tareas_"+ContenedorTasks.CONTADOR+".database");
+////	try {
+////		file.createNewFile();
+////	} catch (IOException e1) {
+////		// TODO Auto-generated catch block
+////		e1.printStackTrace();
+////	}
+//
+//	
+//	try {
+//		properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"),null);
+//	} catch (FileNotFoundException e1) {
+//		// TODO Auto-generated catch block
+//		e1.printStackTrace();
+//	} catch (IOException e1) {
+//		// TODO Auto-generated catch block
+//		e1.printStackTrace();
+//	}
+//	
+//	try {
+//		System.out.println("guardando....");
+//		properties.load(new FileInputStream("tareas_"+ContenedorTasks.CONTADOR+".database"));
+//		properties.setProperty("campo1", getDetalleText());
+//		properties.setProperty("campo2", getCantidadText());
+//		properties.setProperty("campo3",  getPrecioText());
+//
+//		properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"), null);
+//		
+//	} catch (FileNotFoundException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	
+//	detalleCompra.setText("");
+//	cantidadCompra.setText("");
+//	precioCompra.setText("");
+//	
+//	ContenedorTasks.CONTADOR++;
+//	break;	
+//
+
+
 	
 }

@@ -22,6 +22,10 @@ public class Tarea implements Serializable{
 		Monto = monto;
 	}
 	
+	public Tarea() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getDetalle() {
 		return Detalle;
 	}
