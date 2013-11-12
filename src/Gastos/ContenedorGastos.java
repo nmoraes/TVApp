@@ -69,10 +69,19 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	public static int contador= 0;
 	private Persistir persistir = new Persistir();
 	
+	// Variables para hacer que el monto aparesca a partir de la cantidad X precioUnitario
+	private float cantidad;
+	private String aux;
+	private String aux2;
+	private float precioUnitario;
+	private float total = 0;
+	
 	
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
+		
+		
 		
 		arregloTareas = persistir.LeerTareaGastos();
 		
@@ -173,19 +182,27 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 			
 		case 2: cajaUnitario.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-			//	System.out.println(cajaUnitario.getContent(HState.ALL_STATES));
+				
+				// Mostrar el total a partir del precio unitario y la cantidad
+				if (("" != cajaUnitario.getTextContent(HState.ALL_STATES)) && (" " != cajaUnitario.getTextContent(HState.ALL_STATES))){      
+					aux = cajaCantidad.getTextContent(HState.ALL_STATES);
+					cantidad = Float.parseFloat(aux);
+					aux2 = cajaUnitario.getTextContent(HState.ALL_STATES);
+					precioUnitario = Float.parseFloat(aux2);
+					total = cantidad * precioUnitario;
+				}
 			break;
-		case 3: cajaMonto.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-			//	System.out.println(cajaMonto.getContent(HState.ALL_STATES));
-		    break;
 		
 		default:
 			System.out.println("Error!!!");
 			break;
 		
 		}
-		//cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-				
+		
+		
+		cajaMonto.setTextContent(String.valueOf(total), HState.ALL_STATES);
+		
+		
 		super.paint(graphics);
 		
 		
@@ -286,10 +303,15 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	}
 	
 	private void LimpiarCajas(){
+		// Borro todas las cajas de texto.
 		cajaDetalle.setTextContent(" ", HState.ALL_STATES);
 		cajaCantidad.setTextContent(" ", HState.ALL_STATES);
 		cajaUnitario.setTextContent(" ", HState.ALL_STATES);
 		cajaMonto.setTextContent(" ", HState.ALL_STATES);
+		// Vuelvo el navegador de cajas de texto a la posiscion inicial para que arranque en "Detalle"
+		ContenedorKeyboard.navegadorTextGastos = 0;
+		// Borrar total
+		total = 0;
 	}
 	
 	// Ingresa una neuva tarea al arreglo de tareas.
