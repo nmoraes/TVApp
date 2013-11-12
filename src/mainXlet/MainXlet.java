@@ -16,9 +16,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
+
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
+
 import org.dvb.ui.DVBColor;
 import org.havi.ui.HComponent;
 import org.havi.ui.HDefaultTextLayoutManager;
@@ -28,11 +30,12 @@ import org.havi.ui.HSceneTemplate;
 import org.havi.ui.HScreen;
 import org.havi.ui.HSound;
 import org.havi.ui.HStaticText;
+
+import calc.Base;
+import calc.Calcu;
 import Gastos.ContenedorResumenAnio;
 import Gastos.ContenedorResumenMes;
 import Gastos.ContenedorGastos;
-import Calc.base;
-import Calc.calcu;
    
  /**  
  * This Xlet will be visible on-screen, so we extend org.havi.ui.HComponent  
@@ -108,8 +111,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
 	
 	/* // Calculadora */
-//	public static base base = new base();
-//	public static calcu calcu = new calcu();
+	public static Base base = new Base();
+	public static Calcu calcu = new Calcu();
 	
 
 	// private JTablet tabla = new JTablet();
@@ -205,10 +208,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.setVisible(true);
         
 		//Calculadora
-//		scene.add(base);
-//		base.setVisible(false);
-//		scene.add(calcu);
-//		calcu.setVisible(false);
+		scene.add(base);
+		base.setVisible(true);
+		scene.add(calcu);
+		calcu.setVisible(false);
+
 		
 		
 		
@@ -476,9 +480,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 		
 		case KeyEvent.VK_UP: {
-//			System.out.println("arriba ...");   gab intentando meter la calculadora
-			//System.out.println("arriba ...");
-			// myHSound.stop();
+
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
@@ -532,8 +534,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		case 405: {
 			System.out.println("amarillo  ...");
 			label.setBackground(colors[2]);
-	        label.repaint();
-	        contYellow.requestFocus();
+			label.repaint();
+			calcu.setVisible(true);
+			gas.setVisible(false);
+			calcu.requestFocus();
 			break;
 		}
 		case 406: {

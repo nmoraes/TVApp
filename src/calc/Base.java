@@ -1,4 +1,4 @@
-package Calc;
+package calc;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import org.havi.ui.HContainer;
 
 
-public class base extends HContainer implements KeyListener {
+public class Base extends HContainer implements KeyListener {
 
  /**
 	 Agrego aca serialVersion que no se que es pero pide que lo haga el compilador
