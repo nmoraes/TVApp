@@ -400,7 +400,10 @@ public class Calcu extends HContainer implements KeyListener {
 			break;
 
 		case 27: // exit
-
+			pantalla.setTextContent("", HState.ALL_STATES);
+			operador = "";
+			v1 = "";
+			v2 = "";
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.calcu.setVisible(false);
 			MainXlet.label.repaint();
