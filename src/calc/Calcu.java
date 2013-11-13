@@ -30,7 +30,7 @@ public class Calcu extends HContainer implements KeyListener {
 	 * }
 	 */
 	private Image image;
-	HSinglelineEntry pantalla;// = new JTextField(50);
+	HSinglelineEntry pantalla;
 	String v1 = "";
 	String v2 = "";
 	long resultado = 0;
@@ -115,6 +115,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "2"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "2";
+			} else {
+				v2 += "2";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -124,6 +132,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "3"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "3";
+			} else {
+				v2 += "3";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -133,6 +149,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "4"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "4";
+			} else {
+				v2 += "4";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -142,6 +166,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "5"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "5";
+			} else {
+				v2 += "5";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -151,6 +183,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "6"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "6";
+			} else {
+				v2 += "6";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -160,6 +200,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "7"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "7";
+			} else {
+				v2 += "7";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -170,6 +218,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "8"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "8";
+			} else {
+				v2 += "8";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -179,6 +235,14 @@ public class Calcu extends HContainer implements KeyListener {
 			pantalla.setTextContent(
 					(pantalla.getTextContent(HState.ALL_STATES) + "9"),
 					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += "9";
+			} else {
+				v2 += "9";
+			}
+
+			limpiar = false;
 			// this.repaint();
 
 			break;
@@ -243,6 +307,7 @@ public class Calcu extends HContainer implements KeyListener {
 
 			break;
 		case 405: // *
+		
 			limpiar = true;
 			if (estoyUsandoV1) {
 				estoyUsandoV1 = false;
@@ -304,6 +369,8 @@ public class Calcu extends HContainer implements KeyListener {
 			break;
 		case 10: // =
 			limpiar = true;
+			pantalla.setTextContent(String.valueOf(""),
+					HState.ALL_STATES);
 			if (!estoyUsandoV1) {
 				long v1l = Long.valueOf(v1);
 				long v2l = Long.valueOf(v2);
@@ -324,6 +391,8 @@ public class Calcu extends HContainer implements KeyListener {
 				v2 = "";
 				pantalla.setTextContent(String.valueOf(resultado),
 						HState.ALL_STATES);
+				
+				
 			}
 
 			this.repaint();
@@ -340,7 +409,13 @@ public class Calcu extends HContainer implements KeyListener {
 			break;
 		case 151:
 			pantalla.setTextContent("", HState.ALL_STATES);
-
+			operador = "";
+			v1 = "";
+			v2 = "";
+			limpiar = true;
+			//pantalla.setTextContent(String.valueOf(""),
+				//	HState.ALL_STATES);
+			break;
 		default: { // do nothing
 			System.out.println("default case ...");
 			System.out.println(tecla);
@@ -396,13 +471,6 @@ public class Calcu extends HContainer implements KeyListener {
 
 		super.paint(graphics);
 
-		// try{
-		// graphics.drawString(message,0,100);
-		//
-		// }catch(Throwable t) {
-		// // Catch any errors that get thrown.
-		// t.printStackTrace();
-		// }
 
 	}
 
