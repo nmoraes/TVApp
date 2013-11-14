@@ -13,6 +13,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
 import org.havi.ui.HContainer;
@@ -64,7 +66,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaUnitario;
 	private HSinglelineEntry cajaMonto;
 	// arreglo de tareas
-	private Tarea[] arregloTareas;
+	// Funcion vieja
+	//	private Tarea[] arregloTareas;
 	// Contador de tareas
 	public static int contador= 0;
 	private Persistir persistir = new Persistir();
@@ -75,23 +78,24 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private String aux2;
 	private float precioUnitario;
 	private float total = 0;
-	
+	private HashMap<String, List<Tarea>> gastos = new HashMap();
 	
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
 		
+		gastos = persistir.LeerGastos();
 		
-		
-		arregloTareas = persistir.LeerTareaGastos();
+// 		funcion vieja		
+//		arregloTareas = persistir.LeerTareaGastos();
 		
 		
 		 //cajas de texto
-	    cajaDetalle = new HSinglelineEntry("", 30, 290, 240, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	    cajaDetalle = new HSinglelineEntry("", 40, 290, 194, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaDetalle.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaDetalle.setBackground(Color.white);
 	  	cajaDetalle.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-	  	cajaDetalle.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+	  	cajaDetalle.setHorizontalAlignment(HVisible.HALIGN_CENTER);
 	  	cajaDetalle.setEditMode(true);
 	  	cajaDetalle.setCaretCharPosition(1);
 	  	
@@ -99,23 +103,23 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	   	cajaCantidad.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaCantidad.setBackground(Color.white);
 	  	cajaCantidad.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-	  	cajaCantidad.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+	  	cajaCantidad.setHorizontalAlignment(HVisible.HALIGN_CENTER);
 	  	cajaCantidad.setEditMode(true);
 	  	cajaCantidad.setCaretCharPosition(1);
 	  	
-	  	cajaUnitario = new HSinglelineEntry("", 315, 290, 45, 30, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaUnitario = new HSinglelineEntry("", 325, 290, 55, 30, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaUnitario.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaUnitario.setBackground(Color.white);
 	  	cajaUnitario.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-	  	cajaUnitario.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+	  	cajaUnitario.setHorizontalAlignment(HVisible.HALIGN_CENTER);
 	  	cajaUnitario.setEditMode(true);
 	  	cajaUnitario.setCaretCharPosition(1);
 	  	
-	  	cajaMonto = new HSinglelineEntry("", 360, 290, 65, 30, 6, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaMonto = new HSinglelineEntry("", 380, 290, 95, 30, 6, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaMonto.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaMonto.setBackground(Color.white);
 	  	cajaMonto.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-	  	cajaMonto.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+	  	cajaMonto.setHorizontalAlignment(HVisible.HALIGN_CENTER);
 	  	cajaMonto.setEditMode(true);
 	  	cajaMonto.setCaretCharPosition(1);
 	  	
@@ -133,9 +137,9 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		resumenAño.setBounds(30, 140, 140, 30);
 		resumenMes.setBounds(240, 140, 140, 30);
 		titDetalle.setBounds(30, 260, 240, 30);
-		titCantidad.setBounds(270, 260, 45, 30);
-		titUnitario.setBounds(315, 260, 45, 30);
-		titMonto.setBounds(360, 260, 65, 30);
+		titCantidad.setBounds(270, 260, 55, 30);
+		titUnitario.setBounds(325, 260, 65, 30);
+		titMonto.setBounds(380, 260, 95, 30);
 		
 		// Color de fondo
 		resumenAño.setBackground(Color.red);
@@ -185,11 +189,13 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 				
 				// Mostrar el total a partir del precio unitario y la cantidad
 				if (("" != cajaUnitario.getTextContent(HState.ALL_STATES)) && (" " != cajaUnitario.getTextContent(HState.ALL_STATES))){      
-					aux = cajaCantidad.getTextContent(HState.ALL_STATES);
-					cantidad = Float.parseFloat(aux);
-					aux2 = cajaUnitario.getTextContent(HState.ALL_STATES);
-					precioUnitario = Float.parseFloat(aux2);
-					total = cantidad * precioUnitario;
+					if (esNumero(cajaUnitario.getTextContent(HState.ALL_STATES))){
+						aux = cajaCantidad.getTextContent(HState.ALL_STATES);
+						cantidad = Float.parseFloat(aux);
+						aux2 = cajaUnitario.getTextContent(HState.ALL_STATES);
+						precioUnitario = Float.parseFloat(aux2);
+						total = cantidad * precioUnitario;
+					}
 				}
 			break;
 		
@@ -263,6 +269,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			this.repaint();
+			
 			break;	
 
 		
@@ -312,6 +319,16 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		ContenedorKeyboard.navegadorTextGastos = 0;
 		// Borrar total
 		total = 0;
+		
+	}
+	
+	private boolean esNumero(String s){
+		try{
+			Long.parseLong(s);
+		} catch (Exception e) {
+			return false;
+		}
+		return true;
 	}
 	
 	// Ingresa una neuva tarea al arreglo de tareas.
@@ -338,6 +355,10 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		System.out.println(arregloTareas[0].getUnitario());
 		System.out.println(arregloTareas[0].getMonto());
 		
+
+		
+//		pepe.put(key, value)
+	
 	}
 	
 	public void keyReleased(KeyEvent e) {
