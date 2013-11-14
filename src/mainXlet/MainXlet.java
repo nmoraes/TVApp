@@ -111,8 +111,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
 	
 	/* // Calculadora */
-	public static Base base = new Base();
-	public static Calcu calcu = new Calcu();
+	
 	
 
 	// private JTablet tabla = new JTablet();
@@ -208,10 +207,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.setVisible(true);
         
 		//Calculadora
-		scene.add(base);
-		base.setVisible(true);
-		scene.add(calcu);
-		calcu.setVisible(false);
+	
 
 		
 		
@@ -535,9 +531,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			System.out.println("amarillo  ...");
 			label.setBackground(colors[2]);
 			label.repaint();
-			calcu.setVisible(true);
-			gas.setVisible(false);
-			calcu.requestFocus();
+			contYellow.setVisible(true);
+			contYellow.requestFocus();
+			contYellow.texto.setVisible(true);
 			break;
 		}
 		case 406: {

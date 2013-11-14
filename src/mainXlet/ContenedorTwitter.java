@@ -25,6 +25,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 
 	HStaticText hstTexto;
 	String tweet;
+	HStaticText nuevoTweet;
 	//(int x, int y, int width, int height, int maxChars)
 	HMultilineEntry multiEntrada;
 	public ContenedorTwitter() {
@@ -36,6 +37,12 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		hstTexto.setBounds(100, 350, 400, 200);
 		hstTexto.setBackground(Color.white);
 		this.add(hstTexto);
+		nuevoTweet = new HStaticText("Rojo para escribir nuevo tweet");
+		nuevoTweet.setFont(new Font("Tiresias", 0, 14));
+		// texto tamaño y posición x,y,x,y
+		nuevoTweet.setBounds(10, 110, 350, 100);
+		nuevoTweet.setBackground(Color.white);
+		this.add(nuevoTweet);
 		// mi tamaño y posición x,y,x,y
 //		multiEntrada=new HMultilineEntry(0, 0, 100, 200, 500);
 //		multiEntrada.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
@@ -48,7 +55,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 //		this.add(multiEntrada);
 //		multiEntrada.setVisible(true);
 		
-		this.setBounds(100, 0, 800, 600);
+		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 	}
 
@@ -95,9 +102,10 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		MainXlet.keyboard.setVisible(true);
 		MainXlet.keyboard.requestFocus();
 		MainXlet.keyboard.invokeFather=Constant.Contenedor_Twitter;
-		this.repaint();
 		tweet=MainXlet.keyboard.message;
-		System.out.println(tweet);
+		System.out.println("letra "+tweet);
+		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
+		this.repaint();
 	}
 	
 

@@ -12,13 +12,26 @@ import java.util.Properties;
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
 
+import calc.Base;
+import calc.Calcu;
+
 public class ContenedorYellow extends HContainer implements KeyListener {
 	private int x = 0;
 	
 	HStaticText hstTexto;;
 	public static ContenedorTwitter conTwitter;
+	public static Base base = new Base();
+	public static Calcu calcu = new Calcu();
+	HStaticText texto;
+	
 	public ContenedorYellow() {
-		
+		texto = new HStaticText("verde twitter amarillo calculadora");
+		texto.setFont(new Font("Tiresias", 0, 14));
+		// texto tamaño y posición x,y,x,y
+		texto.setBounds(100, 350, 400, 200);
+		texto.setBackground(Color.white);
+		this.add(texto);
+		texto.setVisible(false);
 		Properties properties = new Properties();
 		try {
 			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
@@ -61,6 +74,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+			texto.setVisible(false);
 			//this.repaint();
 			break;
 			
@@ -70,16 +84,27 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			MainXlet.keyboard.setVisible(true);
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.AMARILLO;
+			texto.setVisible(false);
 			break;
 		}
 		case 404:
 			System.out.println("verde");
+			texto.setVisible(false);
 			conTwitter=new ContenedorTwitter();
 			this.add(conTwitter);
 			conTwitter.requestFocus();
 			this.repaint();
 			break;
-		
+		case 405:
+			System.out.println("amarillo");
+			texto.setVisible(false);
+			this.add(base);
+			base.setVisible(true);
+			this.add(calcu);
+			calcu.setVisible(true);
+			calcu.requestFocus();
+			this.repaint();
+			break;
 		default: {
 			// do nothing
 			System.out.println("default case en contenedor amarillo ...");

@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import mainXlet.ContenedorTwitter;
+import mainXlet.ContenedorYellow;
 import mainXlet.MainXlet;
 
 import org.havi.ui.HContainer;
@@ -405,7 +407,8 @@ public class Calcu extends HContainer implements KeyListener {
 			v1 = "";
 			v2 = "";
 			MainXlet.label.setBackground(Color.white);
-			MainXlet.calcu.setVisible(false);
+			//MainXlet.calcu.setVisible(false);
+			ContenedorYellow.calcu.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			this.repaint();
