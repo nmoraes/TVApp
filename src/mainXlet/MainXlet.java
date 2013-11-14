@@ -69,7 +69,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static  ContenedorAzul cont = new ContenedorAzul();
 	
 	/** Contenedor tasks */
-	public static  ContenedorTasks contTasks = new ContenedorTasks();
+	//public static  ContenedorTasks contTasks = new ContenedorTasks();
 	
 	/** Contenedor boton rojo */
 	public static ContenedorRed contRed = new ContenedorRed();
@@ -212,8 +212,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		
 		
 		
-		scene.add(contTasks);
-		contTasks.setVisible(false);
+		//scene.add(contTasks);
+		//contTasks.setVisible(false);
 		//Weather
 		scene.add(contWeather);
 		contWeather.setVisible(false);
@@ -481,11 +481,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case KeyEvent.VK_DOWN: {
 			
-			System.out.println("***** evento contenedor prueba *****");
-			label.setBackground(Color.LIGHT_GRAY);
-	        label.repaint();
-	        contTasks.setVisible(true);
-	        contTasks.requestFocus();
+//			System.out.println("***** evento contenedor prueba *****");
+//			label.setBackground(Color.LIGHT_GRAY);
+//	        label.repaint();
+//	        contTasks.setVisible(true);
+//	        contTasks.requestFocus();
 			
 			break;
 		}
