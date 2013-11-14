@@ -25,13 +25,12 @@ public class Constant {
 	
 	/** Constante para identificar que el Contenedor amarillo invoco al teclado */
 	public static final int GASTOS = 5;
-
 	
 	/** Constante para identificar que el Contenedor gastos (nicolas) invoco al keyboard */
 	public static final int CONTENEDOR_GASTOS = 6;
 	
 	/**Constante para indicar el contenedor escribir tweet*/
-	public static final int Contenedor_Twitter=7;
+	public static final int CONTENEDOR_TWITTER = 7;
 	
 	
 	

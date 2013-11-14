@@ -84,7 +84,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorWeather contWeather = new ContenedorWeather();
 	
 	/** Contenedor Loading */
-	private static ContenedorLoading contLoading = new ContenedorLoading();
+	//private static ContenedorLoading contLoading = new ContenedorLoading();
 
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
@@ -96,7 +96,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	private Image image;
 	
 	/**Mensaje de bienvenida*/
-	private String message = "No puede ser nulo";
+	private String message;
 	
 	/**
 	 * @description Before we can draw on the screen, we need an HScene to draw into. This
@@ -179,7 +179,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         scene.addKeyListener(this);
         
 
-        label = new HStaticText("menu?"/*message*/, 650, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
+        label = new HStaticText(""/*message*/, 650, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
         scene.add(label);
         scene.add(this);
         

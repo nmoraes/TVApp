@@ -80,7 +80,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				message = "";	
 			}
 			break;
-		case Constant.Contenedor_Twitter:
+		case Constant.CONTENEDOR_TWITTER:
 			System.out.println("cerrar teclado en twitter");
 			MainXlet.contYellow.conTwitter.hstTexto.setVisible(true);
 			MainXlet.contYellow.conTwitter.requestFocus();
@@ -553,79 +553,94 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				case 80:
 				
 					System.out.println("A");
-					message= message+"A";
+					character="A";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
+					
 				case 135:
 					System.out.println("S");
-					message= message+"S";
+					character="S";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
+					
 
 				case 190:
 					
 					System.out.println("D");
-					message= message+"D";
+					character="D";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
 					break;
-
+					
 				case 245:
 					
 					System.out.println("F");
-					message= message+"F";
-					this.repaint();	
+					character="F";
+					character=botonShift(character);
+					message= message+character;
+					this.repaint();
 					break;
+					
 
 				case 300:
 					
 					System.out.println("G");
-					message= message+"G";
-					this.repaint();	
+					character="G";
+					character=botonShift(character);
+					message= message+character;
+					this.repaint();
 					break;
+					
 
 				case 355:
 					
 					System.out.println("H");
-					message= message+"H";
+					character="H";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
 					break;
+					
 
 				case 410:
 					
 					System.out.println("J");
-					message= message+"J";
+					character="J";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
+					
 
 				case 465:
 					
 					System.out.println("K");
-					message= message+"K";
+					character="K";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
+					
 
 				case 520:
 					
 					System.out.println("L");
-					message= message+"L";
+					character="L";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
 					break;
+					
 				case 575:
 					//AUN NO HACE NADA
 					System.out.println("enter");
 
 					break;
-
-				default: {
-					// do nothing
-					System.out.println("fuera del rango");
-
-					break;
-				}
 
 				}
 				
@@ -641,60 +656,69 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 					else
 						setShiftFlag(false);	
 					break;
+				
 				case 115:
 				
 					System.out.println("Z");
-					message= message+"Z";
+					character="Z";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
 
 				case 170:
 					
 					System.out.println("X");
-					message= message+"X";
+					character="X";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
 
 				case 225:
 				
 					System.out.println("C");
-					message= message+"C";
+					character="C";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
+					
 
 				case 280:
 					
 					System.out.println("V");
-					message= message+"V";
+					character="V";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
 
 				case 335:
 					
 					System.out.println("B");
-					message= message+"B";
+					character="B";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
 
 				case 390:
 				
 					System.out.println("N");
-					message= message+"N";
+					character="N";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
 
 				case 445:
 				
 					System.out.println("M");
-					message= message+"M";
+					character="M";
+					character=botonShift(character);
+					message= message+character;
 					this.repaint();
-
 					break;
 
 				case 500:
@@ -715,13 +739,6 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 						setShiftFlag(false);	
 
 					break;
-
-				default: {
-					
-					System.out.println("fuera del rango");
-
-					break;
-				}
 
 				}
 
@@ -803,13 +820,6 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				
 				break;
 
-
-			default: {
-				
-				System.out.println("fuera del rango"+ "coordenada X= " + this.x);
-
-				break;
-			}
 
 			}
 			

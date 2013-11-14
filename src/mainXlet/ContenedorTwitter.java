@@ -101,7 +101,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		hstTexto.setVisible(false);
 		MainXlet.keyboard.setVisible(true);
 		MainXlet.keyboard.requestFocus();
-		MainXlet.keyboard.invokeFather=Constant.Contenedor_Twitter;
+		MainXlet.keyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
 		tweet=MainXlet.keyboard.message;
 		System.out.println("letra "+tweet);
 		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
