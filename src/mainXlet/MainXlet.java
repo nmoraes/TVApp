@@ -98,6 +98,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/**Mensaje de bienvenida*/
 	private String message;
 	
+	/**Mensaje de intruccion*/
+	private String message2;
+	
 	/**
 	 * @description Before we can draw on the screen, we need an HScene to draw into. This
 	 * variable will hold a reference to our HScene
@@ -456,8 +459,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Drawing the string may cause an error to get thrown, so we   
         // surround it with a 'try' block.   
         try{   
-            graphics.drawString(message,5,450);  
-
+        	graphics.setColor(Color.WHITE);
+            graphics.drawString(message,12,140); 
+            
+            graphics.setFont(new Font("Tiresias", Font.PLAIN, 14));
+            graphics.drawString(message2,12,152); 
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
             t.printStackTrace();   
@@ -587,6 +593,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		try {
 			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
 			message = properties.getProperty("mensajeBienvenida");
+			message2= properties.getProperty("mensajeIntruccion");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
