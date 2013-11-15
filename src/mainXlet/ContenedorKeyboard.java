@@ -2,7 +2,6 @@ package mainXlet;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -191,7 +190,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		int numero=0;
 		switch (tecla.getKeyCode()) {
 		
-		case 9:
+		case 427:
 			
 			if (ContenedorKeyboard.invokeFather == Constant.GASTOS){
 				
@@ -212,38 +211,9 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 						MainXlet.gas.setUniText(message);
 						message = "";		
 					break;
-//				case 3: navegadorTextGastos = 0;
-//						MainXlet.gas.setMonText(message);
-//						message = "";	
-//				    break;
 				}
 				
-		}//else if (ContenedorKeyboard.invokeFather == Constant.CONTENEDOR_GASTOS){
-//				System.out.println("****************ENTRE");
-//				switch(navegadorTextGastos){
-//				
-//				case 0:	navegadorTextGastos = 1;
-//						MainXlet.contTasks.setDetalleText(message);
-//						message = "";
-//					break;
-//					
-//				case 1: navegadorTextGastos = 2;
-//						MainXlet.contTasks.setCantidadText(message);
-//						message = "";
-//				
-//					break;
-//					
-//				case 2: navegadorTextGastos = 0;
-//						MainXlet.contTasks.setPrecioText(message);
-//						//message = "";		
-//					//break;
-////				case 3: navegadorTextGastos = 0;
-////						MainXlet.gas.setMonText(message);
-////						message = "";	
-//				    break;
-//				}
-//				
-//		}
+		}
 			
 		break;
 		
@@ -427,13 +397,15 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	        
 	        }
 	        
-	        graphics.setColor(Color.RED); 
-	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));
-	          
-	    
+	        System.out.println(message);
 	        
+//	        graphics.setColor(Color.RED); 
+//	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));
+//	          
+//	    
+//	        
 	        try{   
-	            graphics.drawString(message,0,100);  
+	            graphics.drawString(message,10,125);  
 
 	        }catch(Throwable t) {   
 	            // Catch any errors that get thrown.   

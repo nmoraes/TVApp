@@ -1,7 +1,12 @@
 package mainXlet;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
@@ -24,14 +29,21 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	private static final long serialVersionUID = 5292849366437972565L;
 
 	HStaticText hstTexto;
-	String tweet;
+	private String tweet;
 	HStaticText nuevoTweet;
 	//(int x, int y, int width, int height, int maxChars)
 	HMultilineEntry multiEntrada;
+	
+    // The image that we will show   
+    private Image image;
+	
+    private String timeline;
+
 	public ContenedorTwitter() {
 
-		String tweets=obtenerTweets();
-		hstTexto = new HStaticText(tweets);
+		tweet="";
+		timeline=obtenerTweets();
+		hstTexto = new HStaticText(timeline);
 		hstTexto.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
 		hstTexto.setBounds(100, 350, 400, 200);
@@ -44,7 +56,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		nuevoTweet.setBackground(Color.white);
 		this.add(nuevoTweet);
 		// mi tamaño y posición x,y,x,y
-
+		loadForegroundBitmap();
 		
 		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
@@ -53,15 +65,25 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 		switch (arg0.getKeyCode()) {
 		case 403:
-			escribirTweet();
+			System.out.println("boton rojo siempre llama al teclado ...");
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();	
+			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
+			
 			break;
 		case 27:
+			//exit
 			MainXlet.label.setBackground(Color.white);
 			ContenedorYellow.conTwitter.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			hstTexto.setTextContent("otro texto", HState.ALL_STATES);
 			this.repaint();
+			break;
+			
+		case 10:
+			//OK
+			escribirTweet();
 			break;
 		}
 	}
@@ -96,12 +118,85 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		tweet=MainXlet.keyboard.message;
 		System.out.println("letra "+tweet);
 		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
+		
+		System.out.println("TWITTER --> "+tweet);
+		escribirTweet(tweet);
 		this.repaint();
 	}
 	private void escribirTweet(String tweet){
 		FachadaTwitter ft=new FachadaTwitter();
 		ft.escribirTweet(tweet);
 	}
+	
+	
+	 public void loadForegroundBitmap() {   
+	        // Create a MediaTracker to tell us when the image has loaded   
+	        MediaTracker tracker = new MediaTracker(this);   
+	        // Then load the image   
+	       image = Toolkit.getDefaultToolkit().getImage("textTwitter.png");   
+	             	
+	        
+	        // add the image to the MediaTracker...
+	       // tracker.addImage(image, 0);
+	        tracker.addImage(image, 0);
+	        
+	        
+	        // ...and wait for it to finish loading   
+	        try{   
+	            tracker.waitForAll();   
+	        }   
+	        catch(InterruptedException e) {   
+	            // Ignore the exception, since there's not a lot we can do.   
+	            image = null;
+	        
+	        }   
+	    }  
+	
+	
+	
+	 public void paint(Graphics graphics) {   
+		   
+	        // Get the size of this component so that we can clear it properly.   
+	        //Dimension size = getSize();   
+	   
+	       // graphics.setColor(Color.white);
+	        
+	        //graphics.fillRect(0,0,size.width,size.height);   
+	        	        
+	        
+	        if (image != null) {  
+	        	
+	            // Draw the image from the buffer   
+	            graphics.drawImage(image, 5, 180, null);      
+	        	 } 
+	        
+	        
+	        // Once we've drawn the image, we can draw the message on top of it.   
+	   
+	        // Set the font to be the default MHP font.   
+	        graphics.setFont(new Font("Tiresias", Font.BOLD, 15));   
+	        // Set the text colour   
+	        graphics.setColor(Color.RED);
+	        
+	        
+	       
+	        // Drawing the string may cause an error to get thrown, so we   
+	        // surround it with a 'try' block.   
+	        
+	       
+	        
+	        try{   
+	        	
+	        	graphics.drawString(timeline,20,20);  
+	        	//graphics.drawString(tweet,7,182);  
+	          
+	        }catch(Throwable t) {   
+	           
+	            System.out.println("error al escribir"); 
+	        }   
+	    }   
+	
+	
 	
 
 }
