@@ -67,7 +67,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaMonto;
 	// arreglo de tareas
 	// Funcion vieja
-	//	private Tarea[] arregloTareas;
+		private Tarea[] arregloTareas;
 	// Contador de tareas
 	public static int contador= 0;
 	private Persistir persistir = new Persistir();
@@ -78,16 +78,16 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private String aux2;
 	private float precioUnitario;
 	private float total = 0;
-	private HashMap<String, List<Tarea>> gastos = new HashMap();
+//	private HashMap<String, List<Tarea>> gastos = new HashMap();
 	
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
 		
-		gastos = persistir.LeerGastos();
+//		gastos = persistir.LeerGastos();
 		
 // 		funcion vieja		
-//		arregloTareas = persistir.LeerTareaGastos();
+		arregloTareas = persistir.LeerTareaGastos();
 		
 		
 		 //cajas de texto

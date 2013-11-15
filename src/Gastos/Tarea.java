@@ -14,6 +14,8 @@ public class Tarea implements Serializable{
 	private String Unitario;
 	private String Monto;
 	
+	// atributi fecha (Date d =new Date();)
+	
 	public Tarea(String detalle, String cantidad, String unitario, String monto) {
 		super();
 		Detalle = detalle;
