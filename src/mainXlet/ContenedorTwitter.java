@@ -71,6 +71,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			System.out.println("boton rojo siempre llama al teclado ...");
 			escribir = true;
 			MainXlet.keyboard.setVisible(true);
+			timeline="";
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
 			
@@ -85,10 +86,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			this.repaint();
 			break;
 			
-		case 10:
-			//OK
-		//	escribirTweet();
-			break;
+
 		}
 	}
 
@@ -101,32 +99,33 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	}
 
 	private String obtenerTweets() {
-//		FachadaTwitter ft = new FachadaTwitter();
-//		List lista = ft.getHomeTimeLine();
-//		StringBuilder tl = new StringBuilder();
-//		for (int i = 0; i < 5; i++) {
-//			Tweet tweet = (Tweet) lista.get(i);
-//			tl.append(tweet.getUsuario() + ": " + tweet.getMensaje()+"\n");
-//		}
-		StringBuilder tl=new StringBuilder("Applesfera: La Estrella de la Muerte no se construirß sola: Star Wars Tiny Death \n Star ya disponible para iOS http://t.co/whohFXg8tf \n Chanchos del Uruguay: RT @becapablo: @chanchosUY RADAR en propios antes de la ca\nncha de la luz. Te esperan mas adelante para darte el regalito.\nCiencia y TecnologÝa: #Tecnologia 18 meses de cßrcel para el due±o de la web de\nenlaces http://t.co/HCOpmFVFOH http://t.co/2KoQlxsIQV \nCiencia y TecnologÝa: #Ciencia El 'gran hermano' de los osos polares http://t.co/jmu4WhNAED \nChanchos del Uruguay: RT @gcsuburu: @chanchosUY Multiple choque en Rambla portua\nria frente a Torre de Antel. Camineravy patrulkero. Semßforo siguiente un caos");		
-		System.out.println(tl);
+		FachadaTwitter ft = new FachadaTwitter();
+		List lista = ft.getHomeTimeLine();
+		StringBuilder tl = new StringBuilder();
+		for (int i = 0; i < 5; i++) {
+			Tweet tweet = (Tweet) lista.get(i);
+			tl.append(tweet.getUsuario() + ": " + tweet.getMensaje()+"\n");
+		}
+	//	StringBuilder tl=new StringBuilder("Applesfera: La Estrella de la Muerte no se construirß sola: Star Wars Tiny Death \n Star ya disponible para iOS http://t.co/whohFXg8tf \n Chanchos del Uruguay: RT @becapablo: @chanchosUY RADAR en propios antes de la ca\nncha de la luz. Te esperan mas adelante para darte el regalito.\nCiencia y TecnologÝa: #Tecnologia 18 meses de cßrcel para el due±o de la web de\nenlaces http://t.co/HCOpmFVFOH http://t.co/2KoQlxsIQV \nCiencia y TecnologÝa: #Ciencia El 'gran hermano' de los osos polares http://t.co/jmu4WhNAED \nChanchos del Uruguay: RT @gcsuburu: @chanchosUY Multiple choque en Rambla portua\nria frente a Torre de Antel. Camineravy patrulkero. Semßforo siguiente un caos");		
+		//System.out.println(tl);
 		return tl.toString();
 
 	}
-	public void escribirTweet(){
-		System.out.println("tecla");
-		//hstTexto.setVisible(false);
-		MainXlet.keyboard.setVisible(true);
-		MainXlet.keyboard.requestFocus();
-		MainXlet.keyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
-		tweet=MainXlet.keyboard.message;
-		System.out.println("letra "+tweet);
-		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
-		
-		System.out.println("TWITTER --> "+tweet);
-		escribirTweet(tweet);
-		this.repaint();
-	}
+//	public void escribirTweet(){
+//		System.out.println("tecla");
+//		//hstTexto.setVisible(false);
+//		MainXlet.keyboard.setVisible(true);
+//		MainXlet.keyboard.requestFocus();
+//		MainXlet.keyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
+//		tweet=MainXlet.keyboard.message;
+//		System.out.println("letra "+tweet);
+//		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
+//		
+//		System.out.println("TWITTER --> "+tweet);
+//		escribirTweet(tweet);
+//		this.repaint();
+//	}
+	
 	public static void escribirTweet(String tweet){
 		FachadaTwitter ft=new FachadaTwitter();
 		ft.escribirTweet(tweet);
@@ -185,7 +184,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 
 		try {
 
-			graphics.drawString(timeline, 20, 20);
+			graphics.drawString(timeline, 12, 200);
 			graphics.setColor(Color.black);
 
 			if (image != null && escribir == true) {
