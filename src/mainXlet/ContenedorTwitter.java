@@ -44,16 +44,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		nuevoTweet.setBackground(Color.white);
 		this.add(nuevoTweet);
 		// mi tamaño y posición x,y,x,y
-//		multiEntrada=new HMultilineEntry(0, 0, 100, 200, 500);
-//		multiEntrada.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
-//		multiEntrada.setBackground(Color.white);
-//		multiEntrada.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-//		multiEntrada.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-//		multiEntrada.setEditMode(true);
-//		multiEntrada.setCaretCharPosition(1);
-//		
-//		this.add(multiEntrada);
-//		multiEntrada.setVisible(true);
+
 		
 		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
@@ -106,6 +97,10 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		System.out.println("letra "+tweet);
 		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
 		this.repaint();
+	}
+	private void escribirTweet(String tweet){
+		FachadaTwitter ft=new FachadaTwitter();
+		ft.escribirTweet(tweet);
 	}
 	
 
