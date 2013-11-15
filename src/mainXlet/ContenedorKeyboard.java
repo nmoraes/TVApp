@@ -2,6 +2,7 @@ package mainXlet;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -81,6 +82,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			break;
 		case Constant.CONTENEDOR_TWITTER:
 			System.out.println("cerrar teclado en twitter");
+			MainXlet.contYellow.conTwitter.escribir =false;
 			MainXlet.contYellow.conTwitter.hstTexto.setVisible(true);
 			MainXlet.contYellow.conTwitter.requestFocus();
 			
@@ -214,6 +216,17 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				}
 				
 		}
+			
+			
+			if (ContenedorKeyboard.invokeFather == Constant.CONTENEDOR_TWITTER) {
+
+				//PUBLICAR TWITTER
+				
+				if(message.length()>2)
+					ContenedorTwitter.escribirTweet(message);
+
+			}
+			
 			
 		break;
 		
@@ -401,16 +414,16 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	        
 //	        graphics.setColor(Color.RED); 
 //	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));
-//	          
-//	    
-//	        
-	        try{   
-	            graphics.drawString(message,10,125);  
-
-	        }catch(Throwable t) {   
-	            // Catch any errors that get thrown.   
-	            t.printStackTrace();   
-	        } 
+////	          
+////	    
+////	        
+//	        try{   
+//	            graphics.drawString(message,10,125);  
+//
+//	        }catch(Throwable t) {   
+//	            // Catch any errors that get thrown.   
+//	            t.printStackTrace();   
+//	        } 
 
 
 	    }   

@@ -38,6 +38,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
     private Image image;
 	
     private String timeline;
+    public static boolean escribir = false;
 
 	public ContenedorTwitter() {
 
@@ -58,14 +59,17 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		// mi tamaño y posición x,y,x,y
 		loadForegroundBitmap();
 		
-		this.setBounds(0, 0, 800, 600);
+		this.setBounds(0, 0, 300, 700);
 		this.addKeyListener(this);
 	}
+	
+	
 
 	public void keyPressed(KeyEvent arg0) {
 		switch (arg0.getKeyCode()) {
 		case 403:
 			System.out.println("boton rojo siempre llama al teclado ...");
+			escribir = true;
 			MainXlet.keyboard.setVisible(true);
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
@@ -83,7 +87,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			
 		case 10:
 			//OK
-			escribirTweet();
+		//	escribirTweet();
 			break;
 		}
 	}
@@ -109,9 +113,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		return tl.toString();
 
 	}
-	private void escribirTweet(){
+	public void escribirTweet(){
 		System.out.println("tecla");
-		hstTexto.setVisible(false);
+		//hstTexto.setVisible(false);
 		MainXlet.keyboard.setVisible(true);
 		MainXlet.keyboard.requestFocus();
 		MainXlet.keyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
@@ -123,7 +127,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		escribirTweet(tweet);
 		this.repaint();
 	}
-	private void escribirTweet(String tweet){
+	public static void escribirTweet(String tweet){
 		FachadaTwitter ft=new FachadaTwitter();
 		ft.escribirTweet(tweet);
 	}
@@ -151,8 +155,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	        
 	        }   
 	    }  
-	
-	
+	 
 	
 	 public void paint(Graphics graphics) {   
 		   
@@ -164,12 +167,13 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	        //graphics.fillRect(0,0,size.width,size.height);   
 	        	        
 	        
-	        if (image != null) {  
+		 
+	        if (image != null && escribir==true) {  
 	        	
 	            // Draw the image from the buffer   
-	            graphics.drawImage(image, 5, 180, null);      
+	            graphics.drawImage(image, 5, 190, null);      
 	        	 } 
-	        
+	    
 	        
 	        // Once we've drawn the image, we can draw the message on top of it.   
 	   
@@ -178,23 +182,22 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	        // Set the text colour   
 	        graphics.setColor(Color.RED);
 	        
-	        
-	       
-	        // Drawing the string may cause an error to get thrown, so we   
-	        // surround it with a 'try' block.   
-	        
-	       
-	        
-	        try{   
-	        	
-	        	graphics.drawString(timeline,20,20);  
-	        	//graphics.drawString(tweet,7,182);  
-	          
-	        }catch(Throwable t) {   
-	           
-	            System.out.println("error al escribir"); 
-	        }   
-	    }   
+
+		try {
+
+			graphics.drawString(timeline, 20, 20);
+			graphics.setColor(Color.black);
+
+			if (image != null && escribir == true) {
+				graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));
+				graphics.drawString(ContenedorKeyboard.message, 12, 207);
+
+			}
+		} catch (Throwable t) {
+
+			System.out.println("error al escribir");
+		}
+	}
 	
 	
 	
