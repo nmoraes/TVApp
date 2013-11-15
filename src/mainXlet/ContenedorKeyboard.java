@@ -224,7 +224,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				
 				if(message.length()>2)
 					ContenedorTwitter.escribirTweet(message);
-
+				closeKeyboard();
 			}
 			
 			
