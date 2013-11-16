@@ -67,10 +67,12 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaMonto;
 	// arreglo de tareas
 	// Funcion vieja
-		private Tarea[] arregloTareas;
+	//	private Tarea[] arregloTareas;
 	// Contador de tareas
 	public static int contador= 0;
 	private Persistir persistir = new Persistir();
+	// Coleccion de gastos en memoria
+	private ColeccionGastos ListaGastos = new ColeccionGastos();
 	
 	// Variables para hacer que el monto aparesca a partir de la cantidad X precioUnitario
 	private float cantidad;
@@ -84,10 +86,10 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
 		
-//		gastos = persistir.LeerGastos();
+	//	ListaGastos = persistir.LeerGastos();
 		
 // 		funcion vieja		
-		arregloTareas = persistir.LeerTareaGastos();
+	//	arregloTareas = persistir.LeerTareaGastos();
 		
 		
 		 //cajas de texto
@@ -274,8 +276,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 
 		
 		case 427:	// + 
-			InsertarTarea();
-			persistir.persistirTareaGastos(arregloTareas);
+			InsertarGasto();
+			persistir.persistirGastos(ListaGastos);
 			
 			System.out.println("Boton de persistencia!!");
 //			Properties properties = new Properties();
@@ -332,31 +334,32 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	}
 	
 	// Ingresa una neuva tarea al arreglo de tareas.
-	private void InsertarTarea(){
-		int cont = contador;
-		System.out.println("Insertar Tarea en el arreglo");
-		System.out.println(contador);
-		// Lo inserta al principio del arreglo
-		while (cont > 0){
-			
-			arregloTareas[cont] = arregloTareas[cont-1];
-			cont--;
-		}
-		System.out.println(detText);
-		System.out.println(canText);
-		System.out.println(uniText);
-		System.out.println(monText);
-		Tarea T = new Tarea(detText, canText, uniText, monText);
-		arregloTareas[0] = T;
+	private void InsertarGasto(){
+		Gasto a = new Gasto(detText, canText, uniText, monText);
+		ListaGastos.agregarGasto(a);
 		
-		System.out.println("Lo que guardo en el arreglo:");
-		System.out.println(arregloTareas[0].getDetalle());
-		System.out.println(arregloTareas[0].getCantidad());
-		System.out.println(arregloTareas[0].getUnitario());
-		System.out.println(arregloTareas[0].getMonto());
-		
-
-		
+//		int cont = contador;
+//		System.out.println("Insertar Tarea en el arreglo");
+//		System.out.println(contador);
+//		// Lo inserta al principio del arreglo
+//		while (cont > 0){
+//			
+//			arregloTareas[cont] = arregloTareas[cont-1];
+//			cont--;
+//		}
+//		System.out.println(detText);
+//		System.out.println(canText);
+//		System.out.println(uniText);
+//		System.out.println(monText);
+//		Tarea T = new Tarea(detText, canText, uniText, monText);
+//		arregloTareas[0] = T;
+//		
+//		System.out.println("Lo que guardo en el arreglo:");
+//		System.out.println(arregloTareas[0].getDetalle());
+//		System.out.println(arregloTareas[0].getCantidad());
+//		System.out.println(arregloTareas[0].getUnitario());
+//		System.out.println(arregloTareas[0].getMonto());
+//				
 //		pepe.put(key, value)
 	
 	}

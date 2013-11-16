@@ -1,8 +1,9 @@
 package Gastos;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class Tarea implements Serializable{
+public class Gasto implements Serializable{
 	
 	/**
 	 * 
@@ -13,18 +14,18 @@ public class Tarea implements Serializable{
 	private String Cantidad;
 	private String Unitario;
 	private String Monto;
+	private Date d;
 	
-	// atributi fecha (Date d =new Date();)
-	
-	public Tarea(String detalle, String cantidad, String unitario, String monto) {
+	public Gasto(String detalle, String cantidad, String unitario, String monto) {
 		super();
 		Detalle = detalle;
 		Cantidad = cantidad;
 		Unitario = unitario;
 		Monto = monto;
+		d = new Date();
 	}
 	
-	public Tarea() {
+	public Gasto() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -58,6 +59,14 @@ public class Tarea implements Serializable{
 
 	public void setMonto(String monto) {
 		Monto = monto;
+	}
+	
+	public Date getFecha(){
+		return d;		
+	}
+	
+	public void setFecha(Date fecha){
+		d = fecha;
 	}
 
 }
