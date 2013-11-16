@@ -44,8 +44,8 @@ public class Calcu extends HContainer implements KeyListener {
 	// CONSTRUCTOR
 	public Calcu() {
 		// HStaticText hstTexto = new HStaticText(" Menu akdjkfhhf ");
-		pantalla = new HSinglelineEntry("", 14, 250, 200, 50, 20, new Font(
-				"Tiresias", Font.PLAIN, 22), Color.black);
+		pantalla = new HSinglelineEntry("", 85, 200, 230, 50, 30, new Font( //texto de calc
+				"Tiresias", Font.PLAIN, 23), Color.black);
 		pantalla.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 		pantalla.setBackground(Color.green);
 		pantalla.setHorizontalAlignment(HVisible.HALIGN_LEFT);
@@ -369,6 +369,20 @@ public class Calcu extends HContainer implements KeyListener {
 			this.repaint();
 
 			break;
+		case 520: // ,
+			if (limpiar)
+				pantalla.setTextContent("", HState.ALL_STATES);
+			pantalla.setTextContent(
+					(pantalla.getTextContent(HState.ALL_STATES) + ","),
+					HState.ALL_STATES);
+			if (estoyUsandoV1) {
+
+				v1 += ",";
+			} else {
+				v2 += ",";
+			}
+			limpiar = false;
+			break;
 		case 10: // =
 			limpiar = true;
 			pantalla.setTextContent(String.valueOf(""),
@@ -445,7 +459,7 @@ public class Calcu extends HContainer implements KeyListener {
 		// Create a MediaTracker to tell us when the image has loaded
 		MediaTracker tracker = new MediaTracker(this);
 		// Then load the image
-		image = Toolkit.getDefaultToolkit().getImage("Calculadora.png");
+		image = Toolkit.getDefaultToolkit().getImage("Calc.png");
 
 		// add the image to the MediaTracker...
 		tracker.addImage(image, 0);
@@ -468,7 +482,7 @@ public class Calcu extends HContainer implements KeyListener {
 
 		if (image != null) {
 			// Draw the image from the buffer
-			graphics.drawImage(image, 7, 250, null);
+			graphics.drawImage(image, 70, 200, null); //ubicacion de calculadora
 
 		}
 
