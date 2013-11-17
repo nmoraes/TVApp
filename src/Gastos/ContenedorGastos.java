@@ -4,24 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.Toolkit;
-import java.awt.TextField;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
 
 import org.havi.ui.HContainer;
 import org.havi.ui.HSinglelineEntry;
 import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
-import org.havi.ui.HText;
 import org.havi.ui.HVisible;
 
 import persistencia.Persistir;
@@ -124,8 +114,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaMonto.setHorizontalAlignment(HVisible.HALIGN_CENTER);
 	  	cajaMonto.setEditMode(true);
 	  	cajaMonto.setCaretCharPosition(1);
-	  	
-		
+	  			
 		// tipo de letra
 		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -133,7 +122,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titCantidad.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titUnitario.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 20));
-		
 		
 		// Posicion inicial en la pantalla y color
 		resumenAño.setBounds(30, 140, 140, 30);
@@ -161,9 +149,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		this.add(cajaDetalle);
 		this.add(cajaCantidad);
 		this.add(cajaUnitario);
-		this.add(cajaMonto);
-
-		
+		this.add(cajaMonto);		
 		
 		//cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
 		//loadForegroundBitmap(); 
@@ -175,8 +161,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 	
 	public void paint(Graphics graphics) {   
-		
-		
+				
 		switch(ContenedorKeyboard.navegadorTextGastos){
 		
 		case 0:	cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);				
@@ -253,15 +238,14 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			this.repaint();
 			break;
 		
-		case 406: 
-			
-			// Boton Azul
-			System.out.println("boton azul llama al teclado ...");
-			MainXlet.keyboard.setVisible(true);
-			MainXlet.keyboard.requestFocus();	
-			ContenedorKeyboard.invokeFather=Constant.GASTOS;
-
-			this.repaint();
+		case 406: // Boton Azul
+			if (ListaGastos.getColeccion().isEmpty()){
+				System.out.println(" Esta Vacia");
+			}else{
+				System.out.println("Esta llena");
+			}
+			InsertarGasto();
+			System.out.println("El Tamaño de la lista: " + ListaGastos.getColeccion().size());
 			break;
 		
 		case 27:	//exit
@@ -276,30 +260,14 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 
 		
 		case 427:	// + 
-			InsertarGasto();
-			persistir.persistirGastos(ListaGastos);
 			
-			System.out.println("Boton de persistencia!!");
-//			Properties properties = new Properties();
-//			try {
-//				System.out.println("guardando....");
-//				properties.load(new FileInputStream("tareas.database"));
-//				properties.setProperty("campo1", detText);
-//				properties.setProperty("campo2", canText);
-//				properties.setProperty("campo3", uniText);
-//				properties.setProperty("campo4", monText);
-//				
-//				
-//				properties.store(new FileOutputStream("tareas.database"), null);
-//				
-//			} catch (FileNotFoundException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-					
+			
+				persistir.guardarGastos2(ListaGastos);
+				System.out.println("Boton de persistencia!!");
+			
+			
+			
+	
 			break;		
 						
 		default: {	// do nothing
