@@ -55,11 +55,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaCantidad;
 	private HSinglelineEntry cajaUnitario;
 	private HSinglelineEntry cajaMonto;
-	// arreglo de tareas
-	// Funcion vieja
-	//	private Tarea[] arregloTareas;
-	// Contador de tareas
-	public static int contador= 0;
 	private Persistir persistir = new Persistir();
 	// Coleccion de gastos en memoria
 	private ColeccionGastos ListaGastos = new ColeccionGastos();
@@ -70,17 +65,12 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private String aux2;
 	private float precioUnitario;
 	private float total = 0;
-//	private HashMap<String, List<Tarea>> gastos = new HashMap();
 	
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
 		
 		ListaGastos = persistir.LeerGastos();
-		
-// 		funcion vieja		
-	//	arregloTareas = persistir.LeerTareaGastos();
-		
 		
 		 //cajas de texto
 	    cajaDetalle = new HSinglelineEntry("", 40, 290, 194, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
@@ -151,9 +141,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		this.add(cajaUnitario);
 		this.add(cajaMonto);		
 		
-		//cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-		//loadForegroundBitmap(); 
-	       
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
 				
@@ -165,11 +152,11 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		switch(ContenedorKeyboard.navegadorTextGastos){
 		
 		case 0:	cajaDetalle.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);				
-			//	System.out.println(cajaDetalle.getContent(HState.ALL_STATES));
+			
 			break;
 			
 		case 1: cajaCantidad.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
-			//	System.out.println(cajaCantidad.getContent(HState.ALL_STATES));
+			
 			break;
 			
 		case 2: cajaUnitario.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);
@@ -239,13 +226,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 406: // Boton Azul
-			if (ListaGastos.getColeccion().isEmpty()){
-				System.out.println(" Esta Vacia");
-			}else{
-				System.out.println("Esta llena");
-			}
-			InsertarGasto();
-			System.out.println("El Tamaño de la lista: " + ListaGastos.getColeccion().size());
+			
 			break;
 		
 		case 27:	//exit
@@ -255,19 +236,14 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			this.repaint();
-			
+			persistir.guardarGastos(ListaGastos);
+			System.out.println("Boton de persistencia!!");
+		
 			break;	
 
 		
 		case 427:	// + 
-			
-			
-				persistir.guardarGastos(ListaGastos);
-				System.out.println("Boton de persistencia!!");
-			
-			
-			
-	
+				
 			break;		
 						
 		default: {	// do nothing
@@ -277,6 +253,21 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		}
 						
 		}
+	}
+	public void seVaElTeclado(){
+		if (ListaGastos.getColeccion().isEmpty()){
+			System.out.println(" Esta Vacia");
+		}else{
+			System.out.println("Esta llena");
+		}
+		
+		Gasto a = new Gasto(cajaDetalle.getTextContent(HState.ALL_STATES), cajaCantidad.getTextContent(HState.ALL_STATES), cajaUnitario.getTextContent(HState.ALL_STATES), String.valueOf(total));
+		ListaGastos.agregarGasto(a);
+//		monText = String.valueOf(total);
+//		InsertarGasto();
+		System.out.println("El Tamaño de la lista: " + ListaGastos.getColeccion().size());
+		
+		LimpiarCajas();
 	}
 	
 	private void LimpiarCajas(){
@@ -291,7 +282,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		total = 0;
 		
 	}
-	
+	// Si el string es un numero valido devuelve true, de lo contrario devuelve false
 	private boolean esNumero(String s){
 		try{
 			Long.parseLong(s);
@@ -304,32 +295,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	// Ingresa una neuva tarea al arreglo de tareas.
 	private void InsertarGasto(){
 		Gasto a = new Gasto(detText, canText, uniText, monText);
-		ListaGastos.agregarGasto(a);
-		
-//		int cont = contador;
-//		System.out.println("Insertar Tarea en el arreglo");
-//		System.out.println(contador);
-//		// Lo inserta al principio del arreglo
-//		while (cont > 0){
-//			
-//			arregloTareas[cont] = arregloTareas[cont-1];
-//			cont--;
-//		}
-//		System.out.println(detText);
-//		System.out.println(canText);
-//		System.out.println(uniText);
-//		System.out.println(monText);
-//		Tarea T = new Tarea(detText, canText, uniText, monText);
-//		arregloTareas[0] = T;
-//		
-//		System.out.println("Lo que guardo en el arreglo:");
-//		System.out.println(arregloTareas[0].getDetalle());
-//		System.out.println(arregloTareas[0].getCantidad());
-//		System.out.println(arregloTareas[0].getUnitario());
-//		System.out.println(arregloTareas[0].getMonto());
-//				
-//		pepe.put(key, value)
-	
+		ListaGastos.agregarGasto(a);		
+
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -374,54 +341,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	public String getMonText() {
 		return monText;
 	}
-	
-
-//	Properties properties = new Properties();
-//	
-//	//File file = new File ("tareas_"+ContenedorTasks.CONTADOR+".database");
-////	try {
-////		file.createNewFile();
-////	} catch (IOException e1) {
-////		// TODO Auto-generated catch block
-////		e1.printStackTrace();
-////	}
-//
-//	
-//	try {
-//		properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"),null);
-//	} catch (FileNotFoundException e1) {
-//		// TODO Auto-generated catch block
-//		e1.printStackTrace();
-//	} catch (IOException e1) {
-//		// TODO Auto-generated catch block
-//		e1.printStackTrace();
-//	}
-//	
-//	try {
-//		System.out.println("guardando....");
-//		properties.load(new FileInputStream("tareas_"+ContenedorTasks.CONTADOR+".database"));
-//		properties.setProperty("campo1", getDetalleText());
-//		properties.setProperty("campo2", getCantidadText());
-//		properties.setProperty("campo3",  getPrecioText());
-//
-//		properties.store(new FileOutputStream("tareas_"+ContenedorTasks.CONTADOR+".database"), null);
-//		
-//	} catch (FileNotFoundException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	} catch (IOException e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}
-//	
-//	detalleCompra.setText("");
-//	cantidadCompra.setText("");
-//	precioCompra.setText("");
-//	
-//	ContenedorTasks.CONTADOR++;
-//	break;	
-//
-
 
 	
 }

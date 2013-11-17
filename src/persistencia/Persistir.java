@@ -120,8 +120,8 @@ public class Persistir {
  		 FileWriter fichero = null;
          PrintWriter pw = null;
          try
-         {
-             fichero = new FileWriter("Gastos2.txt", true);
+         { // Si hacemos "fichero = new FileWriter("Gastos2.txt", true);" escribe al final del archivo
+             fichero = new FileWriter("Gastos2.txt");
              pw = new PrintWriter(fichero);
              
              for( cont=0; cont < lista.getColeccion().size() ; cont++){

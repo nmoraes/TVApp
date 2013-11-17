@@ -72,13 +72,10 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			break;
 		case Constant.GASTOS:
 			System.out.println("cerrar teclado en gastos");
+			MainXlet.gas.seVaElTeclado();
 			MainXlet.gas.requestFocus();
+			message = "";
 			
-			if (navegadorTextGastos == 2){
-				navegadorTextGastos = 0;
-				MainXlet.gas.setUniText(message);
-				message = "";	
-			}
 			break;
 		case Constant.CONTENEDOR_TWITTER:
 			System.out.println("cerrar teclado en twitter");
@@ -199,18 +196,15 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 				switch(navegadorTextGastos){
 					
 				case 0:	navegadorTextGastos = 1;
-						MainXlet.gas.setDetText(message);
 						message = "";
 					break;
 					
 				case 1: navegadorTextGastos = 2;
-						MainXlet.gas.setCanText(message);
 						message = "";
 				
 					break;
 					
 				case 2: navegadorTextGastos = 0;
-						MainXlet.gas.setUniText(message);
 						message = "";		
 					break;
 				}
