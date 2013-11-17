@@ -12,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,15 +53,15 @@ public class Persistir {
  	public ColeccionGastos LeerGastos(){
 		
  		ColeccionGastos listaGastos =new ColeccionGastos();
- 		SimpleDateFormat formatoDelTexto = new SimpleDateFormat("dow mon dd hh:mm:ss zzz yyyy");
+ 		DateFormat formatoDelTexto = new SimpleDateFormat("dd-MMM-yy");
  		Date fecha = null;
  		Boolean LlegoAlFinal = false; 	
  		String lineaLeida = "";
- 		
+ 		System.out.println("Hasta aca llego");
  		FileReader archivo;
  		archivo = null;
  		try {
-			archivo = new FileReader("Gastos.txt");
+			archivo = new FileReader("Gastos2.txt");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -89,12 +90,12 @@ public class Persistir {
 					Gasto a = new Gasto(separador[0], separador[1], separador[2], separador[3]);
 					
 					try {
-						fecha = formatoDelTexto.parse(separador[4]);
+						fecha = (Date)formatoDelTexto.parse(separador[4]);
 						} catch (ParseException ex) {
 						ex.printStackTrace();
 						}
 					a.setFecha(fecha);
-					
+					System.out.println(separador[0] + separador[1] + separador[2] + separador[3] + separador[4]);
 					listaGastos.agregarGasto(a);
 				}
 			}
@@ -111,9 +112,11 @@ public class Persistir {
 		return listaGastos;
 	}
  	
- 	public void guardarGastos2(ColeccionGastos lista){
+ 	public void guardarGastos(ColeccionGastos lista){
  		 String lineaParaEscribir = new String(" "); 
  		 int cont;
+ 		 SimpleDateFormat formato = new SimpleDateFormat("dd-MMM-yy");
+ 		 String fecha = new String(" "); 
  		 FileWriter fichero = null;
          PrintWriter pw = null;
          try
@@ -123,7 +126,8 @@ public class Persistir {
              
              for( cont=0; cont < lista.getColeccion().size() ; cont++){
  				System.out.println("ENTRO AL for");
- 				lineaParaEscribir =	new String(lista.getColeccion().get(cont).getDetalle() + ";" + lista.getColeccion().get(cont).getCantidad() + ";" + lista.getColeccion().get(cont).getUnitario() + ";" + lista.getColeccion().get(cont).getMonto() + ";" + lista.getColeccion().get(cont).getFecha().toString() +";");				
+ 				fecha = formato.format(lista.getColeccion().get(cont).getFecha());
+ 				lineaParaEscribir =	new String(lista.getColeccion().get(cont).getDetalle() + ";" + lista.getColeccion().get(cont).getCantidad() + ";" + lista.getColeccion().get(cont).getUnitario() + ";" + lista.getColeccion().get(cont).getMonto() + ";" + fecha +";");				
  				System.out.println(lineaParaEscribir);
                 pw.println(lineaParaEscribir);
              }
@@ -141,69 +145,6 @@ public class Persistir {
             }
          }
  	}
- 	 public void guardarGastos(ColeccionGastos lista) throws IOException {
-         BufferedWriter escritor = null;
-         String lineaParaEscribir = "";
- 		 int cont;
- 		 
- 		for( cont=0; cont < lista.getColeccion().size() ; cont++){
-				System.out.println("ENTRO AL for");
-			lineaParaEscribir =	new String(lista.getColeccion().get(cont).getDetalle() + ";" + lista.getColeccion().get(cont).getCantidad() + ";" + lista.getColeccion().get(cont).getUnitario() + ";" + lista.getColeccion().get(cont).getMonto() + ";" + lista.getColeccion().get(cont).getFecha().toString() +";");				
-			System.out.println(lineaParaEscribir);
-			try {
-				System.out.println("Entro a escribir");
-  //           FileInputStream ficheroProp = new FileInputStream("src/diccionarioPredictivo/config/parametros.properties");
-  //           prop.load(ficheroProp);
-				File archivo = new File("Gastos2.txt");
-				escritor = new BufferedWriter(new FileWriter(archivo, true)); //true es para sobreescribir el original si existe, sino lo crea
-				escritor.write("\r\n" + lineaParaEscribir.toLowerCase()); //en Windows el salto de linea es con \r\n
-				} catch (IOException e) {
-					throw new IOException("Error al escribir la palabra en el archivo de texto.");
-				} finally {
-					escritor.close();
-				}
- 			}
- 		}
  	
- 	public void persistirGastos(ColeccionGastos lista){
- 		String lineaParaEscribir = "";
-		int cont;
-		FileWriter archivo;
-	 	archivo = null;
-		System.out.println("**Entro a persistencia");
-	  	 	 	 		
- 		try {
-			archivo = new FileWriter("Gastos.txt");
-			} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
- 		BufferedWriter escritor = new BufferedWriter(archivo);
- 
- 		for( cont=0; cont < lista.getColeccion().size() ; cont++){
- 				System.out.println("ENTRO AL for");
- 			lineaParaEscribir =	new String(lista.getColeccion().get(cont).getDetalle() + ";" + lista.getColeccion().get(cont).getCantidad() + ";" + lista.getColeccion().get(cont).getUnitario() + ";" + lista.getColeccion().get(cont).getMonto() + ";" + lista.getColeccion().get(cont).getFecha().toString() +";");				
- 			System.out.println(lineaParaEscribir);
- 			// /r/n para el salto de linea
- 							
- 				try{
- 					System.out.println("****ENTRO A ESCRIBIR");
- 					escritor.write(lineaParaEscribir);
- 					//escritor.newLine();
- 					} catch (IOException err){
- 					System.out.print("Fallo");
- 					}
- 				
- 			} 		
- 			
- 			try {
- 				archivo.close();
- 			} catch (IOException err) {
- 				// TODO Auto-generated catch block
- 				err.printStackTrace();
- 			}
- 					
-		
- 	}
-	
 }
+ 	

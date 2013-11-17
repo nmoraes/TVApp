@@ -76,7 +76,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
 		
-	//	ListaGastos = persistir.LeerGastos();
+		ListaGastos = persistir.LeerGastos();
 		
 // 		funcion vieja		
 	//	arregloTareas = persistir.LeerTareaGastos();
@@ -262,7 +262,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		case 427:	// + 
 			
 			
-				persistir.guardarGastos2(ListaGastos);
+				persistir.guardarGastos(ListaGastos);
 				System.out.println("Boton de persistencia!!");
 			
 			
