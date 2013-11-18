@@ -9,6 +9,7 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.havi.ui.HContainer;
@@ -38,18 +39,23 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
     private Image image;
 	
     private String timeline;
+
+    private ArrayList <String>array= new ArrayList <String>();
+    
     public static boolean escribir = false;
 
+	@SuppressWarnings("unchecked")
 	public ContenedorTwitter() {
 
 		tweet="";
-		timeline=obtenerTweets();
-		hstTexto = new HStaticText(timeline);
-		hstTexto.setFont(new Font("Tiresias", 0, 14));
+		//timeline=obtenerTweets();
+		array=obtenerTweets();
+		//hstTexto = new HStaticText(timeline);
+		//hstTexto.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(100, 350, 400, 200);
-		hstTexto.setBackground(Color.white);
-		this.add(hstTexto);
+		//hstTexto.setBounds(100, 350, 400, 200);
+		//hstTexto.setBackground(Color.white);
+		//this.add(hstTexto);
 		nuevoTweet = new HStaticText("Rojo para escribir nuevo tweet");
 		nuevoTweet.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
@@ -59,7 +65,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		// mi tamaño y posición x,y,x,y
 		loadForegroundBitmap();
 		
-		this.setBounds(0, 0, 300, 700);
+		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 	}
 	
@@ -74,6 +80,11 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			timeline="";
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
+			array.set(0, "");
+			array.set(1, "");
+			array.set(2, "");
+			array.set(3, "");
+			array.set(4, "");
 			
 			break;
 		case 27:
@@ -82,7 +93,8 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			ContenedorYellow.conTwitter.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
-			hstTexto.setTextContent("otro texto", HState.ALL_STATES);
+//			hstTexto.setTextContent("otro texto", HState.ALL_STATES);
+			array=obtenerTweets();
 			this.repaint();
 			break;
 			
@@ -98,17 +110,20 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 
 	}
 
-	private String obtenerTweets() {
+	private ArrayList obtenerTweets() {
 		FachadaTwitter ft = new FachadaTwitter();
 		List lista = ft.getHomeTimeLine();
-		StringBuilder tl = new StringBuilder();
+		//StringBuilder tl = new StringBuilder();
 		for (int i = 0; i < 5; i++) {
 			Tweet tweet = (Tweet) lista.get(i);
-			tl.append(tweet.getUsuario() + ": " + tweet.getMensaje()+"\n");
+			
+			String tw=tweet.getUsuario() + ": " + tweet.getMensaje();
+			//tl.append(tweet.getUsuario() + ": " + tweet.getMensaje()+"\n");
+			array.add(i, tw);
 		}
 	//	StringBuilder tl=new StringBuilder("Applesfera: La Estrella de la Muerte no se construirß sola: Star Wars Tiny Death \n Star ya disponible para iOS http://t.co/whohFXg8tf \n Chanchos del Uruguay: RT @becapablo: @chanchosUY RADAR en propios antes de la ca\nncha de la luz. Te esperan mas adelante para darte el regalito.\nCiencia y TecnologÝa: #Tecnologia 18 meses de cßrcel para el due±o de la web de\nenlaces http://t.co/HCOpmFVFOH http://t.co/2KoQlxsIQV \nCiencia y TecnologÝa: #Ciencia El 'gran hermano' de los osos polares http://t.co/jmu4WhNAED \nChanchos del Uruguay: RT @gcsuburu: @chanchosUY Multiple choque en Rambla portua\nria frente a Torre de Antel. Camineravy patrulkero. Semßforo siguiente un caos");		
 		//System.out.println(tl);
-		return tl.toString();
+		return array;
 
 	}
 //	public void escribirTweet(){
@@ -159,7 +174,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	 public void paint(Graphics graphics) {   
 		   
 	        // Get the size of this component so that we can clear it properly.   
-	        //Dimension size = getSize();   
+	      //  Dimension size = getSize();   
 	   
 	       // graphics.setColor(Color.white);
 	        
@@ -171,20 +186,32 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	        	
 	            // Draw the image from the buffer   
 	            graphics.drawImage(image, 5, 190, null);      
+	            
+	            
+	            
+	            
 	        	 } 
 	    
 	        
-	        // Once we've drawn the image, we can draw the message on top of it.   
-	   
-	        // Set the font to be the default MHP font.   
-	        graphics.setFont(new Font("Tiresias", Font.BOLD, 15));   
-	        // Set the text colour   
-	        graphics.setColor(Color.RED);
+
 	        
 
 		try {
 
-			graphics.drawString(timeline, 12, 200);
+		//	graphics.drawString(timeline, 12, 200);
+			//System.out.println(timeline);
+		//	int length= timeline.length();
+			
+		     graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));   
+		        // Set the text colour   
+		        graphics.setColor(Color.white);
+			
+			graphics.drawString(array.get(0), 12, 300);
+			graphics.drawString(array.get(1), 12, 315);
+			graphics.drawString(array.get(2), 12, 330);
+			graphics.drawString(array.get(3), 12, 345);
+			graphics.drawString(array.get(4), 12, 360);
+			
 			graphics.setColor(Color.black);
 
 			if (image != null && escribir == true) {
@@ -198,6 +225,18 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		}
 	}
 	
+	 
+//	 
+//	 private String prepararTimeline(String timeline){
+//		 
+//		 String aux=timeline.substring(0, 40);
+//		 String aux=timeline.substring(41, 80);
+//		 String aux=timeline.substring(81, 100)
+//				 ;
+//		 
+//		 timeline.spli
+//	 return "";
+//	 }
 	
 	
 
