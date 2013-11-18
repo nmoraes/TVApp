@@ -464,6 +464,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
             
             graphics.setFont(new Font("Tiresias", Font.PLAIN, 14));
             graphics.drawString(message2,12,152); 
+            
+            graphics.setFont(new Font("Tiresias", Font.BOLD, 14));
+            graphics.drawString("Amarillo: twitter/Calculadora",404, 280);
+            graphics.drawString("Verde: tareas",404, 295);
+            graphics.drawString(" <-     : weather",404, 310);
+         
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
             t.printStackTrace();   
