@@ -52,64 +52,65 @@ public class Persistir {
 
  	public ColeccionGastos LeerGastos(){
 		
- 		ColeccionGastos listaGastos =new ColeccionGastos();
- 		DateFormat formatoDelTexto = new SimpleDateFormat("dd-MMM-yy");
- 		Date fecha = null;
- 		Boolean LlegoAlFinal = false; 	
- 		String lineaLeida = "";
- 		System.out.println("Hasta aca llego");
- 		FileReader archivo;
- 		archivo = null;
- 		try {
-			archivo = new FileReader("Gastos2.txt");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		BufferedReader lector = new BufferedReader(archivo);
-		
-				
-		while(!(LlegoAlFinal)){
-						
-			try{
-				lineaLeida = lector.readLine();
-			} catch (IOException err){
-				
-			}
-		
-			if (lineaLeida == null){
-				LlegoAlFinal = true;
-			}else{
-				
-				String[] separador;
-				separador = lineaLeida.split(";");
-				//Si los datos fueron cargador de forma correcta entonces los agrega al arreglo, si no sigue en busca de datos bien cargados 
-				if (separador.length == 5){
-					
-					Gasto a = new Gasto(separador[0], separador[1], separador[2], separador[3]);
-					
-					try {
-						fecha = (Date)formatoDelTexto.parse(separador[4]);
-						} catch (ParseException ex) {
-						ex.printStackTrace();
-						}
-					a.setFecha(fecha);
-					System.out.println(separador[0] + separador[1] + separador[2] + separador[3] + separador[4]);
-					listaGastos.agregarGasto(a);
-				}
-			}
-		}
-		
-		try {
-			archivo.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		// El valor de tareas que se cargaron en el arreglo
-		
-		return listaGastos;
+// 		ColeccionGastos listaGastos =new ColeccionGastos();
+// 		DateFormat formatoDelTexto = new SimpleDateFormat("dd-MMM-yy");
+// 		Date fecha = null;
+// 		Boolean LlegoAlFinal = false; 	
+// 		String lineaLeida = "";
+// 		System.out.println("Hasta aca llego");
+// 		FileReader archivo;
+// 		archivo = null;
+// 		try {
+//			archivo = new FileReader("Gastos2.txt");
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		BufferedReader lector = new BufferedReader(archivo);
+//		
+//				
+//		while(!(LlegoAlFinal)){
+//						
+//			try{
+//				lineaLeida = lector.readLine();
+//			} catch (IOException err){
+//				
+//			}
+//		
+//			if (lineaLeida == null){
+//				LlegoAlFinal = true;
+//			}else{
+//				
+//				String[] separador;
+//				separador = lineaLeida.split(";");
+//				//Si los datos fueron cargador de forma correcta entonces los agrega al arreglo, si no sigue en busca de datos bien cargados 
+//				if (separador.length == 5){
+//					
+//					Gasto a = new Gasto(separador[0], separador[1], separador[2], separador[3]);
+//					
+//					try {
+//						fecha = (Date)formatoDelTexto.parse(separador[4]);
+//						} catch (ParseException ex) {
+//						ex.printStackTrace();
+//						}
+//					a.setFecha(fecha);
+//					System.out.println(separador[0] + separador[1] + separador[2] + separador[3] + separador[4]);
+//					listaGastos.agregarGasto(a);
+//				}
+//			}
+//		}
+//		
+//		try {
+//			archivo.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		// El valor de tareas que se cargaron en el arreglo
+//		
+		//return listaGastos;
+ 		return null;
 	}
  	
  	public void guardarGastos(ColeccionGastos lista){
