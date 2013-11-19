@@ -57,7 +57,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaMonto;
 	private Persistir persistir = new Persistir();
 	// Coleccion de gastos en memoria
-	private ColeccionGastos ListaGastos = new ColeccionGastos();
+	public ColeccionGastos ListaGastos = new ColeccionGastos();
 	
 	// Variables para hacer que el monto aparesca a partir de la cantidad X precioUnitario
 	private float cantidad;

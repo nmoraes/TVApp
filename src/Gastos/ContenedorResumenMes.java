@@ -4,9 +4,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Date;
+
 import javax.swing.JTextField;
+
 import org.havi.ui.HContainer;
+import org.havi.ui.HSinglelineEntry;
+import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
+import org.havi.ui.HVisible;
+
 import mainXlet.*;
 
 public class ContenedorResumenMes extends HContainer implements KeyListener {
@@ -16,30 +24,39 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 		HStaticText titulo = new HStaticText ("detalle                                  cant  unit.  monto");
 		HStaticText titulo2 = new HStaticText ("Resumen Mes");
 		HStaticText titulo3 = new HStaticText ("Resumen Año");
-		JTextField detalle1 = new JTextField(20); JTextField cantidad1 = new JTextField(20); JTextField unitario1 = new JTextField(20);
-		JTextField detalle2 = new JTextField(20); JTextField cantidad2 = new JTextField(20); JTextField unitario2 = new JTextField(20);
-		JTextField detalle3 = new JTextField(20); JTextField cantidad3 = new JTextField(20); JTextField unitario3 = new JTextField(20);
-		JTextField detalle4 = new JTextField(20); JTextField cantidad4 = new JTextField(20); JTextField unitario4 = new JTextField(20);
-		JTextField detalle5 = new JTextField(20); JTextField cantidad5 = new JTextField(20); JTextField unitario5 = new JTextField(20);
-		JTextField detalle6 = new JTextField(20); JTextField cantidad6 = new JTextField(20); JTextField unitario6 = new JTextField(20);
-		JTextField detalle7 = new JTextField(20); JTextField cantidad7 = new JTextField(20); JTextField unitario7 = new JTextField(20);
-		JTextField detalle8 = new JTextField(20); JTextField cantidad8 = new JTextField(20); JTextField unitario8 = new JTextField(20);
-		JTextField detalle9 = new JTextField(20); JTextField cantidad9 = new JTextField(20); JTextField unitario9 = new JTextField(20);
+		HSinglelineEntry detalle1; HSinglelineEntry cantidad1; HSinglelineEntry unitario1;
+		HSinglelineEntry detalle2; HSinglelineEntry cantidad2; HSinglelineEntry unitario2;
+		HSinglelineEntry detalle3; HSinglelineEntry cantidad3; HSinglelineEntry unitario3;
+		HSinglelineEntry detalle4; HSinglelineEntry cantidad4; HSinglelineEntry unitario4;
+		HSinglelineEntry detalle5; HSinglelineEntry cantidad5; HSinglelineEntry unitario5;
+		HSinglelineEntry detalle6; HSinglelineEntry cantidad6; HSinglelineEntry unitario6;
+		HSinglelineEntry detalle7; HSinglelineEntry cantidad7; HSinglelineEntry unitario7;
+		HSinglelineEntry detalle8; HSinglelineEntry cantidad8; HSinglelineEntry unitario8;
+		HSinglelineEntry detalle9; HSinglelineEntry cantidad9; HSinglelineEntry unitario9;
 		
-		JTextField monto1 = new JTextField(20);
-		JTextField monto2 = new JTextField(20);
-		JTextField monto3 = new JTextField(20);
-		JTextField monto4 = new JTextField(20);
-		JTextField monto5 = new JTextField(20);
-		JTextField monto6 = new JTextField(20);
-		JTextField monto7 = new JTextField(20);
-		JTextField monto8 = new JTextField(20);
-		JTextField monto9 = new JTextField(20);
+		HSinglelineEntry monto1;
+		HSinglelineEntry monto2;
+		HSinglelineEntry monto3;
+		HSinglelineEntry monto4;
+		HSinglelineEntry monto5;
+		HSinglelineEntry monto6;
+		HSinglelineEntry monto7;
+		HSinglelineEntry monto8;
+		HSinglelineEntry monto9;
 
-	
+		private HSinglelineEntry cajaDetalle;
 	
 public ContenedorResumenMes () {
 		
+	System.out.println("Arranca el contenedor gastos mes");
+	cajaDetalle = new HSinglelineEntry("", 40, 290, 194, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+//   	cajaDetalle.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
+//   	cajaDetalle.setBackground(Color.white);
+//  	cajaDetalle.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
+//  	cajaDetalle.setHorizontalAlignment(HVisible.HALIGN_CENTER);
+//  	cajaDetalle.setEditMode(true);
+//  	cajaDetalle.setCaretCharPosition(1);
+//  	this.add(cajaDetalle);
 		// Tipo de letra
 		titulo.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titulo2.setFont( new Font ("Tiresias", Font.BOLD, 20));
@@ -60,45 +77,93 @@ public ContenedorResumenMes () {
 		this.add(titulo3);
 		
 		// prueba de textfield
-		detalle1.setBounds(50, 100, 240, 20); detalle1.setBackground(Color.white); this.add(detalle1);
-		detalle2.setBounds(50, 120, 240, 20); detalle2.setBackground(Color.white); this.add(detalle2);
-		detalle3.setBounds(50, 140, 240, 20); detalle3.setBackground(Color.white); this.add(detalle3);
-		detalle4.setBounds(50, 160, 240, 20); detalle4.setBackground(Color.white); this.add(detalle4);
-		detalle5.setBounds(50, 180, 240, 20); detalle5.setBackground(Color.white); this.add(detalle5);
-		detalle6.setBounds(50, 200, 240, 20); detalle6.setBackground(Color.white); this.add(detalle6);
-		detalle7.setBounds(50, 220, 240, 20); detalle7.setBackground(Color.white); this.add(detalle7);
-		detalle8.setBounds(50, 240, 240, 20); detalle8.setBackground(Color.white); this.add(detalle8);
-		detalle9.setBounds(50, 260, 240, 20); detalle9.setBackground(Color.white); this.add(detalle9);
+		detalle1 = new HSinglelineEntry("", 50, 100, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle1.setBackground(Color.white); this.add(detalle1);
+		detalle2 = new HSinglelineEntry("", 50, 120, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle2.setBackground(Color.white); this.add(detalle2);
+		detalle3 = new HSinglelineEntry("", 50, 140, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle3.setBackground(Color.white); this.add(detalle3);
+		detalle4 = new HSinglelineEntry("", 50, 160, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle4.setBackground(Color.white); this.add(detalle4);
+		detalle5 = new HSinglelineEntry("", 50, 180, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle5.setBackground(Color.white); this.add(detalle5);
+		detalle6 = new HSinglelineEntry("", 50, 200, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle6.setBackground(Color.white); this.add(detalle6);
+		detalle7 = new HSinglelineEntry("", 50, 220, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle7.setBackground(Color.white); this.add(detalle7);
+		detalle8 = new HSinglelineEntry("", 50, 240, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle8.setBackground(Color.white); this.add(detalle8);
+		detalle9 = new HSinglelineEntry("", 50, 260, 240, 20, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue); detalle9.setBackground(Color.white); this.add(detalle9);
 		
-		cantidad1.setBounds(290, 100, 45, 20); cantidad1.setBackground(Color.white); this.add(cantidad1);
-		cantidad2.setBounds(290, 120, 45, 20); cantidad2.setBackground(Color.white); this.add(cantidad2);
-		cantidad3.setBounds(290, 140, 45, 20); cantidad3.setBackground(Color.white); this.add(cantidad3);
-		cantidad4.setBounds(290, 160, 45, 20); cantidad4.setBackground(Color.white); this.add(cantidad4);
-		cantidad5.setBounds(290, 180, 45, 20); cantidad5.setBackground(Color.white); this.add(cantidad5);
-		cantidad6.setBounds(290, 200, 45, 20); cantidad6.setBackground(Color.white); this.add(cantidad6);
-		cantidad7.setBounds(290, 220, 45, 20); cantidad7.setBackground(Color.white); this.add(cantidad7);
-		cantidad8.setBounds(290, 240, 45, 20); cantidad8.setBackground(Color.white); this.add(cantidad8);
-		cantidad9.setBounds(290, 260, 45, 20); cantidad9.setBackground(Color.white); this.add(cantidad9);
+		cantidad1 = new HSinglelineEntry("", 290, 100, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad1.setBackground(Color.white); this.add(cantidad1);
+		cantidad2 = new HSinglelineEntry("", 290, 120, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad2.setBackground(Color.white); this.add(cantidad2);
+		cantidad3 = new HSinglelineEntry("", 290, 140, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad3.setBackground(Color.white); this.add(cantidad3);
+		cantidad4 = new HSinglelineEntry("", 290, 160, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad4.setBackground(Color.white); this.add(cantidad4);
+		cantidad5 = new HSinglelineEntry("", 290, 180, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad5.setBackground(Color.white); this.add(cantidad5);
+		cantidad6 = new HSinglelineEntry("", 290, 200, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad6.setBackground(Color.white); this.add(cantidad6);
+		cantidad7 = new HSinglelineEntry("", 290, 220, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad7.setBackground(Color.white); this.add(cantidad7);
+		cantidad8 = new HSinglelineEntry("", 290, 240, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad8.setBackground(Color.white); this.add(cantidad8);
+		cantidad9 = new HSinglelineEntry("", 290, 260, 45, 20, 4, new Font("Tiresias", Font.BOLD, 22), Color.blue); cantidad9.setBackground(Color.white); this.add(cantidad9);
 		
-		unitario1.setBounds(335, 100, 45, 20); unitario1.setBackground(Color.white); this.add(unitario1);
-		unitario2.setBounds(335, 120, 45, 20); unitario2.setBackground(Color.white); this.add(unitario2);
-		unitario3.setBounds(335, 140, 45, 20); unitario3.setBackground(Color.white); this.add(unitario3);
-		unitario4.setBounds(335, 160, 45, 20); unitario4.setBackground(Color.white); this.add(unitario4);
-		unitario5.setBounds(335, 180, 45, 20); unitario5.setBackground(Color.white); this.add(unitario5);
-		unitario6.setBounds(335, 200, 45, 20); unitario6.setBackground(Color.white); this.add(unitario6);
-		unitario7.setBounds(335, 220, 45, 20); unitario7.setBackground(Color.white); this.add(unitario7);
-		unitario8.setBounds(335, 240, 45, 20); unitario8.setBackground(Color.white); this.add(unitario8);
-		unitario9.setBounds(335, 260, 45, 20); unitario9.setBackground(Color.white); this.add(unitario9);
+		unitario1 = new HSinglelineEntry("", 335, 100, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario1.setBackground(Color.white); this.add(unitario1);
+		unitario2 = new HSinglelineEntry("", 335, 120, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario2.setBackground(Color.white); this.add(unitario2);
+		unitario3 = new HSinglelineEntry("", 335, 140, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario3.setBackground(Color.white); this.add(unitario3);
+		unitario4 = new HSinglelineEntry("", 335, 160, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario4.setBackground(Color.white); this.add(unitario4);
+		unitario5 = new HSinglelineEntry("", 335, 180, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario5.setBackground(Color.white); this.add(unitario5);
+		unitario6 = new HSinglelineEntry("", 335, 200, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario6.setBackground(Color.white); this.add(unitario6);
+		unitario7 = new HSinglelineEntry("", 335, 220, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario7.setBackground(Color.white); this.add(unitario7);
+		unitario8 = new HSinglelineEntry("", 335, 240, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario8.setBackground(Color.white); this.add(unitario8);
+		unitario9 = new HSinglelineEntry("", 335, 260, 45, 20, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue); unitario9.setBackground(Color.white); this.add(unitario9);
 		
-		monto1.setBounds(380, 100, 65, 20); monto1.setBackground(Color.white); this.add(monto1);
-		monto2.setBounds(380, 120, 65, 20); monto2.setBackground(Color.white); this.add(monto2);
-		monto3.setBounds(380, 140, 65, 20); monto3.setBackground(Color.white); this.add(monto3);
-		monto4.setBounds(380, 160, 65, 20); monto4.setBackground(Color.white); this.add(monto4);
-		monto5.setBounds(380, 180, 65, 20); monto5.setBackground(Color.white); this.add(monto5);
-		monto6.setBounds(380, 200, 65, 20); monto6.setBackground(Color.white); this.add(monto6);
-		monto7.setBounds(380, 220, 65, 20); monto7.setBackground(Color.white); this.add(monto7);
-		monto8.setBounds(380, 240, 65, 20); monto8.setBackground(Color.white); this.add(monto8);
-		monto9.setBounds(380, 260, 65, 20); monto9.setBackground(Color.white); this.add(monto9);
+		monto1 = new HSinglelineEntry("", 380, 100, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto1.setBackground(Color.white); this.add(monto1);
+		monto2 = new HSinglelineEntry("", 380, 120, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto2.setBackground(Color.white); this.add(monto2);
+		monto3 = new HSinglelineEntry("", 380, 140, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto3.setBackground(Color.white); this.add(monto3);
+		monto4 = new HSinglelineEntry("", 380, 160, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto4.setBackground(Color.white); this.add(monto4);
+		monto5 = new HSinglelineEntry("", 380, 180, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto5.setBackground(Color.white); this.add(monto5);
+		monto6 = new HSinglelineEntry("", 380, 200, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto6.setBackground(Color.white); this.add(monto6);
+		monto7 = new HSinglelineEntry("", 380, 220, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto7.setBackground(Color.white); this.add(monto7);
+		monto8 = new HSinglelineEntry("", 380, 240, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto8.setBackground(Color.white); this.add(monto8);
+		monto9 = new HSinglelineEntry("", 380, 260, 65, 20, 7, new Font("Tiresias", Font.BOLD, 22), Color.blue); monto9.setBackground(Color.white); this.add(monto9);
+		
+		// Cargar la grilla
+		
+		int cont = 0;
+		Date d = new Date();
+		ArrayList<Gasto> listGastos = new ArrayList();
+		System.out.println("antes de devolver mes");
+		listGastos = MainXlet.gas.ListaGastos.devolverMes(d);
+		
+		if (listGastos.size() == 1){
+			System.out.println("entro en 1");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		}else if (listGastos.size() == 2){
+			System.out.println("entro en 2");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+			
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+		}else if (listGastos.size() == 3){
+			System.out.println("entro en 3");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+		}
+		
+//		for( cont=0; cont < listGastos.size() ; cont++){
+//			
+//			detalle1.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);	
+//			}
 		
 		
 		this.setBounds(0, 0, 800, 800);
@@ -113,15 +178,15 @@ public ContenedorResumenMes () {
 		switch (tecla.getKeyCode()){
 		
 		case 404: 	// Boton Verde
-			
+			// Grafica Año
 			break;
 
 		case 403: 	// Boton Rojo
-			
+			// Promedio Mes
 			break;
 		
 		case 405: 	// Boton Amarillo
-		
+			//Resumen Año
 			break;
 	
 		case 406: 	// Boton Azul

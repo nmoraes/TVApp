@@ -43,13 +43,5 @@ public ArrayList<Gasto>	devolverMes (Date mes){
 public ArrayList<Gasto> getColeccion() {
 	return coleccion;
 }
-
-
-
-
-
-
-
-
 	
 }
