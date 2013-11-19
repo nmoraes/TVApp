@@ -1,6 +1,10 @@
 package mainXlet;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -17,7 +21,7 @@ import calc.Calcu;
 
 public class ContenedorYellow extends HContainer implements KeyListener {
 	private int x = 0;
-	
+	private Image image;
 	HStaticText hstTexto;;
 	public static ContenedorTwitter conTwitter;
 	public static Base base = new Base();
@@ -30,7 +34,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 		// texto tamaño y posición x,y,x,y
 		texto.setBounds(100, 350, 400, 200);
 		texto.setBackground(Color.white);
-		this.add(texto);
+		//this.add(texto);
 		texto.setVisible(false);
 		Properties properties = new Properties();
 		try {
@@ -48,9 +52,10 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 		// texto tamaño y posición x,y,x,y
 		hstTexto.setBounds(x, 530, 720, 50);
 		hstTexto.setBackground(Color.yellow);
-		this.add(hstTexto);
+		//this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(0, 0, 800, 600);
+		loadForegroundBitmap();
 		this.addKeyListener(this);
 		
 	}
@@ -76,6 +81,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			MainXlet.scene.requestFocus();
 			texto.setVisible(false);
 			//this.repaint();
+			MainXlet.contYellow.setVisible(false);
 			break;
 			
 			
@@ -85,6 +91,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.AMARILLO;
 			texto.setVisible(false);
+			MainXlet.contYellow.setVisible(false);
 			break;
 		}
 		case 404:
@@ -94,6 +101,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			this.add(conTwitter);
 			conTwitter.requestFocus();
 			this.repaint();
+			MainXlet.contYellow.setVisible(false);
 			break;
 		case 405:
 			System.out.println("amarillo");
@@ -104,6 +112,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			calcu.setVisible(true);
 			calcu.requestFocus();
 			this.repaint();
+			MainXlet.contYellow.setVisible(true);
 			break;
 		default: {
 			// do nothing
@@ -122,6 +131,39 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+
+	}
+	public void loadForegroundBitmap() {
+		// Create a MediaTracker to tell us when the image has loaded
+		MediaTracker tracker = new MediaTracker(this);
+		// Then load the image
+		image = Toolkit.getDefaultToolkit().getImage("bg22.png");
+
+		// add the image to the MediaTracker...
+		tracker.addImage(image, 0);
+
+		// ...and wait for it to finish loading
+		try {
+			tracker.waitForAll();
+		} catch (InterruptedException e) {
+			// Ignore the exception, since there's not a lot we can do.
+			image = null;
+
+		}
+	}
+	public void paint(Graphics graphics) {
+
+		if (image != null) {
+			// Draw the image from the buffer
+			graphics.drawImage(image, 70, 200, null); //ubicacion de calculadora
+
+		}
+
+		graphics.setColor(Color.RED);
+		graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));
+
+		super.paint(graphics);
+
 
 	}
 }

@@ -35,7 +35,7 @@ public class Calcu extends HContainer implements KeyListener {
 	HSinglelineEntry pantalla;
 	String v1 = "";
 	String v2 = "";
-	long resultado = 0;
+	Double resultado = 0.0;
 	boolean estoyUsandoV1 = true;
 	boolean limpiar = false;
 	String operador = "";
@@ -254,8 +254,8 @@ public class Calcu extends HContainer implements KeyListener {
 				estoyUsandoV1 = false;
 				operador = "+";
 			} else {
-				long v1l = Long.valueOf(v1);
-				long v2l = Long.valueOf(v2);
+				Double v1l = Double.valueOf(v1.replace(",", "."));
+				Double v2l = Double.valueOf(v2.replace(",", "."));
 				System.out.println(v1l);
 				System.out.println(v2l);
 				System.out.println(resultado);
@@ -268,7 +268,8 @@ public class Calcu extends HContainer implements KeyListener {
 				if (operador == "/")
 					resultado = v1l / v2l;
 				operador = "+";
-				v1 = String.valueOf(resultado);
+				resultado=Math.rint(resultado*1000)/1000;
+				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
 				pantalla.setTextContent(String.valueOf(resultado),
@@ -284,8 +285,8 @@ public class Calcu extends HContainer implements KeyListener {
 				estoyUsandoV1 = false;
 				operador = "-";
 			} else {
-				long v1l = Long.valueOf(v1);
-				long v2l = Long.valueOf(v2);
+				Double v1l = Double.valueOf(v1.replace(",", "."));
+				Double v2l = Double.valueOf(v2.replace(",", "."));
 				System.out.println(v1l);
 				System.out.println(v2l);
 				System.out.println(resultado);
@@ -298,7 +299,8 @@ public class Calcu extends HContainer implements KeyListener {
 				if (operador == "/")
 					resultado = v1l / v2l;
 				operador = "-";
-				v1 = String.valueOf(resultado);
+				resultado=Math.rint(resultado*1000)/1000;
+				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
 				pantalla.setTextContent(String.valueOf(resultado),
@@ -315,8 +317,8 @@ public class Calcu extends HContainer implements KeyListener {
 				estoyUsandoV1 = false;
 				operador = "*";
 			} else {
-				long v1l = Long.valueOf(v1);
-				long v2l = Long.valueOf(v2);
+				Double v1l = Double.valueOf(v1.replace(",", "."));
+				Double v2l = Double.valueOf(v2.replace(",", "."));
 				System.out.println(v1l);
 				System.out.println(v2l);
 				System.out.println(resultado);
@@ -329,7 +331,8 @@ public class Calcu extends HContainer implements KeyListener {
 				if (operador == "/")
 					resultado = v1l / v2l;
 				operador = "*";
-				v1 = String.valueOf(resultado);
+				resultado=Math.rint(resultado*1000)/1000;
+				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
 				pantalla.setTextContent(String.valueOf(resultado),
@@ -345,8 +348,8 @@ public class Calcu extends HContainer implements KeyListener {
 				estoyUsandoV1 = false;
 				operador = "/";
 			} else {
-				long v1l = Long.valueOf(v1);
-				long v2l = Long.valueOf(v2);
+				Double v1l = Double.valueOf(v1.replace(",", "."));
+				Double v2l = Double.valueOf(v2.replace(",", "."));
 				System.out.println(v1l);
 				System.out.println(v2l);
 				System.out.println(resultado);
@@ -359,7 +362,8 @@ public class Calcu extends HContainer implements KeyListener {
 				if (operador == "/")
 					resultado = v1l / v2l;
 				operador = "/";
-				v1 = String.valueOf(resultado);
+				resultado=Math.rint(resultado*1000)/1000;
+				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
 				pantalla.setTextContent(String.valueOf(resultado),
@@ -384,12 +388,13 @@ public class Calcu extends HContainer implements KeyListener {
 			limpiar = false;
 			break;
 		case 10: // =
+			
 			limpiar = true;
 			pantalla.setTextContent(String.valueOf(""),
 					HState.ALL_STATES);
 			if (!estoyUsandoV1) {
-				long v1l = Long.valueOf(v1);
-				long v2l = Long.valueOf(v2);
+				Double v1l = Double.valueOf(v1.replace(",", "."));
+				Double v2l = Double.valueOf(v2.replace(",", "."));
 				System.out.println(v1l);
 				System.out.println(v2l);
 				System.out.println(resultado);
@@ -402,7 +407,8 @@ public class Calcu extends HContainer implements KeyListener {
 				if (operador == "/")
 					resultado = v1l / v2l;
 				operador = "";
-				v1 = String.valueOf(resultado);
+				resultado=Math.rint(resultado*1000)/1000;
+				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = true;
 				v2 = "";
 				pantalla.setTextContent(String.valueOf(resultado),

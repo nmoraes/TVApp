@@ -207,6 +207,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		scene.setVisible(true); 
 		
 		scene.add(contYellow);
+		contYellow.setVisible(false);
 		scene.setVisible(true);
         
 		//Calculadora
