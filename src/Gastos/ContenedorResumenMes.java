@@ -6,16 +6,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.swing.JTextField;
+import mainXlet.MainXlet;
 
 import org.havi.ui.HContainer;
 import org.havi.ui.HSinglelineEntry;
 import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
 import org.havi.ui.HVisible;
-
-import mainXlet.*;
 
 public class ContenedorResumenMes extends HContainer implements KeyListener {
 	
@@ -45,6 +44,7 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 		HSinglelineEntry monto9;
 
 		private HSinglelineEntry cajaTotal;
+		private int paginado = 0;
 	
 public ContenedorResumenMes () {
 		
@@ -142,6 +142,8 @@ public ContenedorResumenMes () {
 		
 		case 404: 	// Boton Verde
 			// Grafica Año
+			cargarGastos();
+			this.repaint();
 			break;
 
 		case 403: 	// Boton Rojo
@@ -157,6 +159,7 @@ public ContenedorResumenMes () {
 			MainXlet.mes.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
+			paginado = 0;
 			break;	
 						
 		case 27:	//exit
@@ -164,6 +167,7 @@ public ContenedorResumenMes () {
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+			paginado = 0;
 			break;	
 
 		default: {	// do nothing
@@ -186,22 +190,103 @@ public ContenedorResumenMes () {
 	}
 	
 	private void cargarGastos(){
-		int cont = 0;
-		
+				
 		Date d = new Date();
-		ArrayList<Gasto> listGastos = new ArrayList();
+		ArrayList<Gasto> listGastos = new ArrayList<Gasto>();
 		System.out.println("antes de devolver mes");
 		listGastos = MainXlet.gas.ListaGastos.devolverMes(d);
+				
+		List<Gasto> subListGastos = new ArrayList<Gasto>();
 		
-		if (listGastos.size() == 1){
+		
+		int tamanioLista =listGastos.size();
+		if (tamanioLista > 9){		
+			// Controlo q sea mayor a nueve
+			if (paginado == 0){
+				System.out.println("Aca se rompe");
+				subListGastos= listGastos.subList(0, 9);
+				System.out.println("Aca no llega");
+				paginado(subListGastos);
+				paginado = 1;
+				
+			}else if ((paginado == 1)&&(tamanioLista > 9)){
+				
+				subListGastos= listGastos.subList(10, 19);
+				paginado(subListGastos);
+				paginado = 2;
+				
+			}else if ((paginado == 2)&&(tamanioLista > 19)){
+				
+				subListGastos= listGastos.subList(20, 29);
+				paginado(subListGastos);
+				paginado = 0;
+				
+			}
+		}else{
+			paginado(listGastos);
+		}
+				
+	}
+	
+	private void paginado(List<Gasto> listGastos){
+		System.out.println("LLego al paginado");
+		switch (listGastos.size()){
+		
+		case 1:
+		
 			System.out.println("entro en 1");
+			// Agraga solo un gasto
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
 			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+			
+			// Limpia todas las demas filas
+			detalle2.setTextContent("", HState.ALL_STATES);	
+			cantidad2.setTextContent("", HState.ALL_STATES);	
+			unitario2.setTextContent("", HState.ALL_STATES);
+			monto2.setTextContent("", HState.ALL_STATES);	
+			
+			detalle3.setTextContent("", HState.ALL_STATES);	
+			cantidad3.setTextContent("", HState.ALL_STATES);	
+			unitario3.setTextContent("", HState.ALL_STATES);
+			monto3.setTextContent("", HState.ALL_STATES);	
+			
+			detalle4.setTextContent("", HState.ALL_STATES);	
+			cantidad4.setTextContent("", HState.ALL_STATES);	
+			unitario4.setTextContent("", HState.ALL_STATES);
+			monto4.setTextContent("", HState.ALL_STATES);	
+			
+			detalle5.setTextContent("", HState.ALL_STATES);	
+			cantidad5.setTextContent("", HState.ALL_STATES);	
+			unitario5.setTextContent("", HState.ALL_STATES);
+			monto5.setTextContent("", HState.ALL_STATES);	
+			
+			detalle6.setTextContent("", HState.ALL_STATES);	
+			cantidad6.setTextContent("", HState.ALL_STATES);	
+			unitario6.setTextContent("", HState.ALL_STATES);
+			monto6.setTextContent("", HState.ALL_STATES);	
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
 			cajaTotal.setTextContent(monto1.getTextContent(HState.ALL_STATES),HState.ALL_STATES);
-		}else if (listGastos.size() == 2){
-			System.out.println("entro en 2");
+		break;
+		
+		case 2:
+				System.out.println("entro en 2");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -212,10 +297,49 @@ public ContenedorResumenMes () {
 			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
 			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
 			
-			// HAcer la funcion para el total
+			// Limpia las demas filas
+			detalle3.setTextContent("", HState.ALL_STATES);	
+			cantidad3.setTextContent("", HState.ALL_STATES);	
+			unitario3.setTextContent("", HState.ALL_STATES);
+			monto3.setTextContent("", HState.ALL_STATES);	
 			
-		}else if (listGastos.size() == 3){
-			System.out.println("entro en 3");
+			detalle4.setTextContent("", HState.ALL_STATES);	
+			cantidad4.setTextContent("", HState.ALL_STATES);	
+			unitario4.setTextContent("", HState.ALL_STATES);
+			monto4.setTextContent("", HState.ALL_STATES);	
+			
+			detalle5.setTextContent("", HState.ALL_STATES);	
+			cantidad5.setTextContent("", HState.ALL_STATES);	
+			unitario5.setTextContent("", HState.ALL_STATES);
+			monto5.setTextContent("", HState.ALL_STATES);	
+			
+			detalle6.setTextContent("", HState.ALL_STATES);	
+			cantidad6.setTextContent("", HState.ALL_STATES);	
+			unitario6.setTextContent("", HState.ALL_STATES);
+			monto6.setTextContent("", HState.ALL_STATES);	
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
+			
+			// HAcer la funcion para el total
+		
+		break;
+		
+		case 3:
+				System.out.println("entro en 3");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -230,6 +354,352 @@ public ContenedorResumenMes () {
 			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
 			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
 			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			// Limpia las demas filas
+			
+			detalle4.setTextContent("", HState.ALL_STATES);	
+			cantidad4.setTextContent("", HState.ALL_STATES);	
+			unitario4.setTextContent("", HState.ALL_STATES);
+			monto4.setTextContent("", HState.ALL_STATES);	
+			
+			detalle5.setTextContent("", HState.ALL_STATES);	
+			cantidad5.setTextContent("", HState.ALL_STATES);	
+			unitario5.setTextContent("", HState.ALL_STATES);
+			monto5.setTextContent("", HState.ALL_STATES);	
+			
+			detalle6.setTextContent("", HState.ALL_STATES);	
+			cantidad6.setTextContent("", HState.ALL_STATES);	
+			unitario6.setTextContent("", HState.ALL_STATES);
+			monto6.setTextContent("", HState.ALL_STATES);	
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
+		break;
+		
+		case 4:
+			System.out.println("entro en 4");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			detalle4.setTextContent(listGastos.get(3).getDetalle(), HState.ALL_STATES);	
+			cantidad4.setTextContent(listGastos.get(3).getCantidad(), HState.ALL_STATES);	
+			unitario4.setTextContent(listGastos.get(3).getUnitario(), HState.ALL_STATES);
+			monto4.setTextContent(listGastos.get(3).getMonto(), HState.ALL_STATES);	
+			
+			// Limpia las demas filas
+			
+			detalle5.setTextContent("", HState.ALL_STATES);	
+			cantidad5.setTextContent("", HState.ALL_STATES);	
+			unitario5.setTextContent("", HState.ALL_STATES);
+			monto5.setTextContent("", HState.ALL_STATES);	
+			
+			detalle6.setTextContent("", HState.ALL_STATES);	
+			cantidad6.setTextContent("", HState.ALL_STATES);	
+			unitario6.setTextContent("", HState.ALL_STATES);
+			monto6.setTextContent("", HState.ALL_STATES);	
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
+			break;
+			
+		case 5:
+			System.out.println("entro en 5");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			detalle4.setTextContent(listGastos.get(3).getDetalle(), HState.ALL_STATES);	
+			cantidad4.setTextContent(listGastos.get(3).getCantidad(), HState.ALL_STATES);	
+			unitario4.setTextContent(listGastos.get(3).getUnitario(), HState.ALL_STATES);
+			monto4.setTextContent(listGastos.get(3).getMonto(), HState.ALL_STATES);	
+			
+			detalle5.setTextContent(listGastos.get(4).getDetalle(), HState.ALL_STATES);	
+			cantidad5.setTextContent(listGastos.get(4).getCantidad(), HState.ALL_STATES);	
+			unitario5.setTextContent(listGastos.get(4).getUnitario(), HState.ALL_STATES);
+			monto5.setTextContent(listGastos.get(4).getMonto(), HState.ALL_STATES);
+
+			// Limpia las demas filas
+			
+			detalle6.setTextContent("", HState.ALL_STATES);	
+			cantidad6.setTextContent("", HState.ALL_STATES);	
+			unitario6.setTextContent("", HState.ALL_STATES);
+			monto6.setTextContent("", HState.ALL_STATES);	
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
+			break;
+			
+		case 6:
+			System.out.println("entro en 6");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			detalle4.setTextContent(listGastos.get(3).getDetalle(), HState.ALL_STATES);	
+			cantidad4.setTextContent(listGastos.get(3).getCantidad(), HState.ALL_STATES);	
+			unitario4.setTextContent(listGastos.get(3).getUnitario(), HState.ALL_STATES);
+			monto4.setTextContent(listGastos.get(3).getMonto(), HState.ALL_STATES);	
+			
+			detalle5.setTextContent(listGastos.get(4).getDetalle(), HState.ALL_STATES);	
+			cantidad5.setTextContent(listGastos.get(4).getCantidad(), HState.ALL_STATES);	
+			unitario5.setTextContent(listGastos.get(4).getUnitario(), HState.ALL_STATES);
+			monto5.setTextContent(listGastos.get(4).getMonto(), HState.ALL_STATES);
+
+			detalle6.setTextContent(listGastos.get(5).getDetalle(), HState.ALL_STATES);	
+			cantidad6.setTextContent(listGastos.get(5).getCantidad(), HState.ALL_STATES);	
+			unitario6.setTextContent(listGastos.get(5).getUnitario(), HState.ALL_STATES);
+			monto6.setTextContent(listGastos.get(5).getMonto(), HState.ALL_STATES);	
+
+			// Limpia las demas filas
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
+			
+			break;
+			
+		case 7:
+			System.out.println("entro en 7");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			detalle4.setTextContent(listGastos.get(3).getDetalle(), HState.ALL_STATES);	
+			cantidad4.setTextContent(listGastos.get(3).getCantidad(), HState.ALL_STATES);	
+			unitario4.setTextContent(listGastos.get(3).getUnitario(), HState.ALL_STATES);
+			monto4.setTextContent(listGastos.get(3).getMonto(), HState.ALL_STATES);	
+			
+			detalle5.setTextContent(listGastos.get(4).getDetalle(), HState.ALL_STATES);	
+			cantidad5.setTextContent(listGastos.get(4).getCantidad(), HState.ALL_STATES);	
+			unitario5.setTextContent(listGastos.get(4).getUnitario(), HState.ALL_STATES);
+			monto5.setTextContent(listGastos.get(4).getMonto(), HState.ALL_STATES);
+
+			detalle6.setTextContent(listGastos.get(5).getDetalle(), HState.ALL_STATES);	
+			cantidad6.setTextContent(listGastos.get(5).getCantidad(), HState.ALL_STATES);	
+			unitario6.setTextContent(listGastos.get(5).getUnitario(), HState.ALL_STATES);
+			monto6.setTextContent(listGastos.get(5).getMonto(), HState.ALL_STATES);	
+
+			detalle7.setTextContent(listGastos.get(6).getDetalle(), HState.ALL_STATES);	
+			cantidad7.setTextContent(listGastos.get(6).getCantidad(), HState.ALL_STATES);	
+			unitario7.setTextContent(listGastos.get(6).getUnitario(), HState.ALL_STATES);
+			monto7.setTextContent(listGastos.get(6).getMonto(), HState.ALL_STATES);	
+
+			// Limpia las demas filas
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
+			break;
+			
+		case 8:
+			System.out.println("entro en 8");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			detalle4.setTextContent(listGastos.get(3).getDetalle(), HState.ALL_STATES);	
+			cantidad4.setTextContent(listGastos.get(3).getCantidad(), HState.ALL_STATES);	
+			unitario4.setTextContent(listGastos.get(3).getUnitario(), HState.ALL_STATES);
+			monto4.setTextContent(listGastos.get(3).getMonto(), HState.ALL_STATES);	
+			
+			detalle5.setTextContent(listGastos.get(4).getDetalle(), HState.ALL_STATES);	
+			cantidad5.setTextContent(listGastos.get(4).getCantidad(), HState.ALL_STATES);	
+			unitario5.setTextContent(listGastos.get(4).getUnitario(), HState.ALL_STATES);
+			monto5.setTextContent(listGastos.get(4).getMonto(), HState.ALL_STATES);
+
+			detalle6.setTextContent(listGastos.get(5).getDetalle(), HState.ALL_STATES);	
+			cantidad6.setTextContent(listGastos.get(5).getCantidad(), HState.ALL_STATES);	
+			unitario6.setTextContent(listGastos.get(5).getUnitario(), HState.ALL_STATES);
+			monto6.setTextContent(listGastos.get(5).getMonto(), HState.ALL_STATES);	
+
+			detalle7.setTextContent(listGastos.get(6).getDetalle(), HState.ALL_STATES);	
+			cantidad7.setTextContent(listGastos.get(6).getCantidad(), HState.ALL_STATES);	
+			unitario7.setTextContent(listGastos.get(6).getUnitario(), HState.ALL_STATES);
+			monto7.setTextContent(listGastos.get(6).getMonto(), HState.ALL_STATES);	
+
+			detalle8.setTextContent(listGastos.get(7).getDetalle(), HState.ALL_STATES);	
+			cantidad8.setTextContent(listGastos.get(7).getCantidad(), HState.ALL_STATES);	
+			unitario8.setTextContent(listGastos.get(7).getUnitario(), HState.ALL_STATES);
+			monto8.setTextContent(listGastos.get(7).getMonto(), HState.ALL_STATES);	
+
+			// Limpia las demas filas
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+						
+			break;
+			
+		case 9:
+			System.out.println("entro en 6");
+			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
+			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
+			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
+			monto1.setTextContent(listGastos.get(0).getMonto(), HState.ALL_STATES);	
+		
+			detalle2.setTextContent(listGastos.get(1).getDetalle(), HState.ALL_STATES);	
+			cantidad2.setTextContent(listGastos.get(1).getCantidad(), HState.ALL_STATES);	
+			unitario2.setTextContent(listGastos.get(1).getUnitario(), HState.ALL_STATES);
+			monto2.setTextContent(listGastos.get(1).getMonto(), HState.ALL_STATES);	
+			
+			detalle3.setTextContent(listGastos.get(2).getDetalle(), HState.ALL_STATES);	
+			cantidad3.setTextContent(listGastos.get(2).getCantidad(), HState.ALL_STATES);	
+			unitario3.setTextContent(listGastos.get(2).getUnitario(), HState.ALL_STATES);
+			monto3.setTextContent(listGastos.get(2).getMonto(), HState.ALL_STATES);	
+			
+			detalle4.setTextContent(listGastos.get(3).getDetalle(), HState.ALL_STATES);	
+			cantidad4.setTextContent(listGastos.get(3).getCantidad(), HState.ALL_STATES);	
+			unitario4.setTextContent(listGastos.get(3).getUnitario(), HState.ALL_STATES);
+			monto4.setTextContent(listGastos.get(3).getMonto(), HState.ALL_STATES);	
+			
+			detalle5.setTextContent(listGastos.get(4).getDetalle(), HState.ALL_STATES);	
+			cantidad5.setTextContent(listGastos.get(4).getCantidad(), HState.ALL_STATES);	
+			unitario5.setTextContent(listGastos.get(4).getUnitario(), HState.ALL_STATES);
+			monto5.setTextContent(listGastos.get(4).getMonto(), HState.ALL_STATES);
+
+			detalle6.setTextContent(listGastos.get(5).getDetalle(), HState.ALL_STATES);	
+			cantidad6.setTextContent(listGastos.get(5).getCantidad(), HState.ALL_STATES);	
+			unitario6.setTextContent(listGastos.get(5).getUnitario(), HState.ALL_STATES);
+			monto6.setTextContent(listGastos.get(5).getMonto(), HState.ALL_STATES);	
+
+			detalle7.setTextContent(listGastos.get(6).getDetalle(), HState.ALL_STATES);	
+			cantidad7.setTextContent(listGastos.get(6).getCantidad(), HState.ALL_STATES);	
+			unitario7.setTextContent(listGastos.get(6).getUnitario(), HState.ALL_STATES);
+			monto7.setTextContent(listGastos.get(6).getMonto(), HState.ALL_STATES);	
+
+			detalle8.setTextContent(listGastos.get(7).getDetalle(), HState.ALL_STATES);	
+			cantidad8.setTextContent(listGastos.get(7).getCantidad(), HState.ALL_STATES);	
+			unitario8.setTextContent(listGastos.get(7).getUnitario(), HState.ALL_STATES);
+			monto8.setTextContent(listGastos.get(7).getMonto(), HState.ALL_STATES);	
+
+			detalle9.setTextContent(listGastos.get(8).getDetalle(), HState.ALL_STATES);	
+			cantidad9.setTextContent(listGastos.get(8).getCantidad(), HState.ALL_STATES);	
+			unitario9.setTextContent(listGastos.get(8).getUnitario(), HState.ALL_STATES);
+			monto9.setTextContent(listGastos.get(8).getMonto(), HState.ALL_STATES);			
+			
+			break;
+			
+		
+		default:
+			System.out.println("Fuera de rango!!");
+			break;
+		
 		}
+		
 	}
 }
