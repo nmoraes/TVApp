@@ -93,7 +93,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
 	
 	/**CNN Image */
-	private Image image;
+	private Image image= Toolkit.getDefaultToolkit().getImage("bg22.png"), inicio = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
 	
 	/**Mensaje de bienvenida*/
 	private String message;
@@ -346,26 +346,22 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
      */   
     public void loadForegroundBitmap() {   
         // Create a MediaTracker to tell us when the image has loaded   
-        MediaTracker tracker = new MediaTracker(this);   
+        
+    	MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
-       image = Toolkit.getDefaultToolkit().getImage("bg22.png");   
-      
-             	
+            	
        
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);
-  
-
         try{   
             tracker.waitForAll();   
         }   
         catch(InterruptedException e) {   
             // Ignore the exception, since there's not a lot we can do.   
             image = null; 
-        
-        }   
-    }   
-   
+        }
+    }  
+           
    
     /**  
      * Display the foreground image in the AWT component  
@@ -407,10 +403,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Destroy the image buffer   
   //      image.flush();   
         image = null;   
-   
-         
         scene = null;   
-        
         keyboard=null;
         myHSound.dispose();
         myHSound=null;
@@ -444,9 +437,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // first allows you to avoid any graphics glitches caused by your   
         // application assuming it has data that hasn't finished loading   
         // yet.   
-        if (image != null) {   
+           
             // Draw the image from the buffer   
-            graphics.drawImage(image, 404, 7, null);      }
+        
+ //>>>>>>  	graphics.drawImage(inicio, 0, 0, null);      >>>>>>>>>ESTA LINEA HACE ALGO RARO>>>>>>>>>
+        	graphics.drawImage(image, 404, 7, null);      
+        
         
         
    
@@ -466,10 +462,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
             graphics.setFont(new Font("Tiresias", Font.PLAIN, 14));
             graphics.drawString(message2,12,152); 
             
-            graphics.setFont(new Font("Tiresias", Font.BOLD, 14));
-            graphics.drawString("Amarillo: twitter/Calculadora",404, 280);
-            graphics.drawString("Verde: tareas",404, 295);
-            graphics.drawString(" <-     : weather",404, 310);
+          //  graphics.setFont(new Font("Tiresias", Font.BOLD, 14));
+          //  graphics.drawString("Amarillo: twitter/Calculadora",404, 280);
+          //  graphics.drawString("Verde: tareas",404, 295);
+          //  graphics.drawString(" <-     : weather",404, 310);
          
         }catch(Throwable t) {   
             // Catch any errors that get thrown.   
@@ -547,6 +543,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			contYellow.setVisible(true);
 			contYellow.requestFocus();
 			contYellow.texto.setVisible(true);
+			inicio.flush();
+			this.repaint();
 			break;
 		}
 		case 406: {

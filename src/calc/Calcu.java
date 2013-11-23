@@ -31,6 +31,7 @@ public class Calcu extends HContainer implements KeyListener {
 	 * 
 	 * }
 	 */
+	
 	private Image image;
 	HSinglelineEntry pantalla;
 	String v1 = "";
@@ -43,8 +44,9 @@ public class Calcu extends HContainer implements KeyListener {
 
 	// CONSTRUCTOR
 	public Calcu() {
+		this.repaint();
 		// HStaticText hstTexto = new HStaticText(" Menu akdjkfhhf ");
-		pantalla = new HSinglelineEntry("", 85, 200, 230, 50, 30, new Font( //texto de calc
+		pantalla = new HSinglelineEntry("", 190, 265, 207, 50, 30, new Font( //texto de calc
 				"Tiresias", Font.PLAIN, 23), Color.black);
 		pantalla.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 		pantalla.setBackground(Color.green);
@@ -70,7 +72,7 @@ public class Calcu extends HContainer implements KeyListener {
 		// hstTexto.setBounds(120, 150, 200, 50);
 		// hstTexto.setBackground(Color.green);
 		// this.add(hstTexto);
-		this.setBounds(0, 0, 400, 600);
+		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 		loadForegroundBitmap();
 		this.add(pantalla);
@@ -429,6 +431,7 @@ public class Calcu extends HContainer implements KeyListener {
 			MainXlet.label.setBackground(Color.white);
 			//MainXlet.calcu.setVisible(false);
 			ContenedorYellow.calcu.setVisible(false);
+			MainXlet.contYellow.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			this.repaint();
@@ -465,7 +468,7 @@ public class Calcu extends HContainer implements KeyListener {
 		// Create a MediaTracker to tell us when the image has loaded
 		MediaTracker tracker = new MediaTracker(this);
 		// Then load the image
-		image = Toolkit.getDefaultToolkit().getImage("Calc.png");
+		image = Toolkit.getDefaultToolkit().getImage("AplicCalcu.jpg");
 
 		// add the image to the MediaTracker...
 		tracker.addImage(image, 0);
@@ -488,7 +491,7 @@ public class Calcu extends HContainer implements KeyListener {
 
 		if (image != null) {
 			// Draw the image from the buffer
-			graphics.drawImage(image, 70, 200, null); //ubicacion de calculadora
+			graphics.drawImage(image, 0, 0, null); //ubicacion de calculadora
 
 		}
 

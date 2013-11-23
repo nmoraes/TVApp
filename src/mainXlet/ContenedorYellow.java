@@ -21,7 +21,7 @@ import calc.Calcu;
 
 public class ContenedorYellow extends HContainer implements KeyListener {
 	private int x = 0;
-	private Image image;
+	private Image fondoAplic;
 	HStaticText hstTexto;;
 	public static ContenedorTwitter conTwitter;
 	public static Base base = new Base();
@@ -111,8 +111,9 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			this.add(calcu);
 			calcu.setVisible(true);
 			calcu.requestFocus();
-			this.repaint();
 			MainXlet.contYellow.setVisible(true);
+			fondoAplic.flush();
+			this.repaint();
 			break;
 		default: {
 			// do nothing
@@ -137,25 +138,25 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 		// Create a MediaTracker to tell us when the image has loaded
 		MediaTracker tracker = new MediaTracker(this);
 		// Then load the image
-		image = Toolkit.getDefaultToolkit().getImage("bg22.png");
+		fondoAplic = Toolkit.getDefaultToolkit().getImage("FondoAplic.jpg");
 
 		// add the image to the MediaTracker...
-		tracker.addImage(image, 0);
+		tracker.addImage(fondoAplic, 0);
 
 		// ...and wait for it to finish loading
 		try {
 			tracker.waitForAll();
 		} catch (InterruptedException e) {
 			// Ignore the exception, since there's not a lot we can do.
-			image = null;
+			fondoAplic = null;
 
 		}
 	}
 	public void paint(Graphics graphics) {
 
-		if (image != null) {
+		if (fondoAplic != null) {
 			// Draw the image from the buffer
-			graphics.drawImage(image, 70, 200, null); //ubicacion de calculadora
+			graphics.drawImage(fondoAplic, 0, 0, null); //ubicacion de calculadora
 
 		}
 
