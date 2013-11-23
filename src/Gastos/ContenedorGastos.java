@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.Date;
 
 import org.havi.ui.HContainer;
 import org.havi.ui.HSinglelineEntry;
@@ -20,13 +21,11 @@ import mainXlet.*;
 
 public class ContenedorGastos extends HContainer implements KeyListener {
 
-	// Teclado
-	//ContenedorKeyboard keyboard = new ContenedorKeyboard();
-	// Agregar los labels al repaint
+	
+	
+	
 	// Arreglar q solo se pueda escribir hasta el tope de los textbox
 	// Darle un formato mas lindo
-	// Agrandar los textos
-	// Guardar en disco
 	// El monto debe calcularse a partir del precio unitario y de la cantidad
 	
 
@@ -65,6 +64,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private String aux2;
 	private float precioUnitario;
 	private float total = 0;
+	private Date mesActual = new Date();
 	
 
 	// Primer pantalla de gastos!!!
@@ -101,7 +101,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	   	cajaMonto.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaMonto.setBackground(Color.white);
 	  	cajaMonto.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-	  	cajaMonto.setHorizontalAlignment(HVisible.HALIGN_CENTER);
+	  	cajaMonto.setHorizontalAlignment(HVisible.HALIGN_RIGHT);
 	  	cajaMonto.setEditMode(true);
 	  	cajaMonto.setCaretCharPosition(1);
 	  			
@@ -198,12 +198,15 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		case 404: 	// Boton Verde
 			System.out.println("Va para Resumen Gastos");
+			persistir.guardarGastos(ListaGastos);
 			MainXlet.gas.setVisible(false);
+			MainXlet.mes.cargarGastos(mesActual);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();		
 			MainXlet.label.setBackground(Color.darkGray);
 			MainXlet.label.repaint();
-			
+			LimpiarCajas();
+					
 			this.repaint();
 			
 			break;
@@ -215,6 +218,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.anio.requestFocus();		
 			MainXlet.label.setBackground(Color.red);
 			MainXlet.label.repaint();
+			LimpiarCajas();
+			persistir.guardarGastos(ListaGastos);
 			break;
 		
 		case 405: 	// Boton Amarillo
@@ -285,7 +290,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	// Si el string es un numero valido devuelve true, de lo contrario devuelve false
 	private boolean esNumero(String s){
 		try{
-			Long.parseLong(s);
+			Float.parseFloat(s);
 		} catch (Exception e) {
 			return false;
 		}

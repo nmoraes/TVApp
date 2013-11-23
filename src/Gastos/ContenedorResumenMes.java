@@ -2,6 +2,10 @@ package Gastos;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -44,7 +48,13 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 		HSinglelineEntry monto9;
 
 		private HSinglelineEntry cajaTotal;
+		private HSinglelineEntry mostrarMes;
 		private int paginado = 0;
+		
+		// The image that we will show   
+	    private Image image; 
+	    private Image image2;
+	    private Date mesActual = new Date();
 	
 public ContenedorResumenMes () {
 		
@@ -57,6 +67,16 @@ public ContenedorResumenMes () {
   	cajaTotal.setEditMode(true);
   	cajaTotal.setCaretCharPosition(1);
   	this.add(cajaTotal);
+  	
+  	mostrarMes = new HSinglelineEntry("", 100, 170, 160, 30, 14, new Font("Tiresias", Font.BOLD, 22), Color.black);
+   	mostrarMes.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
+   	mostrarMes.setBackground(new Color(0, 0, 0, 0));
+  	mostrarMes.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
+  	mostrarMes.setHorizontalAlignment(HVisible.HALIGN_CENTER);
+  	mostrarMes.setEditMode(true);
+  	mostrarMes.setCaretCharPosition(1);
+  	mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+  	this.add(mostrarMes);
 		// Tipo de letra
 		titulo.setFont( new Font ("Tiresias", Font.BOLD, 22));
 		titulo2.setFont( new Font ("Tiresias", Font.BOLD, 22));
@@ -119,20 +139,31 @@ public ContenedorResumenMes () {
 		monto8 = new HSinglelineEntry("", 320, 370, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto8.setBackground(Color.white); this.add(monto8);
 		monto9 = new HSinglelineEntry("", 320, 390, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto9.setBackground(Color.white); this.add(monto9);
 		
-		// Cargar la grilla
-		cargarGastos();
-		
-		
-//		for( cont=0; cont < listGastos.size() ; cont++){
-//			
-//			detalle1.setTextContent(ContenedorKeyboard.message, HState.ALL_STATES);	
-//			}
-		
-		
+							 	
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
+		loadForegroundBitmap();
 	
 	}
+
+public void paint(Graphics graphics) {
+
+	if (image != null) {   
+        // Draw the image from the buffer   
+		System.out.println("La imagen 1 no es null");
+		graphics.drawImage(image, 270, 170, null);
+	}
+	if (image2 != null) {   
+	    // Draw the image from the buffer   
+		System.out.println("La imagen 2 no es null");
+	    graphics.drawImage(image2, 90, 170, null);          
+	    
+    }
+
+	super.paint(graphics);
+
+
+}
 	
 	public void keyPressed(KeyEvent tecla){
 		
@@ -142,7 +173,7 @@ public ContenedorResumenMes () {
 		
 		case 404: 	// Boton Verde
 			// Grafica Año
-			cargarGastos();
+			cargarGastos(mesActual);
 			this.repaint();
 			break;
 
@@ -161,6 +192,22 @@ public ContenedorResumenMes () {
 			MainXlet.gas.requestFocus();
 			paginado = 0;
 			break;	
+			
+		case 39:
+			// Adelanta un mes
+			cambiarMes(true);
+			cargarGastos(mesActual);
+			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+			this.repaint();
+			break;
+			
+		case 37:
+			// Adelanta un mes
+			cambiarMes(false);
+			cargarGastos(mesActual);
+			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+			this.repaint();
+			break;
 						
 		case 27:	//exit
 			MainXlet.mes.setVisible(false);
@@ -189,17 +236,106 @@ public ContenedorResumenMes () {
 		
 	}
 	
-	private void cargarGastos(){
+	private String darMes(Date d){
+		String resultado = "";
+		
+		switch(d.getMonth()){
+		
+		case 0:
+			resultado = "Enero";
+			break;
+		
+		case 1:
+			resultado = "Febrero";
+			break;
+			
+		case 2:
+			resultado = "Marzo";
+			break;
+			
+		case 3:
+			resultado = "Abril";
+			break;
+			
+		case 4:
+			resultado = "Mayo";
+			break;
+			
+		case 5:
+			resultado = "Junio";
+			break;
+			
+		case 6:
+			resultado = "Julio";
+			break;
+			
+		case 7:
+			resultado = "Agosto";
+			break;
+			
+		case 8:
+			resultado = "Septiembre";
+			break;
+			
+		case 9:
+			resultado = "Octubre";
+			break;
+			
+		case 10:
+			resultado = "Noviembre";
+			break;
+			
+		case 11:
+			resultado = "Diciembre";
+			break;
+		
+			default:
+				break;
+		}
+		
+		return resultado;
+		
+	}
+	private void cambiarMes(Boolean sumar){
+		
+		Date fecha = new Date();
+		if (sumar){
+			if (mesActual.getMonth() == 11){
+				mesActual.setYear(mesActual.getYear()+1);
+				mesActual.setMonth(0);
 				
-		Date d = new Date();
+			}else{
+				mesActual.setMonth(mesActual.getMonth()+1);
+			}
+			
+		}else{
+			if (mesActual.getMonth() == 0){
+				mesActual.setYear(mesActual.getYear()-1);
+				mesActual.setMonth(11);
+				
+			}else{
+				mesActual.setMonth(mesActual.getMonth()-1);
+			}
+		}
+		
+		
+	}
+	
+	public void cargarGastos(Date d){
+				
+		//Date d = new Date();
+		String aux = "";
 		ArrayList<Gasto> listGastos = new ArrayList<Gasto>();
 		System.out.println("antes de devolver mes");
 		listGastos = MainXlet.gas.ListaGastos.devolverMes(d);
 				
 		List<Gasto> subListGastos = new ArrayList<Gasto>();
-		
-		
 		int tamanioLista =listGastos.size();
+		
+		// Carga el total de gastos
+		aux = String.valueOf(cargarTotal(tamanioLista, listGastos));
+		cajaTotal.setTextContent(aux,HState.ALL_STATES);
+		
 		if (tamanioLista > 9){		
 			// Controlo q sea mayor a nueve
 			if (paginado == 0){
@@ -227,6 +363,61 @@ public ContenedorResumenMes () {
 		}
 				
 	}
+	
+	private float cargarTotal(int tope, ArrayList<Gasto> listaGastos){
+		System.out.println("el tope: " + tope);
+		
+		float total = 0;
+		String aux = "";
+		
+		for (int i = 0; i<tope ; i++){
+			aux = listaGastos.get(i).getMonto();
+			System.out.println("Entro al FOR");
+			System.out.println(aux);
+			if (esNumero(aux)){
+				System.out.println("ENtro al IF");
+				total = total + Float.parseFloat(aux);
+			}
+		}
+		System.out.println("El total: " + total);
+		return total;
+	}
+	
+//	Hacer que con las flechas izq y der se mueva de mes
+//	izq 38 y der 40
+//	
+	// Si el string es un numero valido devuelve true, de lo contrario devuelve false
+		private boolean esNumero(String s){
+			try{
+				Float.parseFloat(s);
+			} catch (Exception e) {
+				return false;
+			}
+			return true;
+		}
+	
+	private void loadForegroundBitmap() {   
+        // Create a MediaTracker to tell us when the image has loaded   
+        MediaTracker tracker = new MediaTracker(this);   
+        // Then load the image   
+        image = Toolkit.getDefaultToolkit().getImage("BotonDer.jpg");   
+        image2 = Toolkit.getDefaultToolkit().getImage("BotonIzq.jpg");     	
+        
+        // add the image to the MediaTracker...   
+        tracker.addImage(image, 0); 
+        tracker.addImage(image2, 1); 
+     //   tracker.addImage(image2, 1);
+     
+        // ...and wait for it to finish loading   
+        try{   
+            tracker.waitForAll();   
+        }   
+        catch(InterruptedException e) {   
+            // Ignore the exception, since there's not a lot we can do.   
+            image = null;  
+            image2 = null;
+        }   
+    }   
 	
 	private void paginado(List<Gasto> listGastos){
 		System.out.println("LLego al paginado");
@@ -282,7 +473,7 @@ public ContenedorResumenMes () {
 			unitario9.setTextContent("", HState.ALL_STATES);
 			monto9.setTextContent("", HState.ALL_STATES);
 			
-			cajaTotal.setTextContent(monto1.getTextContent(HState.ALL_STATES),HState.ALL_STATES);
+			
 		break;
 		
 		case 2:
@@ -333,8 +524,6 @@ public ContenedorResumenMes () {
 			unitario9.setTextContent("", HState.ALL_STATES);
 			monto9.setTextContent("", HState.ALL_STATES);
 			
-			
-			// HAcer la funcion para el total
 		
 		break;
 		
@@ -697,6 +886,53 @@ public ContenedorResumenMes () {
 		
 		default:
 			System.out.println("Fuera de rango!!");
+			// Limpio todo
+			detalle1.setTextContent("", HState.ALL_STATES);	
+			cantidad1.setTextContent("", HState.ALL_STATES);	
+			unitario1.setTextContent("", HState.ALL_STATES);
+			monto1.setTextContent("", HState.ALL_STATES);	
+			
+			// Limpia todas las demas filas
+			detalle2.setTextContent("", HState.ALL_STATES);	
+			cantidad2.setTextContent("", HState.ALL_STATES);	
+			unitario2.setTextContent("", HState.ALL_STATES);
+			monto2.setTextContent("", HState.ALL_STATES);	
+			
+			detalle3.setTextContent("", HState.ALL_STATES);	
+			cantidad3.setTextContent("", HState.ALL_STATES);	
+			unitario3.setTextContent("", HState.ALL_STATES);
+			monto3.setTextContent("", HState.ALL_STATES);	
+			
+			detalle4.setTextContent("", HState.ALL_STATES);	
+			cantidad4.setTextContent("", HState.ALL_STATES);	
+			unitario4.setTextContent("", HState.ALL_STATES);
+			monto4.setTextContent("", HState.ALL_STATES);	
+			
+			detalle5.setTextContent("", HState.ALL_STATES);	
+			cantidad5.setTextContent("", HState.ALL_STATES);	
+			unitario5.setTextContent("", HState.ALL_STATES);
+			monto5.setTextContent("", HState.ALL_STATES);	
+			
+			detalle6.setTextContent("", HState.ALL_STATES);	
+			cantidad6.setTextContent("", HState.ALL_STATES);	
+			unitario6.setTextContent("", HState.ALL_STATES);
+			monto6.setTextContent("", HState.ALL_STATES);	
+			
+			detalle7.setTextContent("", HState.ALL_STATES);	
+			cantidad7.setTextContent("", HState.ALL_STATES);	
+			unitario7.setTextContent("", HState.ALL_STATES);
+			monto7.setTextContent("", HState.ALL_STATES);	
+			
+			detalle8.setTextContent("", HState.ALL_STATES);	
+			cantidad8.setTextContent("", HState.ALL_STATES);	
+			unitario8.setTextContent("", HState.ALL_STATES);
+			monto8.setTextContent("", HState.ALL_STATES);
+			
+			detalle9.setTextContent("", HState.ALL_STATES);	
+			cantidad9.setTextContent("", HState.ALL_STATES);	
+			unitario9.setTextContent("", HState.ALL_STATES);
+			monto9.setTextContent("", HState.ALL_STATES);
+			
 			break;
 		
 		}
