@@ -178,11 +178,21 @@ public void paint(Graphics graphics) {
 			break;
 
 		case 403: 	// Boton Rojo
-			// Promedio Mes
+			// Promedio Año
+			System.out.println("Va para Resumen Año");
+			MainXlet.mes.setVisible(false);
+			MainXlet.promedioAnio.setVisible(true);
+			MainXlet.promedioAnio.requestFocus();
+			paginado = 0;
 			break;
 		
 		case 405: 	// Boton Amarillo
 			//Resumen Año
+			System.out.println("Va para Resumen Año");
+			MainXlet.mes.setVisible(false);
+			MainXlet.anio.setVisible(true);
+			MainXlet.anio.requestFocus();
+			paginado = 0;
 			break;
 	
 		case 406: 	// Boton Azul

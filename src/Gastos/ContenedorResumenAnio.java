@@ -300,7 +300,12 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		switch (tecla.getKeyCode()) {
 
 		case 404: // Boton Verde
-
+			System.out.println("Va para Promedio Anual");
+			MainXlet.anio.setVisible(false);
+			MainXlet.promedioAnio.setVisible(true);
+			MainXlet.promedioAnio.requestFocus();
+			MainXlet.label.setBackground(Color.green);
+			MainXlet.label.repaint();
 			break;
 
 		case 403: // Boton Rojo

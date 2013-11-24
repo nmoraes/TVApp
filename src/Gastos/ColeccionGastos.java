@@ -31,7 +31,7 @@ public ArrayList<Gasto>	devolverMes (Date mes){
 	int cont;
 	
 	for( cont=0; cont < coleccion.size() ; cont++){
-		if (coleccion.get(cont).getFecha().getMonth() == mes.getMonth()){
+		if (coleccion.get(cont).getFecha().getMonth() == mes.getMonth() && coleccion.get(cont).getFecha().getYear() == mes.getYear()){
 			resultado.add(coleccion.get(cont));
 		}
 	}

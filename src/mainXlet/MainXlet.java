@@ -36,6 +36,7 @@ import calc.Calcu;
 import Gastos.ContenedorResumenAnio;
 import Gastos.ContenedorResumenMes;
 import Gastos.ContenedorGastos;
+import Gastos.ContenedorPromedioAnio;
    
  /**  
  * This Xlet will be visible on-screen, so we extend org.havi.ui.HComponent  
@@ -112,6 +113,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorGastos gas = new ContenedorGastos();
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
 	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
+	public static ContenedorPromedioAnio promedioAnio = new ContenedorPromedioAnio();
 	
 	/* // Calculadora */
 	
@@ -198,6 +200,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		mes.setVisible(false);
 		scene.add(anio);
 		anio.setVisible(false);
+		scene.add(promedioAnio);
+		promedioAnio.setVisible(false);
 						
 		scene.add(cont);
 //		scene.add(twitter);
@@ -530,8 +534,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			System.out.println("verde ...");
 			label.setBackground(colors[1]);
 	        label.repaint();
-	       // myHSound.play();
-	     	gas.setVisible(true);
+	        gas.setVisible(true);
 	        gas.requestFocus();
 	        
 	       	break;
