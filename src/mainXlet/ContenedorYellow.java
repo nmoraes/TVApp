@@ -100,8 +100,9 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			conTwitter=new ContenedorTwitter();
 			this.add(conTwitter);
 			conTwitter.requestFocus();
+			MainXlet.contYellow.conTwitter.setVisible(true);
+			fondoAplic.flush();
 			this.repaint();
-			MainXlet.contYellow.setVisible(true);
 			break;
 		case 405:
 			System.out.println("amarillo");

@@ -55,6 +55,8 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 	    private Image image; 
 	    private Image image2;
 	    private Date mesActual = new Date();
+	    private Image fondo;
+	    private Boolean primeraVez = true;
 	
 public ContenedorResumenMes () {
 		
@@ -148,6 +150,13 @@ public ContenedorResumenMes () {
 
 public void paint(Graphics graphics) {
 
+	if (fondo != null && primeraVez) {   
+        // Draw the image from the buffer   
+		primeraVez = false;
+		System.out.println("La imagen 1 no es null");
+		graphics.drawImage(fondo, 0, 0, null);
+	}	
+	
 	if (image != null) {   
         // Draw the image from the buffer   
 		System.out.println("La imagen 1 no es null");
@@ -411,12 +420,14 @@ public void paint(Graphics graphics) {
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
         image = Toolkit.getDefaultToolkit().getImage("BotonDer.jpg");   
-        image2 = Toolkit.getDefaultToolkit().getImage("BotonIzq.jpg");     	
+        image2 = Toolkit.getDefaultToolkit().getImage("BotonIzq.jpg");  
+        fondo = Toolkit.getDefaultToolkit().getImage("comDetalle.jpg"); 
         
         // add the image to the MediaTracker...   
-        tracker.addImage(image, 0); 
-        tracker.addImage(image2, 1); 
-     //   tracker.addImage(image2, 1);
+        tracker.addImage(fondo, 0);
+        tracker.addImage(image, 1); 
+        tracker.addImage(image2, 2); 
+    
      
         // ...and wait for it to finish loading   
         try{   
@@ -426,6 +437,7 @@ public void paint(Graphics graphics) {
             // Ignore the exception, since there's not a lot we can do.   
             image = null;  
             image2 = null;
+            fondo = null;
         }   
     }   
 	
