@@ -22,15 +22,12 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 
 	// Pantalla Promedio del año//
 
-	HStaticText titulo = new HStaticText("Promedio anual");
+	
 	HStaticText titulo2 = new HStaticText("2013");
 	HStaticText promedio = new HStaticText("");
 	HStaticText simboloPesos = new HStaticText("$");
 	HStaticText promedioAnio = new HStaticText("Promedio del Año");
-	HStaticText resumenMes = new HStaticText("Resumen Mes");
-	HStaticText resumenAnio = new HStaticText("Resumen Año");
-	HStaticText menuCompras = new HStaticText("Menu Compras");
-	
+		
 	private Image fondo;
 	private Boolean primeraVez = true;
 		
@@ -38,57 +35,34 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 	public ContenedorPromedioAnio() {
 
 		// Tipo de letra
-		titulo.setFont(new Font("Tiresias", Font.BOLD, 35));
+		
 		titulo2.setFont(new Font("Tiresias", Font.BOLD, 28));
 		promedio.setFont(new Font("Tiresias", Font.BOLD, 30));
 		simboloPesos.setFont(new Font("Tiresias", Font.BOLD, 30));
 		promedioAnio.setFont(new Font("Tiresias", Font.BOLD, 35));
-		resumenAnio.setFont(new Font("Tiresias", Font.BOLD, 22));		
-		resumenMes.setFont(new Font("Tiresias", Font.BOLD, 22));
-		menuCompras.setFont(new Font("Tiresias", Font.BOLD, 22));
-		
 		
 		// Posicion inicial en la pantalla y color
-		titulo.setBounds(80, 130, 260, 36);
-		titulo2.setBounds(130, 170, 140, 30);
+	
+		titulo2.setBounds(120, 190, 140, 30);
 		promedio.setBounds(210, 370, 160, 34);
 		promedioAnio.setBounds(150,320 , 280, 36);
-		resumenAnio.setBounds(460, 350, 150, 30);
-		simboloPesos.setBounds(180, 373, 30, 30);
-		resumenMes.setBounds(460, 400, 150, 30);
-		menuCompras.setBounds(460, 450, 150, 30);
-		
+		simboloPesos.setBounds(180, 373, 30, 30);		
 		
 		simboloPesos.setBackground(Color.black);
 		simboloPesos.setBackground(new Color(0, 0, 0, 0));
-		resumenMes.setForeground(Color.white);
-		resumenMes.setBackground(new Color(0, 0, 0, 0));
-		resumenMes.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-		menuCompras.setForeground(Color.white);		
-		menuCompras.setBackground(new Color(0, 0, 0, 0));
-		menuCompras.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-		titulo.setBackground(new Color(0, 0, 0, 0));
-		titulo.setForeground(Color.white);
 		titulo2.setBackground(Color.white);
 		titulo2.setForeground(Color.black);
 	    promedio.setBackground(Color.white);
 	    promedio.setForeground(Color.black);
 		promedioAnio.setBackground(new Color(0, 0, 0, 0));
 		promedioAnio.setForeground(Color.white);
-		resumenAnio.setBackground(new Color(0, 0, 0, 0));
-		resumenAnio.setForeground(Color.white);
-		resumenAnio.setHorizontalAlignment(HVisible.HALIGN_LEFT);
 				
 		cargarTotales();
 
-		this.add(titulo);
 		this.add(titulo2);
 		this.add(promedio);
 		this.add(promedioAnio);
-		this.add(resumenAnio);
 		this.add(simboloPesos);
-		this.add(resumenMes);
-		this.add(menuCompras);
 				
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
