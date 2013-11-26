@@ -84,6 +84,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Contenedor Web Services Weather */
 	public static ContenedorWeather contWeather = new ContenedorWeather();
 	
+
 	/** Contenedor Loading */
 	//private static ContenedorLoading contLoading = new ContenedorLoading();
 
