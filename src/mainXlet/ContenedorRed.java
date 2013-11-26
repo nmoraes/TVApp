@@ -10,16 +10,17 @@ import org.havi.ui.HStaticText;
 public class ContenedorRed extends HContainer implements KeyListener {
 	private int x = 20;
 	
-	HStaticText hstTexto = new HStaticText(" Menu Rojo");
-
+	//HStaticText hstTexto = new HStaticText(" Menu Rojo");
+	public static ContenedorAgenda agenda=new ContenedorAgenda();
 	public ContenedorRed() {
-		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
+		//hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 390, 200, 50);
-		hstTexto.setBackground(Color.red);
-		this.add(hstTexto);
+		//hstTexto.setBounds(x, 390, 200, 50);
+//		hstTexto.setBackground(Color.red);
+//		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
-		this.setBounds(0, 0, 800, 200);
+		this.setBounds(0, 0, 800, 600);
+		//this.add(agenda);
 		this.addKeyListener(this);
 		
 	}
@@ -31,13 +32,14 @@ public class ContenedorRed extends HContainer implements KeyListener {
 		case 39:
 			//derecha
 			x = x + 100;
-			hstTexto.setBounds(x, 150, 200, 50);
+			//hstTexto.setBounds(x, 150, 200, 50);
+			agenda.setVisible(true);
 			this.repaint();
 			break;
 		case 37:
 			//izquierda
 			x = x - 100;
-			hstTexto.setBounds(x, 150, 200, 50);
+			//hstTexto.setBounds(x, 150, 200, 50);
 			this.repaint();
 			break;
 		

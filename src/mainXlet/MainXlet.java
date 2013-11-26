@@ -527,8 +527,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			label.setBackground(colors[0]);
 	        label.repaint();
 	        contRed.requestFocus();
-	       
-
 			break;
 		}
 		case 404: { // Clase gastos
