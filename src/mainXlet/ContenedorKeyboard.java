@@ -74,6 +74,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			System.out.println("cerrar teclado en gastos");
 			MainXlet.gas.seVaElTeclado();
 			MainXlet.gas.requestFocus();
+			MainXlet.gas.setPrimeraVez(true);
 			message = "";
 			
 			break;

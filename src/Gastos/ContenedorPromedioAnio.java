@@ -2,6 +2,10 @@ package Gastos;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -26,6 +30,9 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 	HStaticText resumenMes = new HStaticText("Resumen Mes");
 	HStaticText resumenAnio = new HStaticText("Resumen Año");
 	HStaticText menuCompras = new HStaticText("Menu Compras");
+	
+	private Image fondo;
+	private Boolean primeraVez = true;
 		
 
 	public ContenedorPromedioAnio() {
@@ -85,6 +92,7 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 				
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
+		loadForegroundBitmap();	
 
 	}
 	
@@ -133,8 +141,44 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 		}
 		return true;
 	}
+	
+	public void paint(Graphics graphics) {  
+	
+		if (fondo != null && primeraVez) {   
+	        // Draw the image from the buffer   
+			primeraVez = false;
+			System.out.println("La imagen Promedio Mes no es null");
+			graphics.drawImage(fondo, 0, 0, null);
+		}
+		
+		super.paint(graphics);
 
-
+	}
+	
+	private void loadForegroundBitmap() {   
+        // Create a MediaTracker to tell us when the image has loaded   
+        MediaTracker tracker = new MediaTracker(this);   
+        // Then load the image   
+        fondo = Toolkit.getDefaultToolkit().getImage("promedioMes.jpg");   
+             	
+        
+        // add the image to the MediaTracker...   
+        tracker.addImage(fondo, 0); 
+        
+     //   tracker.addImage(image2, 1);
+     
+        // ...and wait for it to finish loading   
+        try{   
+            tracker.waitForAll();   
+        }   
+        catch(InterruptedException e) {   
+            // Ignore the exception, since there's not a lot we can do.   
+            fondo = null;
+        } 
+        
+    }   
+	
+	
 	public void keyPressed(KeyEvent tecla) {
 
 		System.out.println("Prueba!!!");
@@ -152,7 +196,7 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.mes.requestFocus();
 			MainXlet.label.setBackground(Color.green);
 			MainXlet.label.repaint();
-
+			primeraVez = true;
 			break;
 
 		case 405: // Boton Amarillo
@@ -162,6 +206,7 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.anio.requestFocus();
 			MainXlet.label.setBackground(Color.green);
 			MainXlet.label.repaint();
+			primeraVez = true;
 			break;
 
 		case 406: // Boton Azul
@@ -171,6 +216,7 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.gas.requestFocus();
 			MainXlet.label.setBackground(Color.green);
 			MainXlet.label.repaint();
+			primeraVez = true;
 			break;
 
 		case 27: // exit

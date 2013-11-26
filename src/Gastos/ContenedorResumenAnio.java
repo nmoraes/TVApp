@@ -2,6 +2,10 @@ package Gastos;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -52,6 +56,8 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 	HStaticText titGrafica = new HStaticText("Grafica A�o");
 	HStaticText titResumen = new HStaticText("ResumenMes");
 	
+	private Boolean primeraVez = true;
+	private Image fondo;
 
 	public ContenedorResumenAnio() {
 
@@ -186,8 +192,44 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
-
+		loadForegroundBitmap();
 	}
+	
+public void paint(Graphics graphics) {   
+		
+		if (fondo != null && primeraVez) {   
+	        // Draw the image from the buffer   
+			primeraVez = false;
+			System.out.println("La imagen 1 no es null");
+			graphics.drawImage(fondo, 0, 0, null);
+		}
+	
+		super.paint(graphics);
+		
+}  
+
+private void loadForegroundBitmap() {   
+    // Create a MediaTracker to tell us when the image has loaded   
+    MediaTracker tracker = new MediaTracker(this);   
+    // Then load the image   
+    fondo = Toolkit.getDefaultToolkit().getImage("resAnio.jpg");   
+         	
+    
+    // add the image to the MediaTracker...   
+    tracker.addImage(fondo, 0); 
+    
+ //   tracker.addImage(image2, 1);
+ 
+    // ...and wait for it to finish loading   
+    try{   
+        tracker.waitForAll();   
+    }   
+    catch(InterruptedException e) {   
+        // Ignore the exception, since there's not a lot we can do.   
+        fondo = null;
+    } 
+    
+} 
 	
 	private void cargarTotales(){
 		
@@ -300,16 +342,17 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		switch (tecla.getKeyCode()) {
 
 		case 404: // Boton Verde
+			
+			break;
+
+		case 403: // Boton Rojo
 			System.out.println("Va para Promedio Anual");
 			MainXlet.anio.setVisible(false);
 			MainXlet.promedioAnio.setVisible(true);
 			MainXlet.promedioAnio.requestFocus();
 			MainXlet.label.setBackground(Color.green);
 			MainXlet.label.repaint();
-			break;
-
-		case 403: // Boton Rojo
-
+			primeraVez = true;
 			break;
 
 		case 405: // Boton Amarillo
@@ -319,6 +362,7 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 			MainXlet.mes.requestFocus();
 			MainXlet.label.setBackground(Color.green);
 			MainXlet.label.repaint();
+			primeraVez = true;
 			break;
 
 		case 406: // Boton Azul
@@ -326,13 +370,15 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 			MainXlet.anio.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
+			primeraVez = true;
 			break;
 
 		case 27: // exit
-			MainXlet.mes.setVisible(false);
+			MainXlet.anio.setVisible(false);
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+			primeraVez = true;
 			break;
 
 		default: { // do nothing

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -32,12 +34,16 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	
 	//TODO
 	private Image fondo;
-	private Image fondo2;
+	
 	
 	// Pantalla de ingreso de gastos
 	
 	HStaticText resumenAño = new HStaticText ("Resumen Año");
+	HStaticText cuadResumenAño = new HStaticText (" ");
 	HStaticText resumenMes = new HStaticText ("Resumen Mes");
+	HStaticText cuadResumenMes = new HStaticText (" ");
+	HStaticText lblTeclado = new HStaticText ("Teclado");
+	HStaticText cuadTeclado = new HStaticText (" ");
 	HStaticText titDetalle = new HStaticText ("Detalle de la compra");
 	HStaticText titCantidad = new HStaticText ("Cant.");
 	HStaticText titUnitario = new HStaticText ("Unit.");
@@ -65,7 +71,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private float precioUnitario;
 	private float total = 0;
 	private Date mesActual = new Date();
-	
+	private Boolean primeraVez = true;
 
 	// Primer pantalla de gastos!!!
 	public ContenedorGastos(){
@@ -106,24 +112,39 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaMonto.setCaretCharPosition(1);
 	  			
 		// tipo de letra
-		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 20));
-		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 20));
+		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		lblTeclado.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		resumenAño.setForeground(Color.white);
+		resumenMes.setForeground(Color.white);
+		lblTeclado.setForeground(Color.white);
+		resumenAño.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+		resumenMes.setHorizontalAlignment(HVisible.HALIGN_LEFT);
+		lblTeclado.setHorizontalAlignment(HVisible.HALIGN_LEFT);
 		titDetalle.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titCantidad.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titUnitario.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		
 		// Posicion inicial en la pantalla y color
-		resumenAño.setBounds(30, 140, 140, 30);
-		resumenMes.setBounds(240, 140, 140, 30);
+		resumenAño.setBounds(520, 350, 140, 30);
+		resumenMes.setBounds(520, 390, 140, 30);
+		lblTeclado.setBounds(520, 430, 140, 30);
+		cuadResumenAño.setBounds(490, 355, 20, 20);
+		cuadResumenMes.setBounds(490, 395, 20, 20);
+		cuadTeclado.setBounds(490, 435, 20, 20);
 		titDetalle.setBounds(30, 260, 240, 30);
 		titCantidad.setBounds(270, 260, 55, 30);
 		titUnitario.setBounds(325, 260, 65, 30);
 		titMonto.setBounds(380, 260, 95, 30);
 		
 		// Color de fondo
-		resumenAño.setBackground(Color.red);
-		resumenMes.setBackground(Color.green);
+		resumenAño.setBackground(new Color(0, 0, 0, 0));
+		resumenMes.setBackground(new Color(0, 0, 0, 0));
+		lblTeclado.setBackground(new Color(0, 0, 0, 0));
+		cuadResumenAño.setBackground(Color.green);
+		cuadResumenMes.setBackground(Color.yellow);
+		cuadTeclado.setBackground(Color.red);
 		titDetalle.setBackground(Color.blue);
 		titCantidad.setBackground(Color.blue);
 		titUnitario.setBackground(Color.blue);
@@ -132,6 +153,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		// Agrego al contenedor
 		this.add(resumenAño);
 		this.add(resumenMes);
+		this.add(lblTeclado);
 		this.add(titDetalle);
 		this.add(titCantidad);
 		this.add(titUnitario);
@@ -139,15 +161,25 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		this.add(cajaDetalle);
 		this.add(cajaCantidad);
 		this.add(cajaUnitario);
-		this.add(cajaMonto);		
+		this.add(cajaMonto);	
+		this.add(cuadResumenAño);
+		this.add(cuadResumenMes);
+		this.add(cuadTeclado);
 		
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
-				
+		loadForegroundBitmap();		
 	}
 		
 	
 	public void paint(Graphics graphics) {   
+		
+		if (fondo != null && primeraVez) {   
+	        // Draw the image from the buffer   
+			primeraVez = false;
+			System.out.println("La imagen 1 no es null");
+			graphics.drawImage(fondo, 0, 0, null);
+		}
 				
 		switch(ContenedorKeyboard.navegadorTextGastos){
 		
@@ -187,6 +219,29 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		
 	 }   
+	
+	private void loadForegroundBitmap() {   
+        // Create a MediaTracker to tell us when the image has loaded   
+        MediaTracker tracker = new MediaTracker(this);   
+        // Then load the image   
+        fondo = Toolkit.getDefaultToolkit().getImage("Gastos.jpg");   
+             	
+        
+        // add the image to the MediaTracker...   
+        tracker.addImage(fondo, 0); 
+        
+     //   tracker.addImage(image2, 1);
+     
+        // ...and wait for it to finish loading   
+        try{   
+            tracker.waitForAll();   
+        }   
+        catch(InterruptedException e) {   
+            // Ignore the exception, since there's not a lot we can do.   
+            fondo = null;
+        } 
+        
+    }   
 		
 	
 	public void keyPressed(KeyEvent tecla){
@@ -197,6 +252,28 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		switch (tecla.getKeyCode()){
 		
 		case 404: 	// Boton Verde
+			System.out.println("Va para Resumen Año");
+			MainXlet.gas.setVisible(false);
+			MainXlet.anio.setVisible(true);
+			MainXlet.anio.requestFocus();		
+			MainXlet.label.setBackground(Color.red);
+			MainXlet.label.repaint();
+			LimpiarCajas();
+			persistir.guardarGastos(ListaGastos);
+			primeraVez = true;
+			
+			break;
+
+		case 403: 	// Boton Rojo
+			System.out.println("llamamos al teclado desde gastos");
+			super.paint(this.getGraphics());
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();	
+			ContenedorKeyboard.invokeFather=Constant.GASTOS;
+			
+			break;
+		
+		case 405: 	// Boton Amarillo
 			System.out.println("Va para Resumen Gastos");
 			persistir.guardarGastos(ListaGastos);
 			MainXlet.gas.setVisible(false);
@@ -206,28 +283,9 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.label.setBackground(Color.darkGray);
 			MainXlet.label.repaint();
 			LimpiarCajas();
-					
+			primeraVez = true;		
 			this.repaint();
 			
-			break;
-
-		case 403: 	// Boton Rojo
-			System.out.println("Va para Resumen Año");
-			MainXlet.gas.setVisible(false);
-			MainXlet.anio.setVisible(true);
-			MainXlet.anio.requestFocus();		
-			MainXlet.label.setBackground(Color.red);
-			MainXlet.label.repaint();
-			LimpiarCajas();
-			persistir.guardarGastos(ListaGastos);
-			break;
-		
-		case 405: 	// Boton Amarillo
-			System.out.println("llamamos al teclado desde gastos");
-			MainXlet.keyboard.setVisible(true);
-			MainXlet.keyboard.requestFocus();	
-			ContenedorKeyboard.invokeFather=Constant.GASTOS;
-			this.repaint();
 			break;
 		
 		case 406: // Boton Azul
@@ -243,6 +301,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			this.repaint();
 			persistir.guardarGastos(ListaGastos);
 			System.out.println("Boton de persistencia!!");
+			primeraVez = true;
 		
 			break;	
 
@@ -259,6 +318,11 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 						
 		}
 	}
+	
+	public void setPrimeraVez(Boolean f){
+		primeraVez = f;
+	}
+	
 	public void seVaElTeclado(){
 		if (ListaGastos.getColeccion().isEmpty()){
 			System.out.println(" Esta Vacia");
