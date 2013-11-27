@@ -76,6 +76,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		case 403:
 			System.out.println("boton rojo siempre llama al teclado ...");
 			escribir = true;
+			MainXlet.miniWeather.setVisible(false);
 			MainXlet.keyboard.setVisible(true);
 			timeline="";
 			MainXlet.keyboard.requestFocus();	
@@ -93,7 +94,6 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			ContenedorYellow.conTwitter.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
-//			hstTexto.setTextContent("otro texto", HState.ALL_STATES);
 			array=obtenerTweets();
 			this.repaint();
 			break;
@@ -115,31 +115,14 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		List lista = ft.getHomeTimeLine();
 		//StringBuilder tl = new StringBuilder();
 		for (int i = 0; i < 5; i++) {
-			Tweet tweet = (Tweet) lista.get(i);
-			
+			Tweet tweet = (Tweet) lista.get(i);			
 			String tw=tweet.getUsuario() + ": " + tweet.getMensaje();
-			//tl.append(tweet.getUsuario() + ": " + tweet.getMensaje()+"\n");
 			array.add(i, tw);
 		}
-	//	StringBuilder tl=new StringBuilder("Applesfera: La Estrella de la Muerte no se construirß sola: Star Wars Tiny Death \n Star ya disponible para iOS http://t.co/whohFXg8tf \n Chanchos del Uruguay: RT @becapablo: @chanchosUY RADAR en propios antes de la ca\nncha de la luz. Te esperan mas adelante para darte el regalito.\nCiencia y TecnologÝa: #Tecnologia 18 meses de cßrcel para el due±o de la web de\nenlaces http://t.co/HCOpmFVFOH http://t.co/2KoQlxsIQV \nCiencia y TecnologÝa: #Ciencia El 'gran hermano' de los osos polares http://t.co/jmu4WhNAED \nChanchos del Uruguay: RT @gcsuburu: @chanchosUY Multiple choque en Rambla portua\nria frente a Torre de Antel. Camineravy patrulkero. Semßforo siguiente un caos");		
-		//System.out.println(tl);
 		return array;
 
 	}
-//	public void escribirTweet(){
-//		System.out.println("tecla");
-//		//hstTexto.setVisible(false);
-//		MainXlet.keyboard.setVisible(true);
-//		MainXlet.keyboard.requestFocus();
-//		MainXlet.keyboard.invokeFather=Constant.CONTENEDOR_TWITTER;
-//		tweet=MainXlet.keyboard.message;
-//		System.out.println("letra "+tweet);
-//		nuevoTweet.setTextContent(tweet, HState.ALL_STATES);
-//		
-//		System.out.println("TWITTER --> "+tweet);
-//		escribirTweet(tweet);
-//		this.repaint();
-//	}
+
 	
 	public static void escribirTweet(String tweet){
 		FachadaTwitter ft=new FachadaTwitter();
@@ -172,36 +155,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	 
 	
 	 public void paint(Graphics graphics) {   
-		   
-	        // Get the size of this component so that we can clear it properly.   
-	      //  Dimension size = getSize();   
-	   
-	       // graphics.setColor(Color.white);
-	        
-	        //graphics.fillRect(0,0,size.width,size.height);   
-	        	        
-	        
-		 
-	        if (image != null && escribir==true) {  
-	        	
-	            // Draw the image from the buffer   
-	            graphics.drawImage(image, 5, 190, null);      
-	            
-	            
-	            
-	            
-	        	 } 
-	    
-	        
-
-	        
-
+		
 		try {
 
-		//	graphics.drawString(timeline, 12, 200);
-			//System.out.println(timeline);
-		//	int length= timeline.length();
-			
 		     graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));   
 		        // Set the text colour   
 		        graphics.setColor(Color.white);
@@ -215,8 +171,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			graphics.setColor(Color.black);
 
 			if (image != null && escribir == true) {
+				graphics.drawImage(image, 150, 230, null);   
 				graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));
-				graphics.drawString(ContenedorKeyboard.message, 12, 207);
+				graphics.drawString(ContenedorKeyboard.message, 158, 245);
 
 			}
 		} catch (Throwable t) {
@@ -224,20 +181,6 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			System.out.println("error al escribir");
 		}
 	}
-	
-	 
-//	 
-//	 private String prepararTimeline(String timeline){
-//		 
-//		 String aux=timeline.substring(0, 40);
-//		 String aux=timeline.substring(41, 80);
-//		 String aux=timeline.substring(81, 100)
-//				 ;
-//		 
-//		 timeline.spli
-//	 return "";
-//	 }
-	
 	
 
 }

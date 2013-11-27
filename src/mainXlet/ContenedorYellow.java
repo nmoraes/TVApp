@@ -5,14 +5,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
-import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Properties;
-
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
 
@@ -20,8 +15,10 @@ import calc.Base;
 import calc.Calcu;
 
 public class ContenedorYellow extends HContainer implements KeyListener {
+	
 	private int x = 0;
 	private Image fondoAplic;
+	public static boolean flagImage;
 	HStaticText hstTexto;;
 	public static ContenedorTwitter conTwitter;
 	public static Base base = new Base();
@@ -29,6 +26,9 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 	HStaticText texto;
 	
 	public ContenedorYellow() {
+		
+		flagImage=true;
+		
 		texto = new HStaticText("verde twitter amarillo calculadora");
 		texto.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
@@ -37,21 +37,21 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 		//this.add(texto);
 		texto.setVisible(false);
 		Properties properties = new Properties();
-		try {
-			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
-			hstTexto = new HStaticText(
-					properties.getProperty("textoContenedorAmarillo"));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
+//		try {
+//			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
+//			hstTexto = new HStaticText(
+//					properties.getProperty("textoContenedorAmarillo"));
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
 		// texto tamaño y posición x,y,x,y
-		hstTexto.setBounds(x, 530, 720, 50);
-		hstTexto.setBackground(Color.yellow);
+	//	hstTexto.setBounds(x, 530, 720, 50);
+		//hstTexto.setBackground(Color.yellow);
 		//this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(0, 0, 800, 600);
@@ -86,12 +86,8 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			
 			
 		case 403: {
-			System.out.println("boton rojo siempre llama al teclado ...");
-			MainXlet.keyboard.setVisible(true);
-			MainXlet.keyboard.requestFocus();	
-			ContenedorKeyboard.invokeFather=Constant.AMARILLO;
-			texto.setVisible(false);
-			MainXlet.contYellow.setVisible(false);
+			System.out.println("aca se llama al calendario");
+
 			break;
 		}
 		case 404:
@@ -100,8 +96,9 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			conTwitter=new ContenedorTwitter();
 			this.add(conTwitter);
 			conTwitter.requestFocus();
+			ContenedorYellow.flagImage=false;
+			this.repaint();
 			MainXlet.contYellow.conTwitter.setVisible(true);
-			fondoAplic.flush();
 			this.repaint();
 			break;
 		case 405:
@@ -113,15 +110,10 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			calcu.setVisible(true);
 			calcu.requestFocus();
 			MainXlet.contYellow.setVisible(true);
-			fondoAplic.flush();
+			//fondoAplic.flush();
 			this.repaint();
 			break;
-		default: {
-			// do nothing
-			System.out.println("default case en contenedor amarillo ...");
-			System.out.println(tecla);
-			break;
-		}
+
 		}	
 		
 	}
@@ -155,7 +147,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 	}
 	public void paint(Graphics graphics) {
 
-		if (fondoAplic != null) {
+		if (flagImage==true && fondoAplic != null) {
 			// Draw the image from the buffer
 			graphics.drawImage(fondoAplic, 0, 0, null); //ubicacion de calculadora
 

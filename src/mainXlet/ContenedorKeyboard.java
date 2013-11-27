@@ -81,8 +81,11 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 		case Constant.CONTENEDOR_TWITTER:
 			System.out.println("cerrar teclado en twitter");
 			MainXlet.contYellow.conTwitter.escribir =false;
+			ContenedorYellow.flagImage=true;
 			//MainXlet.contYellow.conTwitter.hstTexto.setVisible(true);
-			MainXlet.contYellow.conTwitter.requestFocus();
+			MainXlet.miniWeather.setVisible(true);
+			MainXlet.contYellow.setVisible(true);
+			MainXlet.contYellow.requestFocus();
 			
 		}
 
