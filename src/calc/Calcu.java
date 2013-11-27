@@ -434,6 +434,7 @@ public class Calcu extends HContainer implements KeyListener {
 			MainXlet.contYellow.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+
 			this.repaint();
 			break;
 		case 151:
@@ -445,11 +446,6 @@ public class Calcu extends HContainer implements KeyListener {
 			//pantalla.setTextContent(String.valueOf(""),
 				//	HState.ALL_STATES);
 			break;
-		default: { // do nothing
-			System.out.println("default case ...");
-			System.out.println(tecla);
-			break;
-		}
 
 		}
 	}

@@ -36,24 +36,6 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 		texto.setBackground(Color.white);
 		//this.add(texto);
 		texto.setVisible(false);
-		Properties properties = new Properties();
-//		try {
-//			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
-//			hstTexto = new HStaticText(
-//					properties.getProperty("textoContenedorAmarillo"));
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
-		// texto tamaño y posición x,y,x,y
-	//	hstTexto.setBounds(x, 530, 720, 50);
-		//hstTexto.setBackground(Color.yellow);
-		//this.add(hstTexto);
-		// mi tamaño y posición x,y,x,y
 		this.setBounds(0, 0, 800, 600);
 		loadForegroundBitmap();
 		this.addKeyListener(this);
@@ -97,6 +79,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			this.add(conTwitter);
 			conTwitter.requestFocus();
 			ContenedorYellow.flagImage=false;
+			MainXlet.miniWeather.setVisible(false);
 			this.repaint();
 			MainXlet.contYellow.conTwitter.setVisible(true);
 			this.repaint();

@@ -23,10 +23,10 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	 */
 	private static final long serialVersionUID = 5292849366437972565L;
 
-	private HStaticText hstTexto;
-	private String tweet;
-	private HStaticText nuevoTweet;
-	private HMultilineEntry multiEntrada;
+	//private HStaticText hstTexto;
+	//private String tweet;
+	//private HStaticText nuevoTweet;
+	//private HMultilineEntry multiEntrada;
 	
     // The image that we will show   
     private Image image;
@@ -36,15 +36,15 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	@SuppressWarnings("unchecked")
 	public ContenedorTwitter() {
 
-		tweet = "";
+		//tweet = "";
 		array = obtenerTweets();
 
-		nuevoTweet = new HStaticText("Rojo para escribir nuevo tweet");
-		nuevoTweet.setFont(new Font("Tiresias", 0, 14));
+	//	nuevoTweet = new HStaticText("Rojo para escribir nuevo tweet");
+	//	nuevoTweet.setFont(new Font("Tiresias", 0, 14));
 		// texto tamaño y posición x,y,x,y
-		nuevoTweet.setBounds(10, 110, 350, 100);
-		nuevoTweet.setBackground(Color.white);
-		this.add(nuevoTweet);
+//		nuevoTweet.setBounds(10, 110, 350, 100);
+//		nuevoTweet.setBackground(Color.white);
+	//	this.add(nuevoTweet);
 		loadForegroundBitmap();
 
 		this.setBounds(0, 0, 800, 600);
@@ -72,10 +72,13 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			break;
 		case 27:
 			//exit
-			MainXlet.label.setBackground(Color.white);
+			MainXlet.label.setBackground(Color.yellow);
 			ContenedorYellow.conTwitter.setVisible(false);
 			MainXlet.label.repaint();
-			MainXlet.scene.requestFocus();
+			MainXlet.miniWeather.setVisible(true);
+			ContenedorYellow.flagImage=true;
+			//MainXlet.scene.requestFocus();
+			MainXlet.contYellow.requestFocus();
 			array=obtenerTweets();
 			this.repaint();
 			break;
