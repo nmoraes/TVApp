@@ -20,7 +20,8 @@ public class ContenedorRed extends HContainer implements KeyListener {
 //		this.add(hstTexto);
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(0, 0, 800, 600);
-		//this.add(agenda);
+		this.add(agenda);
+		agenda.setVisible(false);
 		this.addKeyListener(this);
 		
 	}
