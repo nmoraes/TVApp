@@ -298,6 +298,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.gas.setVisible(false);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+			MainXlet.miniWeather.setVisible(true);
 			this.repaint();
 			persistir.guardarGastos(ListaGastos);
 			System.out.println("Boton de persistencia!!");

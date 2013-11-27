@@ -495,12 +495,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case KeyEvent.VK_DOWN: {
 			
-//			System.out.println("***** evento contenedor prueba *****");
-//			label.setBackground(Color.LIGHT_GRAY);
-//	        label.repaint();
-//	        contTasks.setVisible(true);
-//	        contTasks.requestFocus();
-			
 			break;
 		}
 
@@ -534,6 +528,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		case 404: { // Clase gastos
 			System.out.println("verde ...");
 			label.setBackground(colors[1]);
+			miniWeather.setVisible(false);
 	        label.repaint();
 	        gas.setVisible(true);
 	        gas.requestFocus();
@@ -560,12 +555,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			break;
 		}
 
-		default: {
-			// do nothing
-			System.out.println("default case ...");
-			System.out.println(key);
-			break;
-		}
+//		default: {
+//			// do nothing
+//			System.out.println("default case ...");
+//			System.out.println(key);
+//			break;
+//		}
 		}
 	}   
    
