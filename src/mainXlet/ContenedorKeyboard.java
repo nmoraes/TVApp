@@ -86,7 +86,10 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			MainXlet.miniWeather.setVisible(true);
 			MainXlet.contYellow.setVisible(true);
 			MainXlet.contYellow.requestFocus();
-			
+			break;
+		case Constant.CONTENEDOR_AGENDA:
+			MainXlet.contRed.agenda.requestFocus();			
+			break;
 		}
 
 		

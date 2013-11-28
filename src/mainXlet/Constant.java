@@ -32,6 +32,9 @@ public class Constant {
 	/**Constante para indicar el contenedor escribir tweet*/
 	public static final int CONTENEDOR_TWITTER = 7;
 	
+	/**Constante para indicar el contenedor agenda**/
+	public static final int CONTENEDOR_AGENDA=8;
+	
 	
 	
 }

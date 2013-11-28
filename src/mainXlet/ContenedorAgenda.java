@@ -64,18 +64,22 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case 39://derecha
-			if(foco==1){
+			switch(foco){
+			case 1:
 				mes.setBackground(Color.YELLOW);
 				dia.setBackground(Color.WHITE);
 				foco=2;
-			}else if(foco==2){
+				break;
+			case 2:
 				anio.setBackground(Color.YELLOW);
 				mes.setBackground(Color.WHITE);
 				foco=3;
-			}else if(foco==3){
+				break;
+			case 3:
 				dia.setBackground(Color.YELLOW);
 				anio.setBackground(Color.WHITE);
 				foco=1;
+				break;
 			}
 			break;
 		case 37:
@@ -129,8 +133,14 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 			mes.setTextContent(tareas.darMes(), HState.ALL_STATES);
 			anio.setTextContent(tareas.darAnio()+"", HState.ALL_STATES);
 			break;
+		case 10://ok
+			MainXlet.keyboard.setVisible(true);
+			MainXlet.keyboard.requestFocus();	
+			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_AGENDA;
+			break;
 		case 27:
 			//exit
+			this.setVisible(false);
 			MainXlet.label.setBackground(Color.white);
 			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
