@@ -23,9 +23,6 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 
 	// Pantalla Resumen Gastos del A�o //
 
-	HStaticText titulo = new HStaticText("Resumen");
-	HStaticText titulo2 = new HStaticText("2013");
-	//HStaticText titulo3 = new HStaticText("Ver ordenado de Mayor a Menor");
 	HStaticText titEnero = new HStaticText("Enero");
 	HStaticText enero = new HStaticText("5000");
 	HStaticText titFebrero = new HStaticText("Febrero");
@@ -62,9 +59,6 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 	public ContenedorResumenAnio() {
 
 		// Tipo de letra
-		titulo.setFont(new Font("Tiresias", Font.BOLD, 35));
-		titulo2.setFont(new Font("Tiresias", Font.BOLD, 28));
-		//titulo3.setFont(new Font("Tiresias", Font.BOLD, 22));
 		titEnero.setFont(new Font("Tiresias", Font.BOLD, 22));
 		titFebrero.setFont(new Font("Tiresias", Font.BOLD, 22));
 		titMarzo.setFont(new Font("Tiresias", Font.BOLD, 22));
@@ -77,8 +71,8 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		titOctubre.setFont(new Font("Tiresias", Font.BOLD, 22));
 		titNoviembre.setFont(new Font("Tiresias", Font.BOLD, 22));
 		titDiciembre.setFont(new Font("Tiresias", Font.BOLD, 22));
-		titTotal.setFont(new Font("Tiresias", Font.BOLD, 28));
-		total.setFont(new Font("Tiresias", Font.BOLD, 24));
+		titTotal.setFont(new Font("Tiresias", Font.BOLD, 32));
+		total.setFont(new Font("Tiresias", Font.BOLD, 28));
 		
 		enero.setFont(new Font("Tiresias", Font.BOLD, 20));
 		febrero.setFont(new Font("Tiresias", Font.BOLD, 20));
@@ -94,36 +88,33 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		diciembre.setFont(new Font("Tiresias", Font.BOLD, 20));
 		
 		// Posicion inicial en la pantalla y color
-		titulo.setBounds(100, 130, 200, 36);
-		titulo2.setBounds(130, 170, 140, 30);
-		//titulo3.setBounds(30, 110, 320, 20);
-		titEnero.setBounds(50, 290, 100, 30);
-		titFebrero.setBounds(50,330 , 100, 30);
-		titMarzo.setBounds(50, 370, 100, 30);
-		titAbril.setBounds(50, 410, 100, 30);
-		titMayo.setBounds(50, 450, 100, 30);
-		titJunio.setBounds(50, 490, 100, 30);
-		titJulio.setBounds(250, 290, 100, 30);
-		titAgosto.setBounds(250, 330, 100, 30);
-		titSeptiembre.setBounds(250, 370, 120, 30);
-		titOctubre.setBounds(250, 410, 100, 30);
-		titNoviembre.setBounds(250, 450, 110, 30);
-		titDiciembre.setBounds(250, 490, 110, 30);
-		titTotal.setBounds(500, 410, 110, 30);
-		total.setBounds(500, 450, 110, 30);
+		titEnero.setBounds(125, 290, 100, 30);
+		titFebrero.setBounds(125,330 , 100, 30);
+		titMarzo.setBounds(125, 370, 100, 30);
+		titAbril.setBounds(125, 410, 100, 30);
+		titMayo.setBounds(125, 450, 100, 30);
+		titJunio.setBounds(125, 490, 100, 30);
+		titJulio.setBounds(325, 290, 100, 30);
+		titAgosto.setBounds(325, 330, 100, 30);
+		titSeptiembre.setBounds(325, 370, 120, 30);
+		titOctubre.setBounds(325, 410, 100, 30);
+		titNoviembre.setBounds(325, 450, 110, 30);
+		titDiciembre.setBounds(325, 490, 110, 30);
+		titTotal.setBounds(60, 210, 120, 34);
+		total.setBounds(180, 210, 140, 30);
 
-		enero.setBounds(150, 290, 80, 30);
-		febrero.setBounds(150, 330, 80, 30);
-		marzo.setBounds(150, 370, 80, 30);
-		abril.setBounds(150, 410, 80, 30);
-		mayo.setBounds(150, 450, 80, 30);
-		junio.setBounds(150, 490, 80, 30);
-		julio.setBounds(370, 290, 80, 30);
-		agosto.setBounds(370, 330, 80, 30);
-		septiembre.setBounds(370, 370, 80, 30);
-		octubre.setBounds(370, 410, 80, 30);
-		noviembre.setBounds(370, 450, 80, 30);
-		diciembre.setBounds(370, 490, 80, 30);
+		enero.setBounds(225, 290, 80, 30);
+		febrero.setBounds(225, 330, 80, 30);
+		marzo.setBounds(225, 370, 80, 30);
+		abril.setBounds(225, 410, 80, 30);
+		mayo.setBounds(225, 450, 80, 30);
+		junio.setBounds(225, 490, 80, 30);
+		julio.setBounds(445, 290, 80, 30);
+		agosto.setBounds(445, 330, 80, 30);
+		septiembre.setBounds(445, 370, 80, 30);
+		octubre.setBounds(445, 410, 80, 30);
+		noviembre.setBounds(445, 450, 80, 30);
+		diciembre.setBounds(445, 490, 80, 30);
 		
 		enero.setBackground(Color.white);
 		febrero.setBackground(Color.white);
@@ -140,11 +131,6 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		titTotal.setBackground(new Color(0, 0, 0, 0));
 		total.setBackground(Color.white);
 		
-		titulo.setBackground(new Color(0, 0, 0, 0));
-		titulo.setForeground(Color.white);
-		titulo2.setBackground(new Color(0, 0, 0, 0));
-		titulo2.setForeground(Color.white);
-	//	titulo3.setBackground(Color.darkGray);
 		titEnero.setBackground(new Color(0, 0, 0, 0));
 		titFebrero.setBackground(new Color(0, 0, 0, 0));
 		titMarzo.setBackground(new Color(0, 0, 0, 0));
@@ -160,9 +146,6 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 		
 		cargarTotales();
 
-		this.add(titulo);
-		this.add(titulo2);
-	//	this.add(titulo3);
 		this.add(titEnero);
 		this.add(titFebrero);
 		this.add(titMarzo);

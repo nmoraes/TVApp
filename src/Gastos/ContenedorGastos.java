@@ -37,23 +37,17 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	
 	
 	// Pantalla de ingreso de gastos
-	
-	HStaticText resumenAño = new HStaticText ("Resumen Año");
-	HStaticText cuadResumenAño = new HStaticText (" ");
-	HStaticText resumenMes = new HStaticText ("Resumen Mes");
-	HStaticText cuadResumenMes = new HStaticText (" ");
-	HStaticText lblTeclado = new HStaticText ("Teclado");
-	HStaticText cuadTeclado = new HStaticText (" ");
+	HStaticText titpulse = new HStaticText ("Pulse + para moverse");
 	HStaticText titDetalle = new HStaticText ("Detalle de la compra");
 	HStaticText titCantidad = new HStaticText ("Cant.");
 	HStaticText titUnitario = new HStaticText ("Unit.");
 	HStaticText titMonto = new HStaticText ("Monto");
 
 	// estos strings son usado para guardar en disco lo escrito en pantalla
-	private String detText = new String(".  ");
-	private String canText = ".  ";
-	private String uniText = ".  ";
-	private String monText = ".  ";
+	private String detText = new String("  ");
+	private String canText = "  ";
+	private String uniText = "  ";
+	private String monText = "  ";
 	
 	// estas cajas de texto muestran lo que el usuario va escribiendo en pantalla
 	private HSinglelineEntry cajaDetalle;
@@ -79,7 +73,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		ListaGastos = persistir.LeerGastos();
 		
 		 //cajas de texto
-	    cajaDetalle = new HSinglelineEntry("", 40, 290, 194, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	    cajaDetalle = new HSinglelineEntry("", 30, 290, 250, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaDetalle.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaDetalle.setBackground(Color.white);
 	  	cajaDetalle.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -87,7 +81,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaDetalle.setEditMode(true);
 	  	cajaDetalle.setCaretCharPosition(1);
 	  	
-	  	cajaCantidad = new HSinglelineEntry("", 270, 290, 45, 30, 3, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaCantidad = new HSinglelineEntry("", 280, 290, 45, 30, 3, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaCantidad.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaCantidad.setBackground(Color.white);
 	  	cajaCantidad.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -95,7 +89,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaCantidad.setEditMode(true);
 	  	cajaCantidad.setCaretCharPosition(1);
 	  	
-	  	cajaUnitario = new HSinglelineEntry("", 325, 290, 55, 30, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaUnitario = new HSinglelineEntry("", 325, 290, 65, 30, 5, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaUnitario.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaUnitario.setBackground(Color.white);
 	  	cajaUnitario.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -103,7 +97,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaUnitario.setEditMode(true);
 	  	cajaUnitario.setCaretCharPosition(1);
 	  	
-	  	cajaMonto = new HSinglelineEntry("", 380, 290, 95, 30, 6, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	  	cajaMonto = new HSinglelineEntry("", 390, 290, 115, 30, 6, new Font("Tiresias", Font.BOLD, 22), Color.blue);
 	   	cajaMonto.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
 	   	cajaMonto.setBackground(Color.white);
 	  	cajaMonto.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -112,48 +106,29 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	  	cajaMonto.setCaretCharPosition(1);
 	  			
 		// tipo de letra
-		resumenAño.setFont( new Font ("Tiresias", Font.BOLD, 22));
-		resumenMes.setFont( new Font ("Tiresias", Font.BOLD, 22));
-		lblTeclado.setFont( new Font ("Tiresias", Font.BOLD, 22));
-		resumenAño.setForeground(Color.white);
-		resumenMes.setForeground(Color.white);
-		lblTeclado.setForeground(Color.white);
-		resumenAño.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-		resumenMes.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-		lblTeclado.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-		titDetalle.setFont( new Font ("Tiresias", Font.BOLD, 20));
-		titCantidad.setFont( new Font ("Tiresias", Font.BOLD, 20));
-		titUnitario.setFont( new Font ("Tiresias", Font.BOLD, 20));
-		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 20));
 		
+		titDetalle.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		titCantidad.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		titUnitario.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		titpulse.setFont( new Font ("Tiresias", Font.BOLD, 22));
+		titpulse.setForeground(Color.white);
 		// Posicion inicial en la pantalla y color
-		resumenAño.setBounds(520, 350, 140, 30);
-		resumenMes.setBounds(520, 390, 140, 30);
-		lblTeclado.setBounds(520, 430, 140, 30);
-		cuadResumenAño.setBounds(490, 355, 20, 20);
-		cuadResumenMes.setBounds(490, 395, 20, 20);
-		cuadTeclado.setBounds(490, 435, 20, 20);
-		titDetalle.setBounds(30, 260, 240, 30);
-		titCantidad.setBounds(270, 260, 55, 30);
-		titUnitario.setBounds(325, 260, 65, 30);
-		titMonto.setBounds(380, 260, 95, 30);
-		
+	
+		titDetalle.setBounds(30, 260, 250, 30);
+		titCantidad.setBounds(280, 260, 50, 30);
+		titUnitario.setBounds(330, 260, 75, 30);
+		titMonto.setBounds(405, 260, 100, 30);
+		titpulse.setBounds(400, 190, 250, 30);
 		// Color de fondo
-		resumenAño.setBackground(new Color(0, 0, 0, 0));
-		resumenMes.setBackground(new Color(0, 0, 0, 0));
-		lblTeclado.setBackground(new Color(0, 0, 0, 0));
-		cuadResumenAño.setBackground(Color.green);
-		cuadResumenMes.setBackground(Color.yellow);
-		cuadTeclado.setBackground(Color.red);
+
 		titDetalle.setBackground(Color.blue);
 		titCantidad.setBackground(Color.blue);
 		titUnitario.setBackground(Color.blue);
 		titMonto.setBackground(Color.blue);
-		
+		titpulse.setBackground(new Color(0, 0,0,0));
 		// Agrego al contenedor
-		this.add(resumenAño);
-		this.add(resumenMes);
-		this.add(lblTeclado);
+	
 		this.add(titDetalle);
 		this.add(titCantidad);
 		this.add(titUnitario);
@@ -161,11 +136,10 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		this.add(cajaDetalle);
 		this.add(cajaCantidad);
 		this.add(cajaUnitario);
-		this.add(cajaMonto);	
-		this.add(cuadResumenAño);
-		this.add(cuadResumenMes);
-		this.add(cuadTeclado);
-		
+		this.add(cajaMonto);
+		this.add(titpulse);
+	
+		titpulse.setVisible(false);
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
 		loadForegroundBitmap();		
@@ -176,6 +150,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		if (fondo != null && primeraVez) {   
 	        // Draw the image from the buffer   
+			titpulse.setVisible(false);
 			primeraVez = false;
 			System.out.println("La imagen 1 no es null");
 			graphics.drawImage(fondo, 0, 0, null);
@@ -266,6 +241,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 
 		case 403: 	// Boton Rojo
 			System.out.println("llamamos al teclado desde gastos");
+			titpulse.setVisible(true);
 			super.paint(this.getGraphics());
 			MainXlet.keyboard.setVisible(true);
 			MainXlet.keyboard.requestFocus();	

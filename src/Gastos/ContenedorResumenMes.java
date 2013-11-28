@@ -182,13 +182,14 @@ public void paint(Graphics graphics) {
 		
 		case 404: 	// Boton Verde
 			// Grafica Año
+			primeraVez = true;
 			cargarGastos(mesActual);
 			this.repaint();
 			break;
 
 		case 403: 	// Boton Rojo
 			// Promedio Año
-			System.out.println("Va para Resumen Año");
+			System.out.println("Va para Promedio Año");
 			MainXlet.mes.setVisible(false);
 			MainXlet.promedioAnio.setVisible(true);
 			MainXlet.promedioAnio.requestFocus();
@@ -366,16 +367,33 @@ public void paint(Graphics graphics) {
 				
 			}else if ((paginado == 1)&&(tamanioLista > 9)){
 				
-				subListGastos= listGastos.subList(10, 19);
+				if (tamanioLista > 19){
+				subListGastos= listGastos.subList(9, 19);
+				}else{
+					subListGastos= listGastos.subList(9, tamanioLista);
+				}
+				
 				paginado(subListGastos);
 				paginado = 2;
-				
+														
 			}else if ((paginado == 2)&&(tamanioLista > 19)){
 				
-				subListGastos= listGastos.subList(20, 29);
+				if (tamanioLista > 29){
+				subListGastos= listGastos.subList(19, 29);
+				}else{
+					subListGastos= listGastos.subList(19, tamanioLista);
+				}
+				
 				paginado(subListGastos);
 				paginado = 0;
 				
+			}else if ((paginado == 2)&&(tamanioLista <= 19)){
+				
+					System.out.println("Aca se rompe");
+					subListGastos= listGastos.subList(0, 9);
+					System.out.println("Aca no llega");
+					paginado(subListGastos);
+					paginado = 1;
 			}
 		}else{
 			paginado(listGastos);
@@ -857,7 +875,7 @@ public void paint(Graphics graphics) {
 			break;
 			
 		case 9:
-			System.out.println("entro en 6");
+			System.out.println("entro en 9");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);

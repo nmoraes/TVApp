@@ -160,7 +160,13 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 		switch (tecla.getKeyCode()) {
 
 		case 404: // Boton Verde
-
+			System.out.println("Va para Resumen Año");
+			MainXlet.promedioAnio.setVisible(false);
+			MainXlet.anio.setVisible(true);
+			MainXlet.anio.requestFocus();
+			MainXlet.label.setBackground(Color.green);
+			MainXlet.label.repaint();
+			primeraVez = true;
 			break;
 
 		case 403: // Boton Rojo
@@ -174,23 +180,17 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			break;
 
 		case 405: // Boton Amarillo
-			System.out.println("Va para Resumen Año");
-			MainXlet.promedioAnio.setVisible(false);
-			MainXlet.anio.setVisible(true);
-			MainXlet.anio.requestFocus();
-			MainXlet.label.setBackground(Color.green);
-			MainXlet.label.repaint();
-			primeraVez = true;
-			break;
-
-		case 406: // Boton Azul
-			System.out.println("Va para Resumen Año");
+			System.out.println("Va para Menu compras");
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
 			MainXlet.label.setBackground(Color.green);
 			MainXlet.label.repaint();
 			primeraVez = true;
+			break;
+
+		case 406: // Boton Azul
+			
 			break;
 
 		case 27: // exit
