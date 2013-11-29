@@ -231,8 +231,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.gas.setVisible(false);
 			MainXlet.anio.setVisible(true);
 			MainXlet.anio.requestFocus();		
-			MainXlet.label.setBackground(Color.red);
-			MainXlet.label.repaint();
+			//MainXlet.label.setBackground(Color.red);
+			//MainXlet.label.repaint();
 			LimpiarCajas();
 			persistir.guardarGastos(ListaGastos);
 			primeraVez = true;
@@ -256,8 +256,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			MainXlet.mes.cargarGastos(mesActual);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();		
-			MainXlet.label.setBackground(Color.darkGray);
-			MainXlet.label.repaint();
+			//MainXlet.label.setBackground(Color.darkGray);
+			//MainXlet.label.repaint();
 			LimpiarCajas();
 			primeraVez = true;		
 			this.repaint();
@@ -270,9 +270,9 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		case 27:	//exit
 			LimpiarCajas();
-			MainXlet.label.setBackground(Color.white);
+			//MainXlet.label.setBackground(Color.white);
 			MainXlet.gas.setVisible(false);
-			MainXlet.label.repaint();
+			//MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			MainXlet.miniWeather.setVisible(true);
 			this.repaint();

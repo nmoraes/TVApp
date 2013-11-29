@@ -164,8 +164,8 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.anio.setVisible(true);
 			MainXlet.anio.requestFocus();
-			MainXlet.label.setBackground(Color.green);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.green);
+//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
@@ -174,8 +174,8 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();
-			MainXlet.label.setBackground(Color.green);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.green);
+//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
@@ -184,8 +184,8 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
-			MainXlet.label.setBackground(Color.green);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.green);
+//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
@@ -195,8 +195,8 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 
 		case 27: // exit
 			MainXlet.promedioAnio.setVisible(false);
-			MainXlet.label.setBackground(Color.white);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.white);
+//			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			break;
 

@@ -428,11 +428,11 @@ public class Calcu extends HContainer implements KeyListener {
 			operador = "";
 			v1 = "";
 			v2 = "";
-			MainXlet.label.setBackground(Color.white);
+		//	MainXlet.label.setBackground(Color.white);
 			//MainXlet.calcu.setVisible(false);
 			ContenedorYellow.calcu.setVisible(false);
 			MainXlet.contYellow.setVisible(false);
-			MainXlet.label.repaint();
+			//MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 
 			this.repaint();

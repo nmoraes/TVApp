@@ -58,8 +58,8 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			
 		case 27:
 			//exit
-			MainXlet.label.setBackground(Color.white);
-			MainXlet.label.repaint();
+			//MainXlet.label.setBackground(Color.white);
+			//MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			texto.setVisible(false);
 			//this.repaint();

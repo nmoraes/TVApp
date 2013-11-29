@@ -72,9 +72,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			break;
 		case 27:
 			//exit
-			MainXlet.label.setBackground(Color.yellow);
+			//MainXlet.label.setBackground(Color.yellow);
 			ContenedorYellow.conTwitter.setVisible(false);
-			MainXlet.label.repaint();
+			//MainXlet.label.repaint();
 			MainXlet.miniWeather.setVisible(true);
 			ContenedorYellow.flagImage=true;
 			//MainXlet.scene.requestFocus();

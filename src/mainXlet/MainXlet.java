@@ -60,7 +60,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	// will do all of the work.
 	private Thread myWorkerThread;
 	
-	public static HStaticText label;
+	//public static HStaticText label;
 	private Color[] colors = { Color.red, Color.green, Color.yellow,Color.blue, Color.white, Color.pink };
 	private int intColor;
 
@@ -97,11 +97,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/**CNN Image */
 	private Image image= Toolkit.getDefaultToolkit().getImage("bg22.png"), inicio = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
 	
-	/**Mensaje de bienvenida*/
-	private String message;
-	
-	/**Mensaje de intruccion*/
-	private String message2;
+//	/**Mensaje de bienvenida*/
+//	private String message;
+//	
+//	/**Mensaje de intruccion*/
+//	private String message2;
 	
 	/**
 	 * @description Before we can draw on the screen, we need an HScene to draw into. This
@@ -152,7 +152,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         loadForegroundBitmap(); 
        
         
-        readProperties();
+     //   readProperties();
        
       
     }   
@@ -185,8 +185,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         scene.addKeyListener(this);
         
 
-        label = new HStaticText(""/*message*/, 650, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
-        scene.add(label);
+//        label = new HStaticText(""/*message*/, 650, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
+//        scene.add(label);
         scene.add(this);
         
     
@@ -460,22 +460,22 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
    
         // Drawing the string may cause an error to get thrown, so we   
         // surround it with a 'try' block.   
-        try{   
-        	graphics.setColor(Color.WHITE);
-            graphics.drawString(message,12,140); 
-            
-            graphics.setFont(new Font("Tiresias", Font.PLAIN, 14));
-            graphics.drawString(message2,12,152); 
-            
-          //  graphics.setFont(new Font("Tiresias", Font.BOLD, 14));
-          //  graphics.drawString("Amarillo: twitter/Calculadora",404, 280);
-          //  graphics.drawString("Verde: tareas",404, 295);
-          //  graphics.drawString(" <-     : weather",404, 310);
-         
-        }catch(Throwable t) {   
-            // Catch any errors that get thrown.   
-            t.printStackTrace();   
-        }   
+//        try{   
+//        	graphics.setColor(Color.WHITE);
+//            graphics.drawString(message,12,140); 
+//            
+//            graphics.setFont(new Font("Tiresias", Font.PLAIN, 14));
+//            graphics.drawString(message2,12,152); 
+//            
+//          //  graphics.setFont(new Font("Tiresias", Font.BOLD, 14));
+//          //  graphics.drawString("Amarillo: twitter/Calculadora",404, 280);
+//          //  graphics.drawString("Verde: tareas",404, 295);
+//          //  graphics.drawString(" <-     : weather",404, 310);
+//         
+//        }catch(Throwable t) {   
+//            // Catch any errors that get thrown.   
+//            t.printStackTrace();   
+//        }   
     }   
    
       
@@ -500,8 +500,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 		case KeyEvent.VK_LEFT: {
 			System.out.println("***** evento estado del tiempo *****");
-			label.setBackground(Color.MAGENTA);
-	        label.repaint();
+//			label.setBackground(Color.MAGENTA);
+//	        label.repaint();
 	        miniWeather.setVisible(false);
 	        contWeather.setVisible(true);
 	        contWeather.requestFocus();
@@ -518,8 +518,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 		case 403: {
 			System.out.println("rojo ...");
-			label.setBackground(colors[0]);
-	        label.repaint();
+//			label.setBackground(colors[0]);
+//	        label.repaint();
 	        //contRed.requestFocus();
 	        contRed.agenda.setVisible(true);
 	        contRed.agenda.requestFocus();
@@ -527,9 +527,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case 404: { // Clase gastos
 			System.out.println("verde ...");
-			label.setBackground(colors[1]);
+			//label.setBackground(colors[1]);
 			miniWeather.setVisible(false);
-	        label.repaint();
+	        //label.repaint();
 	        gas.setVisible(true);
 	        gas.requestFocus();
 	        
@@ -537,8 +537,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case 405: {
 			System.out.println("amarillo  ...");
-			label.setBackground(colors[2]);
-			label.repaint();
+		//	label.setBackground(colors[2]);
+			//label.repaint();
 			contYellow.setVisible(true);
 			contYellow.requestFocus();
 			contYellow.texto.setVisible(true);
@@ -548,19 +548,13 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case 406: {
 			System.out.println("azul ...");
-			label.setBackground(colors[3]);
-	        label.repaint();
+			//label.setBackground(colors[3]);
+	       // label.repaint();
 	        cont.requestFocus();
 	      //  twitter.requestFocus();
 			break;
 		}
 
-//		default: {
-//			// do nothing
-//			System.out.println("default case ...");
-//			System.out.println(key);
-//			break;
-//		}
 		}
 	}   
    
@@ -591,22 +585,22 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 	}
 
-	private void readProperties(){
-	
-		Properties properties = new Properties();
-		try {
-			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
-			message = properties.getProperty("mensajeBienvenida");
-			message2= properties.getProperty("mensajeIntruccion");
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
-		}
-		
-	}
+//	private void readProperties(){
+//	
+//		Properties properties = new Properties();
+//		try {
+//			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
+//			message = properties.getProperty("mensajeBienvenida");
+//			message2= properties.getProperty("mensajeIntruccion");
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
+//		}
+//		
+//	}
     
    
    

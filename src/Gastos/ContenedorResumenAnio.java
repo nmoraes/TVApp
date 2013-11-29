@@ -333,8 +333,8 @@ private void loadForegroundBitmap() {
 			MainXlet.anio.setVisible(false);
 			MainXlet.promedioAnio.setVisible(true);
 			MainXlet.promedioAnio.requestFocus();
-			MainXlet.label.setBackground(Color.green);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.green);
+//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
@@ -343,8 +343,8 @@ private void loadForegroundBitmap() {
 			MainXlet.anio.setVisible(false);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();
-			MainXlet.label.setBackground(Color.green);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.green);
+//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
@@ -358,8 +358,8 @@ private void loadForegroundBitmap() {
 
 		case 27: // exit
 			MainXlet.anio.setVisible(false);
-			MainXlet.label.setBackground(Color.white);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.white);
+//			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			primeraVez = true;
 			break;

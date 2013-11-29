@@ -231,8 +231,8 @@ public void paint(Graphics graphics) {
 						
 		case 27:	//exit
 			MainXlet.mes.setVisible(false);
-			MainXlet.label.setBackground(Color.white);
-			MainXlet.label.repaint();
+//			MainXlet.label.setBackground(Color.white);
+//			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			paginado = 0;
 			break;	
