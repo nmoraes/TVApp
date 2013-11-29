@@ -11,32 +11,22 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Properties;
-
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
-
 import org.dvb.ui.DVBColor;
 import org.havi.ui.HComponent;
-import org.havi.ui.HDefaultTextLayoutManager;
 import org.havi.ui.HScene;
 import org.havi.ui.HSceneFactory;
 import org.havi.ui.HSceneTemplate;
 import org.havi.ui.HScreen;
 import org.havi.ui.HSound;
-import org.havi.ui.HStaticText;
-
-import calc.Base;
-import calc.Calcu;
-import Gastos.ContenedorResumenAnio;
-import Gastos.ContenedorResumenMes;
 import Gastos.ContenedorGastos;
 import Gastos.ContenedorPromedioAnio;
+import Gastos.ContenedorResumenAnio;
+import Gastos.ContenedorResumenMes;
    
  /**  
  * This Xlet will be visible on-screen, so we extend org.havi.ui.HComponent  
@@ -60,17 +50,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	// will do all of the work.
 	private Thread myWorkerThread;
 	
-	//public static HStaticText label;
-	private Color[] colors = { Color.red, Color.green, Color.yellow,Color.blue, Color.white, Color.pink };
-	private int intColor;
-
-	// private ContenedorTwitter twitter=new ContenedorTwitter();
-	
 	/** Contenedor boton azul */
 	public static  ContenedorAzul cont = new ContenedorAzul();
-	
-	/** Contenedor tasks */
-	//public static  ContenedorTasks contTasks = new ContenedorTasks();
 	
 	/** Contenedor boton rojo */
 	public static ContenedorRed contRed = new ContenedorRed();
@@ -84,10 +65,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	/** Contenedor Web Services Weather */
 	public static ContenedorWeather contWeather = new ContenedorWeather();
 	
-
-	/** Contenedor Loading */
-	//private static ContenedorLoading contLoading = new ContenedorLoading();
-
 	/** Tipo de dato para guardar sonido */
 	private HSound myHSound = new HSound();
 	
@@ -95,18 +72,17 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorMiniWeather miniWeather = new ContenedorMiniWeather();
 	
 	/**CNN Image */
-	private Image image= Toolkit.getDefaultToolkit().getImage("bg22.png"), inicio = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
-	
-//	/**Mensaje de bienvenida*/
-//	private String message;
-//	
-//	/**Mensaje de intruccion*/
-//	private String message2;
-	
+	private Image image;
+		
+	/**Main Image */
+	private Image mainImage;
 	/**
 	 * @description Before we can draw on the screen, we need an HScene to draw into. This
 	 * variable will hold a reference to our HScene
 	 */
+	
+	private static boolean mainPage;
+	
 	public static HScene scene;
 	
 	
@@ -115,12 +91,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	public static ContenedorResumenMes mes = new ContenedorResumenMes();
 	public static ContenedorResumenAnio anio = new ContenedorResumenAnio();
 	public static ContenedorPromedioAnio promedioAnio = new ContenedorPromedioAnio();
-	
-	/* // Calculadora */
-	
-	
 
-	// private JTablet tabla = new JTablet();
 
 	// this holds the alpha (transparency) level that we will be using
 	private int alpha = 0;
@@ -149,10 +120,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // get done in startXlet() instead, depending on the size of the image and   
         // the time it takes to load.  if this is being loaded from a DSM-CC   
         // carousel, it should definitely be loaded after startXlet() is called.   
+        mainPage = true;
         loadForegroundBitmap(); 
-       
-        
-     //   readProperties();
        
       
     }   
@@ -172,10 +141,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         
         System.out.println("Ejecutando startXlet...");
         
-    	// This adds the background image to the display.  The background image is
-		// displayed in the background plane.
-		//displayBackgroundImage();
-		
         
         HSceneFactory hsceneFactory = HSceneFactory.getInstance();
         scene = hsceneFactory.getFullScreenScene(HScreen.getDefaultHScreen().getDefaultHGraphicsDevice());
@@ -184,17 +149,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         scene.setLayout(null);
         scene.addKeyListener(this);
         
-
-//        label = new HStaticText(""/*message*/, 650, 390, 50, 50, new Font("Tiresias", Font.BOLD, 22), Color.black, colors[4], new HDefaultTextLayoutManager());
-//        scene.add(label);
         scene.add(this);
         
     
         scene.setVisible(true);
 		scene.requestFocus();
    
-        //contenedores
-		// Gastos
 		scene.add(gas);
 		gas.setVisible(false);
 		scene.add(mes);
@@ -205,9 +165,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		promedioAnio.setVisible(false);
 						
 		scene.add(cont);
-//		scene.add(twitter);
-//		scene.setVisible(true);
-		
+
 		scene.add(contRed);
 		scene.setVisible(true); 
 		
@@ -215,14 +173,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		contYellow.setVisible(false);
 		scene.setVisible(true);
         
-		//Calculadora
-	
-
-		
-		
-		
-		//scene.add(contTasks);
-		//contTasks.setVisible(false);
 		//Weather
 		scene.add(contWeather);
 		contWeather.setVisible(false);
@@ -231,12 +181,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		keyboard.setVisible(false);
 		scene.add(keyboard);
 		
+		//MiniWeather
 		scene.add(miniWeather);
- 	    
-    	//playSound();
-
-
-    
+ 	        
     }   
    
     /**  
@@ -355,9 +302,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     	MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
             	
-       
+    	image= Toolkit.getDefaultToolkit().getImage("bg22.png"); 
+    	mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
+   
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);
+        tracker.addImage(mainImage, 1);
         try{   
             tracker.waitForAll();   
         }   
@@ -445,10 +395,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
            
             // Draw the image from the buffer   
         
- //>>>>>>  	graphics.drawImage(inicio, 0, 0, null);      >>>>>>>>>ESTA LINEA HACE ALGO RARO>>>>>>>>>
-        	graphics.drawImage(image, 404, 7, null);      
+        if(mainPage==true){
+            //graphics.drawImage(mainImage, 0, 0, null); 
+        }   
+        	
         
-        
+        graphics.drawImage(image, 404, 7, null);      
         
    
         // Once we've drawn the image, we can draw the message on top of it.   
@@ -490,18 +442,19 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 		
 		case KeyEvent.VK_UP: {
-
+			//mainPage=false;
+			//this.repaint();
 			break;
 		}
 		case KeyEvent.VK_DOWN: {
-			
+			   //mainPage = true;
+			   
+			  // this.repaint();
 			break;
 		}
 
 		case KeyEvent.VK_LEFT: {
 			System.out.println("***** evento estado del tiempo *****");
-//			label.setBackground(Color.MAGENTA);
-//	        label.repaint();
 	        miniWeather.setVisible(false);
 	        contWeather.setVisible(true);
 	        contWeather.requestFocus();
@@ -520,7 +473,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			System.out.println("rojo ...");
 //			label.setBackground(colors[0]);
 //	        label.repaint();
-	        //contRed.requestFocus();
+	        contRed.requestFocus();
 	        contRed.agenda.setVisible(true);
 	        contRed.agenda.requestFocus();
 			break;
@@ -542,7 +495,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			contYellow.setVisible(true);
 			contYellow.requestFocus();
 			contYellow.texto.setVisible(true);
-			inicio.flush();
+			//inicio.flush();
 			this.repaint();
 			break;
 		}
