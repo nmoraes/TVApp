@@ -11,9 +11,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import mainXlet.MainXlet;
-
 import org.havi.ui.HContainer;
 import org.havi.ui.HSinglelineEntry;
 import org.havi.ui.HState;
@@ -24,8 +22,8 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 	
 	// Pantalla Resumen Gastos del mes //
 	
-		HStaticText titulo = new HStaticText ("Detalle                   Cant Unit. Monto");
-		HStaticText titulo2 = new HStaticText ("Resumen Mes");
+		HStaticText titulo = new HStaticText ("Detalle                    Cant Unit.  Monto");
+		
 		HStaticText titulo3 = new HStaticText ("Total: ");
 		HSinglelineEntry detalle1; HSinglelineEntry cantidad1; HSinglelineEntry unitario1;
 		HSinglelineEntry detalle2; HSinglelineEntry cantidad2; HSinglelineEntry unitario2;
@@ -56,12 +54,13 @@ public class ContenedorResumenMes extends HContainer implements KeyListener {
 	    private Image image2;
 	    private Date mesActual = new Date();
 	    private Image fondo;
+	 // Esta variable hace que apraescan y desaparescan los enenos
 	    private Boolean primeraVez = true;
 	
 public ContenedorResumenMes () {
 		
 	System.out.println("Arranca el contenedor gastos mes");
-	cajaTotal = new HSinglelineEntry("", 400, 490, 160, 30, 12, new Font("Tiresias", Font.BOLD, 22), Color.blue);
+	cajaTotal = new HSinglelineEntry("", 410, 200, 160, 30, 12, new Font("Tiresias", Font.BOLD, 28), Color.blue);
    	cajaTotal.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
    	cajaTotal.setBackground(Color.white);
   	cajaTotal.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -70,7 +69,7 @@ public ContenedorResumenMes () {
   	cajaTotal.setCaretCharPosition(1);
   	this.add(cajaTotal);
   	
-  	mostrarMes = new HSinglelineEntry("", 100, 170, 160, 30, 14, new Font("Tiresias", Font.BOLD, 22), Color.black);
+  	mostrarMes = new HSinglelineEntry("", 90, 200, 155, 30, 14, new Font("Tiresias", Font.BOLD, 22), Color.black);
    	mostrarMes.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
    	mostrarMes.setBackground(new Color(0, 0, 0, 0));
   	mostrarMes.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
@@ -80,66 +79,60 @@ public ContenedorResumenMes () {
   	mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
   	this.add(mostrarMes);
 		// Tipo de letra
-		titulo.setFont( new Font ("Tiresias", Font.BOLD, 22));
-		titulo2.setFont( new Font ("Tiresias", Font.BOLD, 22));
-		titulo3.setFont( new Font ("Tiresias", Font.BOLD, 24));
+		titulo.setFont( new Font ("Tiresias", Font.BOLD, 24));	
+		titulo3.setFont( new Font ("Tiresias", Font.BOLD, 30));
 		
 	
 		// Posicion inicial en la pantalla y color
-		titulo.setBounds(30, 200, 400, 30);
-		titulo2.setBounds(100, 130, 160, 30);
-		titulo3.setBounds(280, 490, 120, 30);
-		
+		titulo.setBounds(120, 270, 410, 30);	
+		titulo3.setBounds(300, 200, 120, 32);		
 		titulo.setBackground(new Color(0,0,0,0));
 		titulo.setForeground(Color.white);
-		titulo2.setBackground(new Color(0,0,0,0));
-		titulo2.setForeground(Color.white);
 		titulo3.setBackground(new Color(0,0,0,0));
 		
 		this.add(titulo);
-		this.add(titulo2);
 		this.add(titulo3);
 		
 		// prueba de textfield
-		detalle1 = new HSinglelineEntry("", 20, 230, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle1.setBackground(Color.white); this.add(detalle1);
-		detalle2 = new HSinglelineEntry("", 20, 250, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle2.setBackground(Color.white); this.add(detalle2);
-		detalle3 = new HSinglelineEntry("", 20, 270, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle3.setBackground(Color.white); this.add(detalle3);
-		detalle4 = new HSinglelineEntry("", 20, 290, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle4.setBackground(Color.white); this.add(detalle4);
-		detalle5 = new HSinglelineEntry("", 20, 310, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle5.setBackground(Color.white); this.add(detalle5);
-		detalle6 = new HSinglelineEntry("", 20, 330, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle6.setBackground(Color.white); this.add(detalle6);
-		detalle7 = new HSinglelineEntry("", 20, 350, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle7.setBackground(Color.white); this.add(detalle7);
-		detalle8 = new HSinglelineEntry("", 20, 370, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle8.setBackground(Color.white); this.add(detalle8);
-		detalle9 = new HSinglelineEntry("", 20, 390, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle9.setBackground(Color.white); this.add(detalle9);
+		detalle1 = new HSinglelineEntry("", 110, 310, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle1.setBackground(Color.white); this.add(detalle1);
+		detalle2 = new HSinglelineEntry("", 110, 330, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle2.setBackground(Color.white); this.add(detalle2);
+		detalle3 = new HSinglelineEntry("", 110, 350, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle3.setBackground(Color.white); this.add(detalle3);
+		detalle4 = new HSinglelineEntry("", 110, 370, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle4.setBackground(Color.white); this.add(detalle4);
+		detalle5 = new HSinglelineEntry("", 110, 390, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle5.setBackground(Color.white); this.add(detalle5);
+		detalle6 = new HSinglelineEntry("", 110, 410, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle6.setBackground(Color.white); this.add(detalle6);
+		detalle7 = new HSinglelineEntry("", 110, 430, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle7.setBackground(Color.white); this.add(detalle7);
+		detalle8 = new HSinglelineEntry("", 110, 450, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle8.setBackground(Color.white); this.add(detalle8);
+		detalle9 = new HSinglelineEntry("", 110, 470, 200, 20, 12, new Font("Tiresias", Font.BOLD, 20), Color.blue); detalle9.setBackground(Color.white); this.add(detalle9);
 		
-		cantidad1 = new HSinglelineEntry("", 230, 230, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad1.setBackground(Color.white); this.add(cantidad1);
-		cantidad2 = new HSinglelineEntry("", 230, 250, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad2.setBackground(Color.white); this.add(cantidad2);
-		cantidad3 = new HSinglelineEntry("", 230, 270, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad3.setBackground(Color.white); this.add(cantidad3);
-		cantidad4 = new HSinglelineEntry("", 230, 290, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad4.setBackground(Color.white); this.add(cantidad4);
-		cantidad5 = new HSinglelineEntry("", 230, 310, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad5.setBackground(Color.white); this.add(cantidad5);
-		cantidad6 = new HSinglelineEntry("", 230, 330, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad6.setBackground(Color.white); this.add(cantidad6);
-		cantidad7 = new HSinglelineEntry("", 230, 350, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad7.setBackground(Color.white); this.add(cantidad7);
-		cantidad8 = new HSinglelineEntry("", 230, 370, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad8.setBackground(Color.white); this.add(cantidad8);
-		cantidad9 = new HSinglelineEntry("", 230, 390, 45, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad9.setBackground(Color.white); this.add(cantidad9);
+		cantidad1 = new HSinglelineEntry("", 330, 310, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad1.setBackground(Color.white); this.add(cantidad1);
+		cantidad2 = new HSinglelineEntry("", 330, 330, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad2.setBackground(Color.white); this.add(cantidad2);
+		cantidad3 = new HSinglelineEntry("", 330, 350, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad3.setBackground(Color.white); this.add(cantidad3);
+		cantidad4 = new HSinglelineEntry("", 330, 370, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad4.setBackground(Color.white); this.add(cantidad4);
+		cantidad5 = new HSinglelineEntry("", 330, 390, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad5.setBackground(Color.white); this.add(cantidad5);
+		cantidad6 = new HSinglelineEntry("", 330, 410, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad6.setBackground(Color.white); this.add(cantidad6);
+		cantidad7 = new HSinglelineEntry("", 330, 430, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad7.setBackground(Color.white); this.add(cantidad7);
+		cantidad8 = new HSinglelineEntry("", 330, 450, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad8.setBackground(Color.white); this.add(cantidad8);
+		cantidad9 = new HSinglelineEntry("", 330, 470, 50, 20, 4, new Font("Tiresias", Font.BOLD, 20), Color.blue); cantidad9.setBackground(Color.white); this.add(cantidad9);
 		
-		unitario1 = new HSinglelineEntry("", 275, 230, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario1.setBackground(Color.white); this.add(unitario1);
-		unitario2 = new HSinglelineEntry("", 275, 250, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario2.setBackground(Color.white); this.add(unitario2);
-		unitario3 = new HSinglelineEntry("", 275, 270, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario3.setBackground(Color.white); this.add(unitario3);
-		unitario4 = new HSinglelineEntry("", 275, 290, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario4.setBackground(Color.white); this.add(unitario4);
-		unitario5 = new HSinglelineEntry("", 275, 310, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario5.setBackground(Color.white); this.add(unitario5);
-		unitario6 = new HSinglelineEntry("", 275, 330, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario6.setBackground(Color.white); this.add(unitario6);
-		unitario7 = new HSinglelineEntry("", 275, 350, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario7.setBackground(Color.white); this.add(unitario7);
-		unitario8 = new HSinglelineEntry("", 275, 370, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario8.setBackground(Color.white); this.add(unitario8);
-		unitario9 = new HSinglelineEntry("", 275, 390, 45, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario9.setBackground(Color.white); this.add(unitario9);
+		unitario1 = new HSinglelineEntry("", 380, 310, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario1.setBackground(Color.white); this.add(unitario1);
+		unitario2 = new HSinglelineEntry("", 380, 330, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario2.setBackground(Color.white); this.add(unitario2);
+		unitario3 = new HSinglelineEntry("", 380, 350, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario3.setBackground(Color.white); this.add(unitario3);
+		unitario4 = new HSinglelineEntry("", 380, 370, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario4.setBackground(Color.white); this.add(unitario4);
+		unitario5 = new HSinglelineEntry("", 380, 390, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario5.setBackground(Color.white); this.add(unitario5);
+		unitario6 = new HSinglelineEntry("", 380, 410, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario6.setBackground(Color.white); this.add(unitario6);
+		unitario7 = new HSinglelineEntry("", 380, 430, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario7.setBackground(Color.white); this.add(unitario7);
+		unitario8 = new HSinglelineEntry("", 380, 450, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario8.setBackground(Color.white); this.add(unitario8);
+		unitario9 = new HSinglelineEntry("", 380, 470, 55, 20, 5, new Font("Tiresias", Font.BOLD, 20), Color.blue); unitario9.setBackground(Color.white); this.add(unitario9);
 
-		monto1 = new HSinglelineEntry("", 320, 230, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto1.setBackground(Color.white); this.add(monto1);
-		monto2 = new HSinglelineEntry("", 320, 250, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto2.setBackground(Color.white); this.add(monto2);
-		monto3 = new HSinglelineEntry("", 320, 270, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto3.setBackground(Color.white); this.add(monto3);
-		monto4 = new HSinglelineEntry("", 320, 290, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto4.setBackground(Color.white); this.add(monto4);
-		monto5 = new HSinglelineEntry("", 320, 310, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto5.setBackground(Color.white); this.add(monto5);
-		monto6 = new HSinglelineEntry("", 320, 330, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto6.setBackground(Color.white); this.add(monto6);
-		monto7 = new HSinglelineEntry("", 320, 350, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto7.setBackground(Color.white); this.add(monto7);
-		monto8 = new HSinglelineEntry("", 320, 370, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto8.setBackground(Color.white); this.add(monto8);
-		monto9 = new HSinglelineEntry("", 320, 390, 65, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto9.setBackground(Color.white); this.add(monto9);
+		monto1 = new HSinglelineEntry("", 435, 310, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto1.setBackground(Color.white); this.add(monto1);
+		monto2 = new HSinglelineEntry("", 435, 330, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto2.setBackground(Color.white); this.add(monto2);
+		monto3 = new HSinglelineEntry("", 435, 350, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto3.setBackground(Color.white); this.add(monto3);
+		monto4 = new HSinglelineEntry("", 435, 370, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto4.setBackground(Color.white); this.add(monto4);
+		monto5 = new HSinglelineEntry("", 435, 390, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto5.setBackground(Color.white); this.add(monto5);
+		monto6 = new HSinglelineEntry("", 435, 410, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto6.setBackground(Color.white); this.add(monto6);
+		monto7 = new HSinglelineEntry("", 435, 430, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto7.setBackground(Color.white); this.add(monto7);
+		monto8 = new HSinglelineEntry("", 435, 450, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto8.setBackground(Color.white); this.add(monto8);
+		monto9 = new HSinglelineEntry("", 435, 470, 70, 20, 7, new Font("Tiresias", Font.BOLD, 20), Color.blue); monto9.setBackground(Color.white); this.add(monto9);
 		
 							 	
 		this.setBounds(0, 0, 800, 800);
@@ -153,76 +146,82 @@ public void paint(Graphics graphics) {
 	if (fondo != null && primeraVez) {   
         // Draw the image from the buffer   
 		primeraVez = false;
-		System.out.println("La imagen 1 no es null");
 		graphics.drawImage(fondo, 0, 0, null);
 	}	
 	
 	if (image != null) {   
         // Draw the image from the buffer   
-		System.out.println("La imagen 1 no es null");
-		graphics.drawImage(image, 270, 170, null);
+		graphics.drawImage(image, 245, 205, null);
 	}
 	if (image2 != null) {   
 	    // Draw the image from the buffer   
-		System.out.println("La imagen 2 no es null");
-	    graphics.drawImage(image2, 90, 170, null);          
+		graphics.drawImage(image2, 80, 205, null);          
 	    
     }
 
 	super.paint(graphics);
 
-
 }
 	
 	public void keyPressed(KeyEvent tecla){
 		
-		System.out.println("Prueba!!!");
-		
 		switch (tecla.getKeyCode()){
 		
-		case 404: 	// Boton Verde
-			// Grafica Año
+		case 404: 	// Boton Verde - Si hay mas gastos en ese mes los muestra
+			
 			primeraVez = true;
 			cargarGastos(mesActual);
 			this.repaint();
 			break;
 
-		case 403: 	// Boton Rojo
-			// Promedio Año
-			System.out.println("Va para Promedio Año");
+		case 403: 	// Boton Rojo	// Promedio Año
+			
+			paginado = 0;
+			primeraVez = true;
+			mesActual = new Date();
+			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+			this.repaint();
 			MainXlet.mes.setVisible(false);
 			MainXlet.promedioAnio.setVisible(true);
 			MainXlet.promedioAnio.requestFocus();
-			paginado = 0;
 			break;
 		
-		case 405: 	// Boton Amarillo
-			//Resumen Año
-			System.out.println("Va para Resumen Año");
+		case 405: 	// Boton Amarillo	//Resumen Año
+			
+			paginado = 0;
+			primeraVez = true;
+			mesActual = new Date();
+			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+			this.repaint();
 			MainXlet.mes.setVisible(false);
 			MainXlet.anio.setVisible(true);
 			MainXlet.anio.requestFocus();
-			paginado = 0;
 			break;
 	
 		case 406: 	// Boton Azul
-			System.out.println("Vuelve para Menu compras");
+			
+			paginado = 0;
+			primeraVez = true;
+			mesActual = new Date();
+			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+			this.repaint();
 			MainXlet.mes.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
-			paginado = 0;
 			break;	
 			
-		case 39:
-			// Adelanta un mes
+		case 39:// Adelanta un mes
+			
+			primeraVez = true;
 			cambiarMes(true);
 			cargarGastos(mesActual);
 			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
 			this.repaint();
 			break;
 			
-		case 37:
-			// Adelanta un mes
+		case 37:// Atrasa un mes
+			
+			primeraVez = true;
 			cambiarMes(false);
 			cargarGastos(mesActual);
 			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
@@ -230,11 +229,14 @@ public void paint(Graphics graphics) {
 			break;
 						
 		case 27:	//exit
-			MainXlet.mes.setVisible(false);
-//			MainXlet.label.setBackground(Color.white);
-//			MainXlet.label.repaint();
-			MainXlet.scene.requestFocus();
+			
 			paginado = 0;
+			primeraVez = true;
+			mesActual = new Date();
+			mostrarMes.setTextContent(darMes(mesActual), HState.ALL_STATES);
+			this.repaint();
+			MainXlet.mes.setVisible(false);
+			MainXlet.scene.requestFocus();
 			break;	
 
 		default: {	// do nothing
@@ -316,6 +318,7 @@ public void paint(Graphics graphics) {
 		return resultado;
 		
 	}
+	// Cambia el mes para mostrar
 	private void cambiarMes(Boolean sumar){
 		
 		Date fecha = new Date();
@@ -336,8 +339,7 @@ public void paint(Graphics graphics) {
 			}else{
 				mesActual.setMonth(mesActual.getMonth()-1);
 			}
-		}
-		
+		}		
 		
 	}
 	
@@ -420,9 +422,6 @@ public void paint(Graphics graphics) {
 		return total;
 	}
 	
-//	Hacer que con las flechas izq y der se mueva de mes
-//	izq 38 y der 40
-//	
 	// Si el string es un numero valido devuelve true, de lo contrario devuelve false
 		private boolean esNumero(String s){
 			try{
@@ -439,7 +438,7 @@ public void paint(Graphics graphics) {
         // Then load the image   
         image = Toolkit.getDefaultToolkit().getImage("BotonDer.jpg");   
         image2 = Toolkit.getDefaultToolkit().getImage("BotonIzq.jpg");  
-        fondo = Toolkit.getDefaultToolkit().getImage("comDetalle.jpg"); 
+        fondo = Toolkit.getDefaultToolkit().getImage("ResumenMes.jpg"); 
         
         // add the image to the MediaTracker...   
         tracker.addImage(fondo, 0);
@@ -458,14 +457,12 @@ public void paint(Graphics graphics) {
             fondo = null;
         }   
     }   
-	
+	// Imprime segun lo que alla en la lista los gastos en pantalla
 	private void paginado(List<Gasto> listGastos){
 		System.out.println("LLego al paginado");
 		switch (listGastos.size()){
 		
 		case 1:
-		
-			System.out.println("entro en 1");
 			// Agraga solo un gasto
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
@@ -511,13 +508,11 @@ public void paint(Graphics graphics) {
 			detalle9.setTextContent("", HState.ALL_STATES);	
 			cantidad9.setTextContent("", HState.ALL_STATES);	
 			unitario9.setTextContent("", HState.ALL_STATES);
-			monto9.setTextContent("", HState.ALL_STATES);
-			
+			monto9.setTextContent("", HState.ALL_STATES);			
 			
 		break;
 		
 		case 2:
-				System.out.println("entro en 2");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -562,13 +557,11 @@ public void paint(Graphics graphics) {
 			detalle9.setTextContent("", HState.ALL_STATES);	
 			cantidad9.setTextContent("", HState.ALL_STATES);	
 			unitario9.setTextContent("", HState.ALL_STATES);
-			monto9.setTextContent("", HState.ALL_STATES);
-			
+			monto9.setTextContent("", HState.ALL_STATES);		
 		
 		break;
 		
 		case 3:
-				System.out.println("entro en 3");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -619,7 +612,6 @@ public void paint(Graphics graphics) {
 		break;
 		
 		case 4:
-			System.out.println("entro en 4");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -670,7 +662,6 @@ public void paint(Graphics graphics) {
 			break;
 			
 		case 5:
-			System.out.println("entro en 5");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -721,7 +712,6 @@ public void paint(Graphics graphics) {
 			break;
 			
 		case 6:
-			System.out.println("entro en 6");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -767,13 +757,11 @@ public void paint(Graphics graphics) {
 			detalle9.setTextContent("", HState.ALL_STATES);	
 			cantidad9.setTextContent("", HState.ALL_STATES);	
 			unitario9.setTextContent("", HState.ALL_STATES);
-			monto9.setTextContent("", HState.ALL_STATES);
-			
+			monto9.setTextContent("", HState.ALL_STATES);			
 			
 			break;
 			
 		case 7:
-			System.out.println("entro en 7");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -824,7 +812,6 @@ public void paint(Graphics graphics) {
 			break;
 			
 		case 8:
-			System.out.println("entro en 8");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -875,7 +862,6 @@ public void paint(Graphics graphics) {
 			break;
 			
 		case 9:
-			System.out.println("entro en 9");
 			detalle1.setTextContent(listGastos.get(0).getDetalle(), HState.ALL_STATES);	
 			cantidad1.setTextContent(listGastos.get(0).getCantidad(), HState.ALL_STATES);	
 			unitario1.setTextContent(listGastos.get(0).getUnitario(), HState.ALL_STATES);
@@ -921,11 +907,9 @@ public void paint(Graphics graphics) {
 			unitario9.setTextContent(listGastos.get(8).getUnitario(), HState.ALL_STATES);
 			monto9.setTextContent(listGastos.get(8).getMonto(), HState.ALL_STATES);			
 			
-			break;
-			
+			break;			
 		
-		default:
-			System.out.println("Fuera de rango!!");
+		default:// Fuera del rango
 			// Limpio todo
 			detalle1.setTextContent("", HState.ALL_STATES);	
 			cantidad1.setTextContent("", HState.ALL_STATES);	

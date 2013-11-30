@@ -10,19 +10,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
-
 import mainXlet.MainXlet;
-
 import org.havi.ui.HContainer;
 import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
-import org.havi.ui.HVisible;
 
 public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 
-	// Pantalla Promedio del año//
-
-	
+	// Pantalla Promedio del año//	
 	HStaticText titulo2 = new HStaticText("2013");
 	HStaticText promedio = new HStaticText("");
 	HStaticText simboloPesos = new HStaticText("$");
@@ -30,6 +25,8 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 		
 	private Image fondo;
 	private Boolean primeraVez = true;
+	// Esta variable hace que apraescan y desaparescan los enenos
+	private Date mesActual = new Date();
 		
 
 	public ContenedorPromedioAnio() {
@@ -85,12 +82,9 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 		}
 		tot = tot / 12;
 		promedio.setTextContent(String.valueOf(tot), HState.ALL_STATES);
-	}
-	
-	
+	}	
 	
 	private float cargarTotal(int tope, ArrayList<Gasto> listaGastos){
-		System.out.println("el tope: " + tope);
 		
 		float total = 0;
 		String aux = "";
@@ -121,7 +115,6 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 		if (fondo != null && primeraVez) {   
 	        // Draw the image from the buffer   
 			primeraVez = false;
-			System.out.println("La imagen Promedio Mes no es null");
 			graphics.drawImage(fondo, 0, 0, null);
 		}
 		
@@ -150,42 +143,34 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
             fondo = null;
         } 
         
-    }   
-	
+    }   	
 	
 	public void keyPressed(KeyEvent tecla) {
 
-		System.out.println("Prueba!!!");
-
 		switch (tecla.getKeyCode()) {
 
-		case 404: // Boton Verde
-			System.out.println("Va para Resumen Año");
+		case 404: // Boton Verde Va para Resumen Año
+			
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.anio.setVisible(true);
 			MainXlet.anio.requestFocus();
-//			MainXlet.label.setBackground(Color.green);
-//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
-		case 403: // Boton Rojo
-			System.out.println("Va para Resumen Mes");
+		case 403: // Boton Rojo Va para Resumen Mes
+			
 			MainXlet.promedioAnio.setVisible(false);
+			MainXlet.mes.cargarGastos(mesActual);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();
-//			MainXlet.label.setBackground(Color.green);
-//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
-		case 405: // Boton Amarillo
-			System.out.println("Va para Menu compras");
+		case 405: // Boton Amarillo Va para Menu compras
+
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
-//			MainXlet.label.setBackground(Color.green);
-//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
@@ -195,16 +180,15 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 
 		case 27: // exit
 			MainXlet.promedioAnio.setVisible(false);
-//			MainXlet.label.setBackground(Color.white);
-//			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
+			primeraVez = true;
 			break;
 
 		default: { // do nothing
 			System.out.println("default case ...");
 			System.out.println(tecla);
 			break;
-		}
+			}
 
 		}
 	}
@@ -218,8 +202,5 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 		// TODO Auto-generated method stub
 
 	}
-
-
-
 
 }

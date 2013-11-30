@@ -10,18 +10,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Date;
-
-import javax.swing.JTextField;
-
 import org.havi.ui.HContainer;
 import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
-
 import mainXlet.*;
 
 public class ContenedorResumenAnio extends HContainer implements KeyListener {
 
-	// Pantalla Resumen Gastos del Aï¿½o //
+	// Pantalla Resumen Gastos del Anio //
 
 	HStaticText titEnero = new HStaticText("Enero");
 	HStaticText enero = new HStaticText("5000");
@@ -52,9 +48,10 @@ public class ContenedorResumenAnio extends HContainer implements KeyListener {
 	HStaticText titPromedio = new HStaticText("Promedio Mes");
 	HStaticText titGrafica = new HStaticText("Grafica Aï¿½o");
 	HStaticText titResumen = new HStaticText("ResumenMes");
-	
+	// Esta variable hace que apraescan y desaparescan los enenos
 	private Boolean primeraVez = true;
 	private Image fondo;
+	private Date mesActual = new Date();
 
 	public ContenedorResumenAnio() {
 
@@ -183,7 +180,6 @@ public void paint(Graphics graphics) {
 		if (fondo != null && primeraVez) {   
 	        // Draw the image from the buffer   
 			primeraVez = false;
-			System.out.println("La imagen 1 no es null");
 			graphics.drawImage(fondo, 0, 0, null);
 		}
 	
@@ -291,7 +287,6 @@ private void loadForegroundBitmap() {
 	}
 	
 	private float cargarTotal(int tope, ArrayList<Gasto> listaGastos){
-		System.out.println("el tope: " + tope);
 		
 		float total = 0;
 		String aux = "";
@@ -320,36 +315,31 @@ private void loadForegroundBitmap() {
 
 	public void keyPressed(KeyEvent tecla) {
 
-		System.out.println("Prueba!!!");
-
 		switch (tecla.getKeyCode()) {
 
 		case 404: // Boton Verde
 			
 			break;
 
-		case 403: // Boton Rojo
-			System.out.println("Va para Promedio Anual");
+		case 403: // Boton Rojo - va para promedio año
+			
 			MainXlet.anio.setVisible(false);
 			MainXlet.promedioAnio.setVisible(true);
 			MainXlet.promedioAnio.requestFocus();
-//			MainXlet.label.setBackground(Color.green);
-//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
-		case 405: // Boton Amarillo
-			System.out.println("Va para Resumen Mes");
+		case 405: // Boton Amarillo Va para Resumen Mes
+			
 			MainXlet.anio.setVisible(false);
+			MainXlet.mes.cargarGastos(mesActual);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();
-//			MainXlet.label.setBackground(Color.green);
-//			MainXlet.label.repaint();
 			primeraVez = true;
 			break;
 
-		case 406: // Boton Azul
-			System.out.println("Vuelve para Menu compras");
+		case 406: // Boton Azul Vuelve para Menu compras
+			
 			MainXlet.anio.setVisible(false);
 			MainXlet.gas.setVisible(true);
 			MainXlet.gas.requestFocus();
@@ -358,8 +348,6 @@ private void loadForegroundBitmap() {
 
 		case 27: // exit
 			MainXlet.anio.setVisible(false);
-//			MainXlet.label.setBackground(Color.white);
-//			MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			primeraVez = true;
 			break;

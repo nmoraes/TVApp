@@ -8,7 +8,6 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
 import java.util.Date;
 
 import org.havi.ui.HContainer;
@@ -23,16 +22,6 @@ import mainXlet.*;
 
 public class ContenedorGastos extends HContainer implements KeyListener {
 
-	
-	
-	
-	// Arreglar q solo se pueda escribir hasta el tope de los textbox
-	// Darle un formato mas lindo
-	// El monto debe calcularse a partir del precio unitario y de la cantidad
-	
-
-	
-	//TODO
 	private Image fondo;
 	
 	
@@ -42,7 +31,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	HStaticText titCantidad = new HStaticText ("Cant.");
 	HStaticText titUnitario = new HStaticText ("Unit.");
 	HStaticText titMonto = new HStaticText ("Monto");
-
+	HStaticText titulo = new HStaticText ("Menu Compras");
+	
 	// estos strings son usado para guardar en disco lo escrito en pantalla
 	private String detText = new String("  ");
 	private String canText = "  ";
@@ -55,6 +45,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private HSinglelineEntry cajaUnitario;
 	private HSinglelineEntry cajaMonto;
 	private Persistir persistir = new Persistir();
+	
 	// Coleccion de gastos en memoria
 	public ColeccionGastos ListaGastos = new ColeccionGastos();
 	
@@ -64,7 +55,9 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	private String aux2;
 	private float precioUnitario;
 	private float total = 0;
+	// Se usa para saber en que mes estamos
 	private Date mesActual = new Date();
+	// Esta variable hace que apraescan y desaparescan los enenos
 	private Boolean primeraVez = true;
 
 	// Primer pantalla de gastos!!!
@@ -113,6 +106,9 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 22));
 		titpulse.setFont( new Font ("Tiresias", Font.BOLD, 22));
 		titpulse.setForeground(Color.white);
+		titulo.setFont( new Font ("Tiresias", Font.ITALIC, 38));
+		titulo.setForeground(Color.white);
+		
 		// Posicion inicial en la pantalla y color
 	
 		titDetalle.setBounds(30, 260, 250, 30);
@@ -120,6 +116,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titUnitario.setBounds(330, 260, 75, 30);
 		titMonto.setBounds(405, 260, 100, 30);
 		titpulse.setBounds(400, 190, 250, 30);
+		titulo.setBounds(70, 150, 250, 40);
+		
 		// Color de fondo
 
 		titDetalle.setBackground(Color.blue);
@@ -127,6 +125,8 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titUnitario.setBackground(Color.blue);
 		titMonto.setBackground(Color.blue);
 		titpulse.setBackground(new Color(0, 0,0,0));
+		titulo.setBackground(new Color(0, 0,0,0));
+		
 		// Agrego al contenedor
 	
 		this.add(titDetalle);
@@ -138,10 +138,12 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		this.add(cajaUnitario);
 		this.add(cajaMonto);
 		this.add(titpulse);
-	
+		this.add(titulo);
+	// Este titulo se vuelve visible solo cuando sale el teclado
 		titpulse.setVisible(false);
 		this.setBounds(0, 0, 800, 800);
 		this.addKeyListener(this);
+		// Funcion para cargar las imagenes
 		loadForegroundBitmap();		
 	}
 		
@@ -152,7 +154,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	        // Draw the image from the buffer   
 			titpulse.setVisible(false);
 			primeraVez = false;
-			System.out.println("La imagen 1 no es null");
 			graphics.drawImage(fondo, 0, 0, null);
 		}
 				
@@ -184,15 +185,12 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			System.out.println("Error!!!");
 			break;
 		
-		}
-		
+		}		
 		
 		cajaMonto.setTextContent(String.valueOf(total), HState.ALL_STATES);
-		
-		
+				
 		super.paint(graphics);
-		
-		
+				
 	 }   
 	
 	private void loadForegroundBitmap() {   
@@ -216,31 +214,25 @@ public class ContenedorGastos extends HContainer implements KeyListener {
             fondo = null;
         } 
         
-    }   
-		
+    }   		
 	
 	public void keyPressed(KeyEvent tecla){
 		
-		System.out.println("Prueba!!!");
-		
-
 		switch (tecla.getKeyCode()){
 		
-		case 404: 	// Boton Verde
-			System.out.println("Va para Resumen Año");
+		case 404: 	// Boton Verde - Va para resumen Año
+			
 			MainXlet.gas.setVisible(false);
 			MainXlet.anio.setVisible(true);
 			MainXlet.anio.requestFocus();		
-			//MainXlet.label.setBackground(Color.red);
-			//MainXlet.label.repaint();
 			LimpiarCajas();
 			persistir.guardarGastos(ListaGastos);
 			primeraVez = true;
 			
 			break;
 
-		case 403: 	// Boton Rojo
-			System.out.println("llamamos al teclado desde gastos");
+		case 403: 	// Boton Rojo - llama al teclado
+			
 			titpulse.setVisible(true);
 			super.paint(this.getGraphics());
 			MainXlet.keyboard.setVisible(true);
@@ -249,15 +241,13 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			
 			break;
 		
-		case 405: 	// Boton Amarillo
-			System.out.println("Va para Resumen Gastos");
+		case 405: 	// Boton Amarillo - Va para resumen gastos
+			
 			persistir.guardarGastos(ListaGastos);
 			MainXlet.gas.setVisible(false);
 			MainXlet.mes.cargarGastos(mesActual);
 			MainXlet.mes.setVisible(true);
 			MainXlet.mes.requestFocus();		
-			//MainXlet.label.setBackground(Color.darkGray);
-			//MainXlet.label.repaint();
 			LimpiarCajas();
 			primeraVez = true;		
 			this.repaint();
@@ -269,24 +259,17 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 27:	//exit
+			
 			LimpiarCajas();
-			//MainXlet.label.setBackground(Color.white);
 			MainXlet.gas.setVisible(false);
-			//MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			MainXlet.miniWeather.setVisible(true);
 			this.repaint();
 			persistir.guardarGastos(ListaGastos);
-			System.out.println("Boton de persistencia!!");
 			primeraVez = true;
 		
 			break;	
 
-		
-		case 427:	// + 
-				
-			break;		
-						
 		default: {	// do nothing
 			System.out.println("default case ...");
 			System.out.println(tecla);
@@ -300,22 +283,16 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		primeraVez = f;
 	}
 	
+	// Este metodo se invoca desde el contenedor teclado, cuando se va y guarda el gasto generado en la lista en memoria
 	public void seVaElTeclado(){
-		if (ListaGastos.getColeccion().isEmpty()){
-			System.out.println(" Esta Vacia");
-		}else{
-			System.out.println("Esta llena");
-		}
-		
+				
 		Gasto a = new Gasto(cajaDetalle.getTextContent(HState.ALL_STATES), cajaCantidad.getTextContent(HState.ALL_STATES), cajaUnitario.getTextContent(HState.ALL_STATES), String.valueOf(total));
 		ListaGastos.agregarGasto(a);
-//		monText = String.valueOf(total);
-//		InsertarGasto();
-		System.out.println("El Tamaño de la lista: " + ListaGastos.getColeccion().size());
-		
 		LimpiarCajas();
+		
 	}
 	
+	// Limpia las cajas de texto
 	private void LimpiarCajas(){
 		// Borro todas las cajas de texto.
 		cajaDetalle.setTextContent(" ", HState.ALL_STATES);
@@ -328,6 +305,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		total = 0;
 		
 	}
+	
 	// Si el string es un numero valido devuelve true, de lo contrario devuelve false
 	private boolean esNumero(String s){
 		try{
@@ -336,13 +314,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			return false;
 		}
 		return true;
-	}
-	
-	// Ingresa una neuva tarea al arreglo de tareas.
-	private void InsertarGasto(){
-		Gasto a = new Gasto(detText, canText, uniText, monText);
-		ListaGastos.agregarGasto(a);		
-
 	}
 	
 	public void keyReleased(KeyEvent e) {
@@ -369,8 +340,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	
 	public void setMonText(String s){
 		monText = s;
-	}
-	
+	}	
 
 	public String getDetText() {
 		return detText;
@@ -387,6 +357,5 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	public String getMonText() {
 		return monText;
 	}
-
 	
 }
