@@ -2,6 +2,7 @@ package mainXlet;
 
 
 
+
 /**
  * Constant incluye todas las contantes que identifican los contenedores de la
  * applicacion
@@ -34,7 +35,6 @@ public class Constant {
 	
 	/**Constante para indicar el contenedor agenda**/
 	public static final int CONTENEDOR_AGENDA=8;
-	
-	
+
 	
 }

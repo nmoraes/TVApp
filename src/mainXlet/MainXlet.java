@@ -76,10 +76,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		
 	/**Main Image */
 	private Image mainImage;
-	/**
-	 * @description Before we can draw on the screen, we need an HScene to draw into. This
-	 * variable will hold a reference to our HScene
-	 */
 	
 	private static boolean mainPage;
 	
@@ -354,14 +350,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         //scene.setVisible(false); 
     	scene.removeAll();
         scene.remove(this);   
-   
-        // Destroy the image buffer   
-  //      image.flush();   
         image = null;   
         scene = null;   
         keyboard=null;
-        myHSound.dispose();
-        myHSound=null;
+        //myHSound.dispose();
+        //myHSound=null;
         
         Runtime garbage = Runtime.getRuntime();
         garbage.gc();
@@ -410,24 +403,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Set the text colour   
         graphics.setColor(Color.black);   
    
-        // Drawing the string may cause an error to get thrown, so we   
-        // surround it with a 'try' block.   
-//        try{   
-//        	graphics.setColor(Color.WHITE);
-//            graphics.drawString(message,12,140); 
-//            
-//            graphics.setFont(new Font("Tiresias", Font.PLAIN, 14));
-//            graphics.drawString(message2,12,152); 
-//            
-//          //  graphics.setFont(new Font("Tiresias", Font.BOLD, 14));
-//          //  graphics.drawString("Amarillo: twitter/Calculadora",404, 280);
-//          //  graphics.drawString("Verde: tareas",404, 295);
-//          //  graphics.drawString(" <-     : weather",404, 310);
-//         
-//        }catch(Throwable t) {   
-//            // Catch any errors that get thrown.   
-//            t.printStackTrace();   
-//        }   
     }   
    
       
@@ -454,11 +429,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 
 		case KeyEvent.VK_LEFT: {
-			System.out.println("***** evento estado del tiempo *****");
+			//Estado del Tiempo
 	        miniWeather.setVisible(false);
 	        contWeather.setVisible(true);
 	        contWeather.requestFocus();
-		
 			break;
 		}
 
@@ -500,11 +474,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			break;
 		}
 		case 406: {
-			System.out.println("azul ...");
+			//Azul
 			cont.setFlagImageBlue(true);
 	        cont.requestFocus();
 	        this.repaint();
-
 			break;
 		}
 
@@ -523,20 +496,20 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     }   
     
 
-	public void playSound() {
-		myHSound = new HSound();
-		try {
-			URL url;
-			url = new URL("file://"+ new File("main_sound.mpg").getAbsolutePath());
-			myHSound.load(url);
-			System.out.println(url);
-
-		} catch (IOException io) {
-			System.out.println("-------- > Error al leer el sonido.");
-		}
-		myHSound.play();
-
-	}
+//	public void playSound() {
+//		myHSound = new HSound();
+//		try {
+//			URL url;
+//			url = new URL("file://"+ new File("main_sound.mpg").getAbsolutePath());
+//			myHSound.load(url);
+//			System.out.println(url);
+//
+//		} catch (IOException io) {
+//			System.out.println("-------- > Error al leer el sonido.");
+//		}
+//		myHSound.play();
+//
+//	}
 
 //	private void readProperties(){
 //	
