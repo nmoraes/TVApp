@@ -8,22 +8,16 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import mainXlet.ContenedorTwitter;
 import mainXlet.ContenedorYellow;
 import mainXlet.MainXlet;
-
 import org.havi.ui.HContainer;
 import org.havi.ui.HSinglelineEntry;
 import org.havi.ui.HState;
 import org.havi.ui.HVisible;
 
+@SuppressWarnings("serial")
 public class Calcu extends HContainer implements KeyListener {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	
 	private Image image;
 	HSinglelineEntry pantalla;
@@ -38,7 +32,6 @@ public class Calcu extends HContainer implements KeyListener {
 	// CONSTRUCTOR
 	public Calcu() {
 		this.repaint();
-		// HStaticText hstTexto = new HStaticText(" Menu akdjkfhhf ");
 		pantalla = new HSinglelineEntry("", 190, 265, 207, 50, 30, new Font( //texto de calc
 				"Tiresias", Font.PLAIN, 23), Color.black);
 		pantalla.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
@@ -418,20 +411,18 @@ public class Calcu extends HContainer implements KeyListener {
 			v1 = "";
 			v2 = "";
 			limpiar = true;
-			//pantalla.setTextContent(String.valueOf(""),
-				//	HState.ALL_STATES);
 			break;
 
 		}
 	}
 
 	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Ignored 
 
 	}
 
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// Ignored 
 
 	}
 

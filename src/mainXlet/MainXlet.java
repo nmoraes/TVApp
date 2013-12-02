@@ -10,9 +10,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import javax.tv.xlet.Xlet;
 import javax.tv.xlet.XletContext;
 import javax.tv.xlet.XletStateChangeException;
@@ -445,31 +442,24 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 		case 403: {
 			System.out.println("rojo ...");
-//			label.setBackground(colors[0]);
-//	        label.repaint();
 	        contRed.requestFocus();
 	        contRed.agenda.setVisible(true);
 	        contRed.agenda.requestFocus();
 			break;
 		}
-		case 404: { // Clase gastos
-			System.out.println("verde ...");
-			//label.setBackground(colors[1]);
+		case 404: { 
+			// Clase gastos
 			miniWeather.setVisible(false);
-	        //label.repaint();
 	        gas.setVisible(true);
 	        gas.requestFocus();
 	        
 	       	break;
 		}
 		case 405: {
-			System.out.println("amarillo  ...");
-		//	label.setBackground(colors[2]);
-			//label.repaint();
+			//Amarillo
 			contYellow.setVisible(true);
 			contYellow.requestFocus();
 			contYellow.texto.setVisible(true);
-			//inicio.flush();
 			this.repaint();
 			break;
 		}
@@ -509,25 +499,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 //		}
 //		myHSound.play();
 //
-//	}
-
-//	private void readProperties(){
-//	
-//		Properties properties = new Properties();
-//		try {
-//			properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
-//			message = properties.getProperty("mensajeBienvenida");
-//			message2= properties.getProperty("mensajeIntruccion");
-//		} catch (FileNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
-//		}
-//		
-//	}
-    
-   
+//	}   
    
 } 
