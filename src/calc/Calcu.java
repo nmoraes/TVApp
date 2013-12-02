@@ -24,13 +24,6 @@ public class Calcu extends HContainer implements KeyListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	/*
-	 * blic static void main(String arg[]) { // METODO PRINCIPAL Calcu n = new
-	 * Calcu(); n.setBounds(0, 0, 800, 200); //n.setVisible(true);
-	 * //n.setResizable(true);
-	 * 
-	 * }
-	 */
 	
 	private Image image;
 	HSinglelineEntry pantalla;
@@ -53,25 +46,7 @@ public class Calcu extends HContainer implements KeyListener {
 		pantalla.setHorizontalAlignment(HVisible.HALIGN_LEFT);
 		pantalla.setEditMode(true);
 		pantalla.setCaretCharPosition(1);
-		/**
-		 * cajaDetalle = new HSinglelineEntry("", 30, 290, 240, 30, 12, new
-		 * Font("Tiresias", Font.BOLD, 22), Color.blue);
-		 * cajaDetalle.setType(org.havi.ui.HKeyboardInputPreferred.INPUT_ANY);
-		 * cajaDetalle.setBackground(Color.white);
-		 * cajaDetalle.setBackgroundMode(org.havi.ui.HVisible.BACKGROUND_FILL);
-		 * cajaDetalle.setHorizontalAlignment(HVisible.HALIGN_LEFT);
-		 * cajaDetalle.setEditMode(true); cajaDetalle.setCaretCharPosition(1);
-		 */
-		// pantalla.setText("0");
-		// // Textfields
-		// pantalla.setBounds(120, 150, 200, 50);
-		// pantalla.setBackground(Color.green);
 
-		// hstTexto.setFont(new Font("Tiresias", Font.BOLD, 20));
-		// texto tamaño y posición x,y,x,y
-		// hstTexto.setBounds(120, 150, 200, 50);
-		// hstTexto.setBackground(Color.green);
-		// this.add(hstTexto);
 		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 		loadForegroundBitmap();
@@ -80,7 +55,6 @@ public class Calcu extends HContainer implements KeyListener {
 
 	public void keyPressed(KeyEvent tecla) {
 
-		System.out.println(tecla.getKeyCode());
 		switch (tecla.getKeyCode()) {
 
 		case 48: // 0
@@ -431,9 +405,10 @@ public class Calcu extends HContainer implements KeyListener {
 		//	MainXlet.label.setBackground(Color.white);
 			//MainXlet.calcu.setVisible(false);
 			ContenedorYellow.calcu.setVisible(false);
-			MainXlet.contYellow.setVisible(false);
+			MainXlet.contYellow.setVisible(true); //false
+			MainXlet.contYellow.requestFocus(); //nuevo
 			//MainXlet.label.repaint();
-			MainXlet.scene.requestFocus();
+			//MainXlet.scene.requestFocus();
 
 			this.repaint();
 			break;
