@@ -36,6 +36,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	@SuppressWarnings("unchecked")
 	public ContenedorTwitter() {
 
+	
 		//tweet = "";
 		array = obtenerTweets();
 
@@ -132,16 +133,16 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 		
 		try {
 
-		     graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));   
-		        // Set the text colour   
-		        graphics.setColor(Color.white);
+			graphics.setFont(new Font("Tiresias", Font.BOLD, 20));  
+			graphics.drawString("Twiter timeline @TVApp", 20, 285);
 			
-		    //desplegamos el timeline.
+		    graphics.setFont(new Font("Tiresias", Font.BOLD, 15));   
+		    graphics.setColor(Color.black);
 			graphics.drawString(array.get(0), 12, 300);
-			graphics.drawString(array.get(1), 12, 315);
-			graphics.drawString(array.get(2), 12, 330);
-			graphics.drawString(array.get(3), 12, 345);
-			graphics.drawString(array.get(4), 12, 360);
+			graphics.drawString(array.get(1), 12, 320);
+			graphics.drawString(array.get(2), 12, 340);
+			graphics.drawString(array.get(3), 12, 360);
+			graphics.drawString(array.get(4), 12, 380);
 			
 			
 			if (image != null && escribir == true) {

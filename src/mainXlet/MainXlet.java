@@ -501,10 +501,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case 406: {
 			System.out.println("azul ...");
-			//label.setBackground(colors[3]);
-	       // label.repaint();
+			cont.setFlagImageBlue(true);
 	        cont.requestFocus();
-	      //  twitter.requestFocus();
+	        this.repaint();
+
 			break;
 		}
 
