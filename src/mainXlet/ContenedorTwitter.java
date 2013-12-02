@@ -40,6 +40,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
     
     private String message;
     private String message2;
+    private String message3;
 
 	@SuppressWarnings("unchecked")
 	public ContenedorTwitter() {
@@ -84,6 +85,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			array.set(9, "");
 			message="";
 			message2="";
+			
 			
 			break;
 		case 27:
@@ -155,7 +157,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			
 		    graphics.setFont(new Font("Tiresias", Font.BOLD, 15));   
 		    graphics.setColor(Color.black);
-			graphics.drawString(array.get(0), 12, 200);
+			
+		    
+		    graphics.drawString(array.get(0), 12, 200);
 			graphics.drawString(array.get(1), 12, 220);
 			graphics.drawString(array.get(2), 12, 240);
 			graphics.drawString(array.get(3), 12, 260);
@@ -168,7 +172,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			
 			graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));  
 			graphics.setColor(Color.black);
-			graphics.drawString(message2, 280, 480);
+			graphics.drawString(message2, 455, 480);
 			
 			
 			if (image != null && escribir == true) {
@@ -176,6 +180,8 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 				graphics.drawImage(image, 150, 230, null);   
 				graphics.setFont(new Font("Tiresias", Font.PLAIN, 15));
 				graphics.drawString(ContenedorKeyboard.message, 158, 245);
+				graphics.setColor(Color.white);
+				graphics.drawString(message3, 455, 190);
 				message="";
 				message2="";
 
@@ -196,6 +202,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 				properties.load(new FileInputStream(Constant.CONFIG_PROPERTIES));
 				message = properties.getProperty("twittertimeline");
 				message2 = properties.getProperty("mensajeIntruccionesTwitter");
+				message3 = properties.getProperty("keyboardIntruccion");
 
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

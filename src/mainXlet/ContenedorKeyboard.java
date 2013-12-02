@@ -9,6 +9,10 @@ import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
 import org.havi.ui.HContainer;
 
@@ -32,8 +36,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
     
     // Variable para manejar el texto en Gastos
     public static int navegadorTextGastos = 0;
-    
-   
+
     
     public ContenedorKeyboard(){
 
@@ -92,20 +95,11 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			MainXlet.contRed.agenda.requestFocus();			
 			break;
 		}
-
-		
-		
-//		// Si estoy dentro del contenedor amarillo:
-//		if (invokeFather == Constant.CONTENEDOR_GASTOS) {
-//			System.out.println("cerrar teclado en gastos");
-//			MainXlet.contTasks.requestFocus();
-//		}
 				
 		MainXlet.keyboard.setVisible(false);
 		MainXlet.keyboard.repaint();
 		invokeFather = 0;
-//		ContenedorKeyboard.message = "";
-
+	
 	}
 	
 	
@@ -409,27 +403,10 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	            // Draw the image from the buffer   
 	            graphics.drawImage(image2, x, y, null);     
 	            
-	       
-	        
 	        }
-	        
-	        System.out.println(message);
-	        
-//	        graphics.setColor(Color.RED); 
-//	        graphics.setFont(new Font("Tiresias", Font.PLAIN, 20));
-////	          
-////	    
-////	        
-//	        try{   
-//	            graphics.drawString(message,10,125);  
-//
-//	        }catch(Throwable t) {   
-//	            // Catch any errors that get thrown.   
-//	            t.printStackTrace();   
-//	        } 
+	        	        
 
-
-	    }   
+	    } 
 	    
 	    
 	public void writeNumbers(int numero){
