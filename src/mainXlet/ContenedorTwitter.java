@@ -14,26 +14,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
 import org.havi.ui.HContainer;
-import org.havi.ui.HMultilineEntry;
-import org.havi.ui.HStaticText;
 import twitter.FachadaTwitter;
 import twitter.Tweet;
 
+@SuppressWarnings("serial")
 public class ContenedorTwitter extends HContainer implements KeyListener {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5292849366437972565L;
-
-	//private HStaticText hstTexto;
-	//private String tweet;
-	//private HStaticText nuevoTweet;
-	//private HMultilineEntry multiEntrada;
-	
-    // The image that we will show   
     private Image image;
     private ArrayList <String>array= new ArrayList <String>();    
     public static boolean escribir = false;
@@ -46,17 +33,8 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	public ContenedorTwitter() {
 
 		readProperties();
-		//tweet = "";
 		array = obtenerTweets();
-
-	//	nuevoTweet = new HStaticText("Rojo para escribir nuevo tweet");
-	//	nuevoTweet.setFont(new Font("Tiresias", 0, 14));
-		// texto tamaño y posición x,y,x,y
-//		nuevoTweet.setBounds(10, 110, 350, 100);
-//		nuevoTweet.setBackground(Color.white);
-	//	this.add(nuevoTweet);
 		loadForegroundBitmap();
-
 		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 
@@ -67,7 +45,7 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 	public void keyPressed(KeyEvent arg0) {
 		switch (arg0.getKeyCode()) {
 		case 403:
-			System.out.println("boton rojo siempre llama al teclado ...");
+			//Rojo, llama al teclado
 			escribir = true;
 			MainXlet.miniWeather.setVisible(false);
 			MainXlet.keyboard.setVisible(true);
@@ -90,12 +68,9 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 			break;
 		case 27:
 			//exit
-			//MainXlet.label.setBackground(Color.yellow);
 			ContenedorYellow.conTwitter.setVisible(false);
-			//MainXlet.label.repaint();
 			MainXlet.miniWeather.setVisible(true);
 			ContenedorYellow.flagImage=true;
-			//MainXlet.scene.requestFocus();
 			MainXlet.contYellow.requestFocus();
 			array=obtenerTweets();
 			readProperties();
@@ -205,10 +180,10 @@ public class ContenedorTwitter extends HContainer implements KeyListener {
 				message3 = properties.getProperty("keyboardIntruccion");
 
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+
 				System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				System.out.println("I/O excepcion al leer config.properties, asegure tenerlo dentro de la carpeta BIN");
 			}
 			
