@@ -241,7 +241,10 @@ public class Calcu extends HContainer implements KeyListener {
 				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
-				pantalla.setTextContent(String.valueOf(resultado),
+				if(v1.split(",")[1].equalsIgnoreCase("0")) {
+					v1=v1.split(",")[0];
+				}
+				pantalla.setTextContent(String.valueOf(v1),
 						HState.ALL_STATES);
 			}
 
@@ -272,7 +275,10 @@ public class Calcu extends HContainer implements KeyListener {
 				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
-				pantalla.setTextContent(String.valueOf(resultado),
+				if(v1.split(",")[1].equalsIgnoreCase("0")) {
+					v1=v1.split(",")[0];
+				}
+				pantalla.setTextContent(String.valueOf(v1),
 						HState.ALL_STATES);
 			}
 
@@ -304,7 +310,10 @@ public class Calcu extends HContainer implements KeyListener {
 				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
-				pantalla.setTextContent(String.valueOf(resultado),
+				if(v1.split(",")[1].equalsIgnoreCase("0")) {
+					v1=v1.split(",")[0];
+				}
+				pantalla.setTextContent(String.valueOf(v1),
 						HState.ALL_STATES);
 			}
 
@@ -335,7 +344,10 @@ public class Calcu extends HContainer implements KeyListener {
 				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = false;
 				v2 = "";
-				pantalla.setTextContent(String.valueOf(resultado),
+				if(v1.split(",")[1].equalsIgnoreCase("0")) {
+					v1=v1.split(",")[0];
+				}
+				pantalla.setTextContent(String.valueOf(v1),
 						HState.ALL_STATES);
 			}
 
@@ -380,7 +392,10 @@ public class Calcu extends HContainer implements KeyListener {
 				v1 = String.valueOf(resultado).replace(".", ",");
 				estoyUsandoV1 = true;
 				v2 = "";
-				pantalla.setTextContent(String.valueOf(resultado),
+				if(v1.split(",")[1].equalsIgnoreCase("0")) {
+					v1=v1.split(",")[0];
+				}
+				pantalla.setTextContent(String.valueOf(v1),
 						HState.ALL_STATES);
 				
 				

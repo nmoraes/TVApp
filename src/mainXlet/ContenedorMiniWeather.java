@@ -37,7 +37,7 @@ public class ContenedorMiniWeather extends HContainer {
 		// mi tamaño y posición x,y,x,y
 		this.setBounds(404, 180, 306, 80);
 
-		executeMiniTimeWeather();
+	//	executeMiniTimeWeather();
 
 		loadForegroundBitmap();
 		this.repaint();
