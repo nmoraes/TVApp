@@ -37,7 +37,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			setFlagImageBlue1(true);
 			MediaTracker tracker = new MediaTracker(this);
 			// Then load the image
-			fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout1.jpg");
+			fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout2.jpg");
 
 			// add the image to the MediaTracker...
 			tracker.addImage(fondoAplic, 0);
@@ -56,7 +56,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			// exit
 			setFlagImageBlue(false);
 			MainXlet.scene.requestFocus();
-			fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout.jpg");
+			fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout1.jpg");
 			this.repaint();
 			break;
 		}
@@ -67,7 +67,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 		// Create a MediaTracker to tell us when the image has loaded
 		MediaTracker tracker = new MediaTracker(this);
 		// Then load the image
-		fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout.jpg");
+		fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout1.jpg");
 
 		// add the image to the MediaTracker...
 		tracker.addImage(fondoAplic, 0);
@@ -120,7 +120,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 		// Create a MediaTracker to tell us when the image has loaded
 		MediaTracker tracker = new MediaTracker(this);
 		// Then load the image
-		fondoAplic1 = Toolkit.getDefaultToolkit().getImage("fondoAbout1.jpg");
+		fondoAplic1 = Toolkit.getDefaultToolkit().getImage("fondoAbout2.jpg");
 
 		// add the image to the MediaTracker...
 		tracker.addImage(fondoAplic1, 0);
