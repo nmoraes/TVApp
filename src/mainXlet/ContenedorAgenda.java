@@ -2,6 +2,7 @@ package mainXlet;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -148,6 +149,11 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		}
 		this.repaint();
 
+	}
+	
+	public void paint(Graphics graphics){
+		tarea.setTextContent(MainXlet.keyboard.message, HState.ALL_STATES);
+		super.paint(graphics);
 	}
 
 	@Override
