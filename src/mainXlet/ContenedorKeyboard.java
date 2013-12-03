@@ -360,7 +360,7 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 	        MediaTracker tracker = new MediaTracker(this);   
 	        // Then load the image   
 	        image = Toolkit.getDefaultToolkit().getImage("keyboardLetters.png");   
-	        image2 = Toolkit.getDefaultToolkit().getImage("puntero.png");     	
+	        image2 = Toolkit.getDefaultToolkit().getImage("punteroTransparente.png");     	
 	        
 	        // add the image to the MediaTracker...   
 	        tracker.addImage(image, 0); 
