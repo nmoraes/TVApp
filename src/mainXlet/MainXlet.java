@@ -73,6 +73,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		
 	/**Main Image */
 	private Image mainImage;
+	private static boolean flagImageMain = false;
 	
 	private static boolean mainPage;
 	
@@ -114,6 +115,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // the time it takes to load.  if this is being loaded from a DSM-CC   
         // carousel, it should definitely be loaded after startXlet() is called.   
         mainPage = true;
+        this.setBounds(0, 0, 800, 600);
+		this.addKeyListener(this);
         loadForegroundBitmap(); 
        
       
@@ -226,6 +229,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
    
         // The bitmap image is shown in the graphics plane.   
         displayForegroundBitmap();   
+        
     }   
    
    
@@ -279,16 +283,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     }   
    
 
-    /**  
-     * This method loads the bitmap that we will display in the component.  
-     * The image can be loaded from a local filesystem or from a DSM-CC  
-     * object carousel using the same code, with only the latency being  
-     * different.  
-     *  
-     * This is fairly standard Java image loading, and so we won't  
-     * examine this as closely as the rest of the example.  A good Java  
-     * book will tell you everything you need to know about this topic.  
-     */   
+    
     public void loadForegroundBitmap() {   
         // Create a MediaTracker to tell us when the image has loaded   
         
@@ -296,11 +291,14 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Then load the image   
             	
     	image= Toolkit.getDefaultToolkit().getImage("bg22.png"); 
-    	mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
+    	if (flagImageMain){
+    		mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
+    		tracker.addImage(mainImage, 0);
+    	}
    
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);
-        tracker.addImage(mainImage, 1);
+        
         try{   
             tracker.waitForAll();   
         }   
@@ -386,9 +384,14 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
             // Draw the image from the buffer   
         
         if(mainPage==true){
-            //graphics.drawImage(mainImage, 0, 0, null); 
-        }   
-        	
+            graphics.drawImage(mainImage, 0, 0, null); 
+        }
+    
+ ///
+        
+    
+		
+        ////
         
         graphics.drawImage(image, 404, 7, null);      
         
@@ -442,10 +445,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 
 		case 403: {
 			System.out.println("rojo ...");
-	        contRed.requestFocus();
+			setFlagImageMain(false);
+			this.repaint();
+			contRed.requestFocus();
 	        contRed.agenda.setVisible(true);
 	        contRed.agenda.requestFocus();
-			break;
+	        break;
 		}
 		case 404: { 
 			// Clase gastos
@@ -475,7 +480,13 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	}   
    
    
-    public void keyTyped(KeyEvent key)   
+    private void setFlagImageMain(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void keyTyped(KeyEvent key)   
     {   
         // Ignored   
     }   
@@ -500,5 +511,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 //		myHSound.play();
 //
 //	}   
-   
+    public boolean isFlagImageMain() {
+		return flagImageMain;
+	}
+
+	public void setFlagImageBlue(boolean flag) {
+		flagImageMain = flag;
+	}
 } 

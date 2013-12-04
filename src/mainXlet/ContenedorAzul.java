@@ -31,13 +31,32 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 	public void keyPressed(KeyEvent tecla) {
 
 		switch (tecla.getKeyCode()) {
+		case 403:
+			System.out.println("Rojo");
+			setFlagImageBlue1(true);
+			MediaTracker tracker3 = new MediaTracker(this);
+			// Then load the image
+			fondoAplic = Toolkit.getDefaultToolkit().getImage("AyudaRojo.jpg");
 
+			// add the image to the MediaTracker...
+			tracker3.addImage(fondoAplic, 0);
+
+			// ...and wait for it to finish loading
+			try {
+				tracker3.waitForAll();
+			} catch (InterruptedException e) {
+				// Ignore the exception, since there's not a lot we can do.
+				fondoAplic = null;
+
+			}
+			this.repaint();
+			break;
 		case 404:
 			System.out.println("verde");
 			setFlagImageBlue1(true);
 			MediaTracker tracker = new MediaTracker(this);
 			// Then load the image
-			fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout2.jpg");
+			fondoAplic = Toolkit.getDefaultToolkit().getImage("AyudaVerde.jpg");
 
 			// add the image to the MediaTracker...
 			tracker.addImage(fondoAplic, 0);
@@ -45,6 +64,37 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			// ...and wait for it to finish loading
 			try {
 				tracker.waitForAll();
+			} catch (InterruptedException e) {
+				fondoAplic = null;
+			}
+			this.repaint();
+			break;
+		case 405:
+			System.out.println("verde");
+			setFlagImageBlue1(true);
+			MediaTracker tracker1 = new MediaTracker(this);
+			fondoAplic = Toolkit.getDefaultToolkit().getImage("AyudaAmarillo.jpg");
+			tracker1.addImage(fondoAplic, 0);
+			try {
+				tracker1.waitForAll();
+			} catch (InterruptedException e) {
+				fondoAplic = null;
+			}
+			this.repaint();
+			break;
+		case 406:
+			System.out.println("Azul");
+			setFlagImageBlue1(true);
+			MediaTracker tracker2 = new MediaTracker(this);
+			// Then load the image
+			fondoAplic = Toolkit.getDefaultToolkit().getImage("AyudaAzul.jpg");
+
+			// add the image to the MediaTracker...
+			tracker2.addImage(fondoAplic, 0);
+
+			// ...and wait for it to finish loading
+			try {
+				tracker2.waitForAll();
 			} catch (InterruptedException e) {
 				// Ignore the exception, since there's not a lot we can do.
 				fondoAplic = null;
