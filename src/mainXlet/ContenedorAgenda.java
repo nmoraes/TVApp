@@ -18,12 +18,11 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	HStaticText mes;
 	HStaticText anio;
 	HStaticText tarea;
-	ControladorTareas tareas;
+	private static ControladorTareas tareas=new ControladorTareas();
 	int foco;//1-dia 2- mes 3-año
 	public ContenedorAgenda() {
 		this.addKeyListener(this);
 		this.setBounds(0, 0, 800, 600);
-		tareas=new ControladorTareas();
 		dia=new HStaticText(tareas.darDia()+"");
 		dia.setFont(new Font("Tiresias", 0, 14));
 		dia.setBackground(Color.YELLOW);
@@ -46,7 +45,6 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		this.add(tarea);
 		mostrarTextos();
 		foco=1;
-		System.out.println("contenedor Agenda");
 	}
 	private void mostrarTextos(){
 		dia.setVisible(true);
@@ -142,15 +140,16 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		case 27:
 			//exit
 			this.setVisible(false);
-			//MainXlet.label.setBackground(Color.white);
-			//MainXlet.label.repaint();
 			MainXlet.scene.requestFocus();
 			break;	
 		}
 		this.repaint();
 
 	}
-	
+	public static void escribirTarea(String tarea){
+		tareas.crearTarea(tarea);
+		tareas.guardarTareas();
+	}
 	public void paint(Graphics graphics){
 		tarea.setTextContent(MainXlet.keyboard.message, HState.ALL_STATES);
 		super.paint(graphics);

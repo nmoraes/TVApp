@@ -223,7 +223,11 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 					
 				closeKeyboard();
 			}
-			
+			if(ContenedorKeyboard.invokeFather==Constant.CONTENEDOR_AGENDA){
+				ContenedorAgenda.escribirTarea(message);
+				message="";
+				closeKeyboard();
+			}
 			
 		break;
 		

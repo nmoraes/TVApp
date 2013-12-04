@@ -16,9 +16,11 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import Gastos.ColeccionGastos;
 import Gastos.Gasto;
+import tareas.Tarea;
 import twitter.Usuario;
 
 public class Persistir {
@@ -145,6 +147,25 @@ public class Persistir {
                e2.printStackTrace();
             }
          }
+ 	}
+ 	public void persistirTareas(List<Tarea> t){
+ 		/**
+ 		 * try {
+			FileOutputStream file=new FileOutputStream(new File("usuario.dat"));
+			ObjectOutputStream oos=new ObjectOutputStream(file);
+			oos.writeObject(usuario);
+			oos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}**/
+ 		try{
+ 			FileOutputStream file=new FileOutputStream(new File("tareas.dat"));
+ 			ObjectOutputStream oos=new ObjectOutputStream(file);
+ 			oos.writeObject(t);
+ 			oos.close();
+ 		}catch(IOException e){
+ 			e.printStackTrace();
+ 		}
  	}
  	
 }

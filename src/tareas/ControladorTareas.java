@@ -9,6 +9,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import persistencia.Persistir;
+
 public class ControladorTareas {
 
 	private Calendar dia=new GregorianCalendar(new Locale("es", "UY"));
@@ -63,6 +65,10 @@ public class ControladorTareas {
 				return t1.compareTo(t2);
 			}
 		});
+	}
+	public void guardarTareas(){
+		Persistir p= new Persistir();
+		p.persistirTareas(tareas);
 	}
 	public void listar(){
 		for (Tarea t : tareas) {
