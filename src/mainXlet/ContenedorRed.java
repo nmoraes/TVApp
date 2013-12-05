@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import org.havi.ui.HContainer;
 import org.havi.ui.HStaticText;
 
@@ -48,6 +49,7 @@ public class ContenedorRed extends HContainer implements KeyListener {
 			//exit
 			//MainXlet.label.setBackground(Color.white);
 			//MainXlet.label.repaint();
+			MainXlet.mainPage=true;
 			MainXlet.scene.requestFocus();
 			//this.repaint();
 			break;	

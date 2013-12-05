@@ -259,7 +259,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			break;
 		
 		case 27:	//exit
-			
+			MainXlet.mainPage=true;
 			LimpiarCajas();
 			MainXlet.gas.setVisible(false);
 			MainXlet.scene.requestFocus();

@@ -139,6 +139,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 			break;
 		case 27:
 			//exit
+			MainXlet.mainPage=true;
 			this.setVisible(false);
 			MainXlet.scene.requestFocus();
 			break;	

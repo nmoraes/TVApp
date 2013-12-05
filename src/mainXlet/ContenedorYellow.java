@@ -64,6 +64,7 @@ public class ContenedorYellow extends HContainer implements KeyListener {
 			texto.setVisible(false);
 			//this.repaint();
 			MainXlet.contYellow.setVisible(false);
+			MainXlet.mainPage=true;
 			break;
 			
 			

@@ -73,9 +73,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		
 	/**Main Image */
 	private Image mainImage;
-	private static boolean flagImageMain = false;
+	private static boolean flagImageMain = true;
 	
-	private static boolean mainPage;
+	public static boolean mainPage;
 	
 	public static HScene scene;
 	
@@ -295,6 +295,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     		mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
     		tracker.addImage(mainImage, 0);
     	}
+    	
    
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);
@@ -444,8 +445,11 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 
 		case 403: {
+			
+	    	mainPage=false;
+	    	
 			System.out.println("rojo ...");
-			setFlagImageMain(false);
+			
 			this.repaint();
 			contRed.requestFocus();
 	        contRed.agenda.setVisible(true);
@@ -453,6 +457,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	        break;
 		}
 		case 404: { 
+			mainPage=false;
 			// Clase gastos
 			miniWeather.setVisible(false);
 	        gas.setVisible(true);
@@ -462,6 +467,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case 405: {
 			//Amarillo
+			mainPage=false;
 			contYellow.setVisible(true);
 			contYellow.requestFocus();
 			contYellow.texto.setVisible(true);
@@ -470,7 +476,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		}
 		case 406: {
 			//Azul
+			mainPage=false;
 			cont.setFlagImageBlue(true);
+			setFlagImageMain(false);
 	        cont.requestFocus();
 	        this.repaint();
 			break;

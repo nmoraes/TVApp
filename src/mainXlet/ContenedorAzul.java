@@ -19,7 +19,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 	
 	private Image fondoAplic, fondoAplic1;
 	private static boolean flagImageBlue, flagImageBlue1;
-
+	
 	public ContenedorAzul() {
 		setFlagImageBlue(false);
 		this.setBounds(0, 0, 800, 600);
@@ -104,6 +104,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			break;
 		case 27:
 			// exit
+			MainXlet.mainPage=true;
 			setFlagImageBlue(false);
 			MainXlet.scene.requestFocus();
 			fondoAplic = Toolkit.getDefaultToolkit().getImage("fondoAbout1.jpg");
