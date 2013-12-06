@@ -72,11 +72,11 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 
 		case 27:
 			// exit
-		//	MainXlet.label.setBackground(Color.white);
-			//MainXlet.label.repaint();
+			MainXlet.mainPage=true;
 			MainXlet.contWeather.setVisible(false);
 			MainXlet.miniWeather.setVisible(true);
 			MainXlet.scene.requestFocus();
+			MainXlet.scene.repaint();
 			break;
 
 		}

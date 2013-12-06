@@ -1,24 +1,18 @@
 package mainXlet;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
-import java.awt.Composite;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-import org.dvb.ui.DVBAlphaComposite;
-import org.dvb.ui.DVBColor;
 import org.havi.ui.HContainer;
 
 import wsPackage.JSONUtility;
 import wsPackage.Weather;
 
+@SuppressWarnings("serial")
 public class ContenedorMiniWeather extends HContainer {
 	
 	    private String messageWeather1= new String();
@@ -48,12 +42,7 @@ public class ContenedorMiniWeather extends HContainer {
 		 public void loadForegroundBitmap() {   
 		        // Create a MediaTracker to tell us when the image has loaded   
 		        MediaTracker tracker = new MediaTracker(this);   
-		        // Then load the image   
-		       // image = Toolkit.getDefaultToolkit().getImage("fondoW.jpg");   
-		             	
-		        
-		        // add the image to the MediaTracker...
-		       // tracker.addImage(image, 0);
+
 		        tracker.addImage(image2, 0);
 		        tracker.addImage(image3, 1);
 		        tracker.addImage(image4, 2);

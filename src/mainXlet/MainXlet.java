@@ -73,7 +73,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		
 	/**Main Image */
 	private Image mainImage;
-	private static boolean flagImageMain = true;
+	//private static boolean flagImageMain = true;
 	
 	public static boolean mainPage;
 	
@@ -114,11 +114,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // get done in startXlet() instead, depending on the size of the image and   
         // the time it takes to load.  if this is being loaded from a DSM-CC   
         // carousel, it should definitely be loaded after startXlet() is called.   
-        mainPage = true;
+        
         this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
         loadForegroundBitmap(); 
-       
       
     }   
    
@@ -177,9 +176,10 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		keyboard.setVisible(false);
 		scene.add(keyboard);
 		
-		//MiniWeather
-		scene.add(miniWeather);
- 	        
+//		//MiniWeather
+//		miniWeather.setVisible(true);
+//		scene.add(miniWeather);
+		mainPage = true;
     }   
    
     /**  
@@ -291,15 +291,12 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         // Then load the image   
             	
     	image= Toolkit.getDefaultToolkit().getImage("bg22.png"); 
-    	if (flagImageMain){
-    		//mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
-    		//tracker.addImage(mainImage, 0);
-    	}
     	
-   
+    	mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
+
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);
-        
+        tracker.addImage(mainImage, 1);
         try{   
             tracker.waitForAll();   
         }   
@@ -349,8 +346,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         image = null;   
         scene = null;   
         keyboard=null;
-        //myHSound.dispose();
-        //myHSound=null;
         
         Runtime garbage = Runtime.getRuntime();
         garbage.gc();
@@ -385,18 +380,15 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
             // Draw the image from the buffer   
         
         if(mainPage==true){
-            graphics.drawImage(mainImage, 0, 0, null); 
+            graphics.drawImage(mainImage, 0, 0, null);
+
+            
         }
     
- ///
-        
-    
-		
-        ////
         
         graphics.drawImage(image, 404, 7, null);      
         
-   
+
         // Once we've drawn the image, we can draw the message on top of it.   
    
         // Set the font to be the default MHP font.   
@@ -414,55 +406,35 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     public void keyPressed(KeyEvent key) {
 		// What key has been pressed?
 		switch (key.getKeyCode()) {
-		
-
-		
-		case KeyEvent.VK_UP: {
-			//mainPage=false;
-			//this.repaint();
-			break;
-		}
-		case KeyEvent.VK_DOWN: {
-			   //mainPage = true;
-			   
-			  // this.repaint();
-			break;
-		}
 
 		case KeyEvent.VK_LEFT: {
 			//Estado del Tiempo
+			mainPage=false;
 	        miniWeather.setVisible(false);
 	        contWeather.setVisible(true);
 	        contWeather.requestFocus();
-			break;
-		}
-
-		case KeyEvent.VK_RIGHT: {
-
-				//libre para usar			
-			
+			this.repaint();
 			break;
 		}
 
 		case 403: {
-			
-	    	mainPage=false;
-	    	
-			System.out.println("rojo ...");
-			
-			this.repaint();
+			//Rojo
+			mainPage=false;
+			miniWeather.setVisible(false);
 			contRed.requestFocus();
 	        contRed.agenda.setVisible(true);
 	        contRed.agenda.requestFocus();
+	        this.repaint();
 	        break;
 		}
 		case 404: { 
+			//Verde
 			mainPage=false;
-			// Clase gastos
 			miniWeather.setVisible(false);
+			this.repaint();
 	        gas.setVisible(true);
 	        gas.requestFocus();
-	        
+	        this.repaint();
 	       	break;
 		}
 		case 405: {
@@ -478,7 +450,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 			//Azul
 			mainPage=false;
 			cont.setFlagImageBlue(true);
-			setFlagImageMain(false);
 	        cont.requestFocus();
 	        this.repaint();
 			break;
@@ -488,11 +459,6 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 	}   
    
    
-    private void setFlagImageMain(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	public void keyTyped(KeyEvent key)   
     {   
@@ -519,11 +485,5 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 //		myHSound.play();
 //
 //	}   
-    public boolean isFlagImageMain() {
-		return flagImageMain;
-	}
 
-	public void setFlagImageBlue(boolean flag) {
-		flagImageMain = flag;
-	}
 } 
