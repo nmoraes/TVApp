@@ -53,7 +53,7 @@ public class ContenedorWeather extends HContainer implements KeyListener {
 		message = properties.getProperty("mensajeContenedorWeather");
 		messageIntruction = properties.getProperty("mensajeIntruccionesWeather");
 		
-	//	executeTimeWeather();
+		executeTimeWeather();
 		
 		this.setBounds(7, 180, 703, 200);
 		this.addKeyListener(this);

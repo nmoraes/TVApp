@@ -292,8 +292,8 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
             	
     	image= Toolkit.getDefaultToolkit().getImage("bg22.png"); 
     	if (flagImageMain){
-    		mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
-    		tracker.addImage(mainImage, 0);
+    		//mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
+    		//tracker.addImage(mainImage, 0);
     	}
     	
    
