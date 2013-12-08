@@ -218,9 +218,10 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 
 				//PUBLICAR TWITTER
 				
-				if(message.length()>2)
+				if(message.length()>2){
 					ContenedorTwitter.escribirTweet(message);
-					
+					message="";
+				}
 				closeKeyboard();
 			}
 			if(ContenedorKeyboard.invokeFather==Constant.CONTENEDOR_AGENDA){
