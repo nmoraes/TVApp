@@ -12,8 +12,6 @@ import org.havi.ui.HContainer;
 import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
 
-import persistencia.Persistir;
-
 import tareas.ControladorTareas;
 import tareas.Tarea;
 
@@ -25,7 +23,9 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	HStaticText tarea;
 	List<HStaticText> listaTareas;
 	private static ControladorTareas tareas=new ControladorTareas();
+	int visibles=0;
 	int foco;//1-dia 2- mes 3-año
+	int pagina=0;
 	public ContenedorAgenda() {
 		
 		tareas.cargarTareas();
@@ -70,7 +70,6 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
 		switch (e.getKeyCode()) {
 		case 39://derecha
 			switch(foco){
@@ -157,7 +156,18 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 			MainXlet.mainPage=true;
 			this.setVisible(false);
 			MainXlet.scene.requestFocus();
-			break;	
+			break;
+		case 427:
+			paginar();
+			break;
+		case 428:
+			if(pagina>6){
+				pagina=pagina-6;
+			}else{
+				pagina=0;
+			}
+			paginar();
+			break;
 		}
 		this.repaint();
 
@@ -174,22 +184,51 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 				hst.setVisible(false);
 				this.remove(hst);
 			}
+			visibles=0;
 		}
 		listaTareas=new ArrayList<>();
-		int altura=250;
 		for (Tarea t : tareas.getTareas()) {
 			int mes=t.getMes()+1;//java maneja los meses de 0 a 11
 			HStaticText hst=new HStaticText(t.getDia()+"-"+mes+"-"+t.getAnio()+": "+t.getTarea());
 			hst.setFont(new Font("Tiresias",0,14));
 			hst.setBackground(Color.white);
-			hst.setBounds(450, altura, 200, 30);
-			altura=altura+50;
-			hst.setVisible(true);
-			this.add(hst);
+
 			listaTareas.add(hst);
-			
+			visibles++;
 		}
+		paginar();
 		
+	}
+	
+	public void paginar(){
+		for (HStaticText hst : listaTareas) {
+			hst.setVisible(false);
+			this.remove(hst);
+		}
+		int altura=250;
+		if(visibles<6){
+			for (HStaticText hst : listaTareas) {
+				hst.setBounds(450, altura, 200, 30);
+				altura=altura+50;
+				hst.setVisible(true);
+				this.add(hst);
+			}
+		}else{
+			List<HStaticText> paginaAMostrar=null;
+			int tope=pagina+6;
+			if(tope<listaTareas.size()){
+				paginaAMostrar=listaTareas.subList(pagina, tope);
+				pagina=tope;
+			}else{
+				paginaAMostrar=listaTareas.subList(pagina, listaTareas.size());
+			}
+			for (HStaticText hst : paginaAMostrar) {
+				hst.setBounds(450, altura, 200, 30);
+				altura=altura+50;
+				hst.setVisible(true);
+				this.add(hst);
+			}
+		}
 	}
 	public void paint(Graphics graphics){
 		tarea.setTextContent(MainXlet.keyboard.message, HState.ALL_STATES);
