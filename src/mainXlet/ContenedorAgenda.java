@@ -23,7 +23,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	HStaticText mes;
 	HStaticText anio;
 	HStaticText tarea;
-	List<HState> listaTareas;
+	List<HStaticText> listaTareas;
 	private static ControladorTareas tareas=new ControladorTareas();
 	int foco;//1-dia 2- mes 3-año
 	public ContenedorAgenda() {
@@ -143,6 +143,11 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 			anio.setTextContent(tareas.darAnio()+"", HState.ALL_STATES);
 			break;
 		case 10://ok
+			if(listaTareas!=null){
+				for (HStaticText hst : listaTareas) {
+					hst.setVisible(false);
+				}
+			}
 			MainXlet.keyboard.setVisible(true);
 			MainXlet.keyboard.requestFocus();	
 			ContenedorKeyboard.invokeFather=Constant.CONTENEDOR_AGENDA;
@@ -164,6 +169,12 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	}
 	
 	public void cargarListaTareas(){
+		if(listaTareas!=null){
+			for (HStaticText hst : listaTareas) {
+				hst.setVisible(false);
+				this.remove(hst);
+			}
+		}
 		listaTareas=new ArrayList<>();
 		int altura=250;
 		for (Tarea t : tareas.getTareas()) {
@@ -171,7 +182,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 			HStaticText hst=new HStaticText(t.getDia()+"-"+mes+"-"+t.getAnio()+": "+t.getTarea());
 			hst.setFont(new Font("Tiresias",0,14));
 			hst.setBackground(Color.white);
-			hst.setBounds(500, altura, 200, 30);
+			hst.setBounds(450, altura, 200, 30);
 			altura=altura+50;
 			hst.setVisible(true);
 			this.add(hst);

@@ -92,7 +92,8 @@ public class ContenedorKeyboard  extends HContainer implements KeyListener{
 			MainXlet.contYellow.repaint();
 			break;
 		case Constant.CONTENEDOR_AGENDA:
-			MainXlet.contRed.agenda.requestFocus();			
+			MainXlet.contRed.agenda.requestFocus();
+			MainXlet.contRed.agenda.cargarListaTareas();
 			break;
 		}
 				
