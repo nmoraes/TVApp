@@ -163,10 +163,12 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		case 428:
 			if(pagina>6){
 				pagina=pagina-6;
+				paginar();
+				pagina=pagina-6;
 			}else{
 				pagina=0;
+				paginar();
 			}
-			paginar();
 			break;
 		}
 		this.repaint();
