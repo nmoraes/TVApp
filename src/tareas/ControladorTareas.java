@@ -75,7 +75,16 @@ public class ControladorTareas {
 			System.out.println(t.getTarea());
 		}
 	}
-	
+	public void cargarTareas(){
+		Persistir p=new Persistir();
+		tareas=p.leerTareas();
+	}
+	public List<Tarea> getTareas() {
+		return tareas;
+	}
+	public void setTareas(List<Tarea> tareas) {
+		this.tareas = tareas;
+	}
 	public static void main(String[] args) {
 		ControladorTareas ct=new ControladorTareas();
 		System.out.println("dia "+ct.darDia());
@@ -89,5 +98,6 @@ public class ControladorTareas {
 		ct.restaDia();
 		ct.crearTarea("2");
 		ct.listar();
+		ct.guardarTareas();
 	}
 }

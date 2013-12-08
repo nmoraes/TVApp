@@ -149,15 +149,6 @@ public class Persistir {
          }
  	}
  	public void persistirTareas(List<Tarea> t){
- 		/**
- 		 * try {
-			FileOutputStream file=new FileOutputStream(new File("usuario.dat"));
-			ObjectOutputStream oos=new ObjectOutputStream(file);
-			oos.writeObject(usuario);
-			oos.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}**/
  		try{
  			FileOutputStream file=new FileOutputStream(new File("tareas.dat"));
  			ObjectOutputStream oos=new ObjectOutputStream(file);
@@ -166,6 +157,21 @@ public class Persistir {
  		}catch(IOException e){
  			e.printStackTrace();
  		}
+ 	}
+ 	@SuppressWarnings("unchecked")
+	public List<Tarea> leerTareas(){
+ 		try{
+			FileInputStream file=new FileInputStream(new File("tareas.dat"));
+			ObjectInputStream ois=new ObjectInputStream(file);
+			List<Tarea> lista=(List<Tarea>)ois.readObject();
+			ois.close();
+			return lista;
+		}catch(IOException e){
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return null;
  	}
  	
 }

@@ -5,12 +5,17 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.havi.ui.HContainer;
 import org.havi.ui.HState;
 import org.havi.ui.HStaticText;
 
+import persistencia.Persistir;
+
 import tareas.ControladorTareas;
+import tareas.Tarea;
 
 public class ContenedorAgenda extends HContainer implements KeyListener {
 	
@@ -18,9 +23,13 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	HStaticText mes;
 	HStaticText anio;
 	HStaticText tarea;
+	List<HState> listaTareas;
 	private static ControladorTareas tareas=new ControladorTareas();
 	int foco;//1-dia 2- mes 3-año
 	public ContenedorAgenda() {
+		
+		tareas.cargarTareas();
+		tareas.listar();
 		this.addKeyListener(this);
 		this.setBounds(0, 0, 800, 600);
 		dia=new HStaticText(tareas.darDia()+"");
@@ -44,6 +53,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		this.add(anio);
 		this.add(tarea);
 		mostrarTextos();
+		cargarListaTareas();
 		foco=1;
 	}
 	private void mostrarTextos(){
@@ -150,6 +160,25 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	public static void escribirTarea(String tarea){
 		tareas.crearTarea(tarea);
 		tareas.guardarTareas();
+		tareas.listar();
+	}
+	
+	public void cargarListaTareas(){
+		listaTareas=new ArrayList<>();
+		int altura=250;
+		for (Tarea t : tareas.getTareas()) {
+			int mes=t.getMes()+1;//java maneja los meses de 0 a 11
+			HStaticText hst=new HStaticText(t.getDia()+"-"+mes+"-"+t.getAnio()+": "+t.getTarea());
+			hst.setFont(new Font("Tiresias",0,14));
+			hst.setBackground(Color.white);
+			hst.setBounds(500, altura, 200, 30);
+			altura=altura+50;
+			hst.setVisible(true);
+			this.add(hst);
+			listaTareas.add(hst);
+			
+		}
+		
 	}
 	public void paint(Graphics graphics){
 		tarea.setTextContent(MainXlet.keyboard.message, HState.ALL_STATES);
