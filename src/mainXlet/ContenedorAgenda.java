@@ -21,7 +21,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	HStaticText mes;
 	HStaticText anio;
 	HStaticText tarea;
-	HStaticText instrucciones=new HStaticText("Utilice las flecha para seleccionar el dia\nOK para escribir una nueva tarea\n+ y - para navegar entre las tareas");
+	HStaticText instrucciones=new HStaticText("Utilice las flechas para seleccionar el dia\nOK para escribir una nueva tarea\n+ y - para navegar entre las tareas");
 	HStaticText guardar=new HStaticText("presione + para guardar");
 	List<HStaticText> listaTareas;
 	private static ControladorTareas tareas=new ControladorTareas();
