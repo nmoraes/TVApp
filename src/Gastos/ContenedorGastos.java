@@ -268,14 +268,10 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 			this.repaint();
 			persistir.guardarGastos(ListaGastos);
 			primeraVez = true;
+			MainXlet.mainPage=true;
 		
 			break;	
 
-		default: {	// do nothing
-			System.out.println("default case ...");
-			System.out.println(tecla);
-			break;
-		}
 						
 		}
 	}

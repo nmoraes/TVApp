@@ -350,6 +350,7 @@ private void loadForegroundBitmap() {
 			MainXlet.anio.setVisible(false);
 			MainXlet.scene.requestFocus();
 			primeraVez = true;
+			MainXlet.mainPage=true;
 			break;
 
 		default: { // do nothing

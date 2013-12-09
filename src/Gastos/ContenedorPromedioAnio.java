@@ -182,6 +182,7 @@ public class ContenedorPromedioAnio extends HContainer implements KeyListener {
 			MainXlet.promedioAnio.setVisible(false);
 			MainXlet.scene.requestFocus();
 			primeraVez = true;
+			MainXlet.mainPage=true;
 			break;
 
 		default: { // do nothing

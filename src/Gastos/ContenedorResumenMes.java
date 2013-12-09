@@ -237,13 +237,9 @@ public void paint(Graphics graphics) {
 			this.repaint();
 			MainXlet.mes.setVisible(false);
 			MainXlet.scene.requestFocus();
+			MainXlet.mainPage=true;
 			break;	
 
-		default: {	// do nothing
-			System.out.println("default case ...");
-			System.out.println(tecla);
-			break;
-		}
 						
 		}
 	}

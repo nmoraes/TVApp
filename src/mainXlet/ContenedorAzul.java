@@ -1,5 +1,7 @@
 package mainXlet;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -8,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import org.havi.ui.HContainer;
+import org.havi.ui.HStaticText;
 
 @SuppressWarnings("serial")
 
@@ -19,6 +22,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 	
 	private Image fondoAplic, fondoAplic1;
 	private static boolean flagImageBlue, flagImageBlue1;
+	
 	
 	public ContenedorAzul() {
 		setFlagImageBlue(false);
@@ -52,6 +56,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			this.repaint();
 			break;
 		case 404:
+		
 			System.out.println("verde");
 			setFlagImageBlue1(true);
 			MediaTracker tracker = new MediaTracker(this);
@@ -70,6 +75,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			this.repaint();
 			break;
 		case 405:
+		
 			System.out.println("verde");
 			setFlagImageBlue1(true);
 			MediaTracker tracker1 = new MediaTracker(this);
@@ -83,6 +89,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			this.repaint();
 			break;
 		case 406:
+
 			System.out.println("Azul");
 			setFlagImageBlue1(true);
 			MediaTracker tracker2 = new MediaTracker(this);
@@ -104,6 +111,7 @@ public class ContenedorAzul extends HContainer implements KeyListener {
 			break;
 		case 27:
 			// exit
+
 			MainXlet.mainPage=true;
 			setFlagImageBlue(false);
 			MainXlet.scene.requestFocus();
