@@ -31,8 +31,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 	HStaticText titCantidad = new HStaticText ("Cant.");
 	HStaticText titUnitario = new HStaticText ("Unit.");
 	HStaticText titMonto = new HStaticText ("Monto");
-	HStaticText titulo = new HStaticText ("Menu Compras");
-	
+		
 	// estos strings son usado para guardar en disco lo escrito en pantalla
 	private String detText = new String("  ");
 	private String canText = "  ";
@@ -106,8 +105,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titMonto.setFont( new Font ("Tiresias", Font.BOLD, 22));
 		titpulse.setFont( new Font ("Tiresias", Font.BOLD, 22));
 		titpulse.setForeground(Color.white);
-		titulo.setFont( new Font ("Tiresias", Font.ITALIC, 38));
-		titulo.setForeground(Color.white);
 		
 		// Posicion inicial en la pantalla y color
 	
@@ -116,7 +113,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titUnitario.setBounds(330, 260, 75, 30);
 		titMonto.setBounds(405, 260, 100, 30);
 		titpulse.setBounds(400, 190, 250, 30);
-		titulo.setBounds(70, 150, 250, 40);
 		
 		// Color de fondo
 
@@ -125,7 +121,6 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		titUnitario.setBackground(Color.blue);
 		titMonto.setBackground(Color.blue);
 		titpulse.setBackground(new Color(0, 0,0,0));
-		titulo.setBackground(new Color(0, 0,0,0));
 		
 		// Agrego al contenedor
 	
@@ -138,10 +133,9 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		this.add(cajaUnitario);
 		this.add(cajaMonto);
 		this.add(titpulse);
-		this.add(titulo);
-	// Este titulo se vuelve visible solo cuando sale el teclado
+		// Este titulo se vuelve visible solo cuando sale el teclado
 		titpulse.setVisible(false);
-		this.setBounds(0, 0, 800, 800);
+		this.setBounds(0, 0, 800, 600);
 		this.addKeyListener(this);
 		// Funcion para cargar las imagenes
 		loadForegroundBitmap();		
@@ -197,7 +191,7 @@ public class ContenedorGastos extends HContainer implements KeyListener {
         // Create a MediaTracker to tell us when the image has loaded   
         MediaTracker tracker = new MediaTracker(this);   
         // Then load the image   
-        fondo = Toolkit.getDefaultToolkit().getImage("Gastos.jpg");   
+        fondo = Toolkit.getDefaultToolkit().getImage("Gastos1.jpg");   
              	
         
         // add the image to the MediaTracker...   
@@ -256,10 +250,17 @@ public class ContenedorGastos extends HContainer implements KeyListener {
 		
 		case 406: // Boton Azul
 			
+			MainXlet.gas.setVisible(false);
+			MainXlet.promedioAnio.setVisible(true);
+			MainXlet.promedioAnio.requestFocus();		
+			LimpiarCajas();
+			persistir.guardarGastos(ListaGastos);
+			primeraVez = true;
+			
 			break;
 		
 		case 27:	//exit
-			MainXlet.mainPage=true;
+			
 			LimpiarCajas();
 			MainXlet.gas.setVisible(false);
 			MainXlet.scene.requestFocus();
