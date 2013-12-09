@@ -73,6 +73,9 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
 		
 	/**Main Image */
 	private Image mainImage;
+	
+	/**Button izq Image */
+	private Image weatherButton;
 	//private static boolean flagImageMain = true;
 	
 	public static boolean mainPage;
@@ -293,10 +296,13 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
     	image= Toolkit.getDefaultToolkit().getImage("bg22.png"); 
     	
     	mainImage = Toolkit.getDefaultToolkit().getImage("inicio.jpg");
+    	
+    	weatherButton = Toolkit.getDefaultToolkit().getImage("BotonIzq2.jpg");
 
         // add the image to the MediaTracker...   
         tracker.addImage(image, 0);
         tracker.addImage(mainImage, 1);
+        tracker.addImage(weatherButton, 1);
         try{   
             tracker.waitForAll();   
         }   
@@ -381,7 +387,7 @@ public class MainXlet extends HComponent implements Xlet, Runnable, KeyListener 
         
         if(mainPage==true){
             graphics.drawImage(mainImage, 0, 0, null);
-
+            graphics.drawImage(weatherButton, 404, 180, null);
             
         }
     
