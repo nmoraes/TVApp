@@ -22,6 +22,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	HStaticText anio;
 	HStaticText tarea;
 	HStaticText instrucciones=new HStaticText("Utilice las flecha para seleccionar el dia\nOK para escribir una nueva tarea\n+ y - para navegar entre las tareas");
+	HStaticText guardar=new HStaticText("presione + para guardar");
 	List<HStaticText> listaTareas;
 	private static ControladorTareas tareas=new ControladorTareas();
 	int visibles=0;
@@ -58,6 +59,10 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 		instrucciones.setBackground(Color.WHITE);
 		instrucciones.setVisible(true);
 		this.add(instrucciones);
+		guardar.setFont(new Font("Tiresias",0,14));
+		guardar.setBackground(Color.WHITE);
+		guardar.setBounds(300, 250, 170, 30);
+		this.add(guardar);
 		mostrarTextos();
 		cargarListaTareas();
 		foco=1;
@@ -153,6 +158,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 					hst.setVisible(false);
 				}
 			}
+			guardar.setVisible(true);
 			instrucciones.setVisible(false);
 			MainXlet.keyboard.setVisible(true);
 			MainXlet.keyboard.requestFocus();	
@@ -188,6 +194,7 @@ public class ContenedorAgenda extends HContainer implements KeyListener {
 	}
 	
 	public void cargarListaTareas(){
+		guardar.setVisible(false);
 		instrucciones.setVisible(true);
 		if(listaTareas!=null){
 			for (HStaticText hst : listaTareas) {
